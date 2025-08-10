@@ -1,0 +1,420 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+/* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
+All colors MUST be HSL.
+*/
+
+@layer base {
+  :root {
+    --background: 220 30% 98%;
+    --foreground: 220 20% 15%;
+
+    --card: 0 0% 100%;
+    --card-foreground: 220 20% 15%;
+
+    --popover: 0 0% 100%;
+    --popover-foreground: 220 20% 15%;
+
+    --primary: 215 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 215 85% 50%;
+
+    --secondary: 220 15% 95%;
+    --secondary-foreground: 220 20% 25%;
+
+    --muted: 220 15% 96%;
+    --muted-foreground: 220 15% 45%;
+
+    --accent: 215 85% 96%;
+    --accent-foreground: 215 85% 35%;
+
+    --success: 145 70% 45%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 60%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 90%;
+    --input: 220 15% 95%;
+    --ring: 215 85% 55%;
+
+    /* Financial app specific tokens */
+    --chart-positive: 145 70% 45%;
+    --chart-negative: 0 84% 60%;
+    --price-bg: 215 85% 97%;
+    --converter-bg: 220 30% 99%;
+
+    --radius: 0.5rem;
+
+    --sidebar-background: 0 0% 98%;
+
+    --sidebar-foreground: 240 5.3% 26.1%;
+
+    --sidebar-primary: 240 5.9% 10%;
+
+    --sidebar-primary-foreground: 0 0% 98%;
+
+    --sidebar-accent: 240 4.8% 95.9%;
+
+    --sidebar-accent-foreground: 240 5.9% 10%;
+
+    --sidebar-border: 220 13% 91%;
+
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  .dark {
+    --background: 220 25% 8%;
+    --foreground: 220 15% 92%;
+
+    --card: 220 25% 10%;
+    --card-foreground: 220 15% 92%;
+
+    --popover: 220 25% 10%;
+    --popover-foreground: 220 15% 92%;
+
+    --primary: 215 85% 55%;
+    --primary-foreground: 0 0% 100%;
+    --primary-hover: 215 85% 60%;
+
+    --secondary: 220 15% 15%;
+    --secondary-foreground: 220 15% 85%;
+
+    --muted: 220 15% 15%;
+    --muted-foreground: 220 15% 65%;
+
+    --accent: 220 15% 15%;
+    --accent-foreground: 215 85% 70%;
+
+    --success: 145 70% 50%;
+    --success-foreground: 0 0% 100%;
+
+    --destructive: 0 84% 65%;
+    --destructive-foreground: 0 0% 100%;
+
+    --border: 220 15% 18%;
+    --input: 220 15% 15%;
+    --ring: 215 85% 55%;
+
+    /* Dark mode financial tokens */
+    --chart-positive: 145 70% 50%;
+    --chart-negative: 0 84% 65%;
+    --price-bg: 220 25% 12%;
+    --converter-bg: 220 25% 9%;
+    --sidebar-background: 240 5.9% 10%;
+    --sidebar-foreground: 240 4.8% 95.9%;
+    --sidebar-primary: 224.3 76.3% 48%;
+    --sidebar-primary-foreground: 0 0% 100%;
+    --sidebar-accent: 240 3.7% 15.9%;
+    --sidebar-accent-foreground: 240 4.8% 95.9%;
+    --sidebar-border: 240 3.7% 15.9%;
+    --sidebar-ring: 217.2 91.2% 59.8%;
+  }
+
+  /* Mobile viewport fix */
+  --vh: 1vh;
+  
+  /* Mobile-first typography */
+  --mobile-font-scale: 0.875;
+  --mobile-line-height: 1.6;
+  --mobile-touch-target: 44px;
+}
+
+@layer base {
+  * {
+    @apply border-border;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+  }
+}
+
+/* Enhanced Mobile responsiveness and optimizations - Mobile-First Approach */
+@media (max-width: 767px) {
+  .container {
+    padding-left: 1rem;
+    padding-right: 1rem;
+  }
+  
+  /* Mobile typography scaling */
+  html {
+    font-size: calc(16px * var(--mobile-font-scale));
+  }
+  
+  /* Enhanced touch targets - iOS HIG compliant */
+  button, a, input, select, textarea, [role="button"], .touch-manipulation {
+    min-height: var(--mobile-touch-target);
+    min-width: var(--mobile-touch-target);
+    touch-action: manipulation;
+    -webkit-tap-highlight-color: transparent;
+  }
+  
+  /* Mobile-specific touch optimizations */
+  .touch-manipulation {
+    -webkit-touch-callout: none;
+    user-select: none;
+  }
+  
+  /* Prevent zoom on input focus - critical for mobile UX */
+  input[type="text"], input[type="email"], input[type="number"], 
+  input[type="password"], input[type="search"], input[type="tel"], 
+  input[type="url"], select, textarea {
+    font-size: 16px !important;
+    transform: translateZ(0); /* Hardware acceleration */
+  }
+  
+  /* Input focus improvements for mobile */
+  input:focus,
+  select:focus,
+  textarea:focus {
+    outline: 2px solid hsl(var(--primary));
+    outline-offset: 2px;
+    border-color: hsl(var(--primary));
+  }
+  
+  /* Better mobile spacing - optimized for thumb navigation */
+  .space-y-2 > * + * {
+    margin-top: 0.75rem;
+  }
+  
+  .space-y-4 > * + * {
+    margin-top: 1.25rem;
+  }
+  
+  .space-y-6 > * + * {
+    margin-top: 1rem;
+  }
+  
+  .space-y-8 > * + * {
+    margin-top: 1.5rem;
+  }
+  
+  /* Mobile-optimized typography hierarchy */
+  h1 { 
+    font-size: 1.875rem; 
+    line-height: 2.25rem; 
+    font-weight: 700;
+    letter-spacing: -0.025em;
+  }
+  h2 { 
+    font-size: 1.5rem; 
+    line-height: 2rem; 
+    font-weight: 600;
+    letter-spacing: -0.025em;
+  }
+  h3 { 
+    font-size: 1.25rem; 
+    line-height: 1.75rem; 
+    font-weight: 600;
+  }
+  
+  /* Better mobile readability */
+  p, li, div {
+    line-height: var(--mobile-line-height);
+    word-break: break-word;
+  }
+  
+  /* Mobile button optimizations */
+  .btn-mobile {
+    padding: 0.75rem 1rem;
+    font-size: 1rem;
+    border-radius: 0.5rem;
+    font-weight: 500;
+  }
+  
+  /* Mobile navigation optimizations */
+  nav button, nav a {
+    padding: 0.75rem;
+    margin: 0.25rem;
+  }
+  
+  /* Dropdown/Select optimizations for mobile */
+  [data-radix-popper-content-wrapper] {
+    z-index: 9999 !important;
+  }
+  
+  [role="listbox"],
+  [role="menu"] {
+    max-height: 60vh;
+    overflow-y: auto;
+    -webkit-overflow-scrolling: touch;
+    background: hsl(var(--background));
+    border: 1px solid hsl(var(--border));
+  }
+  
+  /* Card optimizations for mobile */
+  .card-mobile {
+    margin: 0.5rem;
+    border-radius: 0.75rem;
+    box-shadow: 0 4px 6px -1px rgba(0, 0, 0, 0.1);
+  }
+  
+  /* Prevent horizontal scroll on mobile */
+  body {
+    overflow-x: hidden;
+    -webkit-overflow-scrolling: touch;
+    overflow-scrolling: touch;
+  }
+  
+  /* Safe area handling for mobile devices */
+  .safe-area-top {
+    padding-top: env(safe-area-inset-top);
+  }
+  
+  .safe-area-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  /* Mobile gesture optimizations */
+  .swipeable {
+    touch-action: pan-x pan-y;
+  }
+  
+  /* Optimize for mobile performance */
+  * {
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
+    -webkit-perspective: 1000;
+    perspective: 1000;
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+  }
+  
+  /* Hardware acceleration for animations */
+  .animate-fade-in,
+  .animate-scale-in,
+  .animate-slide-in-right {
+    transform: translateZ(0);
+    will-change: transform, opacity;
+  }
+  
+  /* Slow connection optimizations */
+  .slow-connection .animate-pulse,
+  .slow-connection [class*="animate-"] {
+    animation: none !important;
+    transition: none !important;
+  }
+}
+
+/* Tablet optimizations */
+@media (min-width: 768px) and (max-width: 1023px) {
+  .container {
+    padding-left: 1.5rem;
+    padding-right: 1.5rem;
+  }
+  
+  html {
+    font-size: 16px;
+  }
+  
+  /* Tablet-specific touch targets */
+  button, a, input, select, textarea {
+    min-height: 40px;
+    min-width: 40px;
+  }
+}
+
+/* Desktop optimizations */
+@media (min-width: 1024px) {
+  .container {
+    padding-left: 2rem;
+    padding-right: 2rem;
+  }
+  
+  /* Desktop hover states */
+  button:hover, a:hover, [role="button"]:hover {
+    transition: all 0.2s ease-in-out;
+  }
+  
+  /* Optimize for larger screens */
+  h1 { 
+    font-size: 2.25rem; 
+    line-height: 2.5rem; 
+  }
+  h2 { 
+    font-size: 1.875rem; 
+    line-height: 2.25rem; 
+  }
+}
+
+/* Performance optimizations for all screen sizes */
+@layer utilities {
+  /* Hardware acceleration for smooth animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    will-change: transform;
+  }
+  
+  /* Optimized loading states */
+  .loading-content {
+    content-visibility: auto;
+    contain-intrinsic-size: 200px;
+  }
+  
+  /* Better focus states for accessibility */
+  .focus-ring:focus-visible {
+    outline: 2px solid hsl(var(--ring));
+    outline-offset: 2px;
+  }
+  
+  /* Prevent layout shift for images */
+  .aspect-preserve {
+    aspect-ratio: attr(width) / attr(height);
+  }
+  
+  /* Mobile touch targets */
+  .touch-target-44 {
+    min-height: 44px;
+    min-width: 44px;
+  }
+  
+  /* Safe area insets for mobile */
+  .safe-area-inset {
+    padding-left: env(safe-area-inset-left);
+    padding-right: env(safe-area-inset-right);
+    padding-top: env(safe-area-inset-top);
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+  
+  .safe-area-inset-bottom {
+    padding-bottom: env(safe-area-inset-bottom);
+  }
+}
+
+/* Critical font loading optimization */
+@layer base {
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 400;
+    font-display: swap;
+    src: local('Inter Regular'), local('Inter-Regular');
+  }
+  
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 500;
+    font-display: swap;
+    src: local('Inter Medium'), local('Inter-Medium');
+  }
+  
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 600;
+    font-display: swap;
+    src: local('Inter SemiBold'), local('Inter-SemiBold');
+  }
+  
+  @font-face {
+    font-family: 'Inter';
+    font-style: normal;
+    font-weight: 700;
+    font-display: swap;
+    src: local('Inter Bold'), local('Inter-Bold');
+  }
+}

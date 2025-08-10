@@ -1,0 +1,202 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+
+  <!-- Blog main page -->
+  <url>
+    <loc>https://currencytocurrency.app/blog</loc>
+    <lastmod>2025-02-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog" />
+  </url>
+
+  <!-- Blog posts -->
+  <!-- New Educational Articles -->
+  <url>
+    <loc>https://currencytocurrency.app/blog/what-are-exchange-rates-complete-beginners-guide</loc>
+    <lastmod>2025-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/what-are-exchange-rates-complete-beginners-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/what-are-exchange-rates-complete-beginners-guide" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-26</news:publication_date>
+      <news:title>What Are Exchange Rates and How Do They Work? Complete Beginner's Guide</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-conversion-calculator-guide</loc>
+    <lastmod>2025-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/currency-conversion-calculator-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/currency-conversion-calculator-guide" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-26</news:publication_date>
+      <news:title>Currency Conversion Calculator: How to Convert Money Between Any Currencies</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://currencytocurrency.app/blog/understanding-currency-codes-iso-4217-guide</loc>
+    <lastmod>2025-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/understanding-currency-codes-iso-4217-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/understanding-currency-codes-iso-4217-guide" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-26</news:publication_date>
+      <news:title>Understanding Currency Codes (USD, EUR, GBP): Complete ISO 4217 Guide</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://currencytocurrency.app/blog/real-time-vs-historical-exchange-rates-guide</loc>
+    <lastmod>2025-08-26</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/real-time-vs-historical-exchange-rates-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/real-time-vs-historical-exchange-rates-guide" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-26</news:publication_date>
+      <news:title>Real-Time vs Historical Exchange Rates: What's the Difference?</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-exchange-rates-online-arbitrage-profit-calculator</loc>
+    <lastmod>2025-08-25</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/currency-exchange-rates-online-arbitrage-profit-calculator" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/currency-exchange-rates-online-arbitrage-profit-calculator" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-25</news:publication_date>
+      <news:title>Currency Exchange Rates for Online Arbitrage: Profit Opportunity Calculator</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://currencytocurrency.app/blog/best-currency-exchange-sites-2025</loc>
+    <lastmod>2025-02-05</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/best-currency-exchange-sites-2025" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/best-currency-exchange-sites-2025" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-02-05</news:publication_date>
+      <news:title>Best Currency Exchange Sites: Where to Convert Your Money in 2025</news:title>
+    </news:news>
+  </url>
+  <url>
+    <loc>https://currencytocurrency.app/blog/understanding-currency-volatility-2024</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/understanding-currency-volatility-2024" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-08-03</news:publication_date>
+      <news:title>Understanding Currency Volatility in 2024: A Complete Guide</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/best-currency-exchange-apps-2024</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/best-currency-exchange-apps-2024" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-08-03</news:publication_date>
+      <news:title>Best Currency Exchange Apps 2024: Complete Review</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/bitcoin-vs-traditional-currency-analysis</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/bitcoin-vs-traditional-currency-analysis" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2024-08-03</news:publication_date>
+      <news:title>Bitcoin vs Traditional Currency: 2024 Analysis</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/travel-money-saving-strategies-guide</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/travel-money-saving-strategies-guide" />
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/global-economic-trends-currency-impact</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/global-economic-trends-currency-impact" />
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/financial-expert-predictions-2024</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/financial-expert-predictions-2024" />
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/digital-nomad-currency-guide</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/digital-nomad-currency-guide" />
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-conversion-small-business-guide</loc>
+    <lastmod>2024-08-03</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/currency-conversion-small-business-guide" />
+  </url>
+
+</urlset>

@@ -1,0 +1,69 @@
+RewriteEngine On
+
+# Force HTTPS redirect
+RewriteCond %{HTTPS} off
+RewriteRule ^(.*)$ https://%{HTTP_HOST}%{REQUEST_URI} [L,R=301]
+
+# Ensure trailing slash consistency for homepage
+RewriteRule ^$ / [L]
+
+# Remove multiple slashes
+RewriteCond %{THE_REQUEST} //+
+RewriteRule ^(.*)$ /$1 [R=301,L]
+
+# Legacy currency pair redirects - 301 permanent redirects
+RewriteRule ^usd-to-eur/?$ /convert/usd-to-eur [R=301,L]
+RewriteRule ^usd-to-gbp/?$ /convert/usd-to-gbp [R=301,L]
+RewriteRule ^usd-to-jpy/?$ /convert/usd-to-jpy [R=301,L]
+RewriteRule ^usd-to-cad/?$ /convert/usd-to-cad [R=301,L]
+RewriteRule ^usd-to-aud/?$ /convert/usd-to-aud [R=301,L]
+RewriteRule ^usd-to-chf/?$ /convert/usd-to-chf [R=301,L]
+RewriteRule ^usd-to-nzd/?$ /convert/usd-to-nzd [R=301,L]
+RewriteRule ^eur-to-usd/?$ /convert/eur-to-usd [R=301,L]
+RewriteRule ^eur-to-gbp/?$ /convert/eur-to-gbp [R=301,L]
+RewriteRule ^eur-to-jpy/?$ /convert/eur-to-jpy [R=301,L]
+RewriteRule ^gbp-to-usd/?$ /convert/gbp-to-usd [R=301,L]
+RewriteRule ^gbp-to-eur/?$ /convert/gbp-to-eur [R=301,L]
+RewriteRule ^jpy-to-usd/?$ /convert/jpy-to-usd [R=301,L]
+RewriteRule ^cad-to-usd/?$ /convert/cad-to-usd [R=301,L]
+RewriteRule ^aud-to-usd/?$ /convert/aud-to-usd [R=301,L]
+RewriteRule ^chf-to-usd/?$ /convert/chf-to-usd [R=301,L]
+RewriteRule ^nzd-to-usd/?$ /convert/nzd-to-usd [R=301,L]
+
+# Remove www subdomain if present
+RewriteCond %{HTTP_HOST} ^www\.(.+)$ [NC]
+RewriteRule ^(.*)$ https://%1/$1 [R=301,L]
+
+# Handle URL parameters that create duplicates
+RewriteCond %{QUERY_STRING} ^utm_source=.*$ [NC]
+RewriteRule ^(.*)$ /$1? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^utm_medium=.*$ [NC]
+RewriteRule ^(.*)$ /$1? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^utm_campaign=.*$ [NC]
+RewriteRule ^(.*)$ /$1? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^fbclid=.*$ [NC]
+RewriteRule ^(.*)$ /$1? [R=301,L]
+
+RewriteCond %{QUERY_STRING} ^gclid=.*$ [NC]
+RewriteRule ^(.*)$ /$1? [R=301,L]
+
+# Cache control for better performance
+<IfModule mod_expires.c>
+    ExpiresActive On
+    ExpiresByType text/css "access plus 1 month"
+    ExpiresByType application/javascript "access plus 1 month"
+    ExpiresByType image/png "access plus 1 month"
+    ExpiresByType image/jpg "access plus 1 month"
+    ExpiresByType image/jpeg "access plus 1 month"
+    ExpiresByType image/gif "access plus 1 month"
+    ExpiresByType image/webp "access plus 1 month"
+</IfModule>
+
+# Prevent access to sensitive files
+<Files ".htaccess">
+Order allow,deny
+Deny from all
+</Files>

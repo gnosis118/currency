@@ -1,0 +1,42 @@
+{
+  "name": "Currency Converter - Real-time Exchange Rates",
+  "short_name": "Currency to Currency",
+  "description": "Free currency converter with real-time exchange rates and cryptocurrency prices",
+  "start_url": "/",
+  "display": "standalone",
+  "background_color": "#0F172A",
+  "theme_color": "#3B82F6",
+  "orientation": "portrait-primary",
+  "categories": ["finance", "productivity", "utilities"],
+  "lang": "en",
+  "icons": [
+    {
+      "src": "/icon-192.png",
+      "sizes": "192x192",
+      "type": "image/png",
+      "purpose": "any maskable"
+    },
+    {
+      "src": "/icon-512.png", 
+      "sizes": "512x512",
+      "type": "image/png",
+      "purpose": "any maskable"
+    }
+  ],
+  "shortcuts": [
+    {
+      "name": "Quick Convert",
+      "short_name": "Convert", 
+      "description": "Quickly convert currencies",
+      "url": "/?tab=converter",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    },
+    {
+      "name": "Price Charts",
+      "short_name": "Charts",
+      "description": "View exchange rate charts", 
+      "url": "/?tab=charts",
+      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+    }
+  ]
+}
