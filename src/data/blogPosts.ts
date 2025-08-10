@@ -4030,7 +4030,7 @@ Specializes in business transfers and property purchases with dedicated account 
 4. **Monitor Rates**: Use alerts for favorable exchange rate periods
 5. **Negotiate**: For large or regular transfers, ask about better rates
 
-The currency exchange market continues to evolve rapidly, with new services and features appearing regularly. Stay informed about changes and regularly reassess your chosen services to ensure you're getting the best value for your specific needs.`;
+The currency exchange market continues to evolve rapidly, with new services and features appearing regularly. Stay informed about changes and regularly reassess your chosen services to ensure you're getting the best value for your specific needs.`
 
   },
   {
