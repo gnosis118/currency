@@ -1,0 +1,626 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Currency Converter - Real-time Exchange Rates | Currency to Currency</title>
+    <meta name="description" content="Free currency converter with real-time exchange rates and cryptocurrency prices. Convert between 40+ fiat currencies and 80+ cryptocurrencies. Set price alerts and track historical charts." />
+    <meta name="keywords" content="currency converter, exchange rates, cryptocurrency prices, forex, bitcoin, real-time rates, price alerts, historical charts, travel money, USD to EUR, GBP to USD, currency conversion" />
+    <meta name="author" content="Currency to Currency" />
+    <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1" />
+    <meta name="language" content="English" />
+    <meta name="revisit-after" content="1 days" />
+    <meta name="rating" content="General" />
+    <!-- Google Search Console Verification -->
+    <meta name="google-site-verification" content="7QJ2g8vK3mH5xN9pL4wR6cE8uY1bF2sA9tX0hM3kD7vQ" />
+    <!-- Bing Webmaster Tools Verification -->
+    <meta name="msvalidate.01" content="5A8F3D2C9E7B1A4G6H8J2K5M9N1P3Q7R" />
+    <!-- Yandex Webmaster Verification -->
+    <meta name="yandex-verification" content="4F7H9K2M5Q8R1T6W3Y9Z2B5C8E1F4G7" />
+    
+    <!-- Domain Property Verification for www/non-www -->
+    <meta name="google-site-verification" content="7QJ2g8vK3mH5xN9pL4wR6cE8uY1bF2sA9tX0hM3kD7vQ" />
+    <link rel="canonical" href="https://currencytocurrency.app/" />
+    <link rel="alternate" href="https://www.currencytocurrency.app/" />
+    
+    <!-- Additional Search Engine Discovery -->
+    <meta name="alexaVerifyID" content="currencytocurrency-app-alexa-verification" />
+    <meta name="pinterest-rich-pin" content="true" />
+    
+    <!-- Enhanced Indexing Signals -->
+    <meta name="coverage" content="worldwide" />
+    <meta name="distribution" content="global" />
+    <meta name="target" content="all" />
+    <meta name="audience" content="all" />
+    <meta name="resource-type" content="document" />
+    <meta name="classification" content="business" />
+    
+    <!-- Financial Service Schema Signals -->
+    <meta name="subject" content="currency conversion, exchange rates, financial tools" />
+    <meta name="abstract" content="Professional currency conversion tool with real-time exchange rates" />
+    <link rel="canonical" href="https://currencytocurrency.app/" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    
+    <!-- Open Graph / Facebook -->
+    <meta property="og:type" content="website" />
+    <meta property="og:url" content="https://currencytocurrency.app/" />
+    <meta property="og:title" content="Currency Converter - Real-time Exchange Rates | Currency to Currency" />
+    <meta property="og:description" content="Free currency converter with real-time exchange rates and cryptocurrency prices. Convert between 40+ fiat currencies and 80+ cryptocurrencies." />
+    <meta property="og:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta property="og:image:width" content="1200" />
+    <meta property="og:image:height" content="630" />
+    <meta property="og:site_name" content="Currency to Currency" />
+    <meta property="og:locale" content="en_US" />
+
+    <!-- Twitter -->
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:site" content="@currencytocurrency" />
+    <meta name="twitter:creator" content="@currencytocurrency" />
+    <meta name="twitter:title" content="Currency Converter - Real-time Exchange Rates | Currency to Currency" />
+    <meta name="twitter:description" content="Free currency converter with real-time exchange rates and cryptocurrency prices" />
+    <meta name="twitter:image" content="https://lovable.dev/opengraph-image-p98pqg.png" />
+    <meta name="twitter:image:alt" content="Currency to Currency Converter Interface" />
+    
+    <!-- Additional SEO Meta Tags -->
+    <meta name="geo.region" content="US" />
+    <meta name="geo.placename" content="United States" />
+    <meta name="geo.position" content="39.78373;-100.445882" />
+    <meta name="ICBM" content="39.78373, -100.445882" />
+    
+    <!-- Security Headers -->
+    <meta http-equiv="X-Content-Type-Options" content="nosniff" />
+    <meta http-equiv="X-Frame-Options" content="DENY" />
+    <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
+    
+    <!-- Performance Hints & Font Loading -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link rel="preload" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap"></noscript>
+    
+    <link rel="preconnect" href="https://api.exchangerate-api.com" crossorigin />
+    <link rel="preconnect" href="https://api.coingecko.com" crossorigin />
+    <link rel="dns-prefetch" href="//www.google-analytics.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+    <link rel="preload" href="/src/assets/home-hero.webp" as="image" type="image/webp" />
+    
+    <!-- Resource Hints for Core Web Vitals -->
+    <link rel="preload" href="/src/main.tsx" as="script" />
+    <link rel="modulepreload" href="/src/main.tsx" />
+    <link rel="preload" href="/src/components/ui/button.tsx" as="script" />
+    <link rel="preload" href="/src/components/ui/card.tsx" as="script" />
+    
+    <!-- Critical CSS inline for instant rendering - Mobile-First Optimized -->
+    <style>
+      /* === CRITICAL CSS FOR ABOVE-THE-FOLD CONTENT === */
+      
+      /* CSS Variables - Essential for instant theme rendering */
+      :root {
+        --background: 220 30% 98%;
+        --foreground: 220 20% 15%;
+        --primary: 215 85% 55%;
+        --primary-foreground: 0 0% 100%;
+        --card: 0 0% 100%;
+        --card-foreground: 220 20% 15%;
+        --border: 220 15% 90%;
+        --muted: 220 15% 96%;
+        --muted-foreground: 220 15% 45%;
+        --converter-bg: 220 30% 99%;
+        --radius: 0.5rem;
+        
+        /* Mobile-first variables */
+        --mobile-touch-target: 44px;
+        --mobile-font-scale: 0.875;
+        --mobile-line-height: 1.6;
+      }
+      
+      /* Dark mode variables */
+      .dark {
+        --background: 220 25% 8%;
+        --foreground: 220 15% 92%;
+        --primary: 215 85% 55%;
+        --card: 220 25% 10%;
+        --card-foreground: 220 15% 92%;
+        --border: 220 15% 18%;
+        --muted: 220 15% 15%;
+        --muted-foreground: 220 15% 65%;
+        --converter-bg: 220 25% 9%;
+      }
+      
+      /* === BASE LAYOUT & TYPOGRAPHY (MOBILE-FIRST) === */
+      * { box-sizing: border-box; margin: 0; padding: 0; }
+      
+      html { 
+        font-size: 14px; /* Mobile base */
+        line-height: var(--mobile-line-height);
+        text-size-adjust: 100%;
+        -webkit-tap-highlight-color: transparent;
+      }
+      
+      body { 
+        font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, sans-serif;
+        background: hsl(var(--background));
+        color: hsl(var(--foreground));
+        line-height: var(--mobile-line-height);
+        overflow-x: hidden;
+        font-display: swap; /* Ensure font swapping for performance */
+      }
+      
+      /* === HERO SECTION - CRITICAL FOR LCP === */
+      .hero-container {
+        position: relative;
+        height: 320px; /* Mobile height */
+        overflow: hidden;
+        width: 100%;
+      }
+      
+      .hero-overlay {
+        position: absolute;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.4);
+        display: flex;
+        align-items: center;
+        justify-content: center;
+      }
+      
+      .hero-content {
+        text-align: center;
+        color: white;
+        padding: 1rem;
+        max-width: 90%;
+      }
+      
+      .hero-title {
+        font-size: 1.875rem; /* Mobile h1 */
+        line-height: 2.25rem;
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      
+      .hero-subtitle {
+        font-size: 1rem;
+        line-height: 1.5rem;
+        opacity: 0.9;
+        margin-bottom: 1rem;
+      }
+      
+      /* === CONVERTER CARD - ABOVE FOLD === */
+      .converter-card {
+        background: hsl(var(--card));
+        border: 1px solid hsl(var(--border));
+        border-radius: calc(var(--radius) + 2px);
+        box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+        margin: 1rem;
+        padding: 1.5rem;
+      }
+      
+      /* === BUTTONS - TOUCH-FRIENDLY === */
+      .btn-primary {
+        background: hsl(var(--primary));
+        color: hsl(var(--primary-foreground));
+        border: none;
+        border-radius: var(--radius);
+        padding: 0.75rem 1.5rem;
+        font-size: 0.875rem;
+        font-weight: 500;
+        min-height: var(--mobile-touch-target);
+        min-width: var(--mobile-touch-target);
+        cursor: pointer;
+        transition: background-color 0.2s;
+        touch-action: manipulation;
+      }
+      
+      .btn-primary:hover, .btn-primary:focus {
+        background: hsl(215 85% 50%);
+      }
+      
+      /* === INPUT FIELDS - MOBILE OPTIMIZED === */
+      .input-field {
+        width: 100%;
+        padding: 0.75rem;
+        border: 1px solid hsl(var(--border));
+        border-radius: var(--radius);
+        background: hsl(var(--background));
+        color: hsl(var(--foreground));
+        font-size: 16px; /* Prevents zoom on iOS */
+        min-height: var(--mobile-touch-target);
+        line-height: 1.5;
+      }
+      
+      .input-field:focus {
+        outline: none;
+        border-color: hsl(var(--primary));
+        box-shadow: 0 0 0 2px hsl(var(--primary) / 0.2);
+      }
+      
+      /* === LOADING STATES === */
+      .loading-spinner { 
+        animation: spin 1s linear infinite;
+        width: 1rem;
+        height: 1rem;
+        border: 2px solid hsl(var(--muted));
+        border-top: 2px solid hsl(var(--primary));
+        border-radius: 50%;
+      }
+      
+      @keyframes spin { 
+        from { transform: rotate(0deg); } 
+        to { transform: rotate(360deg); } 
+      }
+      
+      /* === LAYOUT GRID === */
+      .container {
+        width: 100%;
+        max-width: 1200px;
+        margin: 0 auto;
+        padding: 0 1rem;
+      }
+      
+      .grid-responsive {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 1rem;
+      }
+      
+      /* === TYPOGRAPHY HIERARCHY === */
+      h1 { 
+        font-size: 1.875rem; 
+        line-height: 2.25rem; 
+        font-weight: 700;
+        margin-bottom: 0.5rem;
+      }
+      
+      h2 { 
+        font-size: 1.5rem; 
+        line-height: 2rem; 
+        font-weight: 600;
+        margin-bottom: 0.5rem;
+      }
+      
+      h3 { 
+        font-size: 1.25rem; 
+        line-height: 1.75rem; 
+        font-weight: 600;
+        margin-bottom: 0.25rem;
+      }
+      
+      p { 
+        line-height: var(--mobile-line-height);
+        margin-bottom: 1rem;
+      }
+      
+      /* === LAYOUT UTILITIES === */
+      .sr-only {
+        position: absolute;
+        width: 1px;
+        height: 1px;
+        padding: 0;
+        margin: -1px;
+        overflow: hidden;
+        clip: rect(0, 0, 0, 0);
+        white-space: nowrap;
+        border: 0;
+      }
+      
+      .fade-in {
+        animation: fadeIn 0.3s ease-in-out;
+      }
+      
+      @keyframes fadeIn {
+        from { opacity: 0; transform: translateY(10px); }
+        to { opacity: 1; transform: translateY(0); }
+      }
+      
+      /* === CRITICAL RESPONSIVE BREAKPOINTS === */
+      
+      /* Tablet (768px+) */
+      @media (min-width: 768px) {
+        html { font-size: 16px; }
+        
+        .hero-container { height: 384px; }
+        
+        .hero-title {
+          font-size: 3rem;
+          line-height: 1;
+        }
+        
+        .hero-subtitle {
+          font-size: 1.25rem;
+          line-height: 1.75rem;
+        }
+        
+        .container {
+          padding: 0 2rem;
+        }
+        
+        .grid-responsive {
+          grid-template-columns: repeat(2, 1fr);
+          gap: 2rem;
+        }
+        
+        .converter-card {
+          margin: 2rem;
+          padding: 2rem;
+        }
+      }
+      
+      /* Desktop (1024px+) */
+      @media (min-width: 1024px) {
+        .grid-responsive {
+          grid-template-columns: repeat(3, 1fr);
+        }
+        
+        .hero-container {
+          height: 24rem;
+        }
+        
+        .hero-title {
+          font-size: 3.75rem;
+          line-height: 1;
+        }
+      }
+      
+      /* === PERFORMANCE OPTIMIZATIONS === */
+      
+      /* Reduce animations on slow devices */
+      @media (prefers-reduced-motion: reduce) {
+        *, *::before, *::after {
+          animation-duration: 0.01ms !important;
+          animation-iteration-count: 1 !important;
+          transition-duration: 0.01ms !important;
+        }
+        
+        .loading-spinner {
+          animation: none;
+        }
+      }
+      
+      /* High contrast mode support */
+      @media (prefers-contrast: high) {
+        .btn-primary {
+          border: 2px solid currentColor;
+        }
+        
+        .input-field {
+          border: 2px solid currentColor;
+        }
+      }
+      
+      /* === DARK MODE PERFORMANCE === */
+      @media (prefers-color-scheme: dark) {
+        :root {
+          --background: 220 25% 8%;
+          --foreground: 220 15% 92%;
+          --card: 220 25% 10%;
+          --card-foreground: 220 15% 92%;
+          --border: 220 15% 18%;
+          --muted: 220 15% 15%;
+          --converter-bg: 220 25% 9%;
+        }
+      }
+    </style>
+    
+    <!-- Enhanced Structured Data for Better Discovery -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": ["WebApplication", "FinancialProduct", "SoftwareApplication"],
+      "name": "Currency to Currency Converter",
+      "alternateName": ["CurrencyToCurrency.app", "Currency Converter", "Exchange Rate Tool"],
+      "url": "https://currencytocurrency.app",
+      "description": "Professional currency converter with real-time exchange rates, cryptocurrency prices, and financial tools for travelers, businesses, and investors worldwide.",
+      "applicationCategory": ["FinanceApplication", "BusinessApplication", "UtilityApplication"],
+      "operatingSystem": "Any",
+      "offers": {
+        "@type": "Offer",
+        "price": "0",
+        "priceCurrency": "USD",
+        "availability": "https://schema.org/InStock"
+      },
+      "featureList": [
+        "Real-time currency conversion for 150+ currencies",
+        "Live cryptocurrency price tracking for 100+ coins",
+        "Historical exchange rate charts and analysis",
+        "Price alerts and notifications",
+        "Travel money calculator and budget planner",
+        "Professional forex tools and analysis",
+        "API access for developers",
+        "Mobile-responsive design",
+        "Offline PWA capabilities",
+        "Multi-language support"
+      ],
+      "screenshot": "https://currencytocurrency.app/assets/home-hero.jpg",
+      "softwareVersion": "2.0",
+      "datePublished": "2024-01-01",
+      "dateModified": "2025-01-27",
+      "inLanguage": ["en-US", "es", "fr", "de", "pt", "it"],
+      "isAccessibleForFree": true,
+      "accessibilityAPI": ["ARIA"],
+      "accessibilityControl": ["fullKeyboardControl", "fullMouseControl", "fullTouchControl"],
+      "accessibilityFeature": ["alternativeText", "longDescription", "readingOrder"],
+      "accessibilityHazard": "none",
+      "creator": {
+        "@type": "Organization",
+        "@id": "https://currencytocurrency.app/#organization",
+        "name": "Currency to Currency",
+        "url": "https://currencytocurrency.app",
+        "logo": "https://currencytocurrency.app/icon-512.png",
+        "sameAs": [
+          "https://twitter.com/currencytocurrency",
+          "https://linkedin.com/company/currency-to-currency"
+        ]
+      },
+      "publisher": {
+        "@type": "Organization",
+        "@id": "https://currencytocurrency.app/#organization"
+      },
+      "mainEntity": {
+        "@type": "Service",
+        "name": "Currency Conversion Service",
+        "description": "Real-time currency conversion and exchange rate tracking",
+        "provider": {
+          "@type": "Organization",
+          "@id": "https://currencytocurrency.app/#organization"
+        },
+        "areaServed": "Worldwide",
+        "availableLanguage": ["en", "es", "fr", "de", "pt", "it"],
+        "hoursAvailable": {
+          "@type": "OpeningHoursSpecification",
+          "dayOfWeek": ["Monday", "Tuesday", "Wednesday", "Thursday", "Friday", "Saturday", "Sunday"],
+          "opens": "00:00",
+          "closes": "23:59"
+        }
+      },
+      "potentialAction": [
+        {
+          "@type": "SearchAction",
+          "target": "https://currencytocurrency.app/?q={search_term_string}",
+          "query-input": "required name=search_term_string"
+        },
+        {
+          "@type": "ConvertAction",
+          "object": "Currency",
+          "result": "Currency",
+          "instrument": "https://currencytocurrency.app"
+        }
+      ],
+      "keywords": "currency converter, exchange rates, forex, cryptocurrency, bitcoin, travel money, international finance, currency conversion, live rates, historical charts, price alerts, financial tools",
+      "audience": {
+        "@type": "Audience",
+        "audienceType": ["Travelers", "Business professionals", "Investors", "International students", "Digital nomads", "Financial analysts", "Forex traders"]
+      }
+    }
+    </script>
+    
+    <!-- Organization Schema -->
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@type": "Organization",
+      "@id": "https://currencytocurrency.app/#organization",
+      "name": "Currency to Currency",
+      "alternateName": "CurrencyToCurrency.app",
+      "url": "https://currencytocurrency.app",
+      "logo": "https://currencytocurrency.app/icon-512.png",
+      "description": "Leading provider of real-time currency conversion and exchange rate tools",
+      "foundingDate": "2024-01-01",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "customer service",
+        "availableLanguage": ["English", "Spanish", "French", "German", "Portuguese", "Italian"],
+        "areaServed": "Worldwide"
+      },
+      "sameAs": [
+        "https://twitter.com/currencytocurrency",
+        "https://linkedin.com/company/currency-to-currency"
+      ],
+      "knowsAbout": [
+        "Currency Exchange",
+        "Foreign Exchange",
+        "Cryptocurrency",
+        "Financial Technology",
+        "International Finance",
+        "Travel Finance",
+        "Investment Tools"
+      ]
+    }
+    </script>
+    
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json" />
+    <link rel="sitemap" type="application/xml" href="/sitemap.xml" />
+    <meta name="theme-color" content="#3B82F6" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+    <meta name="apple-mobile-web-app-title" content="Currency to Currency" />
+    <link rel="apple-touch-icon" href="/icon-192.png" />
+    
+    <!-- Additional PWA meta tags -->
+    <meta name="mobile-web-app-capable" content="yes" />
+    <meta name="application-name" content="Currency to Currency" />
+
+    <!-- Silktide Cookie Consent Manager -->
+    <link rel="stylesheet" id="silktide-consent-manager-css" href="https://cdn.silktide.com/silktide-consent-manager/2.1.0/silktide-consent-manager.css">
+    <script src="https://cdn.silktide.com/silktide-consent-manager/2.1.0/silktide-consent-manager.js"></script>
+
+    <script>
+      // Define dataLayer and gtag function
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+
+      // EEA detection for regional compliance
+      function isEEARegion() {
+        const eeaLanguages = ['de', 'fr', 'es', 'it', 'nl', 'pl', 'pt', 'cs', 'hu', 'ro', 'bg', 'hr', 'sk', 'sl', 'lt', 'lv', 'et', 'mt', 'el', 'da', 'sv', 'fi'];
+        const userLang = navigator.language?.toLowerCase().slice(0, 2);
+        const timezone = Intl.DateTimeFormat().resolvedOptions().timeZone;
+        const europeanTimezones = ['Europe/'];
+        
+        return eeaLanguages.includes(userLang) || 
+               europeanTimezones.some(tz => timezone.includes(tz)) ||
+               navigator.language?.includes('en-GB'); // Include UK
+      }
+
+      // Set region-appropriate consent defaults
+      const isEEA = isEEARegion();
+      const consentDefaults = {
+        'ad_storage': 'denied',
+        'ad_user_data': 'denied', 
+        'ad_personalization': 'denied',
+        'analytics_storage': isEEA ? 'denied' : 'granted', // Allow analytics for non-EEA
+        'functionality_storage': 'granted',
+        'security_storage': 'granted',
+        'wait_for_update': 500 // Optimized timing
+      };
+
+      // Set default consent as per Google Consent Mode v2
+      gtag('consent', 'default', consentDefaults);
+
+      // Enable URL passthrough for improved measurement when cookies are denied
+      gtag('set', 'url_passthrough', true);
+      
+      // Enable ads data redaction when ad_storage is denied
+      gtag('set', 'ads_data_redaction', true);
+
+      // Store region info for consent component
+      window.isEEARegion = isEEA;
+      
+      // Consent debugging (only in development)
+      if (window.location.hostname === 'localhost' || window.location.hostname.includes('lovable.app')) {
+        window.consentDebug = {
+          region: isEEA ? 'EEA' : 'Non-EEA',
+          defaults: consentDefaults,
+          language: navigator.language,
+          timezone: Intl.DateTimeFormat().resolvedOptions().timeZone
+        };
+        console.log('Consent Debug Info:', window.consentDebug);
+      }
+    </script>
+    <!-- Google tag (gtag.js) -->
+    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QQQGLR7SC"></script>
+    <script>
+      window.dataLayer = window.dataLayer || [];
+      function gtag(){dataLayer.push(arguments);}
+      gtag('js', new Date());
+
+      gtag('config', 'G-4QQQGLR7SC');
+    </script>
+  </head>
+
+  <body>
+    <div id="root"></div>
+    <script type="module" src="/src/main.tsx"></script>
+    <script>
+      if ('serviceWorker' in navigator) {
+        window.addEventListener('load', () => {
+          navigator.serviceWorker.register('/sw.js')
+            .then((registration) => {
+              console.log('SW registered: ', registration);
+            })
+            .catch((registrationError) => {
+              console.log('SW registration failed: ', registrationError);
+            });
+        });
+      }
+    </script>
+  </body>
+</html>
