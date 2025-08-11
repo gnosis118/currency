@@ -94,14 +94,6 @@ export const blogPosts: BlogPost[] = [
 
 *Posted by Gavin | August 11, 2025*
 
----
-
-**Meta Description**: Master AI forex trading in 2025 with our complete beginner's guide. Learn automated trading strategies, best AI tools, and step-by-step setup instructions for profitable forex trading.
-
-**Target Keywords**: AI forex trading, automated forex trading, forex AI tools, artificial intelligence forex, forex trading bots
-
----
-
 ## Introduction
 
 The foreign exchange market is experiencing a revolutionary transformation as artificial intelligence reshapes how traders approach currency trading. According to recent industry surveys, 49% of traders expect AI to fundamentally transform forex trading by 2025, marking a pivotal shift from traditional manual trading methods to sophisticated automated systems [1]. This technological evolution represents more than just a trend—it's becoming the new standard for successful forex trading in an increasingly competitive global marketplace.
