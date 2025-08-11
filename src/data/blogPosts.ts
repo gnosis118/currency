@@ -48,6 +48,16 @@ import currencyVolatilityProtectionStrategies from '@/assets/currency-volatility
 import cbdcCompleteGuide from '@/assets/cbdc-complete-guide-2025.png';
 import forexTradingPsychologyGuide from '@/assets/forex-trading-psychology-guide-2025.png';
 import businessCurrencyExchangeStrategies from '@/assets/business-currency-exchange-strategies-2025.png';
+import topBrokersRankingChart from '@/assets/top-5-brokers-ranking-chart-2025.png';
+import brokerComparisonTableChart from '@/assets/broker-comparison-table-chart-2025.png';
+import freelancerPaymentMethods from '@/assets/freelancer-payment-methods-2025.png';
+import freelancerPaymentOptions from '@/assets/freelancer-payment-options-2025.jpg';
+import nomadRemoteWorkLifestyle from '@/assets/nomad-remote-work-lifestyle-2025.jpeg';
+import nomadMoneyManagement from '@/assets/nomad-money-management-2025.png';
+import businessHedgingStrategies from '@/assets/business-hedging-strategies-2025.webp';
+import forexRiskManagement from '@/assets/forex-risk-management-2025.png';
+import travelMoneyManagement from '@/assets/travel-money-management-2025.jpg';
+import travelBudgetTemplate from '@/assets/travel-budget-template-2025.jpg';
 
 export interface BlogPost {
   id?: string;
@@ -6598,14 +6608,7 @@ Choosing the right forex broker in 2025 requires balancing multiple factors: reg
 5. **Maintain realistic expectations** - No broker will make you profitable;
 import topBrokersRankingChart from '@/assets/top-5-brokers-ranking-chart-2025.png';
 import brokerComparisonTableChart from '@/assets/broker-comparison-table-chart-2025.png';
-import freelancerPaymentMethods from '@/assets/freelancer-payment-methods-2025.png';
-import freelancerPaymentOptions from '@/assets/freelancer-payment-options-2025.jpg';
-import nomadRemoteWorkLifestyle from '@/assets/nomad-remote-work-lifestyle-2025.jpeg';
-import nomadMoneyManagement from '@/assets/nomad-money-management-2025.png';
-import businessHedgingStrategies from '@/assets/business-hedging-strategies-2025.webp';
-import forexRiskManagement from '@/assets/forex-risk-management-2025.png';
-import travelMoneyManagement from '@/assets/travel-money-management-2025.jpg';
-import travelBudgetTemplate from '@/assets/travel-budget-template-2025.jpg'; that requires skill development
+ that requires skill development
 
 The forex market will continue evolving throughout 2025, but choosing a broker from our tested and verified list ensures you're building on a solid foundation. Focus on developing your trading skills rather than constantly switching brokers—success comes from consistency, discipline, and continuous learning.
 
