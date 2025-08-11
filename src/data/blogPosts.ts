@@ -5813,6 +5813,7 @@ For example, if the real EUR/USD rate is 1.2000, a bank might offer you 1.1520 (
 For more information about how exchange rates work, explore our guide on [understanding exchange rates](/blog/what-are-exchange-rates-complete-beginners-guide).`
   },
   {
+    id: 'forex-broker-reviews-2025',
     title: 'The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings',
     slug: 'forex-broker-reviews-2025',
     excerpt: 'Comprehensive analysis of the top forex brokers with our proprietary 10-factor rating system. Compare regulation, costs, platforms, and safety features to find the best broker for your trading needs.',
@@ -5823,6 +5824,18 @@ For more information about how exchange rates work, explore our guide on [unders
     image: forexBrokerComparison,
     tags: ['Forex Brokers', 'Trading', 'Reviews', 'Regulation', 'Investment'],
     metaDescription: 'Complete 2025 guide to forex brokers with expert reviews and star ratings. Compare top brokers like IG Group, Interactive Brokers, tastyfx, OANDA, and FOREX.com across regulation, costs, platforms, and safety.',
+    author: 'Gavin',
+    schema: {
+      '@type': 'Article',
+      headline: 'The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings',
+      author: {
+        '@type': 'Person',
+        name: 'Gavin'
+      },
+      datePublished: '2025-08-11',
+      dateModified: '2025-08-11',
+      '@id': 'https://currencytocurrency.com/blog/forex-broker-reviews-2025'
+    },
     content: `# Best Forex Brokers 2025: Complete Expert Guide & Rankings
 
 *Last Updated: January 11, 2025 | Expert Analysis by Trading Professionals | 25+ min read*
