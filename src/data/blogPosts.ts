@@ -50,6 +50,7 @@ import forexTradingPsychologyGuide from '@/assets/forex-trading-psychology-guide
 import businessCurrencyExchangeStrategies from '@/assets/business-currency-exchange-strategies-2025.png';
 
 export interface BlogPost {
+  id?: string;
   title: string;
   slug: string;
   excerpt: string;
@@ -60,6 +61,8 @@ export interface BlogPost {
   image: string;
   tags: string[];
   metaDescription: string;
+  author?: string;
+  schema?: any;
   content: string;
 }
 
