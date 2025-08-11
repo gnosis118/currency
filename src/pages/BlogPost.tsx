@@ -16,12 +16,14 @@ const BlogPost = () => {
   const { slug } = useParams();
   const { toast } = useToast();
 
-  // Find the current blog post
-  const currentPost = blogPosts.find(post => post.slug === slug);
+  // Find the current blog post (check both slug and id fields)
+  const currentPost = blogPosts.find(post => 
+    post.slug === slug || (post as any).id === slug
+  );
   
   // Debug logging
   console.log('Current slug:', slug);
-  console.log('Available slugs:', blogPosts.map(post => post.slug));
+  console.log('Available slugs:', blogPosts.map(post => post.slug || (post as any).id));
   console.log('Found post:', currentPost ? currentPost.title : 'Not found');
   console.log('Post content length:', currentPost ? currentPost.content.length : 0);
 
