@@ -6615,48 +6615,7 @@ The forex market will continue evolving throughout 2025, but choosing a broker f
 
 **Last Updated:** January 11, 2025  
 **Next Review:** February 15, 2025  
-**Methodology Version:** 15-Factor Analysis v3.2`,
-    author: 'Gavin',
-    date: '2025-08-11',
-    readTime: '22 min read',
-    image: forexBrokerComparison,
-    tags: ['Forex', 'Brokers', 'Trading', 'Reviews', 'Regulation'],
-    category: 'Trading',
-    featured: true,
-    metaDescription: 'Complete 2025 guide to forex brokers with expert reviews and star ratings. Compare top brokers like IG Group, Interactive Brokers, tastyfx, OANDA, and FOREX.com across regulation, costs, platforms, and safety.',
-    keywords: 'forex brokers 2025, best forex brokers, forex broker reviews, forex broker comparison, regulated forex brokers, forex trading platforms, IG Group review, Interactive Brokers forex, tastyfx review, OANDA review, FOREX.com review',
-    schema: {
-      '@context': 'https://schema.org',
-      '@type': 'Article',
-      headline: 'The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings',
-      description: 'Comprehensive analysis of the top forex brokers with our proprietary 10-factor rating system. Compare regulation, costs, platforms, and safety features to find the best broker for your trading needs.',
-      author: {
-        '@type': 'Organization',
-        name: 'Gavin'
-      },
-      publisher: {
-        '@type': 'Organization',
-        name: 'Currency to Currency',
-        logo: {
-          '@type': 'ImageObject',
-          url: 'https://currencytocurrency.com/logo.png'
-        }
-      },
-      datePublished: '2025-08-11',
-      dateModified: '2025-08-11',
-      image: {
-        '@type': 'ImageObject',
-        url: 'https://currencytocurrency.com/assets/forex-broker-comparison-2025.png',
-        width: 400,
-        height: 417
-      },
-      mainEntityOfPage: {
-        '@type': 'WebPage',
-        '@id': 'https://currencytocurrency.com/blog/forex-broker-reviews-2025'
-      },
-      articleSection: 'Trading',
-      keywords: 'forex brokers 2025, best forex brokers, forex broker reviews, forex broker comparison, regulated forex brokers, forex trading platforms, IG Group review, Interactive Brokers forex, tastyfx review, OANDA review, FOREX.com review'
-    }
+**Methodology Version:** 15-Factor Analysis v3.2`
   },
   {
     id: 'international-money-transfer-guide-2025',
