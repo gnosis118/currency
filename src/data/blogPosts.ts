@@ -5823,7 +5823,7 @@ For more information about how exchange rates work, explore our guide on [unders
 
 | **Best Overall** | **Best for Beginners** | **Best for Professionals** |
 |------------------|------------------------|----------------------------|
-| **IG Group** ⭐⭐⭐⭐⭐ 4.8/5 | **OANDA** ⭐⭐⭐⭐ 4.4/5 | **Interactive Brokers** ⭐⭐⭐⭐⭐ 4.7/5 |
+| **IG Group** (4.8/5) ⭐ | **OANDA** (4.4/5) ⭐ | **Interactive Brokers** (4.7/5) ⭐ |
 | Exceptional regulation & platform | Easy-to-use, great education | Advanced tools, lowest costs |
 | [Read Review](#ig-group) | [Read Review](#oanda) | [Read Review](#interactive-brokers) |
 
@@ -5841,17 +5841,17 @@ For more information about how exchange rates work, explore our guide on [unders
 
 | Broker | Overall Rating | Regulation | Trading Costs | Platform | Best For | Min Deposit |
 |--------|---------------|------------|---------------|----------|----------|-------------|
-| **IG Group** | ⭐⭐⭐⭐⭐ 4.8/5 | ⭐⭐⭐⭐⭐ FCA, ASIC | ⭐⭐⭐⭐ 0.6 pips | ⭐⭐⭐⭐⭐ Proprietary | Overall Excellence | $0 |
-| **Interactive Brokers** | ⭐⭐⭐⭐⭐ 4.7/5 | ⭐⭐⭐⭐⭐ SEC, FCA | ⭐⭐⭐⭐⭐ 0.2 pips | ⭐⭐⭐⭐⭐ TWS Pro | Professional Traders | $0 |
-| **tastyfx** | ⭐⭐⭐⭐⭐ 4.6/5 | ⭐⭐⭐⭐⭐ NFA, CFTC | ⭐⭐⭐⭐ 0.8 pips | ⭐⭐⭐⭐ Web & Mobile | US Traders | $0 |
-| **OANDA** | ⭐⭐⭐⭐ 4.4/5 | ⭐⭐⭐⭐⭐ NFA, FCA | ⭐⭐⭐⭐ 1.2 pips | ⭐⭐⭐⭐ User-friendly | Beginners | $0 |
-| **FOREX.com** | ⭐⭐⭐⭐ 4.2/5 | ⭐⭐⭐⭐⭐ NFA, FCA | ⭐⭐⭐ 1.4 pips | ⭐⭐⭐⭐ MT4/MT5 | Education | $100 |
+| **IG Group** | **4.8/5** ⭐ | Excellent (FCA, ASIC) | Good (0.6 pips) | Excellent (Proprietary) | Overall Excellence | $0 |
+| **Interactive Brokers** | **4.7/5** ⭐ | Excellent (SEC, FCA) | Excellent (0.2 pips) | Excellent (TWS Pro) | Professional Traders | $0 |
+| **tastyfx** | **4.6/5** ⭐ | Excellent (NFA, CFTC) | Good (0.8 pips) | Good (Web & Mobile) | US Traders | $0 |
+| **OANDA** | **4.4/5** ⭐ | Excellent (NFA, FCA) | Good (1.2 pips) | Good (User-friendly) | Beginners | $0 |
+| **FOREX.com** | **4.2/5** ⭐ | Excellent (NFA, FCA) | Fair (1.4 pips) | Good (MT4/MT5) | Education | $100 |
 
 ## 🎯 Brokers by Category
 
 ### 🔰 Best Forex Brokers for Beginners
 
-#### 1. OANDA - Best Overall for New Traders ⭐⭐⭐⭐ 4.4/5
+#### 1. OANDA - Best Overall for New Traders (4.4/5) ⭐
 
 **Why Beginners Love OANDA:**
 - **No minimum deposit** - Start with any amount
@@ -5874,7 +5874,7 @@ For more information about how exchange rates work, explore our guide on [unders
 
 **Best For:** Complete beginners, small account traders, those prioritizing education and ease of use.
 
-#### 2. FOREX.com - Best Educational Resources ⭐⭐⭐⭐ 4.2/5
+#### 2. FOREX.com - Best Educational Resources (4.2/5) ⭐
 
 **Educational Excellence:**
 - **Trading Academy** - Comprehensive courses from beginner to advanced
@@ -5899,7 +5899,7 @@ For more information about how exchange rates work, explore our guide on [unders
 
 ### 💼 Best Forex Brokers for Professional Traders
 
-#### 1. Interactive Brokers - Best for Advanced Traders ⭐⭐⭐⭐⭐ 4.7/5
+#### 1. Interactive Brokers - Best for Advanced Traders (4.7/5) ⭐
 
 **Professional Trading Excellence:**
 - **Lowest costs** - Industry-leading low spreads and commissions
@@ -5923,7 +5923,7 @@ For more information about how exchange rates work, explore our guide on [unders
 
 **Best For:** Professional traders, high-volume traders, algorithmic traders, those prioritizing low costs and advanced tools.
 
-#### 2. IG Group - Best Overall Professional Broker ⭐⭐⭐⭐⭐ 4.8/5
+#### 2. IG Group - Best Overall Professional Broker (4.8/5) ⭐
 
 **Why Professionals Choose IG:**
 - **50-year track record** - Established and trusted since 1974
@@ -5948,7 +5948,7 @@ For more information about how exchange rates work, explore our guide on [unders
 
 ### 🇺🇸 Best Forex Brokers for US Traders
 
-#### 1. tastyfx - Best US Forex Broker ⭐⭐⭐⭐⭐ 4.6/5
+#### 1. tastyfx - Best US Forex Broker (4.6/5) ⭐
 
 **US Trading Excellence:**
 - **Full NFA/CFTC regulation** - Complete US regulatory compliance
@@ -5971,7 +5971,7 @@ For more information about how exchange rates work, explore our guide on [unders
 
 **Best For:** US-based traders seeking strong regulation, competitive costs, and professional trading tools.
 
-#### 2. FOREX.com - Established US Presence ⭐⭐⭐⭐ 4.2/5
+#### 2. FOREX.com - Established US Presence (4.2/5) ⭐
 
 **US Market Leader:**
 - **Long US history** - Operating in US since 2001
@@ -6092,16 +6092,16 @@ Yes, if you choose properly regulated brokers. Regulated brokers must segregate 
 
 ## 🎯 Final Recommendations
 
-### For Most Traders: IG Group ⭐⭐⭐⭐⭐ 4.8/5
+### For Most Traders: IG Group (4.8/5) ⭐
 IG Group offers the best combination of regulation, platform quality, and overall service. With 50 years of experience and exceptional regulatory oversight, it's suitable for traders of all levels seeking reliability and comprehensive features.
 
-### For Beginners: OANDA ⭐⭐⭐⭐ 4.4/5  
+### For Beginners: OANDA (4.4/5) ⭐  
 OANDA provides the most beginner-friendly experience with excellent education, transparent pricing, and an intuitive platform. The no minimum deposit policy makes it accessible for new traders starting with smaller amounts.
 
-### For Professionals: Interactive Brokers ⭐⭐⭐⭐⭐ 4.7/5
+### For Professionals: Interactive Brokers (4.7/5) ⭐
 Interactive Brokers delivers the lowest costs and most advanced tools for serious traders. The platform complexity requires experience, but the cost savings and professional features justify the learning curve for active traders.
 
-### For US Traders: tastyfx ⭐⭐⭐⭐⭐ 4.6/5
+### For US Traders: tastyfx (4.6/5) ⭐
 tastyfx provides the best combination of US regulation, competitive pricing, and professional tools for American traders. The backing of IG Group ensures financial stability while maintaining full US regulatory compliance.
 
 ## Conclusion
@@ -6292,16 +6292,16 @@ Yes, if you choose properly regulated brokers. Regulated brokers must segregate 
 
 ## 🎯 Final Recommendations
 
-### For Most Traders: IG Group ⭐⭐⭐⭐⭐ 4.8/5
+### For Most Traders: IG Group (4.8/5) ⭐
 IG Group offers the best combination of regulation, platform quality, and overall service. With 50 years of experience and exceptional regulatory oversight, it's suitable for traders of all levels seeking reliability and comprehensive features.
 
-### For Beginners: OANDA ⭐⭐⭐⭐ 4.4/5  
+### For Beginners: OANDA (4.4/5) ⭐  
 OANDA provides the most beginner-friendly experience with excellent education, transparent pricing, and an intuitive platform. The no minimum deposit policy makes it accessible for new traders starting with smaller amounts.
 
-### For Professionals: Interactive Brokers ⭐⭐⭐⭐⭐ 4.7/5
+### For Professionals: Interactive Brokers (4.7/5) ⭐
 Interactive Brokers delivers the lowest costs and most advanced tools for serious traders. The platform complexity requires experience, but the cost savings and professional features justify the learning curve for active traders.
 
-### For US Traders: tastyfx ⭐⭐⭐⭐⭐ 4.6/5
+### For US Traders: tastyfx (4.6/5) ⭐
 tastyfx provides the best combination of US regulation, competitive pricing, and professional tools for American traders. The backing of IG Group ensures financial stability while maintaining full US regulatory compliance.
 
 ## Conclusion
