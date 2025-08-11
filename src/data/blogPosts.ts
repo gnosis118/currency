@@ -5861,7 +5861,7 @@ With over **$7.5 trillion** traded daily, the forex market offers tremendous opp
 
 ## 🏆 Top 5 Forex Brokers 2025 - Editor's Choice
 
-![Complete Broker Rankings Comparison](${brokerComparisonTableChart})
+![Top 5 Forex Brokers 2025 Rankings](${topBrokersRankingChart})
 
 ## Complete Broker Rankings 2025
 
@@ -5890,6 +5890,8 @@ With over **$7.5 trillion** traded daily, the forex market offers tremendous opp
 ---
 
 ## Complete Broker Rankings 2025
+
+![Complete Broker Rankings Comparison](${brokerComparisonTableChart})
 
 ### Comprehensive Comparison Table
 
