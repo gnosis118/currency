@@ -1,0 +1,118 @@
+backend:
+  name: git-gateway
+  branch: main
+  repo: gnosis118/currency
+
+# Enable local development
+local_backend: true
+
+# Media and public folders
+media_folder: "public/images/uploads"
+public_folder: "/images/uploads"
+
+# Site URL
+site_url: https://currencytocurrency.app
+display_url: https://currencytocurrency.app
+
+# Logo
+logo_url: https://currencytocurrency.app/favicon.ico
+
+# Collections
+collections:
+  # Blog Posts Collection
+  - name: "blog"
+    label: "Blog Posts"
+    folder: "src/content/blog"
+    create: true
+    slug: "{{slug}}"
+    preview_path: "blog/{{slug}}"
+    fields:
+      - { label: "Title", name: "title", widget: "string", required: true }
+      - { label: "Slug", name: "slug", widget: "string", required: true, pattern: ['^[a-z0-9]+(?:-[a-z0-9]+)*$', 'Slug must be lowercase with hyphens'] }
+      - { label: "Excerpt", name: "excerpt", widget: "text", required: true }
+      - { label: "Publish Date", name: "publishDate", widget: "datetime", required: true, format: "YYYY-MM-DD" }
+      - { label: "Read Time", name: "readTime", widget: "string", default: "5 min read" }
+      - { label: "Category", name: "category", widget: "select", options: ["Trading", "Currency", "Travel", "Business", "Technology", "Finance"] }
+      - { label: "Featured", name: "featured", widget: "boolean", default: false }
+      - { label: "Featured Image", name: "image", widget: "image", required: true }
+      - { label: "Tags", name: "tags", widget: "list", allow_add: true, collapsed: false }
+      - { label: "Meta Description", name: "metaDescription", widget: "text", required: true }
+      - { label: "Author", name: "author", widget: "string", default: "Gavin" }
+      - { label: "Content", name: "content", widget: "markdown", required: true }
+
+  # Pages Collection
+  - name: "pages"
+    label: "Pages"
+    files:
+      - label: "Home Page"
+        name: "home"
+        file: "src/content/pages/home.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Hero Title", name: "heroTitle", widget: "string" }
+          - { label: "Hero Subtitle", name: "heroSubtitle", widget: "text" }
+          - { label: "Hero Image", name: "heroImage", widget: "image" }
+          - { label: "Features", name: "features", widget: "list", fields: [
+              { label: "Title", name: "title", widget: "string" },
+              { label: "Description", name: "description", widget: "text" },
+              { label: "Icon", name: "icon", widget: "string" }
+            ]}
+
+      - label: "About Page"
+        name: "about"
+        file: "src/content/pages/about.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "Content", name: "content", widget: "markdown" }
+
+      - label: "FAQ Page"
+        name: "faq"
+        file: "src/content/pages/faq.md"
+        fields:
+          - { label: "Title", name: "title", widget: "string" }
+          - { label: "FAQs", name: "faqs", widget: "list", fields: [
+              { label: "Question", name: "question", widget: "string" },
+              { label: "Answer", name: "answer", widget: "markdown" }
+            ]}
+
+  # Site Settings
+  - name: "settings"
+    label: "Site Settings"
+    files:
+      - label: "General Settings"
+        name: "general"
+        file: "src/content/settings/general.yml"
+        fields:
+          - { label: "Site Title", name: "siteTitle", widget: "string" }
+          - { label: "Site Description", name: "siteDescription", widget: "text" }
+          - { label: "Site URL", name: "siteUrl", widget: "string" }
+          - { label: "Contact Email", name: "contactEmail", widget: "string" }
+          - { label: "Social Media", name: "social", widget: "object", fields: [
+              { label: "Twitter", name: "twitter", widget: "string", required: false },
+              { label: "LinkedIn", name: "linkedin", widget: "string", required: false },
+              { label: "Facebook", name: "facebook", widget: "string", required: false }
+            ]}
+
+      - label: "Navigation"
+        name: "navigation"
+        file: "src/content/settings/navigation.yml"
+        fields:
+          - { label: "Main Navigation", name: "mainNav", widget: "list", fields: [
+              { label: "Label", name: "label", widget: "string" },
+              { label: "URL", name: "url", widget: "string" },
+              { label: "External", name: "external", widget: "boolean", default: false }
+            ]}
+
+# Editor settings
+editor:
+  preview: true
+
+# Publish mode
+publish_mode: editorial_workflow
+
+# Show preview links
+show_preview_links: true
+
+# Search
+search: true
+

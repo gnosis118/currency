@@ -1,0 +1,20 @@
+mainNav:
+  - label: "Converter"
+    url: "/convert"
+    external: false
+  - label: "Charts"
+    url: "/charts"
+    external: false
+  - label: "Alerts"
+    url: "/alerts"
+    external: false
+  - label: "Travel"
+    url: "/travel"
+    external: false
+  - label: "Blog"
+    url: "/blog"
+    external: false
+  - label: "FAQ"
+    url: "/faq"
+    external: false
+
