@@ -6306,13 +6306,9 @@ For more information about how exchange rates work, explore our guide on [unders
 
 With over **$7.5 trillion** traded daily, the forex market offers tremendous opportunities—but choosing the wrong broker can derail your trading success. After testing 100+ brokers using our proprietary 15-factor methodology, we've identified the top forex brokers for 2025 across every category and trader type.
 
-
-
-![Top 5 Forex Brokers 2025 Rankings](${topBrokersRankingChart})
+<BrokerComparisonChart />
 
 ## 🏆 Top 5 Forex Brokers 2025 - Editor's Choice
-
-![Top 5 Forex Brokers 2025 Rankings](${topBrokersRankingChart})
 
 ## Complete Broker Rankings 2025
 

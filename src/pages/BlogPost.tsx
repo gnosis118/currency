@@ -8,7 +8,8 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Calendar, Clock, TrendingUp, ArrowUpDown, RefreshCw } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import BlogSEOBooster from '@/components/BlogSEOBooster';
-import WebPOptimizedImage from '@/components/WebPOptimizedImage';
+import SimpleImage from '@/components/SimpleImage';
+import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 import { useToast } from '@/hooks/use-toast';
 import { blogPosts } from '@/data/blogPosts';
 
@@ -68,11 +69,10 @@ const BlogPost = () => {
       <article className="container mx-auto px-4 max-w-4xl">
         {/* Featured Image */}
         <div className="mb-8 rounded-lg overflow-hidden">
-          <WebPOptimizedImage 
+          <SimpleImage 
             src={currentPost.image} 
             alt={currentPost.title} 
-            className="w-full h-[400px] object-cover" 
-            priority={true}
+            className="w-full h-[400px]" 
             width={800}
             height={400}
           />
@@ -100,6 +100,11 @@ const BlogPost = () => {
         {/* Article Content */}
         <div className="prose prose-lg max-w-none">
           {currentPost.content.split('\n\n').map((paragraph, index) => {
+            // Handle React components
+            if (paragraph.trim() === '<BrokerComparisonChart />') {
+              return <BrokerComparisonChart key={index} className="my-8" />;
+            }
+            
             // Handle headings
             if (paragraph.startsWith('## ')) {
               return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-primary">{paragraph.substring(3)}</h2>;
