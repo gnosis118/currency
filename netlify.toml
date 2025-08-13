@@ -5,7 +5,13 @@
 [build.environment]
   NODE_VERSION = "18"
 
-# Redirect rules
+# Redirect rules for SPA
+[[redirects]]
+  from = "/*"
+  to = "/index.html"
+  status = 200
+
+# Admin redirect
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
@@ -15,32 +21,12 @@
 [[headers]]
   for = "/*"
   [headers.values]
-    X-Frame-Options = "DENY"
+    X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
-    Referrer-Policy = "strict-origin-when-cross-origin"
-    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
 
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "*.js"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-[[headers]]
-  for = "*.css"
-  [headers.values]
-    Cache-Control = "public, max-age=31536000, immutable"
-
-# Enable Netlify Identity
-[context.production]
-  environment = { NODE_ENV = "production" }
-
-# Git Gateway for Netlify CMS
-[template.environment]
-  NETLIFY_SITE_URL = "https://currencytocurrency.app"
 
