@@ -5,13 +5,17 @@
 [build.environment]
   NODE_VERSION = "18"
 
+# Disable Netlify Visual Editor to prevent Studio Preview Error
+[context.production.environment]
+  DISABLE_NETLIFY_VISUAL_EDITOR = "true"
+
 # Redirect rules for SPA
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
 
-# Admin redirect
+# Admin redirect for Netlify CMS
 [[redirects]]
   from = "/admin/*"
   to = "/admin/index.html"
