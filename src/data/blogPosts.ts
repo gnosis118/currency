@@ -326,35 +326,32 @@ Several things affect how much one currency is worth compared to another:
 Countries with strong economies usually have stronger currencies. If a country is doing well economically, more people want to invest there, which means they need that country's money.
 
 **Interest Rates**
-When a country raises its interest rates, its currency often gets stronger. This is because people can earn more money by saving in that currency.
+When a country raises its interest rates, its currency often gets stronger. Higher interest rates mean people can earn more money by saving in that currency.
 
 **Political Stability**
-Countries with stable governments tend to have more stable currencies. Political problems can make a currency weaker because investors get worried.
+Countries with stable governments usually have stronger currencies. When there's political trouble, people often sell that country's money and buy safer currencies.
 
 **Trade Balance**
-If a country exports more than it imports, its currency tends to get stronger. This is because other countries need that currency to buy the exports.
+If a country sells more goods to other countries than it buys (trade surplus), its currency tends to get stronger. If it buys more than it sells (trade deficit), the currency may weaken.
 
-## How to Read Exchange Rate Charts
+## How to Read Exchange Rates
 
-Exchange rate charts show how the value of one currency changes compared to another over time. Here's how to understand them:
+Exchange rates are usually shown as pairs, like USD/EUR or GBP/JPY. The first currency is called the "base currency" and the second is the "quote currency."
 
-- **Going up** means the first currency is getting stronger
-- **Going down** means the first currency is getting weaker
-- **Steep changes** mean big moves happened quickly
-- **Flat lines** mean the exchange rate was stable
+For example, if USD/EUR = 0.85, it means:
+- 1 US dollar = 0.85 euros
+- You need $1.18 to buy 1 euro
 
-## Why Exchange Rates Matter to You
-
-Even if you don't trade currencies, exchange rates affect your daily life:
+## Why Exchange Rates Matter
 
 **Travel**
-When you travel to another country, exchange rates determine how much your money is worth there. A strong dollar means your vacation abroad costs less.
+When you travel to another country, exchange rates affect how much your money is worth there. If your currency is strong, you can buy more things abroad.
 
 **Online Shopping**
-When you buy things from other countries online, exchange rates affect the final price you pay.
+When you buy something from a foreign website, the exchange rate determines the final price in your currency.
 
 **Investments**
-If you invest in foreign companies or funds, exchange rates can affect your returns.
+If you invest in foreign stocks or bonds, exchange rate changes can affect your returns.
 
 **Gas and Food Prices**
 Many things we buy are imported, so exchange rates can affect prices at home.
