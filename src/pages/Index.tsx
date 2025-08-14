@@ -1,4 +1,4 @@
-import { useState, useEffect, useCallback } from 'react';
+import React, { useState, useEffect, useCallback } from 'react';
 import { ShareButton } from '@/components/ShareButton';
 import { InstallPrompt } from '@/components/InstallPrompt';
 import PopularPairs from '@/components/PopularPairs';
