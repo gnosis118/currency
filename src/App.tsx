@@ -19,6 +19,7 @@ const Blog = React.lazy(() => import("./pages/Blog"));
 const BlogPost = React.lazy(() => import("./pages/BlogPost"));
 const CurrencyPair = React.lazy(() => import("./pages/CurrencyPair"));
 const Convert = React.lazy(() => import("./pages/Convert"));
+const Brokers = React.lazy(() => import("./pages/Brokers"));
 
 // Loading component for route transitions
 const RouteLoader = () => (
@@ -51,6 +52,7 @@ const App = () => {
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
                 <Route path="/faq" element={<FAQ />} />
+                <Route path="/brokers" element={<Brokers />} />
                 <Route path="/blog" element={<Blog />} />
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/convert" element={<Convert />} />
