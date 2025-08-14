@@ -113,9 +113,9 @@ const Header = () => {
               Travel
             </Link>
             <Link 
-              to="/blog/forex-broker-reviews-2025" 
+              to="/brokers" 
               className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-2 ${
-                location.pathname === '/blog/forex-broker-reviews-2025' ? 'text-primary' : 'text-muted-foreground'
+                isActive('/brokers') ? 'text-primary' : 'text-muted-foreground'
               }`}
             >
               <TrendingUp className="h-4 w-4" />
@@ -240,10 +240,10 @@ const Header = () => {
                     Travel
                   </Link>
                   <Link 
-                    to="/blog/forex-broker-reviews-2025" 
+                    to="/brokers" 
                     onClick={() => setMobileMenuOpen(false)}
                     className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-11 touch-manipulation ${
-                      location.pathname === '/blog/forex-broker-reviews-2025' ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-accent-foreground'
+                      isActive('/brokers') ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-accent-foreground'
                     }`}
                   >
                     <TrendingUp className="h-5 w-5" />

@@ -3,6 +3,17 @@
         xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
         xmlns:xhtml="http://www.w3.org/1999/xhtml">
 
+  <!-- Blog main page -->
+  <url>
+    <loc>https://currencytocurrency.app/blog</loc>
+    <lastmod>2025-02-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog" />
+  </url>
+
+  <!-- Blog posts -->
   <url>
     <loc>https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025</loc>
     <lastmod>2025-08-11</lastmod>
