@@ -1,14 +1,9 @@
-import { useState } from 'react';
 import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Star, Shield, TrendingUp, Users, Award, ExternalLink } from 'lucide-react';
-import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 
 const Brokers = () => {
-  const [selectedCategory, setSelectedCategory] = useState('all');
-
   const brokers = [
     {
       id: 1,
@@ -99,40 +94,8 @@ const Brokers = () => {
       trustScore: 92,
       founded: 1999,
       website: 'https://www.forex.com'
-    },
-    {
-      id: 6,
-      name: 'Pepperstone',
-      rating: 4.1,
-      stars: 4,
-      category: 'International',
-      regulation: 'ASIC, FCA, CySEC',
-      minDeposit: '$200',
-      spreads: 'From 0.6 pips',
-      leverage: '30:1',
-      platforms: 'MT4, MT5, cTrader',
-      pros: ['Low spreads', 'Fast execution', 'Multiple platforms', 'Good support'],
-      cons: ['Higher minimum deposit', 'Limited education'],
-      description: 'Strong international broker with competitive spreads and fast execution.',
-      trustScore: 90,
-      founded: 2010,
-      website: 'https://www.pepperstone.com'
     }
   ];
-
-  const categories = [
-    { id: 'all', name: 'All Brokers' },
-    { id: 'Overall Excellence', name: 'Overall Excellence' },
-    { id: 'Professional Traders', name: 'Professional' },
-    { id: 'US Traders', name: 'US Traders' },
-    { id: 'Beginners', name: 'Beginners' },
-    { id: 'Education', name: 'Education' },
-    { id: 'International', name: 'International' }
-  ];
-
-  const filteredBrokers = selectedCategory === 'all' 
-    ? brokers 
-    : brokers.filter(broker => broker.category === selectedCategory);
 
   const renderStars = (stars: number) => {
     return Array.from({ length: 5 }, (_, i) => (
@@ -173,7 +136,7 @@ const Brokers = () => {
         <Card>
           <CardContent className="p-6 text-center">
             <Users className="h-8 w-8 mx-auto mb-2 text-purple-600" />
-            <div className="text-2xl font-bold">6</div>
+            <div className="text-2xl font-bold">5</div>
             <div className="text-sm text-muted-foreground">Top Rated</div>
           </CardContent>
         </Card>
@@ -186,32 +149,77 @@ const Brokers = () => {
         </Card>
       </div>
 
-      {/* Broker Comparison Chart */}
-      <div className="mb-12">
-        <h2 className="text-2xl font-bold mb-6">Broker Comparison Overview</h2>
-        <BrokerComparisonChart />
-      </div>
+      {/* Broker Rankings Table */}
+      <Card className="mb-12">
+        <CardHeader>
+          <CardTitle>Top Forex Brokers 2025 - Complete Rankings</CardTitle>
+          <CardDescription>
+            Based on our comprehensive 10-factor analysis
+          </CardDescription>
+        </CardHeader>
+        <CardContent>
+          <div className="overflow-x-auto">
+            <table className="w-full">
+              <thead>
+                <tr className="border-b">
+                  <th className="text-left p-4">Rank</th>
+                  <th className="text-left p-4">Broker</th>
+                  <th className="text-left p-4">Rating</th>
+                  <th className="text-left p-4">Regulation</th>
+                  <th className="text-left p-4">Min Deposit</th>
+                  <th className="text-left p-4">Spreads</th>
+                  <th className="text-left p-4">Best For</th>
+                  <th className="text-left p-4">Action</th>
+                </tr>
+              </thead>
+              <tbody>
+                {brokers.map((broker, index) => (
+                  <tr key={broker.id} className="border-b hover:bg-muted/50">
+                    <td className="p-4">
+                      <Badge variant="secondary" className="text-lg px-3 py-1">
+                        #{index + 1}
+                      </Badge>
+                    </td>
+                    <td className="p-4">
+                      <div>
+                        <div className="font-semibold">{broker.name}</div>
+                        <div className="flex items-center gap-1 mt-1">
+                          {renderStars(broker.stars)}
+                          <span className="ml-2 text-sm">{broker.rating}/5</span>
+                        </div>
+                      </div>
+                    </td>
+                    <td className="p-4">
+                      <div className="text-sm">
+                        <div>Trust Score: {broker.trustScore}/100</div>
+                        <div>Founded: {broker.founded}</div>
+                      </div>
+                    </td>
+                    <td className="p-4 text-sm">{broker.regulation}</td>
+                    <td className="p-4 text-sm">{broker.minDeposit}</td>
+                    <td className="p-4 text-sm">{broker.spreads}</td>
+                    <td className="p-4">
+                      <Badge variant="outline">{broker.category}</Badge>
+                    </td>
+                    <td className="p-4">
+                      <Button size="sm" asChild>
+                        <a href={broker.website} target="_blank" rel="noopener noreferrer">
+                          Visit <ExternalLink className="h-3 w-3 ml-1" />
+                        </a>
+                      </Button>
+                    </td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
+          </div>
+        </CardContent>
+      </Card>
 
-      {/* Category Filter */}
-      <div className="mb-8">
-        <h2 className="text-2xl font-bold mb-4">Filter by Category</h2>
-        <div className="flex flex-wrap gap-2">
-          {categories.map((category) => (
-            <Button
-              key={category.id}
-              variant={selectedCategory === category.id ? "default" : "outline"}
-              onClick={() => setSelectedCategory(category.id)}
-              className="mb-2"
-            >
-              {category.name}
-            </Button>
-          ))}
-        </div>
-      </div>
-
-      {/* Broker Cards */}
+      {/* Detailed Broker Cards */}
       <div className="space-y-8">
-        {filteredBrokers.map((broker, index) => (
+        <h2 className="text-2xl font-bold">Detailed Broker Reviews</h2>
+        {brokers.map((broker, index) => (
           <Card key={broker.id} className="overflow-hidden">
             <CardHeader>
               <div className="flex flex-col md:flex-row md:items-center md:justify-between gap-4">
@@ -249,76 +257,49 @@ const Brokers = () => {
               </div>
             </CardHeader>
             <CardContent>
-              <Tabs defaultValue="overview" className="w-full">
-                <TabsList className="grid w-full grid-cols-3">
-                  <TabsTrigger value="overview">Overview</TabsTrigger>
-                  <TabsTrigger value="features">Features</TabsTrigger>
-                  <TabsTrigger value="pros-cons">Pros & Cons</TabsTrigger>
-                </TabsList>
-                
-                <TabsContent value="overview" className="mt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
-                    <div>
-                      <h4 className="font-semibold mb-2">Regulation</h4>
-                      <p className="text-sm text-muted-foreground">{broker.regulation}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Min Deposit</h4>
-                      <p className="text-sm text-muted-foreground">{broker.minDeposit}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Spreads</h4>
-                      <p className="text-sm text-muted-foreground">{broker.spreads}</p>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-2">Max Leverage</h4>
-                      <p className="text-sm text-muted-foreground">{broker.leverage}</p>
-                    </div>
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="features" className="mt-6">
-                  <div>
-                    <h4 className="font-semibold mb-2">Trading Platforms</h4>
-                    <p className="text-sm text-muted-foreground mb-4">{broker.platforms}</p>
-                    <h4 className="font-semibold mb-2">Key Features</h4>
-                    <ul className="text-sm text-muted-foreground space-y-1">
-                      <li>• Regulated by {broker.regulation}</li>
-                      <li>• Minimum deposit: {broker.minDeposit}</li>
-                      <li>• Competitive spreads starting {broker.spreads}</li>
-                      <li>• Maximum leverage up to {broker.leverage}</li>
-                      <li>• Multiple trading platforms available</li>
-                    </ul>
-                  </div>
-                </TabsContent>
-                
-                <TabsContent value="pros-cons" className="mt-6">
-                  <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                    <div>
-                      <h4 className="font-semibold mb-3 text-green-600">Pros</h4>
-                      <ul className="space-y-2">
-                        {broker.pros.map((pro, i) => (
-                          <li key={i} className="text-sm flex items-start gap-2">
-                            <span className="text-green-600 mt-1">✓</span>
-                            {pro}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                    <div>
-                      <h4 className="font-semibold mb-3 text-red-600">Cons</h4>
-                      <ul className="space-y-2">
-                        {broker.cons.map((con, i) => (
-                          <li key={i} className="text-sm flex items-start gap-2">
-                            <span className="text-red-600 mt-1">✗</span>
-                            {con}
-                          </li>
-                        ))}
-                      </ul>
-                    </div>
-                  </div>
-                </TabsContent>
-              </Tabs>
+              <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6 mb-6">
+                <div>
+                  <h4 className="font-semibold mb-2">Regulation</h4>
+                  <p className="text-sm text-muted-foreground">{broker.regulation}</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Min Deposit</h4>
+                  <p className="text-sm text-muted-foreground">{broker.minDeposit}</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Spreads</h4>
+                  <p className="text-sm text-muted-foreground">{broker.spreads}</p>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-2">Max Leverage</h4>
+                  <p className="text-sm text-muted-foreground">{broker.leverage}</p>
+                </div>
+              </div>
+              
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold mb-3 text-green-600">Pros</h4>
+                  <ul className="space-y-2">
+                    {broker.pros.map((pro, i) => (
+                      <li key={i} className="text-sm flex items-start gap-2">
+                        <span className="text-green-600 mt-1">✓</span>
+                        {pro}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold mb-3 text-red-600">Cons</h4>
+                  <ul className="space-y-2">
+                    {broker.cons.map((con, i) => (
+                      <li key={i} className="text-sm flex items-start gap-2">
+                        <span className="text-red-600 mt-1">✗</span>
+                        {con}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
             </CardContent>
           </Card>
         ))}
