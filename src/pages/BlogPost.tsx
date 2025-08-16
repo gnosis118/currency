@@ -6,7 +6,7 @@ import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Calendar, Clock, TrendingUp, ArrowUpDown, RefreshCw } from 'lucide-react';
-import SEOHead from '@/components/SEOHead';
+import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 import BlogSEOBooster from '@/components/BlogSEOBooster';
 import SimpleImage from '@/components/SimpleImage';
 import BrokerComparisonChart from '@/components/BrokerComparisonChart';
@@ -60,11 +60,13 @@ const BlogPost = () => {
 
   return (
     <div className="min-h-screen bg-background py-8">
-      <SEOHead
+      <EnhancedSEOHead
         title={currentPost.title}
         description={currentPost.metaDescription}
-        canonical={`https://currencytocurrency.app/blog/${slug}`}
+        canonicalUrl={`https://currencytocurrency.app/blog/${slug}`}
         structuredData={structuredData}
+        pageType="article"
+        ogImage={currentPost.image}
       />
       <article className="container mx-auto px-4 max-w-4xl">
         {/* Featured Image */}

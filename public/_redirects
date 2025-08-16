@@ -1,3 +1,21 @@
+# Currency pair redirects - 301 permanent redirects
+/usd-to-eur /convert/usd-to-eur 301
+/usd-to-gbp /convert/usd-to-gbp 301
+/usd-to-jpy /convert/usd-to-jpy 301
+/usd-to-cad /convert/usd-to-cad 301
+/usd-to-aud /convert/usd-to-aud 301
+/usd-to-chf /convert/usd-to-chf 301
+/gbp-to-usd /convert/gbp-to-usd 301
+/eur-to-usd /convert/eur-to-usd 301
+/eur-to-gbp /convert/eur-to-gbp 301
+/eur-to-jpy /convert/eur-to-jpy 301
+/jpy-to-usd /convert/jpy-to-usd 301
+/aud-to-usd /convert/aud-to-usd 301
+/cad-to-usd /convert/cad-to-usd 301
+/chf-to-usd /convert/chf-to-usd 301
+/nzd-to-usd /convert/nzd-to-usd 301
+/sek-to-usd /convert/sek-to-usd 301
+
 # Admin redirects
 /admin/* /admin/index.html 200
 
