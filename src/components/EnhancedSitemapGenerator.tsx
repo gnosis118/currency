@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { Helmet } from 'react-helmet-async';
+import { loadAllBlogPosts } from '@/data/mdBlog';
 
 const EnhancedSitemapGenerator = () => {
   // Generate Website Schema JSON-LD
@@ -44,17 +45,8 @@ const EnhancedSitemapGenerator = () => {
       { url: '/terms-of-service', priority: 0.3, changefreq: 'yearly' }
     ];
 
-    // Blog posts with dynamic dates
-    const blogPosts = [
-      { slug: '2025-currency-predictions', publishDate: '2025-01-29' },
-      { slug: 'currency-exchange-fees-hidden-costs', publishDate: '2025-01-29' },
-      { slug: 'bitcoin-to-usd-converter-live-price-analysis', publishDate: '2025-01-29' },
-      { slug: 'currency-conversion-safety-guide-2025', publishDate: '2025-01-29' },
-      { slug: 'usd-to-eur-exchange-rate-today', publishDate: '2025-01-29' },
-      { slug: 'trump-2025-tariffs-currency-exchange-travel-money', publishDate: '2025-08-01' },
-      { slug: 'digital-nomad-banking-crisis-2025', publishDate: '2025-08-02' },
-      { slug: 'currency-conversion-small-business-guide', publishDate: '2025-02-03' }
-    ];
+    // Load blog posts dynamically from Markdown
+    const blogPosts = loadAllBlogPosts().map(p => ({ slug: p.slug, publishDate: p.publishDate }));
 
     // Currency pairs with high search volume
     const currencyPairs = [
@@ -101,6 +93,18 @@ const EnhancedSitemapGenerator = () => {
 
   }, []);
 
+  const dynamicBlogItemList = {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": loadAllBlogPosts().map((p, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "url": `https://currencytocurrency.app/blog/${p.slug}`,
+      "name": p.title,
+      "datePublished": p.publishDate
+    }))
+  };
+
   return (
     <Helmet>
       {/* Sitemap and robots meta tags */}
@@ -112,9 +116,8 @@ const EnhancedSitemapGenerator = () => {
       <meta name="referrer" content="origin-when-cross-origin" />
       
       {/* Website Schema JSON-LD */}
-      <script type="application/ld+json">
-        {JSON.stringify(websiteSchema)}
-      </script>
+      <script type="application/ld+json">{JSON.stringify(websiteSchema)}</script>
+      <script type="application/ld+json">{JSON.stringify(dynamicBlogItemList)}</script>
     </Helmet>
   );
 };
