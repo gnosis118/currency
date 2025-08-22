@@ -95,7 +95,7 @@ const Blog = () => {
                     {/* Content */}
                     <div className="md:col-span-2 p-6">
                       <div className="flex items-center gap-4 mb-3">
-                        <Badge variant="secondary">{post.category}</Badge>
+                        {post.category && <Badge variant="secondary">{post.category}</Badge>}
                         {post.featured && <Badge variant="default">Featured</Badge>}
                       </div>
                       
@@ -115,10 +115,12 @@ const Blog = () => {
                             <Calendar className="h-4 w-4" />
                             {new Date(post.publishDate).toLocaleDateString()}
                           </div>
-                          <div className="flex items-center gap-1">
-                            <Clock className="h-4 w-4" />
-                            {post.readTime}
-                          </div>
+                          {post.readTime && (
+                            <div className="flex items-center gap-1">
+                              <Clock className="h-4 w-4" />
+                              {post.readTime}
+                            </div>
+                          )}
                         </div>
                         <Link 
                           to={`/blog/${post.slug}`}
