@@ -47,10 +47,10 @@
   
   <script>
     // Custom preview templates
-    CMS.registerPreviewTemplate('blog', ({ entry, widgetFor, widgetsFor }) => {
+    CMS.registerPreviewTemplate('blog', ({ entry, widgetFor }) => {
       const title = entry.getIn(['data', 'title']);
-      const content = widgetFor('content');
-      const publishDate = entry.getIn(['data', 'publishDate']);
+      const content = widgetFor('body');
+      const publishDate = entry.getIn(['data', 'date']);
       const author = entry.getIn(['data', 'author']) || 'Gavin';
       const readTime = entry.getIn(['data', 'readTime']) || '5 min read';
       

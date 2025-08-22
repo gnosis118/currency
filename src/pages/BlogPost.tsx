@@ -11,20 +11,17 @@ import BlogSEOBooster from '@/components/BlogSEOBooster';
 import SimpleImage from '@/components/SimpleImage';
 import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 import { useToast } from '@/hooks/use-toast';
-import { blogPosts } from '@/data/blogPosts';
+import { loadPostBySlug } from '@/data/mdBlog';
 
 const BlogPost = () => {
   const { slug } = useParams();
   const { toast } = useToast();
 
-  // Find the current blog post (check both slug and id fields)
-  const currentPost = blogPosts.find(post => 
-    post.slug === slug || (post as any).id === slug
-  );
+  const currentPost = slug ? loadPostBySlug(slug) : undefined;
   
   // Debug logging
   console.log('Current slug:', slug);
-  console.log('Available slugs:', blogPosts.map(post => post.slug || (post as any).id));
+  // dynamic loader provides slugs at runtime
   console.log('Found post:', currentPost ? currentPost.title : 'Not found');
   console.log('Post content length:', currentPost ? currentPost.content.length : 0);
 

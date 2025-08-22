@@ -6,7 +6,7 @@ import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
 import blogPostBackground from '@/assets/blog-post-background.jpg';
 
-import { blogPosts } from '@/data/blogPosts';
+import { loadAllBlogPosts } from '@/data/mdBlog';
 
 const Blog = () => {
   const structuredData = {
@@ -20,6 +20,8 @@ const Blog = () => {
       "name": "Currency to Currency"
     }
   };
+
+  const blogPosts = loadAllBlogPosts();
 
   return (
     <div className="min-h-screen bg-background py-8">
