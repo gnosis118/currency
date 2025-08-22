@@ -110,7 +110,7 @@ const Brokers = () => {
     <div className="container mx-auto px-4 py-8">
       {/* Header Section */}
       <div className="text-center mb-12">
-        <h1 className="text-4xl font-bold mb-4">Best Forex Brokers 2025</h1>
+        <h1 className="text-4xl font-bold mb-4">Best Forex Brokers 2025 - Updated</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto">
           Expert reviews and star ratings of the top forex brokers. Our comprehensive analysis 
           evaluates regulation, costs, platforms, and features to help you choose the right broker.
