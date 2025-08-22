@@ -12,12 +12,15 @@ import SimpleImage from '@/components/SimpleImage';
 import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 import { useToast } from '@/hooks/use-toast';
 import { loadPostBySlug } from '@/data/mdBlog';
+import { blogPosts as tsBlogPosts } from '@/data/blogPosts';
 
 const BlogPost = () => {
   const { slug } = useParams();
   const { toast } = useToast();
 
-  const currentPost = slug ? loadPostBySlug(slug) : undefined;
+  const mdPost = slug ? loadPostBySlug(slug) : undefined;
+  const tsPost = slug ? tsBlogPosts.find(p => p.slug === slug || (p as any).id === slug) : undefined;
+  const currentPost = mdPost || tsPost;
   
   // Debug logging
   console.log('Current slug:', slug);
