@@ -85,7 +85,7 @@ const Blog = () => {
                     <div className="md:col-span-1">
                       <div className="aspect-video md:aspect-square overflow-hidden">
                         <img 
-                          src={post.image} 
+                          src={post.image || '/placeholder.svg'} 
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                         />
