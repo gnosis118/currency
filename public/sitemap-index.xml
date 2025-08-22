@@ -1,19 +1,11 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  
   <sitemap>
     <loc>https://currencytocurrency.app/sitemap.xml</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2025-08-14</lastmod>
   </sitemap>
-  
   <sitemap>
     <loc>https://currencytocurrency.app/sitemap-blog.xml</loc>
-    <lastmod>2025-08-03</lastmod>
+    <lastmod>2025-08-14</lastmod>
   </sitemap>
-  
-  <sitemap>
-    <loc>https://currencytocurrency.app/sitemap-images.xml</loc>
-    <lastmod>2025-08-03</lastmod>
-  </sitemap>
-  
 </sitemapindex>

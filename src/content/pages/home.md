@@ -1,0 +1,26 @@
+---
+title: "Currency to Currency - Free Real-time Exchange Rate Converter"
+heroTitle: "Real-Time Currency Converter"
+heroSubtitle: "Get live exchange rates, historical charts, and expert financial insights. Convert currencies instantly with our professional-grade tools."
+heroImage: "/assets/home-hero.webp"
+features:
+  - title: "Live Exchange Rates"
+    description: "Real-time currency conversion with rates updated every minute from major financial institutions."
+    icon: "TrendingUp"
+  - title: "Historical Charts"
+    description: "Interactive charts showing currency trends over days, months, and years to help you make informed decisions."
+    icon: "BarChart3"
+  - title: "Rate Alerts"
+    description: "Set custom alerts to notify you when your target exchange rates are reached."
+    icon: "Bell"
+  - title: "Travel Tools"
+    description: "Specialized tools for travelers including expense tracking and currency planning."
+    icon: "Plane"
+  - title: "Expert Analysis"
+    description: "Professional insights and market analysis from currency trading experts."
+    icon: "BookOpen"
+  - title: "Mobile Optimized"
+    description: "Full-featured mobile experience for currency conversion on the go."
+    icon: "Smartphone"
+---
+

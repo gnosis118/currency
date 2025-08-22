@@ -1,73 +1,97 @@
-# Welcome to your Lovable project
+# Currency Exchange Website
 
-## Project info
+A comprehensive currency exchange and forex trading information website built with React, TypeScript, and Vite.
 
-**URL**: https://lovable.dev/projects/767bba8a-7bce-429d-9626-8d5ae266bbb6
+## Project Overview
 
-## How can I edit this code?
+This website provides:
+- Real-time currency exchange rates
+- Forex trading guides and educational content
+- AI forex trading tutorials
+- Currency conversion tools
+- Market analysis and insights
 
-There are several ways of editing your application.
+## Technologies Used
 
-**Use Lovable**
+- **Frontend**: React 18 with TypeScript
+- **Build Tool**: Vite
+- **Styling**: Tailwind CSS with shadcn/ui components
+- **Routing**: React Router DOM
+- **State Management**: TanStack Query
+- **Database**: Supabase
+- **Charts**: Recharts
 
-Simply visit the [Lovable Project](https://lovable.dev/projects/767bba8a-7bce-429d-9626-8d5ae266bbb6) and start prompting.
+## Getting Started
 
-Changes made via Lovable will be committed automatically to this repo.
+### Prerequisites
 
-**Use your preferred IDE**
+- Node.js (v16 or higher)
+- npm or yarn
 
-If you want to work locally using your own IDE, you can clone this repo and push changes. Pushed changes will also be reflected in Lovable.
+### Installation
 
-The only requirement is having Node.js & npm installed - [install with nvm](https://github.com/nvm-sh/nvm#installing-and-updating)
+1. Clone the repository:
+```bash
+git clone https://github.com/gnosis118/currency.git
+cd currency
+```
 
-Follow these steps:
+2. Install dependencies:
+```bash
+npm install
+```
 
-```sh
-# Step 1: Clone the repository using the project's Git URL.
-git clone <YOUR_GIT_URL>
-
-# Step 2: Navigate to the project directory.
-cd <YOUR_PROJECT_NAME>
-
-# Step 3: Install the necessary dependencies.
-npm i
-
-# Step 4: Start the development server with auto-reloading and an instant preview.
+3. Start the development server:
+```bash
 npm run dev
 ```
 
-**Edit a file directly in GitHub**
+4. Open your browser and navigate to `http://localhost:5173`
 
-- Navigate to the desired file(s).
-- Click the "Edit" button (pencil icon) at the top right of the file view.
-- Make your changes and commit the changes.
+## Available Scripts
 
-**Use GitHub Codespaces**
+- `npm run dev` - Start development server
+- `npm run build` - Build for production
+- `npm run preview` - Preview production build locally
+- `npm run lint` - Run ESLint
 
-- Navigate to the main page of your repository.
-- Click on the "Code" button (green button) near the top right.
-- Select the "Codespaces" tab.
-- Click on "New codespace" to launch a new Codespace environment.
-- Edit files directly within the Codespace and commit and push your changes once you're done.
+## Project Structure
 
-## What technologies are used for this project?
+```
+src/
+├── components/     # Reusable UI components
+├── pages/         # Page components
+├── data/          # Static data and blog posts
+├── assets/        # Images and static assets
+├── lib/           # Utility functions
+└── hooks/         # Custom React hooks
+```
 
-This project is built with:
+## Deployment
 
-- Vite
-- TypeScript
-- React
-- shadcn-ui
-- Tailwind CSS
+This project can be deployed to any static hosting service:
 
-## How can I deploy this project?
+- **Netlify**: Connect your GitHub repository
+- **Vercel**: Import project from GitHub
+- **GitHub Pages**: Use GitHub Actions for deployment
+- **AWS S3**: Upload build files to S3 bucket
 
-Simply open [Lovable](https://lovable.dev/projects/767bba8a-7bce-429d-9626-8d5ae266bbb6) and click on Share -> Publish.
+To build for production:
+```bash
+npm run build
+```
 
-## Can I connect a custom domain to my Lovable project?
+The built files will be in the `dist/` directory.
 
-Yes, you can!
+## Contributing
 
-To connect a domain, navigate to Project > Settings > Domains and click Connect Domain.
+1. Fork the repository
+2. Create a feature branch
+3. Make your changes
+4. Commit and push to your fork
+5. Create a pull request
 
-Read more here: [Setting up a custom domain](https://docs.lovable.dev/tips-tricks/custom-domain#step-by-step-guide)
+## License
+
+This project is licensed under the MIT License.
+

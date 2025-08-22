@@ -15,11 +15,11 @@ const InternalLinking = ({ currentPage, className = "" }: InternalLinkingProps) 
     ];
 
     const currencyPairLinks = [
-      { href: '/usd-to-eur', text: 'USD to EUR', description: 'US Dollar to Euro conversion' },
-      { href: '/usd-to-gbp', text: 'USD to GBP', description: 'US Dollar to British Pound' },
-      { href: '/usd-to-jpy', text: 'USD to JPY', description: 'US Dollar to Japanese Yen' },
-      { href: '/eur-to-gbp', text: 'EUR to GBP', description: 'Euro to British Pound' },
-      { href: '/gbp-to-usd', text: 'GBP to USD', description: 'British Pound to US Dollar' }
+      { href: '/convert/usd-to-eur', text: 'USD to EUR', description: 'US Dollar to Euro conversion' },
+      { href: '/convert/usd-to-gbp', text: 'USD to GBP', description: 'US Dollar to British Pound' },
+      { href: '/convert/usd-to-jpy', text: 'USD to JPY', description: 'US Dollar to Japanese Yen' },
+      { href: '/convert/eur-to-gbp', text: 'EUR to GBP', description: 'Euro to British Pound' },
+      { href: '/convert/gbp-to-usd', text: 'GBP to USD', description: 'British Pound to US Dollar' }
     ];
 
     switch (page) {

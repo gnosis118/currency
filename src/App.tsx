@@ -4,6 +4,7 @@ import { BrowserRouter, Routes, Route } from "react-router-dom";
 import Header from "@/components/Header";
 import { Skeleton } from "@/components/ui/skeleton";
 import ErrorBoundary from "@/components/ErrorBoundary";
+import RedirectRoute from "@/components/RedirectRoute";
 
 // Lazy load all route components for better code splitting
 const Index = React.lazy(() => import("./pages/Index"));
@@ -19,6 +20,7 @@ const Blog = React.lazy(() => import("./pages/Blog"));
 const BlogPost = React.lazy(() => import("./pages/BlogPost"));
 const CurrencyPair = React.lazy(() => import("./pages/CurrencyPair"));
 const Convert = React.lazy(() => import("./pages/Convert"));
+const Brokers = React.lazy(() => import("./pages/BrokersSimple"));
 
 // Loading component for route transitions
 const RouteLoader = () => (
@@ -47,6 +49,7 @@ const App = () => {
                 <Route path="/charts" element={<Charts />} />
                 <Route path="/alerts" element={<Alerts />} />
                 <Route path="/travel" element={<Travel />} />
+                <Route path="/brokers" element={<Brokers />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
@@ -55,6 +58,25 @@ const App = () => {
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/convert" element={<Convert />} />
                 <Route path="/convert/:pair" element={<CurrencyPair />} />
+                
+                {/* Redirect routes for old currency pair URLs */}
+                <Route path="/usd-to-eur" element={<RedirectRoute />} />
+                <Route path="/usd-to-gbp" element={<RedirectRoute />} />
+                <Route path="/usd-to-jpy" element={<RedirectRoute />} />
+                <Route path="/usd-to-cad" element={<RedirectRoute />} />
+                <Route path="/usd-to-aud" element={<RedirectRoute />} />
+                <Route path="/usd-to-chf" element={<RedirectRoute />} />
+                <Route path="/gbp-to-usd" element={<RedirectRoute />} />
+                <Route path="/eur-to-usd" element={<RedirectRoute />} />
+                <Route path="/eur-to-gbp" element={<RedirectRoute />} />
+                <Route path="/eur-to-jpy" element={<RedirectRoute />} />
+                <Route path="/jpy-to-usd" element={<RedirectRoute />} />
+                <Route path="/aud-to-usd" element={<RedirectRoute />} />
+                <Route path="/cad-to-usd" element={<RedirectRoute />} />
+                <Route path="/chf-to-usd" element={<RedirectRoute />} />
+                <Route path="/nzd-to-usd" element={<RedirectRoute />} />
+                <Route path="/sek-to-usd" element={<RedirectRoute />} />
+                
                 <Route path="/sitemap.xml" element={null} />
                 <Route path="*" element={<NotFound />} />
               </Routes>

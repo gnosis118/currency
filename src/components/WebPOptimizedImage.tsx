@@ -31,12 +31,14 @@ const WebPOptimizedImage = memo(({
 
   const handleLoad = useCallback(() => setIsLoaded(true), []);
   const handleError = useCallback(() => {
+    console.error('Image failed to load:', src);
     setHasError(true);
     setIsLoaded(true);
-  }, []);
+  }, [src]);
 
-  // Auto-generate WebP source if not provided
-  const webpSource = webpSrc || src.replace(/\.(jpg|jpeg|png)$/i, '.webp');
+  // For Vite, imported images are already processed and have the correct URL
+  // No need to auto-generate WebP source since Vite handles this
+  const imageSrc = typeof src === 'string' ? src : src;
 
   if (hasError) {
     return (
@@ -58,31 +60,24 @@ const WebPOptimizedImage = memo(({
 
   return (
     <div className={cn("relative", className)} style={{ aspectRatio: `${width}/${height}` }}>
-      <picture className="block w-full h-full">
-        <source 
-          srcSet={webpSource} 
-          sizes={sizes}
-          type="image/webp" 
-        />
-        <img
-          src={src}
-          alt={alt}
-          width={width}
-          height={height}
-          loading={priority ? 'eager' : loading}
-          decoding="async"
-          className={cn(
-            "w-full h-full transition-opacity duration-300",
-            isLoaded ? 'opacity-100' : 'opacity-0'
-          )}
-          style={{
-            objectFit,
-            aspectRatio: `${width}/${height}`
-          }}
-          onLoad={handleLoad}
-          onError={handleError}
-        />
-      </picture>
+      <img
+        src={imageSrc}
+        alt={alt}
+        width={width}
+        height={height}
+        loading={priority ? 'eager' : loading}
+        decoding="async"
+        className={cn(
+          "w-full h-full transition-opacity duration-300",
+          isLoaded ? 'opacity-100' : 'opacity-0'
+        )}
+        style={{
+          objectFit,
+          aspectRatio: `${width}/${height}`
+        }}
+        onLoad={handleLoad}
+        onError={handleError}
+      />
       
       {/* Loading placeholder to prevent CLS */}
       {!isLoaded && (

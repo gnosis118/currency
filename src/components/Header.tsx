@@ -18,7 +18,7 @@ import {
   DropdownMenuTrigger,
 } from '@/components/ui/dropdown-menu';
 import { Sheet, SheetContent, SheetTrigger, SheetClose } from '@/components/ui/sheet';
-import { Menu, User as UserIcon, LogOut, Calculator, BarChart3, Bell, Plane, BookOpen, X } from 'lucide-react';
+import { Menu, User as UserIcon, LogOut, Calculator, BarChart3, Bell, Plane, BookOpen, X, TrendingUp } from 'lucide-react';
 import { useIsMobile } from '@/hooks/use-mobile';
 import { useToast } from '@/hooks/use-toast';
 
@@ -111,6 +111,15 @@ const Header = () => {
             >
               <Plane className="h-4 w-4" />
               Travel
+            </Link>
+            <Link 
+              to="/brokers" 
+              className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-2 ${
+                isActive('/brokers') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              <TrendingUp className="h-4 w-4" />
+              Brokers
             </Link>
             <Link 
               to="/blog" 
@@ -229,6 +238,16 @@ const Header = () => {
                   >
                     <Plane className="h-5 w-5" />
                     Travel
+                  </Link>
+                  <Link 
+                    to="/brokers" 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-11 touch-manipulation ${
+                      isActive('/brokers') ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-accent-foreground'
+                    }`}
+                  >
+                    <TrendingUp className="h-5 w-5" />
+                    Brokers
                   </Link>
                   <Link 
                     to="/blog" 
