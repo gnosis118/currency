@@ -6,8 +6,7 @@ import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
 import blogPostBackground from '@/assets/blog-post-background.jpg';
 
-import { loadAllBlogPosts } from '@/data/mdBlog';
-import { blogPosts as tsBlogPosts } from '@/data/blogPosts';
+import { blogPosts } from '@/data/blogPosts';
 
 const Blog = () => {
   const structuredData = {
@@ -21,28 +20,6 @@ const Blog = () => {
       "name": "Currency to Currency"
     }
   };
-
-  // Merge Markdown posts with legacy TS posts (prefer Markdown when slug collides)
-  const mdPosts = loadAllBlogPosts();
-  const mdSlugs = new Set(mdPosts.map(p => p.slug));
-  const merged = [
-    ...mdPosts,
-    ...tsBlogPosts
-      .filter(p => !mdSlugs.has(p.slug))
-      .map(p => ({
-        title: p.title,
-        slug: p.slug,
-        excerpt: p.excerpt,
-        publishDate: p.publishDate,
-        readTime: p.readTime,
-        category: p.category,
-        featured: p.featured,
-        image: p.image,
-        tags: p.tags,
-        metaDescription: p.metaDescription,
-        content: p.content,
-      }))
-  ].sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
 
   return (
     <div className="min-h-screen bg-background py-8">
@@ -78,7 +55,7 @@ const Blog = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <div className="space-y-8">
-              {merged.map((post) => (
+              {blogPosts.map((post) => (
                 <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow">
                   <div className="grid md:grid-cols-3 gap-6">
                     {/* Featured Image */}
