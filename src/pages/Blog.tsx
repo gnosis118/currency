@@ -124,9 +124,11 @@ const Blog = () => {
               <CardContent>
                 <div className="space-y-2">
                   {['USD to EUR', 'GBP to USD', 'Currency Forecasts', 'Forex Trading', 'Travel Money'].map((topic) => (
-                    <Badge key={topic} variant="outline" className="mr-2 mb-2">
-                      {topic}
-                    </Badge>
+                    <span key={topic}>
+                      <Badge variant="outline" className="mr-2 mb-2">
+                        {topic}
+                      </Badge>
+                    </span>
                   ))}
                 </div>
               </CardContent>
