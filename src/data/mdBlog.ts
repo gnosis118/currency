@@ -33,6 +33,23 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
       const filename = path.split('/').pop() || '';
       const baseSlug = filename.replace(/\.md$/, '');
 
+      // Skip unpublished/draft/hidden content and hard-removed slugs
+      const hiddenSlugs = new Set<string>([
+        'fx_broker_research',
+        'forex_brokers_restructured',
+        'new_forex_content',
+        'seo_fixes_summary',
+        'competitive_research_findings',
+        'brokers_restructured_content',
+      ]);
+      const effectiveSlug = (data.slug || baseSlug) as string;
+      if (data?.draft === true || data?.published === false || data?.hide === true) {
+        continue;
+      }
+      if (hiddenSlugs.has(effectiveSlug)) {
+        continue;
+      }
+
       // Extract title from first heading if not in frontmatter
       let title = data.title;
       if (!title) {

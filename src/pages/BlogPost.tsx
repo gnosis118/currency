@@ -11,7 +11,7 @@ import BlogSEOBooster from '@/components/BlogSEOBooster';
 import SimpleImage from '@/components/SimpleImage';
 import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 import { useToast } from '@/hooks/use-toast';
-import { blogPosts } from '@/data/blogPosts';
+import { blogPosts } from '@/data/blogPostsBackup';
 
 const BlogPost = () => {
   const { slug } = useParams();

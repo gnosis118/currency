@@ -6,7 +6,7 @@ import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
 import blogPostBackground from '@/assets/blog-post-background.jpg';
 
-import { blogPosts } from '@/data/blogPosts';
+import { blogPosts } from '@/data/blogPostsBackup';
 
 const Blog = () => {
   // Render all posts from source
@@ -23,6 +23,16 @@ const Blog = () => {
       "name": "Currency to Currency"
     }
   };
+
+  // Use curated blogPosts and filter out unwanted slugs to ensure full-length content renders
+  const hiddenSlugs = new Set<string>([
+    'competitive-research-currency-forex-2025',
+    'forex-broker-reviews-restructured-2025',
+    'new-forex-content-strategy-2025',
+    'seo-fixes-summary-currency-forex-2025',
+    'fx-broker-research-competitive-analysis-2025',
+  ]);
+  const posts = blogPosts.filter(p => !hiddenSlugs.has(p.slug));
 
   return (
     <div className="min-h-screen bg-background py-8">
@@ -58,7 +68,7 @@ const Blog = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <div className="space-y-8">
-              {visiblePosts.map((post) => (
+              {posts.map((post) => (
                 <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow">
                   <div className="grid md:grid-cols-3 gap-6">
                     {/* Featured Image */}
