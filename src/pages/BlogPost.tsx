@@ -17,7 +17,9 @@ const BlogPost = () => {
   const { slug } = useParams();
   const { toast } = useToast();
 
-  const currentPost = slug ? blogPosts.find(p => p.slug === slug || (p as any).id === slug) : undefined;
+  const currentPost = slug 
+    ? blogPosts.find(p => p.slug === slug || (p as any).id === slug) 
+    : undefined;
   
   // Debug logging
   console.log('Current slug:', slug);

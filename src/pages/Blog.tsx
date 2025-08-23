@@ -9,6 +9,9 @@ import blogPostBackground from '@/assets/blog-post-background.jpg';
 import { blogPosts } from '@/data/blogPosts';
 
 const Blog = () => {
+  // Render all posts from source
+  const visiblePosts = blogPosts;
+
   const structuredData = {
     "@context": "https://schema.org",
     "@type": "Blog",
@@ -55,7 +58,7 @@ const Blog = () => {
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
           <div className="lg:col-span-2">
             <div className="space-y-8">
-              {blogPosts.map((post) => (
+              {visiblePosts.map((post) => (
                 <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow">
                   <div className="grid md:grid-cols-3 gap-6">
                     {/* Featured Image */}

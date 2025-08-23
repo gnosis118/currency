@@ -12,6 +12,7 @@ import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowUpDown, RefreshCw, TrendingUp, TrendingDown, BarChart3, Bell, Plane } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { convertAPI } from '@/utils/api';
 
 interface ExchangeRates {
   [key: string]: number;
@@ -213,16 +214,46 @@ const CurrencyConverter = () => {
 
   const convertedAmount = () => {
     const numAmount = parseFloat(amount);
-    if (isNaN(numAmount) || !exchangeRates[toCurrency]) return '0.00';
-    
+    if (isNaN(numAmount)) return '0.00';
     if (fromCurrency === toCurrency) return numAmount.toFixed(2);
-    
+    // Prefer backend if env is set; fallback to client rate
+    const backend = import.meta.env.VITE_API_BASE;
+    if (backend) {
+      return '...';
+    }
+    if (!exchangeRates[toCurrency]) return '0.00';
     const rate = exchangeRates[toCurrency];
     return (numAmount * rate).toFixed(2);
   };
 
+  const [backendRate, setBackendRate] = useState<number | null>(null);
+  const [backendConverted, setBackendConverted] = useState<string | null>(null);
+
+  useEffect(() => {
+    const useBackend = !!import.meta.env.VITE_API_BASE;
+    const numAmount = parseFloat(amount);
+    if (!useBackend || isNaN(numAmount) || fromCurrency === toCurrency) {
+      setBackendRate(null);
+      setBackendConverted(null);
+      return;
+    }
+    (async () => {
+      try {
+        const data = await convertAPI(fromCurrency, toCurrency, numAmount);
+        setBackendRate(data.rate);
+        setBackendConverted((data.converted ?? 0).toFixed(2));
+      } catch (e) {
+        console.error(e);
+        setBackendRate(null);
+        setBackendConverted(null);
+      }
+    })();
+  }, [amount, fromCurrency, toCurrency]);
+
   const getExchangeRate = () => {
-    if (!exchangeRates[toCurrency] || fromCurrency === toCurrency) return null;
+    if (fromCurrency === toCurrency) return null;
+    if (backendRate) return `1 ${fromCurrency} = ${backendRate.toFixed(4)} ${toCurrency}`;
+    if (!exchangeRates[toCurrency]) return null;
     return `1 ${fromCurrency} = ${exchangeRates[toCurrency].toFixed(4)} ${toCurrency}`;
   };
 
@@ -373,7 +404,7 @@ const CurrencyConverter = () => {
                         {fiatLoading ? (
                           <div className="animate-pulse bg-muted h-8 w-32 rounded" />
                         ) : (
-                          `${convertedAmount()} ${toCurrency}`
+                          `${backendConverted ?? convertedAmount()} ${toCurrency}`
                         )}
                       </div>
                       {!fiatLoading && amount && convertedAmount() !== '0.00' && (
