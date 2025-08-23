@@ -1558,5 +1558,101 @@ Unlike traditional travelers who typically convert their home currency to local 
 - Keep emergency funds in stable international currencies
 
 This guide provides comprehensive strategies for managing the complex financial landscape of digital nomadism.`
+  },
+  {
+    title: "USD/EUR Forecast 2025: Exchange Rate Outlook and Key Drivers",
+    slug: "usd-eur-forecast-2025",
+    excerpt: "Expert USD/EUR forecast for 2025. Key macro drivers, central bank policy impacts, scenarios, and practical tips for travelers and businesses.",
+    publishDate: "2025-08-11",
+    readTime: "18 min read",
+    category: "Analysis",
+    featured: false,
+    image: usdEurHero,
+    tags: ["USD/EUR", "Forecast", "ECB", "Federal Reserve", "Macro"],
+    metaDescription: "USD/EUR forecast 2025: macro drivers, central bank policy, scenarios, and practical strategies for individuals and businesses.",
+    author: "Gavin",
+    content: `# USD/EUR Forecast 2025: Exchange Rate Outlook and Key Drivers
+
+This analysis summarizes the main forces likely to influence the USD/EUR pair in 2025 and provides practical strategies for consumers and businesses.`
+  },
+  {
+    title: "Currency Codes Guide (ISO 4217): Complete 2025 Reference",
+    slug: "currency-codes-guide-iso-4217",
+    excerpt: "Complete 2025 reference to ISO 4217 currency codes. Quick lookup, regions, symbols, and common mistakes.",
+    publishDate: "2025-08-11",
+    readTime: "14 min read",
+    category: "Education",
+    featured: false,
+    image: currencyCodesGuide,
+    tags: ["ISO 4217", "Currency Codes", "Reference", "Education"],
+    metaDescription: "ISO 4217 currency codes guide for 2025 with examples, symbols, and quick lookup.",
+    author: "Manus AI",
+    content: `# Currency Codes Guide (ISO 4217): Complete 2025 Reference
+
+A concise, reliable reference for the most used currency codes and symbols.`
+  },
+  {
+    title: "Real-Time vs Historical Exchange Rates: When to Use Each",
+    slug: "real-time-vs-historical-exchange-rates",
+    excerpt: "Understand the difference between real-time and historical exchange rates and when each is best for planning, analysis, or audits.",
+    publishDate: "2025-08-11",
+    readTime: "12 min read",
+    category: "Data",
+    featured: false,
+    image: realtimeVsHistoricalRates,
+    tags: ["Exchange Rates", "Real-Time", "Historical Data", "Planning"],
+    metaDescription: "Real-time vs historical exchange rates explained with practical use cases for travelers, businesses, and analysts.",
+    author: "Gavin",
+    content: `# Real-Time vs Historical Exchange Rates: When to Use Each
+
+Learn when to rely on live prices vs. daily averages and historical datasets.`
+  },
+  {
+    title: "Mobile Currency Security: Safe International Banking on the Go",
+    slug: "mobile-currency-security-guide",
+    excerpt: "Practical mobile security tips for international travelers handling currency, banking apps, and transfers across borders.",
+    publishDate: "2025-08-11",
+    readTime: "13 min read",
+    category: "Security",
+    featured: false,
+    image: mobileCurrencySecurity,
+    tags: ["Security", "Mobile Banking", "Travel", "Fraud Prevention"],
+    metaDescription: "Mobile currency security guide with best practices for safe international banking and transfers.",
+    author: "Gavin",
+    content: `# Mobile Currency Security: Safe International Banking on the Go
+
+Actionable guidance to keep your funds and identity secure while traveling.`
+  },
+  {
+    title: "Best Currency Exchange Sites 2025: Trusted Services Compared",
+    slug: "best-currency-exchange-sites-2025",
+    excerpt: "Top currency exchange sites for 2025 compared on rates, fees, speed, and coverage.",
+    publishDate: "2025-08-11",
+    readTime: "16 min read",
+    category: "Comparison",
+    featured: false,
+    image: currencyExchangeSitesHero,
+    tags: ["Comparison", "Exchange Sites", "Rates", "Fees"],
+    metaDescription: "Best currency exchange sites in 2025 compared on costs, speed, and availability.",
+    author: "Manus AI",
+    content: `# Best Currency Exchange Sites 2025: Trusted Services Compared
+
+A practical shortlist and criteria to select the right provider for your needs.`
+  },
+  {
+    title: "North America Travel Money 2025: USA, Canada, Mexico Guide",
+    slug: "north-america-travel-money-2025",
+    excerpt: "Complete travel money guide for the USA, Canada, and Mexico: fees, cash vs. cards, ATM strategies, and safety.",
+    publishDate: "2025-08-11",
+    readTime: "17 min read",
+    category: "Travel",
+    featured: false,
+    image: northAmericaTravelCurrency,
+    tags: ["Travel", "North America", "Fees", "Cards", "ATMs"],
+    metaDescription: "North America travel money guide for 2025 covering cash, cards, ATM strategy, and fees.",
+    author: "Gavin",
+    content: `# North America Travel Money 2025: USA, Canada, Mexico Guide
+
+Everything you need to budget and pay smartly across the region.`
   }
 ];
