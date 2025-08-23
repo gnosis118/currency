@@ -6,7 +6,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>1.0</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/" />
@@ -15,7 +15,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert" />
@@ -24,7 +24,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/charts</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/charts" />
@@ -33,7 +33,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/alerts</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/alerts" />
@@ -42,7 +42,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/travel</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/travel" />
@@ -50,17 +50,8 @@
   </url>
 
   <url>
-    <loc>https://currencytocurrency.app/brokers</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/brokers" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/brokers" />
-  </url>
-
-  <url>
     <loc>https://currencytocurrency.app/blog</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>weekly</changefreq>
     <priority>0.8</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog" />
@@ -69,7 +60,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/faq</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>monthly</changefreq>
     <priority>0.7</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/faq" />
@@ -78,7 +69,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/privacy-policy</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/privacy-policy" />
@@ -87,334 +78,11 @@
 
   <url>
     <loc>https://currencytocurrency.app/terms-of-service</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>yearly</changefreq>
     <priority>0.3</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/terms-of-service" />
     <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/terms-of-service" />
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/sample-post</loc>
-    <lastmod>2025-08-12T10:00:00.000Z</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/sample-post" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/sample-post" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-08-12T10:00:00.000Z</news:publication_date>
-      <news:title>Sample Blog Post</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_competitive_5_business_currency_exchange</loc>
-    <lastmod>2025-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_competitive_5_business_currency_exchange" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_competitive_5_business_currency_exchange" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-08-11</news:publication_date>
-      <news:title>Currency Exchange for International Business: Complete Guide to Multi-Currency Operations</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_competitive_4_forex_trading_psychology</loc>
-    <lastmod>2025-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_competitive_4_forex_trading_psychology" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_competitive_4_forex_trading_psychology" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-08-11</news:publication_date>
-      <news:title>Forex Trading Psychology: Master the Mental Game for Consistent Profits</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_competitive_3_cbdc_guide</loc>
-    <lastmod>2025-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_competitive_3_cbdc_guide" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_competitive_3_cbdc_guide" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-08-11</news:publication_date>
-      <news:title>Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_competitive_2_currency_volatility_protection</loc>
-    <lastmod>2025-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_competitive_2_currency_volatility_protection" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_competitive_2_currency_volatility_protection" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-08-11</news:publication_date>
-      <news:title>Currency Volatility Protection: Advanced Hedging Strategies for Individual Investors</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_competitive_1_international_money_transfer</loc>
-    <lastmod>2025-08-11</lastmod>
-    <changefreq>weekly</changefreq>
-    <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_competitive_1_international_money_transfer" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_competitive_1_international_money_transfer" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-08-11</news:publication_date>
-      <news:title>International Money Transfer Guide 2025: Complete Comparison of 15+ Services</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/forex_broker_reviews_2025</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/forex_broker_reviews_2025" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/forex_broker_reviews_2025" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>The Complete Guide to Forex Brokers 2025: Expert Reviews &amp; Star Ratings</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/forex_brokers_restructured</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/forex_brokers_restructured" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/forex_brokers_restructured" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>The Complete Guide to Forex Brokers 2025: Expert Reviews &amp; Star Ratings</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/competitive_research_findings</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/competitive_research_findings" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/competitive_research_findings" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Competitive Research: Top-Ranking Currency/Forex Topics</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/brokers_restructured_content</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/brokers_restructured_content" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/brokers_restructured_content" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Restructured Forex Brokers Section - Improved Organization</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_5_exchange_fees_comparison</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_5_exchange_fees_comparison" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_5_exchange_fees_comparison" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Currency Exchange Fees Comparison: Find the Cheapest Way to Convert Your Money</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_4_travel_money_budgeting</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_4_travel_money_budgeting" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_4_travel_money_budgeting" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Travel Money Budgeting: Smart Strategies for Managing Currency on Your Next Trip</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_3_small_business_hedging</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_3_small_business_hedging" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_3_small_business_hedging" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Currency Hedging for Small Business: Protect Your Profits from Exchange Rate Risk</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_2_digital_nomad_currency_expanded</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_2_digital_nomad_currency_expanded" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_2_digital_nomad_currency_expanded" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Digital Nomad Currency Management: Master Multi-Currency Budgeting While Traveling</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_2_digital_nomad_currency</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_2_digital_nomad_currency" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_2_digital_nomad_currency" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Digital Nomad Currency Management: Master Multi-Currency Budgeting While Traveling</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_1_freelancer_currency_expanded</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_1_freelancer_currency_expanded" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_1_freelancer_currency_expanded" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/article_1_freelancer_currency</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/article_1_freelancer_currency" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/article_1_freelancer_currency" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/ai_forex_research</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/ai_forex_research" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/ai_forex_research" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>AI Forex Trading Research - Article 1</news:title>
-    </news:news>
-  </url>
-
-  <url>
-    <loc>https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025</loc>
-    <lastmod>2025-01-30</lastmod>
-    <changefreq>monthly</changefreq>
-    <priority>0.8</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>2025-01-30</news:publication_date>
-      <news:title>AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading</news:title>
-    </news:news>
   </url>
 
   <url>
@@ -448,6 +116,23 @@
       </news:publication>
       <news:publication_date>2025-08-11</news:publication_date>
       <news:title>Digital Nomad Currency Management: Master Multi-Currency Budgeting While Traveling</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025</loc>
+    <lastmod>2025-08-11</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-11</news:publication_date>
+      <news:title>AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading</news:title>
     </news:news>
   </url>
 
@@ -843,8 +528,42 @@
   </url>
 
   <url>
+    <loc>https://currencytocurrency.app/blog/currency-exchange-fees-comparison-guide</loc>
+    <lastmod>2025-08-06</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/currency-exchange-fees-comparison-guide" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/currency-exchange-fees-comparison-guide" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-06</news:publication_date>
+      <news:title>Currency Exchange Fees Comparison: Find the Cheapest Way to Convert Your Money 2025</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/international-money-transfer-guide-2025</loc>
+    <lastmod>2025-08-05</lastmod>
+    <changefreq>weekly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/international-money-transfer-guide-2025" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/international-money-transfer-guide-2025" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-05</news:publication_date>
+      <news:title>International Money Transfer Guide 2025: Complete Comparison of 15+ Services</news:title>
+    </news:news>
+  </url>
+
+  <url>
     <loc>https://currencytocurrency.app/convert/usd-to-eur</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/usd-to-eur" />
@@ -853,7 +572,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/usd-to-gbp</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/usd-to-gbp" />
@@ -862,7 +581,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/usd-to-jpy</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/usd-to-jpy" />
@@ -871,7 +590,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/eur-to-gbp</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/eur-to-gbp" />
@@ -880,7 +599,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/usd-to-cad</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/usd-to-cad" />
@@ -889,7 +608,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/usd-to-aud</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/usd-to-aud" />
@@ -898,7 +617,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/gbp-to-usd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/gbp-to-usd" />
@@ -907,7 +626,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/eur-to-usd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/eur-to-usd" />
@@ -916,7 +635,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/jpy-to-usd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/jpy-to-usd" />
@@ -925,7 +644,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/aud-to-usd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/aud-to-usd" />
@@ -934,7 +653,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/usd-to-chf</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/usd-to-chf" />
@@ -943,7 +662,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/eur-to-jpy</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/eur-to-jpy" />
@@ -952,7 +671,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/cad-to-usd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/cad-to-usd" />
@@ -961,7 +680,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/chf-to-usd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/chf-to-usd" />
@@ -970,7 +689,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/usd-to-nzd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/usd-to-nzd" />
@@ -979,7 +698,7 @@
 
   <url>
     <loc>https://currencytocurrency.app/convert/nzd-to-usd</loc>
-    <lastmod>2025-01-30</lastmod>
+    <lastmod>2025-08-12</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
     <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/nzd-to-usd" />
