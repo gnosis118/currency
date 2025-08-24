@@ -5,6 +5,8 @@ backend:
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
 
+publish_mode: editorial_workflow
+
 collections:
   - name: "blog"
     label: "Blog Posts"
@@ -13,14 +15,20 @@ collections:
     slug: "{{year}}-{{month}}-{{day}}-{{slug}}"
     fields:
       - { label: "Title", name: "title", widget: "string" }
+      - { label: "Slug (optional)", name: "slug", widget: "string", required: false, hint: "Leave empty to auto-generate from title" }
+      - { label: "Description (meta)", name: "description", widget: "text", required: false }
       - { label: "Publish Date", name: "date", widget: "datetime" }
-      - { label: "Featured Image", name: "image", widget: "image" }
-      - { label: "Read Time", name: "readTime", widget: "string", required: false }
-      - { label: "Category", name: "category", widget: "string", required: false }
-      - { label: "Featured", name: "featured", widget: "boolean", required: false, default: false }
+      - { label: "Last Updated", name: "updated", widget: "datetime", required: false }
+      - { label: "Author", name: "author", widget: "string", required: false, default: "Gavin Victor Clay" }
+      - { label: "Published", name: "published", widget: "boolean", required: false, default: true }
+      - { label: "Category", name: "category", widget: "string", required: false, default: "Guide" }
       - { label: "Tags", name: "tags", widget: "list", required: false }
-      - { label: "Meta Description", name: "metaDescription", widget: "text", required: false }
-      - { label: "Excerpt", name: "excerpt", widget: "text", required: false }
+      - { label: "Featured", name: "featured", widget: "boolean", required: false, default: false }
+      - { label: "Cover Image", name: "cover", widget: "image", required: false }
+      - { label: "Featured Image (legacy)", name: "image", widget: "image", required: false }
+      - { label: "Read Time (optional)", name: "readTime", widget: "string", required: false }
+      - { label: "Excerpt (optional)", name: "excerpt", widget: "text", required: false }
+      - { label: "Meta Description (optional)", name: "metaDescription", widget: "text", required: false }
       - { label: "Body", name: "body", widget: "markdown" }
 
   - name: "pages"

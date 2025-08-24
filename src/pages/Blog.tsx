@@ -1,16 +1,18 @@
-import { Link } from 'react-router-dom';
+import { Link, useSearchParams } from 'react-router-dom';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, TrendingUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
 import blogPostBackground from '@/assets/blog-post-background.jpg';
-
-import { blogPosts } from '@/data/blogPostsBackup';
+import { blogPosts as backupPosts } from '@/data/blogPostsBackup';
+import { loadAllBlogPosts } from '@/data/mdBlog';
 
 const Blog = () => {
-  // Render all posts from source
-  const visiblePosts = blogPosts;
+  const [searchParams, setSearchParams] = useSearchParams();
+  const pageParam = parseInt(searchParams.get('page') || '1', 10);
+  const currentPage = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
+  const pageSize = 10;
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -24,7 +26,6 @@ const Blog = () => {
     }
   };
 
-  // Use curated blogPosts and filter out unwanted slugs to ensure full-length content renders
   const hiddenSlugs = new Set<string>([
     'competitive-research-currency-forex-2025',
     'forex-broker-reviews-restructured-2025',
@@ -32,7 +33,24 @@ const Blog = () => {
     'seo-fixes-summary-currency-forex-2025',
     'fx-broker-research-competitive-analysis-2025',
   ]);
-  const posts = blogPosts.filter(p => !hiddenSlugs.has(p.slug));
+  const loaded = loadAllBlogPosts();
+  const loadedBySlug = new Set(loaded.map(p => p.slug));
+  const mergedAll = [
+    ...loaded,
+    ...backupPosts.filter(p => !loadedBySlug.has(p.slug))
+  ].filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug));
+  mergedAll.sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
+  const totalPages = Math.max(1, Math.ceil(mergedAll.length / pageSize));
+  const pageIndex = Math.min(currentPage, totalPages) - 1;
+  const posts = mergedAll.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
+  const handlePageChange = (newPage: number) => {
+    const clamped = Math.max(1, Math.min(totalPages, newPage));
+    setSearchParams((prev) => {
+      const next = new URLSearchParams(prev);
+      next.set('page', String(clamped));
+      return next;
+    });
+  };
 
   return (
     <div className="min-h-screen bg-background py-8">
@@ -60,6 +78,14 @@ const Blog = () => {
                 <p className="text-xl max-w-2xl mx-auto opacity-90">
                   Expert insights on forex trends, exchange rate analysis, and currency conversion strategies
                 </p>
+                <div className="mt-6">
+                  <a
+                    href="/admin/#/collections/blog/new"
+                    className="inline-flex items-center justify-center rounded-md bg-white/90 text-black hover:bg-white h-10 px-4 py-2 text-sm font-medium transition-colors"
+                  >
+                    New Post in CMS
+                  </a>
+                </div>
               </div>
             </div>
           </div>
@@ -81,34 +107,30 @@ const Blog = () => {
                         />
                       </div>
                     </div>
-                    
                     {/* Content */}
                     <div className="md:col-span-2 p-6">
                       <div className="flex items-center gap-4 mb-3">
                         {post.category && <Badge variant="secondary">{post.category}</Badge>}
-                        {post.featured && <Badge variant="default">Featured</Badge>}
+                        {(post as any).featured && <Badge variant="default">Featured</Badge>}
                       </div>
-                      
                       <CardTitle className="text-2xl hover:text-primary transition-colors mb-3">
                         <Link to={`/blog/${post.slug}`}>
                           {post.title}
                         </Link>
                       </CardTitle>
-                      
                       <p className="text-muted-foreground mb-4 line-clamp-3">
                         {post.excerpt}
                       </p>
-                      
                       <div className="flex items-center justify-between">
                         <div className="flex items-center gap-4 text-sm text-muted-foreground">
                           <div className="flex items-center gap-1">
                             <Calendar className="h-4 w-4" />
                             {new Date(post.publishDate).toLocaleDateString()}
                           </div>
-                          {post.readTime && (
+                          {(post as any).readTime && (
                             <div className="flex items-center gap-1">
                               <Clock className="h-4 w-4" />
-                              {post.readTime}
+                              {(post as any).readTime}
                             </div>
                           )}
                         </div>
@@ -123,6 +145,25 @@ const Blog = () => {
                   </div>
                 </Card>
               ))}
+              <div className="flex items-center justify-between pt-4">
+                <button
+                  disabled={currentPage <= 1}
+                  onClick={() => handlePageChange(currentPage - 1)}
+                  className="text-sm disabled:text-muted-foreground disabled:cursor-not-allowed hover:underline"
+                >
+                  ← Newer Posts
+                </button>
+                <div className="text-sm text-muted-foreground">
+                  Page {currentPage} of {totalPages}
+                </div>
+                <button
+                  disabled={currentPage >= totalPages}
+                  onClick={() => handlePageChange(currentPage + 1)}
+                  className="text-sm disabled:text-muted-foreground disabled:cursor-not-allowed hover:underline"
+                >
+                  Older Posts →
+                </button>
+              </div>
             </div>
           </div>
 

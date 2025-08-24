@@ -11,22 +11,19 @@ import BlogSEOBooster from '@/components/BlogSEOBooster';
 import SimpleImage from '@/components/SimpleImage';
 import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 import { useToast } from '@/hooks/use-toast';
-import { blogPosts } from '@/data/blogPostsBackup';
+import { blogPosts as backupPosts } from '@/data/blogPostsBackup';
+import { loadAllBlogPosts } from '@/data/mdBlog';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 
 const BlogPost = () => {
   const { slug } = useParams();
   const { toast } = useToast();
 
+  const loaded = loadAllBlogPosts();
   const currentPost = slug 
-    ? blogPosts.find(p => p.slug === slug || (p as any).id === slug) 
+    ? (loaded.find(p => p.slug === slug) as any) || backupPosts.find(p => p.slug === slug || (p as any).id === slug)
     : undefined;
   
-  // Debug logging
-  console.log('Current slug:', slug);
-  // dynamic loader provides slugs at runtime
-  console.log('Found post:', currentPost ? currentPost.title : 'Not found');
-  console.log('Post content length:', currentPost ? currentPost.content.length : 0);
-
   if (!currentPost) {
     return (
       <div className="min-h-screen bg-background py-8">
@@ -43,18 +40,74 @@ const BlogPost = () => {
     );
   }
 
-  // Universal blog post renderer
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "Article",
+  const isHtmlPost = /^\s*</.test(currentPost.content || '');
+
+  // Build BlogPosting schema
+  const blogPosting = {
+    "@type": "BlogPosting",
     "headline": currentPost.title,
     "description": currentPost.metaDescription,
+    "image": currentPost.image,
     "datePublished": currentPost.publishDate,
     "dateModified": new Date().toISOString().split('T')[0],
-    "author": { "@type": "Organization", "name": "Currency to Currency" },
-    "publisher": { "@type": "Organization", "name": "Currency to Currency" },
+    "author": [{ "@type": "Person", "name": currentPost.author || 'Gavin Victor Clay' }],
+    "publisher": {
+      "@type": "Organization",
+      "name": "Currency to Currency",
+      "logo": { "@type": "ImageObject", "url": "https://currencytocurrency.app/icon-512.png" }
+    },
     "mainEntityOfPage": { "@type": "WebPage", "@id": `https://currencytocurrency.app/blog/${slug}` },
-    "image": currentPost.image
+    "url": `https://currencytocurrency.app/blog/${slug}`,
+    "articleSection": currentPost.category || 'Guide',
+    "wordCount": (currentPost as any).wordCount || Math.max(1, (currentPost.content || '').split(/\s+/).length)
+  };
+
+  // Build optional FAQPage schema if FAQs detected
+  const buildFaq = () => {
+    const qas: Array<{ q: string; a: string }> = [];
+    const content = currentPost.content || '';
+    if (isHtmlPost) {
+      const faqBlock = content.match(/<h2[^>]*>\s*Frequently Asked Questions[\s\S]*?<\/h2>([\s\S]*)/i)?.[1] || content;
+      const qMatches = [...faqBlock.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>\s*<p[^>]*>([\s\S]*?)<\/p>/gi)];
+      qMatches.forEach((m) => {
+        const q = m[1]?.replace(/<[^>]+>/g, '').trim();
+        const a = m[2]?.replace(/<[^>]+>/g, '').trim();
+        if (q && a) qas.push({ q, a });
+      });
+    } else {
+      const lines = content.split('\n');
+      let inFaq = false;
+      for (let i = 0; i < lines.length; i++) {
+        const line = lines[i].trim();
+        if (/^##\s*FAQ/i.test(line) || /^##\s*FAQs/i.test(line) || /^##\s*Frequently Asked Questions/i.test(line)) inFaq = true;
+        if (inFaq && /^###\s+/.test(line)) {
+          const q = line.replace(/^###\s+/, '').trim();
+          let a = '';
+          let j = i + 1;
+          while (j < lines.length && !/^###\s+/.test(lines[j]) && !/^##\s+/.test(lines[j])) {
+            a += (lines[j] + ' ');
+            j++;
+          }
+          a = a.replace(/\[(.+?)\]\((.+?)\)/g, '$1').trim();
+          if (q && a) qas.push({ q, a });
+        }
+      }
+    }
+    if (!qas.length) return null;
+    return {
+      "@type": "FAQPage",
+      "mainEntity": qas.map(({ q, a }) => ({
+        "@type": "Question",
+        "name": q,
+        "acceptedAnswer": { "@type": "Answer", "text": a }
+      }))
+    };
+  };
+
+  const faqSchema = buildFaq();
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": faqSchema ? [blogPosting, faqSchema] : [blogPosting]
   };
 
   return (
@@ -68,7 +121,7 @@ const BlogPost = () => {
         ogImage={currentPost.image}
       />
       <article className="container mx-auto px-4 max-w-4xl">
-        {/* Featured Image */}
+        <BreadcrumbNav className="mb-4" />
         <div className="mb-8 rounded-lg overflow-hidden">
           <SimpleImage 
             src={currentPost.image} 
@@ -79,7 +132,6 @@ const BlogPost = () => {
           />
         </div>
 
-        {/* Article Header */}
         <header className="mb-8">
           <div className="flex items-center gap-4 mb-4">
             <Badge>{currentPost.category}</Badge>
@@ -98,74 +150,58 @@ const BlogPost = () => {
           </div>
         </header>
 
-        {/* Article Content */}
         <div className="prose prose-lg max-w-none">
-          {currentPost.content.split('\n\n').map((paragraph, index) => {
-            // Handle React components
-            if (paragraph.trim() === '<BrokerComparisonChart />') {
-              return <BrokerComparisonChart key={index} className="my-8" />;
-            }
-            
-            // Handle headings
-            if (paragraph.startsWith('## ')) {
-              return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-primary">{paragraph.substring(3)}</h2>;
-            }
-            if (paragraph.startsWith('### ')) {
-              return <h3 key={index} className="text-xl font-semibold mt-6 mb-3">{paragraph.substring(4)}</h3>;
-            }
-            if (paragraph.startsWith('#### ')) {
-              return <h4 key={index} className="text-lg font-semibold mt-4 mb-2">{paragraph.substring(5)}</h4>;
-            }
-            
-            // Handle lists
-            if (paragraph.includes('- ')) {
-              const items = paragraph.split('\n').filter(line => line.startsWith('- '));
-              return (
-                <ul key={index} className="list-disc ml-6 space-y-2 mb-6">
-                  {items.map((item, itemIndex) => (
-                    <li key={itemIndex} dangerouslySetInnerHTML={{ 
-                      __html: item.substring(2)
-                        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>') 
-                    }} />
-                  ))}
-                </ul>
-              );
-            }
-            
-            // Handle numbered lists
-            if (/^\d+\./.test(paragraph)) {
-              const items = paragraph.split('\n').filter(line => /^\d+\./.test(line));
-              return (
-                <ol key={index} className="list-decimal ml-6 space-y-2 mb-6">
-                  {items.map((item, itemIndex) => (
-                    <li key={itemIndex} dangerouslySetInnerHTML={{ 
-                      __html: item.replace(/^\d+\.\s*/, '')
-                        .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                        .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>') 
-                    }} />
-                  ))}
-                </ol>
-              );
-            }
-            
-            // Handle regular paragraphs
-            if (paragraph.trim() && !paragraph.startsWith('---')) {
-              return (
-                <p key={index} className="mb-6 leading-relaxed" 
-                   dangerouslySetInnerHTML={{ 
-                     __html: paragraph
-                       .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                       .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
-                   }} 
-                />
-              );
-            }
-            
-            return null;
-          })}
-          
-          {/* If content is short, add disclaimer */}
+          {isHtmlPost ? (
+            <div dangerouslySetInnerHTML={{ __html: currentPost.content }} />
+          ) : (
+            currentPost.content.split('\n\n').map((paragraph: string, index: number) => {
+              if (paragraph.trim() === '<BrokerComparisonChart />') return <BrokerComparisonChart key={index} className="my-8" />;
+              if (paragraph.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-primary">{paragraph.substring(3)}</h2>;
+              if (paragraph.startsWith('### ')) return <h3 key={index} className="text-xl font-semibold mt-6 mb-3">{paragraph.substring(4)}</h3>;
+              if (paragraph.startsWith('#### ')) return <h4 key={index} className="text-lg font-semibold mt-4 mb-2">{paragraph.substring(5)}</h4>;
+              if (paragraph.includes('- ')) {
+                const items = paragraph.split('\n').filter((line: string) => line.startsWith('- '));
+                return (
+                  <ul key={index} className="list-disc ml-6 space-y-2 mb-6">
+                    {items.map((item: string, itemIndex: number) => (
+                      <li key={itemIndex} dangerouslySetInnerHTML={{ 
+                        __html: item.substring(2)
+                          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>') 
+                      }} />
+                    ))}
+                  </ul>
+                );
+              }
+              if (/^\d+\./.test(paragraph)) {
+                const items = paragraph.split('\n').filter((line: string) => /^\d+\./.test(line));
+                return (
+                  <ol key={index} className="list-decimal ml-6 space-y-2 mb-6">
+                    {items.map((item: string, itemIndex: number) => (
+                      <li key={itemIndex} dangerouslySetInnerHTML={{ 
+                        __html: item.replace(/^\d+\.\s*/, '')
+                          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>') 
+                      }} />
+                    ))}
+                  </ol>
+                );
+              }
+              if (paragraph.trim() && !paragraph.startsWith('---')) {
+                return (
+                  <p key={index} className="mb-6 leading-relaxed" 
+                     dangerouslySetInnerHTML={{ 
+                       __html: paragraph
+                         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                         .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+                     }} 
+                  />
+                );
+              }
+              return null;
+            })
+          )}
+
           {currentPost.content.length < 500 && (
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mt-8">
               <p className="text-amber-800 mb-2">
@@ -178,7 +214,6 @@ const BlogPost = () => {
           )}
         </div>
 
-        {/* Navigation */}
         <div className="mt-12 pt-8 border-t border-border">
           <Link 
             to="/blog" 

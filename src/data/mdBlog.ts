@@ -6,16 +6,18 @@ export interface MarkdownBlogPost {
   excerpt?: string;
   publishDate: string;
   readTime?: string;
+  wordCount?: number;
   category?: string;
   featured?: boolean;
   image?: string;
   tags?: string[];
   metaDescription?: string;
+  published?: boolean;
   content: string;
 }
 
-// Vite will import raw markdown strings from blog content directory
-const modules = import.meta.glob('/src/content/blog/**/*.md', { as: 'raw', eager: true });
+// Vite will import raw markdown or HTML strings from blog content directory
+const modules = import.meta.glob('/src/content/blog/**/*.{md,html}', { as: 'raw', eager: true });
 
 export function loadAllBlogPosts(): MarkdownBlogPost[] {
   const posts: MarkdownBlogPost[] = [];
@@ -50,35 +52,78 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
         continue;
       }
 
-      // Extract title from first heading if not in frontmatter
-      let title = data.title;
+      // Extract title depending on format (frontmatter/MD/HTML)
+      let title = data.title as string | undefined;
       if (!title) {
-        const firstHeading = content.match(/^#\s+(.+)$/m);
-        title = firstHeading ? firstHeading[1].trim() : baseSlug.replace(/[-_]/g, ' ');
+        const isHtml = path.endsWith('.html');
+        if (isHtml) {
+          const h1Match = content.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i);
+          const titleTag = content.match(/<title[^>]*>([\s\S]*?)<\/title>/i);
+          title = (h1Match?.[1] || titleTag?.[1])?.replace(/<[^>]+>/g, '').trim();
+        } else {
+          const firstHeading = content.match(/^#\s+(.+)$/m);
+          title = firstHeading ? firstHeading[1].trim() : undefined;
+        }
+        if (!title) title = baseSlug.replace(/[-_]/g, ' ');
       }
 
+      // For HTML files, extract <body> content as main content and meta description
+      const isHtml = path.endsWith('.html');
+      const htmlBodyMatch = isHtml ? content.match(/<body[^>]*>([\s\S]*?)<\/body>/i) : null;
+      const mainContent = isHtml ? (htmlBodyMatch?.[1]?.trim() || content.trim()) : content.trim();
+      const htmlMetaDesc = isHtml ? content.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["'][^>]*>/i)?.[1] : undefined;
+
       // Create excerpt from content if not provided
-      let excerpt = data.excerpt || data.description;
-      if (!excerpt && content) {
-        // Get first paragraph after headings
-        const paragraphs = content.split('\n\n').filter(p => 
-          p.trim() && !p.startsWith('#') && !p.startsWith('*Posted by')
-        );
-        excerpt = paragraphs[0]?.substring(0, 200) + '...' || '';
+      let excerpt = data.excerpt || data.description || htmlMetaDesc;
+      if (!excerpt && mainContent) {
+        if (path.endsWith('.html')) {
+          const pMatch = mainContent.match(/<p[^>]*>([\s\S]*?)<\/p>/i);
+          const text = (pMatch?.[1] || mainContent)
+            .replace(/<[^>]+>/g, ' ')
+            .replace(/\s+/g, ' ')
+            .trim();
+          excerpt = text.substring(0, 200) + (text.length > 200 ? '...' : '');
+        } else {
+          // Get first paragraph after headings for markdown
+          const paragraphs = mainContent.split('\n\n').filter(p => 
+            p.trim() && !p.startsWith('#') && !p.startsWith('*Posted by')
+          );
+          const text = (paragraphs[0] || '')
+            .replace(/\[(.*?)\]\((.*?)\)/g, '$1');
+          excerpt = text.substring(0, 200) + (text.length > 200 ? '...' : '');
+        }
       }
+
+      // Compute word count and reading time (200 wpm default)
+      const plainText = mainContent
+        .replace(/<[^>]+>/g, ' ') // strip HTML tags if present
+        .replace(/```[\s\S]*?```/g, '') // remove code blocks
+        .replace(/`[^`]*`/g, '') // inline code
+        .replace(/\[(.*?)\]\((.*?)\)/g, '$1') // links -> text
+        .replace(/[#>*_~`\-]/g, ' ') // markdown symbols
+        .replace(/\s+/g, ' ') // collapse whitespace
+        .trim();
+      const wordCount = plainText ? plainText.split(/\s+/).length : 0;
+      const minutes = Math.max(1, Math.ceil(wordCount / 200));
+      const readTime = `${minutes} min read`;
 
       posts.push({
         title: title || baseSlug,
         slug: data.slug || baseSlug,
         excerpt: excerpt,
         publishDate: data.date || data.publishDate || '2025-01-30',
-        readTime: data.readTime || '5 min read',
+        readTime: data.readTime || readTime,
+        wordCount,
         category: data.category || 'Currency',
         featured: Boolean(data.featured),
-        image: data.image || '/placeholder.svg',
+        image: data.image || data.cover || (() => {
+          const imgMatch = mainContent.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+          return imgMatch?.[1] || '/placeholder.svg';
+        })(),
         tags: Array.isArray(data.tags) ? data.tags : ['Forex', 'Currency'],
-        metaDescription: data.metaDescription || data.description || excerpt,
-        content: content.trim(),
+        metaDescription: data.metaDescription || data.description || htmlMetaDesc || excerpt,
+        published: data.published !== false,
+        content: mainContent,
       });
     } catch (error) {
       console.warn(`Error processing markdown file ${path}:`, error);
