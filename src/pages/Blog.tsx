@@ -7,6 +7,7 @@ import blogHero from '@/assets/blog-hero.jpg';
 import blogPostBackground from '@/assets/blog-post-background.jpg';
 import { blogPosts as backupPosts } from '@/data/blogPostsBackup';
 import { loadAllBlogPosts } from '@/data/mdBlog';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
 
 const Blog = () => {
   const [searchParams, setSearchParams] = useSearchParams();
@@ -26,6 +27,7 @@ const Blog = () => {
     }
   };
 
+  // Merge loader posts (md/html) with backup curated posts, filter published and hidden
   const hiddenSlugs = new Set<string>([
     'competitive-research-currency-forex-2025',
     'forex-broker-reviews-restructured-2025',
@@ -63,6 +65,7 @@ const Blog = () => {
       />
 
       <div className="container mx-auto px-4 max-w-6xl">
+        <BreadcrumbNav className="mb-4" />
         {/* Hero Section */}
         <div className="relative mb-12 rounded-2xl overflow-hidden">
           <div 

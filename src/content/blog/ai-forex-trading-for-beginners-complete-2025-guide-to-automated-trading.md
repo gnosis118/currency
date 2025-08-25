@@ -1,7 +1,14 @@
 ---
+title: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading"
+description: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading"
+slug: "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
+date: "2025-08-10"
+updated: "2025-08-10"
+author: "Gavin Victor Clay"
+category: "Guide"
 published: true
-wordCount: 2767
 readingTime: "14 min read"
+wordCount: 2767
 ---
 
 # AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading

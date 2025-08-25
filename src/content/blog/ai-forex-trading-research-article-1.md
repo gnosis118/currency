@@ -1,7 +1,14 @@
 ---
+title: "AI Forex Trading Research - Article 1"
+description: "AI Forex Trading Research - Article 1"
+slug: "ai-forex-trading-research-article-1"
+date: "2025-08-10"
+updated: "2025-08-10"
+author: "Gavin Victor Clay"
+category: "Guide"
 published: true
-wordCount: 2503
 readingTime: "13 min read"
+wordCount: 2503
 ---
 
 # AI Forex Trading Research - Article 1
