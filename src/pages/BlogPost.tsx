@@ -119,9 +119,9 @@ const BlogPost = () => {
         pageType="article"
         ogImage={currentPost.image}
       />
-      <article className="container mx-auto px-4 max-w-4xl">
+      <article className="container mx-auto px-4 max-w-4xl" data-sb-object-id={String(currentPost.slug || '')}>
         <BreadcrumbNav className="mb-4" />
-        <div className="mb-8 rounded-lg overflow-hidden">
+        <div className="mb-8 rounded-lg overflow-hidden" data-sb-field-path="cover">
           <SimpleImage 
             src={currentPost.image} 
             alt={currentPost.title} 
@@ -133,11 +133,11 @@ const BlogPost = () => {
 
         <header className="mb-8">
           <div className="flex items-center gap-4 mb-4">
-            <Badge>{currentPost.category}</Badge>
+            <Badge data-sb-field-path="category">{currentPost.category}</Badge>
             {currentPost.featured && <Badge variant="outline">Featured</Badge>}
           </div>
-          <h1 className="text-4xl font-bold text-primary mb-4">{currentPost.title}</h1>
-          <div className="flex items-center gap-6 text-muted-foreground">
+          <h1 className="text-4xl font-bold text-primary mb-4" data-sb-field-path="title">{currentPost.title}</h1>
+          <div className="flex items-center gap-6 text-muted-foreground" data-sb-field-path="date">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
               {new Date(currentPost.publishDate).toLocaleDateString()}
@@ -149,7 +149,7 @@ const BlogPost = () => {
           </div>
         </header>
 
-        <div className="prose prose-lg max-w-none">
+        <div className="prose prose-lg max-w-none" data-sb-field-path="body">
           {isHtmlPost ? (
             <div dangerouslySetInnerHTML={{ __html: currentPost.content }} />
           ) : (
