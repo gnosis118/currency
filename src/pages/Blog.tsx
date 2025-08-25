@@ -1,4 +1,5 @@
 import { Link, useSearchParams } from 'react-router-dom';
+import { useEffect, useState } from 'react';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, TrendingUp } from 'lucide-react';
@@ -35,19 +36,36 @@ const Blog = () => {
     loaded = loadAllBlogPostsFallback() as any[];
   }
   // If still empty, use static JSON generated at build time
-  if (!loaded.length) {
-    try {
-      const el = document.getElementById('preloaded-blog-index');
-      if (el?.textContent) {
-        const json = JSON.parse(el.textContent);
-        if (Array.isArray(json)) loaded = json;
-      }
-    } catch {}
-  }
-  const visibleSorted = loaded.slice().sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
-  const totalPages = Math.max(1, Math.ceil(visibleSorted.length / pageSize));
+  const [fallbackPosts, setFallbackPosts] = useState<any[]>([]);
+  useEffect(() => {
+    if (!loaded.length) {
+      // Try embedded JSON
+      try {
+        const el = document.getElementById('preloaded-blog-index');
+        if (el?.textContent) {
+          const json = JSON.parse(el.textContent);
+          if (Array.isArray(json) && json.length) {
+            setFallbackPosts(json);
+            return;
+          }
+        }
+      } catch {}
+      // Fetch static JSON as final fallback
+      fetch('/blog-index.json')
+        .then((r) => (r.ok ? r.json() : []))
+        .then((d) => {
+          if (Array.isArray(d)) setFallbackPosts(d);
+        })
+        .catch(() => {});
+    }
+  // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
+
+  const primarySorted = loaded.slice().sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
+  const allPosts = primarySorted.length ? primarySorted : fallbackPosts.slice().sort((a: any, b: any) => (a.publishDate < b.publishDate ? 1 : -1));
+  const totalPages = Math.max(1, Math.ceil(allPosts.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
-  const posts = visibleSorted.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
+  const posts = allPosts.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
   const handlePageChange = (newPage: number) => {
     const clamped = Math.max(1, Math.min(totalPages, newPage));
     setSearchParams((prev) => {
