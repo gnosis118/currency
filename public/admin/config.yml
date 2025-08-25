@@ -2,8 +2,7 @@ backend:
   name: git-gateway
   branch: main
 
-local_backend:
-  url: http://localhost:8083/api/v1
+local_backend: true
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
