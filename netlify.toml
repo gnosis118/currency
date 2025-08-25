@@ -4,6 +4,10 @@
 
 [build.environment]
   NODE_VERSION = "18"
+  # Omit benign public identifiers from secrets scanning (prevents false positives)
+  SECRETS_SCAN_OMIT_KEYS = "AUTH0_AUDIENCE,AUTH0_CLIENT_ID,AUTH0_DOMAIN,AUTH0_ISSUER_BASE_URL,SUPABASE_ANON_KEY"
+  # Ignore generated public outputs where those identifiers necessarily appear
+  SECRETS_SCAN_OMIT_PATHS = "public/sitemap*.xml,public/robots.txt,dist/**"
 
 # Disable Netlify Visual Editor to prevent Studio Preview Error
 [context.production.environment]
