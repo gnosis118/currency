@@ -35,11 +35,14 @@ const Blog = () => {
     'fx-broker-research-competitive-analysis-2025',
   ]);
   const loaded = loadAllBlogPosts();
-  const filteredAll = loaded.filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug));
-  filteredAll.sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
-  const totalPages = Math.max(1, Math.ceil(filteredAll.length / pageSize));
+  const minWords = 2500;
+  const eligibleSorted = loaded
+    .filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug) && ((p.wordCount as number) || 0) >= minWords)
+    .sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
+  const eligibleTop30 = eligibleSorted.slice(0, 30);
+  const totalPages = Math.max(1, Math.ceil(eligibleTop30.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
-  const posts = filteredAll.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
+  const posts = eligibleTop30.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
   const handlePageChange = (newPage: number) => {
     const clamped = Math.max(1, Math.min(totalPages, newPage));
     setSearchParams((prev) => {
