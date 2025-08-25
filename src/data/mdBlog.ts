@@ -17,9 +17,12 @@ export interface MarkdownBlogPost {
 }
 
 // Vite will import raw markdown or HTML strings from blog content directories
-const modulesA = import.meta.glob('/src/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
-const modulesB = import.meta.glob('/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
-const modules = { ...(modulesA as any), ...(modulesB as any) } as Record<string, unknown>;
+// Use multiple patterns for cross-env compatibility (absolute and relative)
+const modulesA = import.meta.glob('../content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modulesB = import.meta.glob('/src/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modulesC = import.meta.glob('../../content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modulesD = import.meta.glob('/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modules = { ...(modulesA as any), ...(modulesB as any), ...(modulesC as any), ...(modulesD as any) } as Record<string, unknown>;
 
 export function loadAllBlogPosts(): MarkdownBlogPost[] {
   const posts: MarkdownBlogPost[] = [];
@@ -35,7 +38,7 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
 
       // Derive slug from filename if not provided
       const filename = path.split('/').pop() || '';
-      const baseSlug = filename.replace(/\.md$/, '');
+      const baseSlug = filename.replace(/\.(md|html)$/i, '');
 
       // Skip unpublished/draft/hidden content and hard-removed slugs
       const hiddenSlugs = new Set<string>([
