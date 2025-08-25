@@ -8,6 +8,7 @@
     "build": "vite build",
     "prebuild": "node scripts/enforce_blog_quality.mjs",
     "build:dev": "vite build --mode development",
+    "cms": "npx --yes decap-server",
     "lint": "eslint .",
     "preview": "vite preview",
     "generate:gap": "node scripts/generate_gap_article.cjs"

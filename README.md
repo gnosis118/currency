@@ -54,6 +54,7 @@ npm run dev
 - `npm run build` - Build for production
 - `npm run preview` - Preview production build locally
 - `npm run lint` - Run ESLint
+- `npm run cms` - Start Decap CMS local backend for the visual editor
 
 ## Project Structure
 
@@ -82,6 +83,24 @@ npm run build
 ```
 
 The built files will be in the `dist/` directory.
+
+## CMS (Decap) Visual Editor
+
+### Local editing
+- Run the site: `npm run dev`
+- In another terminal: `npm run cms`
+- Open: `http://localhost:5173/admin/`
+
+Notes:
+- `public/admin/config.yml` has `local_backend: true`, so no login needed locally
+- Posts are saved to `src/content/blog`
+- Uploads go to `public/images/uploads`
+
+### Netlify production setup
+1. Enable Identity: Site settings → Identity → Enable Identity
+2. Enable Git Gateway: Site settings → Identity → Services → Enable Git Gateway
+3. Invite yourself as a user in Identity, accept via email
+4. Visit your live site `/admin/`, log in with Netlify Identity, create/edit posts
 
 ## Contributing
 
