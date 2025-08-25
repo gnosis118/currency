@@ -11,7 +11,6 @@ import BlogSEOBooster from '@/components/BlogSEOBooster';
 import SimpleImage from '@/components/SimpleImage';
 import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 import { useToast } from '@/hooks/use-toast';
-import { blogPosts as backupPosts } from '@/data/blogPostsBackup';
 import { loadAllBlogPosts } from '@/data/mdBlog';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 
@@ -21,7 +20,7 @@ const BlogPost = () => {
 
   const loaded = loadAllBlogPosts();
   const currentPost = slug 
-    ? (loaded.find(p => p.slug === slug) as any) || backupPosts.find(p => p.slug === slug || (p as any).id === slug)
+    ? (loaded.find(p => p.slug === slug) as any)
     : undefined;
   
   if (!currentPost) {

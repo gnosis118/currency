@@ -5,7 +5,6 @@ import { Calendar, Clock, TrendingUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
 import blogPostBackground from '@/assets/blog-post-background.jpg';
-import { blogPosts as backupPosts } from '@/data/blogPostsBackup';
 import { loadAllBlogPosts } from '@/data/mdBlog';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 
@@ -36,15 +35,11 @@ const Blog = () => {
     'fx-broker-research-competitive-analysis-2025',
   ]);
   const loaded = loadAllBlogPosts();
-  const loadedBySlug = new Set(loaded.map(p => p.slug));
-  const mergedAll = [
-    ...loaded,
-    ...backupPosts.filter(p => !loadedBySlug.has(p.slug))
-  ].filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug));
-  mergedAll.sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
-  const totalPages = Math.max(1, Math.ceil(mergedAll.length / pageSize));
+  const filteredAll = loaded.filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug));
+  filteredAll.sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
+  const totalPages = Math.max(1, Math.ceil(filteredAll.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
-  const posts = mergedAll.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
+  const posts = filteredAll.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
   const handlePageChange = (newPage: number) => {
     const clamped = Math.max(1, Math.min(totalPages, newPage));
     setSearchParams((prev) => {
