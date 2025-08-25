@@ -16,8 +16,10 @@ export interface MarkdownBlogPost {
   content: string;
 }
 
-// Vite will import raw markdown or HTML strings from blog content directory
-const modules = import.meta.glob('/src/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+// Vite will import raw markdown or HTML strings from blog content directories
+const modulesA = import.meta.glob('/src/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modulesB = import.meta.glob('/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modules = { ...(modulesA as any), ...(modulesB as any) } as Record<string, unknown>;
 
 export function loadAllBlogPosts(): MarkdownBlogPost[] {
   const posts: MarkdownBlogPost[] = [];

@@ -35,9 +35,10 @@ const Blog = () => {
     'fx-broker-research-competitive-analysis-2025',
   ]);
   const loaded = loadAllBlogPosts();
+  const showAll = (searchParams.get('all') || '').toLowerCase() === 'true';
   const minWords = 2500;
   const eligibleSorted = loaded
-    .filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug) && ((p.wordCount as number) || 0) >= minWords)
+    .filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug) && (showAll || (((p.wordCount as number) || 0) >= minWords)))
     .sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
   const eligibleTop30 = eligibleSorted.slice(0, 30);
   const totalPages = Math.max(1, Math.ceil(eligibleTop30.length / pageSize));
