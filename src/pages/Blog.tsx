@@ -36,7 +36,7 @@ const Blog = () => {
   ]);
   const loaded = loadAllBlogPosts();
   const visibleSorted = loaded
-    .filter((p: any) => p.published !== false && !hiddenSlugs.has(p.slug))
+    .filter((p: any) => (p.published !== false || p.published === undefined) && !hiddenSlugs.has(p.slug))
     .sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
   const totalPages = Math.max(1, Math.ceil(visibleSorted.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
