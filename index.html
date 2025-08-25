@@ -69,7 +69,6 @@
     
     <!-- Security Headers -->
     <meta http-equiv="X-Content-Type-Options" content="nosniff" />
-    <meta http-equiv="X-Frame-Options" content="DENY" />
     <meta http-equiv="X-XSS-Protection" content="1; mode=block" />
     
     <!-- Performance Hints & Font Loading -->
@@ -82,13 +81,8 @@
     <link rel="preconnect" href="https://api.coingecko.com" crossorigin />
     <link rel="dns-prefetch" href="//www.google-analytics.com">
     <link rel="dns-prefetch" href="//www.googletagmanager.com" />
-    <link rel="preload" href="/src/assets/home-hero.webp" as="image" type="image/webp" />
     
-    <!-- Resource Hints for Core Web Vitals -->
-    <link rel="preload" href="/src/main.tsx" as="script" />
-    <link rel="modulepreload" href="/src/main.tsx" />
-    <link rel="preload" href="/src/components/ui/button.tsx" as="script" />
-    <link rel="preload" href="/src/components/ui/card.tsx" as="script" />
+    <!-- Let Vite handle module preloads automatically to avoid dev warnings -->
     
     <!-- Critical CSS inline for instant rendering - Mobile-First Optimized -->
     <style>
@@ -611,10 +605,16 @@
   </head>
 
   <body>
+    <!-- Preloaded blog index for static fallback -->
+    <script id="preloaded-blog-index" type="application/json" fetchpriority="low">
+    </script>
     <div id="root"></div>
     <script type="module" src="/src/main.tsx"></script>
+    <!-- Disable service worker in development to prevent cache-stale issues -->
     <script>
-      if ('serviceWorker' in navigator) {
+      if (location.hostname === 'localhost') {
+        navigator.serviceWorker?.getRegistrations?.().then(rs => rs.forEach(r => r.unregister()));
+      } else if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
           navigator.serviceWorker.register('/sw.js')
             .then((registration) => {

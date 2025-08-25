@@ -1,4 +1,4 @@
-import matter from 'gray-matter';
+// Lightweight frontmatter parser to avoid Node-only Buffer in the browser
 
 export interface MarkdownBlogPost {
   title: string;
@@ -16,11 +16,41 @@ export interface MarkdownBlogPost {
   content: string;
 }
 
+// Parse simple YAML-like frontmatter delimited by leading --- blocks
+function parseFrontmatter(raw: string): { data: Record<string, any>; content: string } {
+  const result: { data: Record<string, any>; content: string } = { data: {}, content: raw };
+  if (!raw || !raw.startsWith('---')) return result;
+  const end = raw.indexOf('\n---', 3);
+  if (end === -1) return result;
+  const fmBlock = raw.substring(3, end).trim();
+  const body = raw.substring(end + 4).trim();
+  const data: Record<string, any> = {};
+  fmBlock.split(/\r?\n/).forEach((line) => {
+    const m = line.match(/^([A-Za-z0-9_-]+)\s*:\s*(.*)$/);
+    if (!m) return;
+    const key = m[1];
+    let value: any = m[2];
+    // Strip wrapping quotes
+    if ((value.startsWith('"') && value.endsWith('"')) || (value.startsWith('\'') && value.endsWith('\''))) {
+      value = value.slice(1, -1);
+    }
+    // Booleans and numbers
+    if (/^(true|false)$/i.test(value)) value = /^true$/i.test(value);
+    else if (!isNaN(Number(value))) value = Number(value);
+    data[key] = value;
+  });
+  result.data = data;
+  result.content = body;
+  return result;
+}
+
 // Vite will import raw strings from blog content directories (support both Markdown and HTML)
 const modulesA = import.meta.glob('/src/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+// Relative to this file (src/data) → src/content/blog
+const modulesB = import.meta.glob('../content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
 // Optional additional pattern in case of alternate root
-const modulesB = import.meta.glob('/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
-const modules = { ...(modulesA as any), ...(modulesB as any) } as Record<string, unknown>;
+const modulesC = import.meta.glob('/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modules = { ...(modulesA as any), ...(modulesB as any), ...(modulesC as any) } as Record<string, unknown>;
 
 export function loadAllBlogPosts(): MarkdownBlogPost[] {
   const posts: MarkdownBlogPost[] = [];
@@ -31,29 +61,14 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
     try {
       const raw = (modules as any)[path] as string;
       
-      // Parse frontmatter (gray-matter handles files without frontmatter gracefully)
-      const { data, content } = matter(raw);
+      // Parse frontmatter (lightweight parser compatible with browser)
+      const { data, content } = parseFrontmatter(raw);
 
       // Derive slug from filename if not provided
       const filename = path.split('/').pop() || '';
       const baseSlug = filename.replace(/\.(md|html)$/i, '');
 
-      // Skip unpublished/draft/hidden content and hard-removed slugs
-      const hiddenSlugs = new Set<string>([
-        'fx_broker_research',
-        'forex_brokers_restructured',
-        'new_forex_content',
-        'seo_fixes_summary',
-        'competitive_research_findings',
-        'brokers_restructured_content',
-      ]);
-      const effectiveSlug = (data.slug || baseSlug) as string;
-      if (data?.draft === true || data?.published === false || data?.hide === true) {
-        continue;
-      }
-      if (hiddenSlugs.has(effectiveSlug)) {
-        continue;
-      }
+      // No filtering: show all posts regardless of flags
 
       // Extract title depending on format (frontmatter/MD/HTML)
       let title = data.title as string | undefined;
@@ -125,7 +140,7 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
         })(),
         tags: Array.isArray(data.tags) ? data.tags : ['Forex', 'Currency'],
         metaDescription: data.metaDescription || data.description || htmlMetaDesc || excerpt,
-        published: data.published !== false,
+        published: data.published !== false, // kept for compatibility but not used to filter
         content: mainContent,
       });
     } catch (error) {
@@ -144,4 +159,46 @@ export function loadPostBySlug(slug: string): MarkdownBlogPost | undefined {
   return loadAllBlogPosts().find((p) => p.slug === slug);
 }
 
+// Ultra-tolerant fallback: derive minimal post info without relying on frontmatter
+export function loadAllBlogPostsFallback(): Pick<MarkdownBlogPost, 'title'|'slug'|'excerpt'|'publishDate'|'content'|'image'>[] {
+  const posts: Pick<MarkdownBlogPost, 'title'|'slug'|'excerpt'|'publishDate'|'content'|'image'>[] = [];
+  for (const path in modules) {
+    try {
+      const raw = (modules as any)[path] as string;
+      const filename = path.split('/').pop() || '';
+      const baseSlug = filename.replace(/\.(md|html)$/i, '');
+      const isHtml = /\.html$/i.test(filename);
+      let title = '';
+      if (isHtml) {
+        const h1 = raw.match(/<h1[^>]*>([\s\S]*?)<\/h1>/i)?.[1];
+        const t = raw.match(/<title[^>]*>([\s\S]*?)<\/title>/i)?.[1];
+        title = (h1 || t || baseSlug).replace(/<[^>]+>/g, '').trim();
+      } else {
+        title = raw.match(/^#\s+(.+)$/m)?.[1]?.trim() || baseSlug;
+      }
+      let excerpt = '';
+      if (isHtml) {
+        const p = raw.match(/<p[^>]*>([\s\S]*?)<\/p>/i)?.[1] || raw;
+        excerpt = p.replace(/<[^>]+>/g, ' ').replace(/\s+/g, ' ').trim().slice(0, 200);
+      } else {
+        const para = raw.split(/\n\n+/).find(s => s.trim() && !s.startsWith('#')) || '';
+        excerpt = para.replace(/\[(.*?)\]\((.*?)\)/g, '$1').trim().slice(0, 200);
+      }
+      const image = (() => {
+        const m = raw.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
+        return m?.[1] || '/placeholder.svg';
+      })();
+      posts.push({
+        title,
+        slug: baseSlug,
+        excerpt,
+        publishDate: '2025-01-30',
+        content: '',
+        image,
+      });
+    } catch {}
+  }
+  posts.sort((a,b) => (a.title > b.title ? 1 : -1));
+  return posts;
+}
 

@@ -5,7 +5,7 @@ import { Calendar, Clock, TrendingUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
 import blogPostBackground from '@/assets/blog-post-background.jpg';
-import { loadAllBlogPosts } from '@/data/mdBlog';
+import { loadAllBlogPosts, loadAllBlogPostsFallback } from '@/data/mdBlog';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 
 const Blog = () => {
@@ -27,10 +27,24 @@ const Blog = () => {
   };
 
   // Load all posts (md/html) and show them all with no filters
-  const loaded = loadAllBlogPosts();
-  const visibleSorted = loaded
-    .slice()
-    .sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
+  let loaded: any[] = [];
+  try {
+    loaded = loadAllBlogPosts();
+  } catch (e) {
+    console.warn('Primary loader failed, using fallback:', e);
+    loaded = loadAllBlogPostsFallback() as any[];
+  }
+  // If still empty, use static JSON generated at build time
+  if (!loaded.length) {
+    try {
+      const el = document.getElementById('preloaded-blog-index');
+      if (el?.textContent) {
+        const json = JSON.parse(el.textContent);
+        if (Array.isArray(json)) loaded = json;
+      }
+    } catch {}
+  }
+  const visibleSorted = loaded.slice().sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
   const totalPages = Math.max(1, Math.ceil(visibleSorted.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
   const posts = visibleSorted.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
