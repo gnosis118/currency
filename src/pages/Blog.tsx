@@ -27,6 +27,16 @@ const Blog = () => {
     }
   };
 
+  const getSafeImageSrc = (src?: string) => {
+    if (!src) return '/placeholder.svg';
+    let url = src.trim();
+    if (url.startsWith('/public/')) url = url.replace(/^\/public\//, '/');
+    if (url.startsWith('public/')) url = url.replace(/^public\//, '/');
+    if (url.startsWith('images/')) url = '/' + url;
+    if (url.startsWith('http://')) url = url.replace(/^http:\/\//, 'https://');
+    return url;
+  };
+
   // Load all posts (md/html) and show them all with no filters
   let loaded: any[] = [];
   try {
@@ -117,9 +127,14 @@ const Blog = () => {
                     <div className="md:col-span-1">
                       <div className="aspect-video md:aspect-square overflow-hidden">
                         <img 
-                          src={post.image || '/placeholder.svg'} 
+                          src={getSafeImageSrc((post as any).image)} 
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          onError={(e) => {
+                            const img = e.currentTarget as HTMLImageElement;
+                            img.onerror = null;
+                            img.src = '/placeholder.svg';
+                          }}
                         />
                       </div>
                     </div>
