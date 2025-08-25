@@ -16,15 +16,11 @@ export interface MarkdownBlogPost {
   content: string;
 }
 
-// Vite will import raw HTML strings from blog content directories (HTML is primary)
-// Use multiple patterns for cross-env compatibility (absolute and relative)
-const modulesA = import.meta.glob('../content/blog/**/*.html', { as: 'raw', eager: true });
-const modulesB = import.meta.glob('/src/content/blog/**/*.html', { as: 'raw', eager: true });
-const modulesC = import.meta.glob('../../content/blog/**/*.html', { as: 'raw', eager: true });
-const modulesD = import.meta.glob('/content/blog/**/*.html', { as: 'raw', eager: true });
-const modulesE = import.meta.glob('../content/blog/*.html', { as: 'raw', eager: true });
-const modulesF = import.meta.glob('/src/content/blog/*.html', { as: 'raw', eager: true });
-const modules = { ...(modulesA as any), ...(modulesB as any), ...(modulesC as any), ...(modulesD as any), ...(modulesE as any), ...(modulesF as any) } as Record<string, unknown>;
+// Vite will import raw strings from blog content directories (support both Markdown and HTML)
+const modulesA = import.meta.glob('/src/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+// Optional additional pattern in case of alternate root
+const modulesB = import.meta.glob('/content/blog/**/*.{md,html}', { query: '?raw', import: 'default', eager: true });
+const modules = { ...(modulesA as any), ...(modulesB as any) } as Record<string, unknown>;
 
 export function loadAllBlogPosts(): MarkdownBlogPost[] {
   const posts: MarkdownBlogPost[] = [];
@@ -40,7 +36,7 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
 
       // Derive slug from filename if not provided
       const filename = path.split('/').pop() || '';
-      const baseSlug = filename.replace(/\.html$/i, '');
+      const baseSlug = filename.replace(/\.(md|html)$/i, '');
 
       // Skip unpublished/draft/hidden content and hard-removed slugs
       const hiddenSlugs = new Set<string>([

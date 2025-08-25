@@ -26,17 +26,10 @@ const Blog = () => {
     }
   };
 
-  // Merge loader posts (md/html) with backup curated posts, filter published and hidden
-  const hiddenSlugs = new Set<string>([
-    'competitive-research-currency-forex-2025',
-    'forex-broker-reviews-restructured-2025',
-    'new-forex-content-strategy-2025',
-    'seo-fixes-summary-currency-forex-2025',
-    'fx-broker-research-competitive-analysis-2025',
-  ]);
+  // Load all posts (md/html) and show them all with no filters
   const loaded = loadAllBlogPosts();
   const visibleSorted = loaded
-    .filter((p: any) => (p.published !== false || p.published === undefined) && !hiddenSlugs.has(p.slug))
+    .slice()
     .sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
   const totalPages = Math.max(1, Math.ceil(visibleSorted.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
@@ -77,14 +70,6 @@ const Blog = () => {
                 <p className="text-xl max-w-2xl mx-auto opacity-90">
                   Expert insights on forex trends, exchange rate analysis, and currency conversion strategies
                 </p>
-                <div className="mt-6">
-                  <a
-                    href="/admin/#/collections/blog/new"
-                    className="inline-flex items-center justify-center rounded-md bg-white/90 text-black hover:bg-white h-10 px-4 py-2 text-sm font-medium transition-colors"
-                  >
-                    New Post in CMS
-                  </a>
-                </div>
               </div>
             </div>
           </div>
