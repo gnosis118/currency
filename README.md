@@ -55,6 +55,7 @@ npm run dev
 - `npm run preview` - Preview production build locally
 - `npm run lint` - Run ESLint
 - `npm run cms` - Start Decap CMS local backend for the visual editor
+- `npm run stackbit:dev` - Start Stackbit Visual Editor (page editor)
 
 ## Project Structure
 
@@ -101,6 +102,12 @@ Notes:
 2. Enable Git Gateway: Site settings → Identity → Services → Enable Git Gateway
 3. Invite yourself as a user in Identity, accept via email
 4. Visit your live site `/admin/`, log in with Netlify Identity, create/edit posts
+
+### Stackbit Visual Editor
+- Ensure `stackbit.config.ts` exists (it maps `Page`, `Post`, and `HtmlPost` to URL paths)
+- Run your site: `npm run dev`
+- In another terminal: `npm run stackbit:dev`
+- Open the editor URL displayed by Stackbit to edit pages in-place
 
 ## Contributing
 

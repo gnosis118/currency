@@ -38,13 +38,31 @@ export default defineStackbitConfig({
             { name: 'published', type: 'boolean', required: false, default: true },
             { name: 'readingTime', type: 'string', required: false }
           ]
+        },
+        {
+          name: 'HtmlPost',
+          type: 'page',
+          urlPath: '/blog/{slug}',
+          filePath: 'src/content/blog/{slug}.html',
+          fields: [
+            { name: 'title', type: 'string', required: false },
+            { name: 'slug', type: 'string', required: false },
+            { name: 'date', type: 'date', required: false },
+            { name: 'updated', type: 'date', required: false },
+            { name: 'author', type: 'string', required: false },
+            { name: 'tags', type: 'list', items: { type: 'string' }, required: false },
+            { name: 'category', type: 'string', required: false },
+            { name: 'cover', type: 'string', required: false },
+            { name: 'published', type: 'boolean', required: false, default: true }
+          ]
         }
       ]
     })
   ],
   modelExtensions: [
     { name: 'Page', type: 'page', urlPath: '/{slug}' },
-    { name: 'Post', type: 'page', urlPath: '/blog/{slug}' }
+    { name: 'Post', type: 'page', urlPath: '/blog/{slug}' },
+    { name: 'HtmlPost', type: 'page', urlPath: '/blog/{slug}' }
   ],
   siteMap: ({ documents, models }) => {
     const pageModels = models.filter((m) => m.type === 'page');
