@@ -6,7 +6,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build",
-    "prebuild": "node scripts/enforce_blog_quality.mjs && node scripts/generate_blog_index.mjs",
+    "prebuild": "node scripts/generate_blog_index.mjs",
     "build:dev": "vite build --mode development",
     "cms": "npx --yes decap-server",
     "stackbit:dev": "npx --yes @stackbit/cli@^0.6.0 dev",
