@@ -91,7 +91,7 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
       const mainContent = isHtml ? (htmlBodyMatch?.[1]?.trim() || content.trim()) : content.trim();
       const htmlMetaDesc = isHtml ? content.match(/<meta[^>]+name=["']description["'][^>]+content=["']([^"']+)["'][^>]*>/i)?.[1] : undefined;
 
-      // Create excerpt from content if not provided
+      // Create excerpt/meta/keywords automatically
       let excerpt = data.excerpt || data.description || htmlMetaDesc;
       if (!excerpt && mainContent) {
         if (path.endsWith('.html')) {
@@ -125,6 +125,18 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
       const minutes = Math.max(1, Math.ceil(wordCount / 200));
       const readTime = `${minutes} min read`;
 
+      // Auto keywords from content frequency
+      const autoKeywords = (() => {
+        const words = plainText.toLowerCase().replace(/[^a-z0-9\s]/g, ' ').split(/\s+/).filter(Boolean);
+        const stop = new Set(['the','and','a','to','of','in','for','on','is','with','by','at','as','it','this','that','from','or','be','an','are','was','were','than','can','will','your','you','we','our']);
+        const freq = new Map<string, number>();
+        for (const w of words) {
+          if (stop.has(w) || w.length < 3) continue;
+          freq.set(w, (freq.get(w) || 0) + 1);
+        }
+        return Array.from(freq.entries()).sort((a,b) => b[1]-a[1]).slice(0, 10).map(([w]) => w);
+      })();
+
       posts.push({
         title: title || baseSlug,
         slug: data.slug || baseSlug,
@@ -138,7 +150,7 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
           const imgMatch = mainContent.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
           return imgMatch?.[1] || '/placeholder.svg';
         })(),
-        tags: Array.isArray(data.tags) ? data.tags : ['Forex', 'Currency'],
+        tags: Array.isArray(data.tags) ? data.tags : autoKeywords,
         metaDescription: data.metaDescription || data.description || htmlMetaDesc || excerpt,
         published: data.published !== false, // kept for compatibility but not used to filter
         content: mainContent,
