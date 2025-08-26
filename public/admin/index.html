@@ -106,13 +106,7 @@
               entry = entry.setIn(['data', 'slug'], generated);
             }
 
-            // Enforce minimum 2500 words
-            const words = computeWordCount(body);
-            const min = 2500;
-            if (words < min) {
-              alert(`Post is too short (${words} words). Minimum is ${min} words.`);
-              return { preventDefault: true };
-            }
+            // No minimum word count enforcement
           } catch (e) {
             console.warn('preSave validation error:', e);
           }
