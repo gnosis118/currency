@@ -109,6 +109,33 @@ const BlogPost = () => {
     "@graph": faqSchema ? [blogPosting, faqSchema] : [blogPosting]
   };
 
+  // Related posts based on tags/keywords and title similarity
+  const relatedPosts = (() => {
+    try {
+      const currentTags: string[] = Array.isArray((currentPost as any).tags) ? (currentPost as any).tags.map((t: string) => String(t).toLowerCase()) : [];
+      const titleWords = String(currentPost.title || '').toLowerCase().split(/[^a-z0-9]+/g).filter(Boolean);
+      const score = (p: any) => {
+        let s = 0;
+        const tags: string[] = Array.isArray(p.tags) ? p.tags.map((t: string) => String(t).toLowerCase()) : [];
+        if (currentTags.length && tags.length) {
+          const set = new Set(tags);
+          for (const t of currentTags) if (set.has(t)) s += 3;
+        }
+        const candTitle = String(p.title || '').toLowerCase();
+        for (const w of titleWords) if (w.length > 3 && candTitle.includes(w)) s += 1;
+        return s;
+      };
+      return loaded
+        .filter((p: any) => p.slug !== (currentPost as any).slug)
+        .map((p: any) => ({ p, s: score(p) }))
+        .sort((a, b) => b.s - a.s)
+        .slice(0, 5)
+        .map(({ p }) => p);
+    } catch {
+      return loaded.filter((p: any) => p.slug !== (currentPost as any).slug).slice(0, 5);
+    }
+  })();
+
   return (
     <div className="min-h-screen bg-background py-8">
       <EnhancedSEOHead
@@ -221,6 +248,34 @@ const BlogPost = () => {
             ← Back to Blog
           </Link>
         </div>
+
+        {relatedPosts && relatedPosts.length > 0 && (
+          <div className="mt-12 pt-8 border-t border-border">
+            <h2 className="text-2xl font-semibold mb-6">Related Articles</h2>
+            <div className="grid md:grid-cols-2 gap-6">
+              {relatedPosts.map((rp: any) => (
+                <Link key={rp.slug} to={`/blog/${rp.slug}`} className="group rounded-lg overflow-hidden border hover:shadow-md transition-shadow">
+                  <div className="aspect-video overflow-hidden">
+                    <img
+                      src={rp.image || '/placeholder.svg'}
+                      alt={rp.title}
+                      className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                      onError={(e) => {
+                        const img = e.currentTarget as HTMLImageElement;
+                        img.onerror = null;
+                        img.src = '/placeholder.svg';
+                      }}
+                    />
+                  </div>
+                  <div className="p-4">
+                    <h3 className="text-lg font-medium mb-2 group-hover:text-primary transition-colors">{rp.title}</h3>
+                    <p className="text-sm text-muted-foreground line-clamp-2">{rp.excerpt}</p>
+                  </div>
+                </Link>
+              ))}
+            </div>
+          </div>
+        )}
 
         <BlogSEOBooster currentSlug={slug} className="mt-12" />
       </article>
