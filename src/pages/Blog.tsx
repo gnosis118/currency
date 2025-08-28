@@ -73,8 +73,23 @@ const Blog = () => {
   // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
 
-  const primarySorted = loaded.slice().sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
-  const allPosts = primarySorted.length ? primarySorted : fallbackPosts.slice().sort((a: any, b: any) => (a.publishDate < b.publishDate ? 1 : -1));
+  // Remove duplicates by slug before sorting
+  const removeDuplicates = (posts: any[]) => {
+    const seen = new Set();
+    const filtered = posts.filter(post => {
+      if (seen.has(post.slug)) {
+        console.log(`Duplicate post removed: ${post.slug} - ${post.title}`);
+        return false;
+      }
+      seen.add(post.slug);
+      return true;
+    });
+    console.log(`Posts after deduplication: ${filtered.length} (was ${posts.length})`);
+    return filtered;
+  };
+
+  const primarySorted = removeDuplicates(loaded).sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
+  const allPosts = primarySorted.length ? primarySorted : removeDuplicates(fallbackPosts).sort((a: any, b: any) => (a.publishDate < b.publishDate ? 1 : -1));
   const totalPages = Math.max(1, Math.ceil(allPosts.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
   const posts = allPosts.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
