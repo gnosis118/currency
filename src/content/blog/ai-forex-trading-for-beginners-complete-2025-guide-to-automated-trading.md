@@ -1,14 +1,20 @@
 ---
 title: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading"
-description: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading"
+description: "Master AI forex trading with our comprehensive 2025 guide. Learn automated trading strategies, best AI platforms, risk management, and how to start algorithmic forex trading as a beginner."
+metaDescription: "Master AI forex trading with our comprehensive 2025 guide. Learn automated trading strategies, best AI platforms, risk management, and how to start algorithmic forex trading as a beginner."
 slug: "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
 date: "2025-08-10"
-updated: "2025-08-10"
+updated: "2025-01-15T12:00:00.000-07:00"
 author: "Gavin Victor Clay"
 category: "Guide"
+cover: "/src/assets/ai-forex-trading-guide-2025.jpg"
+image: "/src/assets/ai-forex-trading-guide-2025.jpg"
+keywords: "AI forex trading 2025, automated trading, algorithmic trading, forex robots, AI trading platforms, forex automation"
 published: true
+featured: true
 readingTime: "14 min read"
 wordCount: 2767
+tags: ["AI trading", "automated forex", "algorithmic trading", "trading bots", "forex automation", "machine learning trading"]
 ---
 
 # AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading

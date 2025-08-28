@@ -1,14 +1,21 @@
 ---
 title: "Currency Exchange for International Business: Complete Guide to Multi-Currency Operations"
+description: "Master international business currency exchange with expert strategies for multi-currency operations, risk management, and cost optimization. Complete guide for businesses operating globally."
 metaDescription: "Master international business currency exchange with expert strategies for multi-currency operations, risk management, and cost optimization. Complete guide for businesses operating globally."
+date: "2025-08-11"
+updated: "2025-01-15T12:00:00.000-07:00"
 publishDate: "2025-08-11"
 readTime: "27 min read"
 category: "Business Finance"
 tags: ["business currency exchange", "international business finance", "multi-currency management", "foreign exchange risk", "business hedging", "global commerce"]
 featured: true
-author: "Manus AI"
+author: "Gavin Victor Clay"
+cover: "/src/assets/business-currency-exchange-2025.png"
+image: "/src/assets/business-currency-exchange-2025.png"
+keywords: "business currency exchange 2025, international business finance, multi-currency operations, forex risk management, global commerce"
 wordCount: 4553
 readingTime: "23 min read"
+published: true
 ---
 
 # Currency Exchange for International Business: Complete Guide to Multi-Currency Operations

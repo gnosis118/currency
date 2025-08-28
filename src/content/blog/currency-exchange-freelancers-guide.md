@@ -1,14 +1,18 @@
 ---
 title: "Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments"
-description: "Master currency exchange as a freelancer. Handle multi-currency payments, minimize fees, and optimize exchange rates for maximum earnings."
+description: "Master currency exchange as a freelancer. Handle multi-currency payments, minimize fees, and optimize exchange rates for maximum earnings with our comprehensive 2025 guide."
+metaDescription: "Master currency exchange as a freelancer. Handle multi-currency payments, minimize fees, and optimize exchange rates for maximum earnings with our comprehensive 2025 guide."
 slug: "currency-exchange-freelancers-guide"
 date: "2025-08-10"
-updated: "2025-08-10"
+updated: "2025-01-15T12:00:00.000-07:00"
 author: "Gavin Victor Clay"
 tags: ["Freelancing", "Currency Exchange", "Multi-Currency", "Payment Processing", "International Business"]
 category: "Freelancing"
-cover: "/images/uploads/freelancer-currency-exchange.jpg"
+cover: "/src/assets/freelancer-currency-exchange.jpeg"
+image: "/src/assets/freelancer-currency-exchange.jpeg"
+keywords: "freelancer currency exchange 2025, multi-currency payments, freelance payment processing, international freelancing, currency conversion"
 published: true
+featured: true
 readingTime: "13 min read"
 wordCount: 2543
 ---

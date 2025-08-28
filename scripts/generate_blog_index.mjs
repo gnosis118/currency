@@ -3,7 +3,10 @@ import fs from 'fs';
 import path from 'path';
 import matter from 'gray-matter';
 
-const root = path.resolve(path.dirname(new URL(import.meta.url).pathname), '..');
+// Fix for Windows path issue
+const scriptPath = new URL(import.meta.url).pathname;
+const cleanPath = process.platform === 'win32' ? scriptPath.slice(1) : scriptPath;
+const root = path.resolve(path.dirname(cleanPath), '..');
 const blogDir = path.join(root, 'src', 'content', 'blog');
 const outDir = path.join(root, 'public');
 const outFile = path.join(outDir, 'blog-index.json');
@@ -53,12 +56,20 @@ function toPost(file, raw) {
     .trim();
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
+  // Fix image paths - convert /src/assets/ to proper public path
+  let imageUrl = data.image || data.cover || (imgMatch?.[1] || '/placeholder.svg');
+  if (imageUrl.startsWith('/src/assets/')) {
+    imageUrl = imageUrl.replace('/src/assets/', '/src/assets/');
+  } else if (imageUrl.startsWith('src/assets/')) {
+    imageUrl = '/' + imageUrl;
+  }
+  
   return {
     title,
     slug: data.slug || baseSlug,
     excerpt,
     publishDate: data.date || data.publishDate || '2025-01-30',
-    image: data.image || data.cover || (imgMatch?.[1] || '/placeholder.svg'),
+    image: imageUrl,
     readTime: data.readTime || `${minutes} min read`,
     wordCount,
     category: data.category || 'Currency',
@@ -67,6 +78,8 @@ function toPost(file, raw) {
 }
 
 function main() {
+  console.log('[blog-index] Looking for blog directory at:', blogDir);
+  console.log('[blog-index] Directory exists:', fs.existsSync(blogDir));
   if (!fs.existsSync(blogDir)) {
     console.log('[blog-index] Blog directory missing:', blogDir);
     return;

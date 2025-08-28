@@ -1,14 +1,21 @@
 ---
 title: "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money"
+description: "Comprehensive guide to Central Bank Digital Currencies (CBDCs) in 2025. Understand how CBDCs work, their impact on traditional banking, investment implications, and what they mean for your financial future."
 metaDescription: "Comprehensive guide to Central Bank Digital Currencies (CBDCs) in 2025. Understand how CBDCs work, their impact on traditional banking, investment implications, and what they mean for your financial future."
+date: "2025-08-11"
+updated: "2025-01-15T12:00:00.000-07:00"
 publishDate: "2025-08-11"
 readTime: "24 min read"
 category: "Digital Currency"
 tags: ["CBDC", "central bank digital currency", "digital money", "cryptocurrency", "monetary policy", "financial technology"]
 featured: true
-author: "Manus AI"
+author: "Gavin Victor Clay"
+cover: "/src/assets/cbdc-guide-2025.jpg"
+image: "/src/assets/cbdc-guide-2025.jpg"
+keywords: "CBDC 2025, central bank digital currency, digital money, cryptocurrency regulation, monetary policy, financial technology"
 wordCount: 4024
 readingTime: "21 min read"
+published: true
 ---
 
 # Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money

@@ -32,6 +32,8 @@ const Blog = () => {
     let url = src.trim();
     if (url.startsWith('/public/')) url = url.replace(/^\/public\//, '/');
     if (url.startsWith('public/')) url = url.replace(/^public\//, '/');
+    if (url.startsWith('/src/assets/')) url = url.replace(/^\/src\/assets\//, '/src/assets/');
+    if (url.startsWith('src/assets/')) url = '/' + url;
     if (url.startsWith('images/')) url = '/' + url;
     if (url.startsWith('http://')) url = url.replace(/^http:\/\//, 'https://');
     return url;

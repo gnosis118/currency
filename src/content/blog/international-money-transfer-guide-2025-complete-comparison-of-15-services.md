@@ -1,14 +1,21 @@
 ---
 title: "International Money Transfer Guide 2025: Complete Comparison of 15+ Services"
+description: "Comprehensive guide to international money transfers in 2025. Compare 15+ services, fees, exchange rates, and transfer speeds. Expert analysis and ratings to find the best option for your needs."
 metaDescription: "Comprehensive guide to international money transfers in 2025. Compare 15+ services, fees, exchange rates, and transfer speeds. Expert analysis and ratings to find the best option for your needs."
+date: "2025-08-11"
+updated: "2025-01-15T12:00:00.000-07:00"
 publishDate: "2025-08-11"
 readTime: "28 min read"
 category: "International Transfers"
 tags: ["international money transfer", "remittance", "send money abroad", "wire transfer", "money transfer comparison"]
 featured: true
-author: "Manus AI"
+author: "Gavin Victor Clay"
+cover: "/src/assets/international-money-transfer-2025.jpeg"
+image: "/src/assets/international-money-transfer-2025.jpeg"
+keywords: "international money transfer 2025, send money abroad, remittance services, wire transfer comparison, money transfer fees"
 wordCount: 4190
 readingTime: "21 min read"
+published: true
 ---
 
 # International Money Transfer Guide 2025: Complete Comparison of 15+ Services

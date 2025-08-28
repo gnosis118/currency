@@ -1,14 +1,21 @@
 ---
 title: "Currency Volatility Protection: Advanced Hedging Strategies for Individual Investors"
+description: "Master currency risk management with advanced hedging strategies for individual investors. Learn practical techniques to protect your portfolio from currency volatility and maximize returns."
 metaDescription: "Master currency risk management with advanced hedging strategies for individual investors. Learn practical techniques to protect your portfolio from currency volatility and maximize returns."
+date: "2025-08-11"
+updated: "2025-01-15T12:00:00.000-07:00"
 publishDate: "2025-08-11"
 readTime: "26 min read"
 category: "Risk Management"
 tags: ["currency hedging", "forex risk management", "currency volatility", "investment protection", "portfolio hedging"]
 featured: true
-author: "Manus AI"
+author: "Gavin Victor Clay"
+cover: "/src/assets/currency-volatility-protection-2025.png"
+image: "/src/assets/currency-volatility-protection-2025.png"
+keywords: "currency hedging strategies 2025, forex risk management, currency volatility protection, portfolio hedging, investment risk"
 wordCount: 3939
 readingTime: "20 min read"
+published: true
 ---
 
 # Currency Volatility Protection: Advanced Hedging Strategies for Individual Investors

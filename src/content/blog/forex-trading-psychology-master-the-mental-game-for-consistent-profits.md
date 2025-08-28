@@ -1,14 +1,21 @@
 ---
 title: "Forex Trading Psychology: Master the Mental Game for Consistent Profits"
+description: "Master forex trading psychology with proven strategies to control emotions, develop discipline, and achieve consistent profits. Complete guide to the mental aspects of successful forex trading."
 metaDescription: "Master forex trading psychology with proven strategies to control emotions, develop discipline, and achieve consistent profits. Complete guide to the mental aspects of successful forex trading."
+date: "2025-08-11"
+updated: "2025-01-15T12:00:00.000-07:00"
 publishDate: "2025-08-11"
 readTime: "25 min read"
 category: "Trading Psychology"
 tags: ["forex trading psychology", "trading mindset", "forex mental game", "trading discipline", "emotional trading", "trading success"]
 featured: true
-author: "Manus AI"
+author: "Gavin Victor Clay"
+cover: "/src/assets/forex-trading-psychology-2025.jpg"
+image: "/src/assets/forex-trading-psychology-2025.jpg"
+keywords: "forex trading psychology 2025, trading mindset, emotional trading control, forex mental game, trading discipline strategies"
 wordCount: 4634
 readingTime: "24 min read"
+published: true
 ---
 
 # Forex Trading Psychology: Master the Mental Game for Consistent Profits
