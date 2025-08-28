@@ -5,8 +5,6 @@ import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, TrendingUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
-import blogPostBackground from '@/assets/blog-post-background.jpg';
-import { loadAllBlogPosts, loadAllBlogPostsFallback } from '@/data/mdBlog';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 
 const Blog = () => {
@@ -30,69 +28,76 @@ const Blog = () => {
   const getSafeImageSrc = (src?: string) => {
     if (!src) return '/placeholder.svg';
     let url = src.trim();
+    
+    // Handle different image path formats
     if (url.startsWith('/public/')) url = url.replace(/^\/public\//, '/');
     if (url.startsWith('public/')) url = url.replace(/^public\//, '/');
-    if (url.startsWith('/src/assets/')) url = url.replace(/^\/src\/assets\//, '/src/assets/');
+    if (url.startsWith('/src/assets/')) {
+      // /src/assets/ paths aren't accessible in browser, use placeholder
+      return '/placeholder.svg';
+    }
     if (url.startsWith('src/assets/')) url = '/' + url;
     if (url.startsWith('images/')) url = '/' + url;
+    if (url.startsWith('/images/')) return url; // Already correct
     if (url.startsWith('http://')) url = url.replace(/^http:\/\//, 'https://');
+    if (url.startsWith('https://')) return url; // External URL
+    
     return url;
   };
 
-  // Load all posts (md/html) and show them all with no filters
-  let loaded: any[] = [];
-  try {
-    loaded = loadAllBlogPosts();
-  } catch (e) {
-    console.warn('Primary loader failed, using fallback:', e);
-    loaded = loadAllBlogPostsFallback() as any[];
-  }
-  // If still empty, use static JSON generated at build time
-  const [fallbackPosts, setFallbackPosts] = useState<any[]>([]);
+  // Use ONLY the static JSON to avoid duplicates
+  const [posts, setPosts] = useState<any[]>([]);
+  const [loading, setLoading] = useState(true);
+  const [lastLoaded, setLastLoaded] = useState<string>('');
+
   useEffect(() => {
-    if (!loaded.length) {
-      // Try embedded JSON
+    const loadPosts = async () => {
       try {
-        const el = document.getElementById('preloaded-blog-index');
-        if (el?.textContent) {
-          const json = JSON.parse(el.textContent);
-          if (Array.isArray(json) && json.length) {
-            setFallbackPosts(json);
-            return;
+        // Force fresh data with cache-busting and no-cache headers
+        const cacheBuster = new Date().getTime();
+        const response = await fetch(`/blog-index.json?v=${cacheBuster}`, {
+          method: 'GET',
+          headers: {
+            'Cache-Control': 'no-cache, no-store, must-revalidate',
+            'Pragma': 'no-cache',
+            'Expires': '0'
+          }
+        });
+        if (response.ok) {
+          const data = await response.json();
+          if (Array.isArray(data)) {
+            // Remove any duplicates that might still exist
+            const seen = new Set();
+            const uniquePosts = data.filter(post => {
+              if (seen.has(post.slug)) {
+                console.warn(`Duplicate post removed: ${post.slug} - ${post.title}`);
+                return false;
+              }
+              seen.add(post.slug);
+              return true;
+            });
+            
+            console.log(`Loaded ${uniquePosts.length} unique posts from blog-index.json`);
+            console.log('Posts loaded:', uniquePosts.map(p => ({ slug: p.slug, title: p.title })));
+            setPosts(uniquePosts.sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1)));
+            setLastLoaded(new Date().toLocaleTimeString());
           }
         }
-      } catch {}
-      // Fetch static JSON as final fallback
-      fetch('/blog-index.json')
-        .then((r) => (r.ok ? r.json() : []))
-        .then((d) => {
-          if (Array.isArray(d)) setFallbackPosts(d);
-        })
-        .catch(() => {});
-    }
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+      } catch (error) {
+        console.error('Failed to load blog posts:', error);
+      } finally {
+        setLoading(false);
+      }
+    };
+
+    loadPosts();
   }, []);
 
-  // Remove duplicates by slug before sorting
-  const removeDuplicates = (posts: any[]) => {
-    const seen = new Set();
-    const filtered = posts.filter(post => {
-      if (seen.has(post.slug)) {
-        console.log(`Duplicate post removed: ${post.slug} - ${post.title}`);
-        return false;
-      }
-      seen.add(post.slug);
-      return true;
-    });
-    console.log(`Posts after deduplication: ${filtered.length} (was ${posts.length})`);
-    return filtered;
-  };
-
-  const primarySorted = removeDuplicates(loaded).sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1));
-  const allPosts = primarySorted.length ? primarySorted : removeDuplicates(fallbackPosts).sort((a: any, b: any) => (a.publishDate < b.publishDate ? 1 : -1));
-  const totalPages = Math.max(1, Math.ceil(allPosts.length / pageSize));
+  // Calculate pagination
+  const totalPages = Math.max(1, Math.ceil(posts.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
-  const posts = allPosts.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
+  const currentPosts = posts.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
+
   const handlePageChange = (newPage: number) => {
     const clamped = Math.max(1, Math.min(totalPages, newPage));
     setSearchParams((prev) => {
@@ -114,6 +119,7 @@ const Blog = () => {
 
       <div className="container mx-auto px-3 md:px-4 max-w-6xl">
         <BreadcrumbNav className="mb-4" />
+        
         {/* Hero Section */}
         <div className="relative mb-8 md:mb-12 rounded-xl md:rounded-2xl overflow-hidden">
           <div 
@@ -136,85 +142,109 @@ const Blog = () => {
 
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           <div className="lg:col-span-2">
-            <div className="space-y-6 md:space-y-8">
-              {posts.map((post) => (
-                <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow border-0 md:border shadow-sm md:shadow-md">
-                  <div className="grid md:grid-cols-3 gap-4 md:gap-6">
-                    {/* Featured Image */}
-                    <div className="md:col-span-1">
-                      <div className="aspect-video md:aspect-square overflow-hidden">
-                        <img 
-                          src={getSafeImageSrc((post as any).image)} 
-                          alt={post.title}
-                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
-                          onError={(e) => {
-                            const img = e.currentTarget as HTMLImageElement;
-                            img.onerror = null;
-                            img.src = '/placeholder.svg';
-                          }}
-                        />
-                      </div>
-                    </div>
-                    {/* Content */}
-                    <div className="md:col-span-2 p-4 md:p-6">
-                      <div className="flex items-center gap-2 md:gap-4 mb-3">
-                        {post.category && <Badge variant="secondary" className="text-xs md:text-sm">{post.category}</Badge>}
-                        {(post as any).featured && <Badge variant="default" className="text-xs md:text-sm">Featured</Badge>}
-                      </div>
-                      <CardTitle className="text-lg md:text-2xl hover:text-primary transition-colors mb-3 leading-tight">
-                        <Link to={`/blog/${post.slug}`}>
-                          {post.title}
-                        </Link>
-                      </CardTitle>
-                      <p className="text-muted-foreground mb-4 line-clamp-3">
-                        {post.excerpt}
-                      </p>
-                      <div className="flex items-center justify-between">
-                        <div className="flex items-center gap-4 text-sm text-muted-foreground">
-                          <div className="flex items-center gap-1">
-                            <Calendar className="h-4 w-4" />
-                            {new Date(post.publishDate).toLocaleDateString()}
-                          </div>
-                          {(post as any).readTime && (
-                            <div className="flex items-center gap-1">
-                              <Clock className="h-4 w-4" />
-                              {(post as any).readTime}
-                            </div>
-                          )}
-                        </div>
-                        <Link 
-                          to={`/blog/${post.slug}`}
-                          className="text-primary hover:underline font-medium"
-                        >
-                          Read More →
-                        </Link>
-                      </div>
-                    </div>
-                  </div>
-                </Card>
-              ))}
-              <div className="flex items-center justify-between pt-4">
-                <button
-                  disabled={currentPage <= 1}
-                  onClick={() => handlePageChange(currentPage - 1)}
-                  className="text-sm disabled:text-muted-foreground disabled:cursor-not-allowed hover:underline"
-                >
-                  ← Newer Posts
-                </button>
-                <div className="text-sm text-muted-foreground">
-                  Page {currentPage} of {totalPages}
-                </div>
-                <button
-                  disabled={currentPage >= totalPages}
-                  onClick={() => handlePageChange(currentPage + 1)}
-                  className="text-sm disabled:text-muted-foreground disabled:cursor-not-allowed hover:underline"
-                >
-                  Older Posts →
-                </button>
+            {loading ? (
+              <div className="flex items-center justify-center py-12">
+                <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary"></div>
+                <span className="ml-3 text-muted-foreground">Loading blog posts...</span>
               </div>
-            </div>
+            ) : (
+              <>
+                {lastLoaded && (
+                  <div className="text-xs text-muted-foreground mb-4 text-center">
+                    Data loaded at: {lastLoaded} | Total posts: {posts.length}
+                  </div>
+                )}
+              <div className="space-y-6 md:space-y-8">
+                {currentPosts.map((post) => (
+                  <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow border-0 md:border shadow-sm md:shadow-md">
+                    <div className="grid md:grid-cols-3 gap-4 md:gap-6">
+                      {/* Featured Image */}
+                      <div className="md:col-span-1">
+                        <div className="aspect-video md:aspect-square overflow-hidden">
+                          <img 
+                            src={getSafeImageSrc((post as any).image)} 
+                            alt={post.title}
+                            className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                            onError={(e) => {
+                              const img = e.currentTarget as HTMLImageElement;
+                              img.onerror = null;
+                              img.src = '/placeholder.svg';
+                            }}
+                          />
+                        </div>
+                      </div>
+                      
+                      {/* Content */}
+                      <div className="md:col-span-2 p-4 md:p-6">
+                        <div className="flex items-center gap-2 md:gap-4 mb-3">
+                          {post.category && <Badge variant="secondary" className="text-xs md:text-sm">{post.category}</Badge>}
+                          {(post as any).featured && <Badge variant="default" className="text-xs md:text-sm">Featured</Badge>}
+                        </div>
+                        
+                        <CardTitle className="text-lg md:text-2xl hover:text-primary transition-colors mb-3 leading-tight">
+                          <Link to={`/blog/${post.slug}`}>
+                            {post.title}
+                          </Link>
+                        </CardTitle>
+                        
+                        <p className="text-muted-foreground mb-4 line-clamp-3">
+                          {post.excerpt}
+                        </p>
+                        
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-4 text-sm text-muted-foreground">
+                            <div className="flex items-center gap-1">
+                              <Calendar className="h-4 w-4" />
+                              {new Date(post.publishDate).toLocaleDateString()}
+                            </div>
+                            {(post as any).readTime && (
+                              <div className="flex items-center gap-1">
+                                <Clock className="h-4 w-4" />
+                                {(post as any).readTime}
+                              </div>
+                            )}
+                          </div>
+                          
+                          <Link 
+                            to={`/blog/${post.slug}`}
+                            className="text-primary hover:underline font-medium"
+                          >
+                            Read More →
+                          </Link>
+                        </div>
+                      </div>
+                    </div>
+                  </Card>
+                ))}
+                
+                {/* Pagination */}
+                <div className="flex items-center justify-between pt-4">
+                  <button
+                    disabled={currentPage <= 1}
+                    onClick={() => handlePageChange(currentPage - 1)}
+                    className="text-sm disabled:text-muted-foreground disabled:cursor-not-allowed hover:underline"
+                  >
+                    ← Newer Posts
+                  </button>
+                  
+                  <div className="text-sm text-muted-foreground">
+                    Page {currentPage} of {totalPages}
+                  </div>
+                  
+                  <button
+                    disabled={currentPage >= totalPages}
+                    onClick={() => handlePageChange(currentPage + 1)}
+                    className="text-sm disabled:text-muted-foreground disabled:cursor-not-allowed hover:underline"
+                  >
+                    Older Posts →
+                  </button>
+                </div>
+              </div>
+              </>
+            )}
           </div>
 
+          {/* Sidebar */}
           <div className="space-y-6">
             <Card>
               <CardHeader>
