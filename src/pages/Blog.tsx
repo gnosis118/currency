@@ -97,21 +97,21 @@ const Blog = () => {
         structuredData={structuredData}
       />
 
-      <div className="container mx-auto px-4 max-w-6xl">
+      <div className="container mx-auto px-3 md:px-4 max-w-6xl">
         <BreadcrumbNav className="mb-4" />
         {/* Hero Section */}
-        <div className="relative mb-12 rounded-2xl overflow-hidden">
+        <div className="relative mb-8 md:mb-12 rounded-xl md:rounded-2xl overflow-hidden">
           <div 
-            className="h-96 bg-cover bg-center relative"
+            className="h-64 md:h-96 bg-cover bg-center relative"
             style={{ backgroundImage: `url(${blogHero})` }}
           >
             <div className="absolute inset-0 bg-black/50"></div>
-            <div className="relative z-10 flex items-center justify-center h-full text-center text-white">
+            <div className="relative z-10 flex items-center justify-center h-full text-center text-white px-4">
               <div>
-                <h1 className="text-5xl font-bold mb-4">
+                <h1 className="text-2xl md:text-5xl font-bold mb-3 md:mb-4">
                   Currency Exchange Blog
                 </h1>
-                <p className="text-xl max-w-2xl mx-auto opacity-90">
+                <p className="text-sm md:text-xl max-w-2xl mx-auto opacity-90">
                   Expert insights on forex trends, exchange rate analysis, and currency conversion strategies
                 </p>
               </div>
@@ -119,12 +119,12 @@ const Blog = () => {
           </div>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           <div className="lg:col-span-2">
-            <div className="space-y-8">
+            <div className="space-y-6 md:space-y-8">
               {posts.map((post) => (
-                <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow">
-                  <div className="grid md:grid-cols-3 gap-6">
+                <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow border-0 md:border shadow-sm md:shadow-md">
+                  <div className="grid md:grid-cols-3 gap-4 md:gap-6">
                     {/* Featured Image */}
                     <div className="md:col-span-1">
                       <div className="aspect-video md:aspect-square overflow-hidden">
@@ -141,12 +141,12 @@ const Blog = () => {
                       </div>
                     </div>
                     {/* Content */}
-                    <div className="md:col-span-2 p-6">
-                      <div className="flex items-center gap-4 mb-3">
-                        {post.category && <Badge variant="secondary">{post.category}</Badge>}
-                        {(post as any).featured && <Badge variant="default">Featured</Badge>}
+                    <div className="md:col-span-2 p-4 md:p-6">
+                      <div className="flex items-center gap-2 md:gap-4 mb-3">
+                        {post.category && <Badge variant="secondary" className="text-xs md:text-sm">{post.category}</Badge>}
+                        {(post as any).featured && <Badge variant="default" className="text-xs md:text-sm">Featured</Badge>}
                       </div>
-                      <CardTitle className="text-2xl hover:text-primary transition-colors mb-3">
+                      <CardTitle className="text-lg md:text-2xl hover:text-primary transition-colors mb-3 leading-tight">
                         <Link to={`/blog/${post.slug}`}>
                           {post.title}
                         </Link>

@@ -287,31 +287,34 @@ const CurrencyConverter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-converter-bg p-4">
+    <div className="min-h-screen bg-converter-bg p-3 md:p-4">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-8">
-          <h1 className="text-4xl font-bold text-foreground mb-2">Currency Converter</h1>
-          <p className="text-muted-foreground text-lg">Real-time exchange rates and cryptocurrency prices</p>
-          <p className="text-muted-foreground max-w-2xl mx-auto mt-4">
+        <div className="text-center mb-6 md:mb-8 px-2">
+          <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-2">Currency Converter</h1>
+          <p className="text-muted-foreground text-base md:text-lg">Real-time exchange rates and cryptocurrency prices</p>
+          <p className="text-muted-foreground max-w-2xl mx-auto mt-3 md:mt-4 text-sm md:text-base">
             Convert currencies instantly, track historical rates, set price alerts, and get travel money tips. 
             Our comprehensive currency tool provides everything you need for international finance, trading, and travel planning.
           </p>
         </div>
 
         <Tabs defaultValue="converter" className="w-full">
-          <TabsList className="grid w-full grid-cols-4">
-            <TabsTrigger value="converter">Converter</TabsTrigger>
-            <TabsTrigger value="charts" className="flex items-center gap-2">
-              <BarChart3 className="h-4 w-4" />
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1 p-1">
+            <TabsTrigger value="converter" className="text-xs md:text-sm min-h-10 md:min-h-11 touch-manipulation">
+              <span className="hidden sm:inline">Converter</span>
+              <span className="sm:hidden">Convert</span>
+            </TabsTrigger>
+            <TabsTrigger value="charts" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm min-h-10 md:min-h-11 touch-manipulation">
+              <BarChart3 className="h-3 w-3 md:h-4 md:w-4" />
               Charts
             </TabsTrigger>
-            <TabsTrigger value="alerts" className="flex items-center gap-2">
-              <Bell className="h-4 w-4" />
+            <TabsTrigger value="alerts" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm min-h-10 md:min-h-11 touch-manipulation">
+              <Bell className="h-3 w-3 md:h-4 md:w-4" />
               Alerts
             </TabsTrigger>
-            <TabsTrigger value="travel" className="flex items-center gap-2">
-              <Plane className="h-4 w-4" />
+            <TabsTrigger value="travel" className="flex items-center gap-1 md:gap-2 text-xs md:text-sm min-h-10 md:min-h-11 touch-manipulation">
+              <Plane className="h-3 w-3 md:h-4 md:w-4" />
               Travel
             </TabsTrigger>
           </TabsList>
@@ -320,7 +323,7 @@ const CurrencyConverter = () => {
             <p className="text-muted-foreground text-center mb-6">
               Convert between 40+ currencies and cryptocurrencies with live exchange rates. Share your conversions and install as a mobile app for quick access.
             </p>
-            <div className="grid gap-6 md:grid-cols-2">
+            <div className="grid gap-4 md:gap-6 lg:grid-cols-2">
               {/* Fiat Currency Converter */}
               <Card className="shadow-lg">
                 <CardHeader>

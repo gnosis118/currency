@@ -5,6 +5,8 @@ import Header from "@/components/Header";
 import { Skeleton } from "@/components/ui/skeleton";
 import ErrorBoundary from "@/components/ErrorBoundary";
 import RedirectRoute from "@/components/RedirectRoute";
+import MobileEnhancement from "@/components/MobileEnhancement";
+import MobilePerformance from "@/components/MobilePerformance";
 
 // Lazy load all route components for better code splitting
 const Index = React.lazy(() => import("./pages/Index"));
@@ -39,6 +41,8 @@ const RouteLoader = () => (
 const App = () => {
   return (
     <ErrorBoundary fallback={<div>Application failed to load</div>}>
+      <MobileEnhancement />
+      <MobilePerformance />
       <BrowserRouter>
         <div className="min-h-screen">
           <Header />

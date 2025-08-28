@@ -394,7 +394,7 @@ const Index = () => {
         structuredData={structuredData}
       />
       {/* Hero Section */}
-      <div className="relative h-80 md:h-96 overflow-hidden">
+      <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
         <WebPOptimizedImage 
           src={homeHero}
           webpSrc={homeHeroWebP}
@@ -407,9 +407,9 @@ const Index = () => {
           objectFit="cover"
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <div className="text-center text-white px-4 max-w-4xl">
-            <h1 className="text-4xl md:text-6xl font-bold mb-4">Currency Converter</h1>
-            <p className="text-lg md:text-xl opacity-90">
+          <div className="text-center text-white px-4 md:px-6 max-w-4xl">
+            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold mb-3 md:mb-4">Currency Converter</h1>
+            <p className="text-base md:text-lg lg:text-xl opacity-90">
               Get real-time exchange rates and convert currencies instantly
             </p>
           </div>
@@ -417,7 +417,7 @@ const Index = () => {
       </div>
 
       {/* Content */}
-      <div className="max-w-4xl mx-auto p-4 -mt-16 relative z-10">
+      <div className="max-w-4xl mx-auto p-3 md:p-4 -mt-12 md:-mt-16 relative z-10">
         {/* Header */}
         <div className="bg-converter-bg rounded-lg shadow-lg p-6 mb-8">
           <div className="text-center">
@@ -436,31 +436,31 @@ const Index = () => {
         </div>
 
         {/* Popular Currency Pairs - Internal Linking */}
-        <div className="mb-8 bg-card p-6 rounded-lg border">
-          <h2 className="text-2xl font-semibold mb-4 text-foreground">Popular Currency Conversions</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-3">
-            <a href="/convert/usd-to-eur" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+        <div className="mb-6 md:mb-8 bg-card p-4 md:p-6 rounded-lg border">
+          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Popular Currency Conversions</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
+            <a href="/convert/usd-to-eur" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               USD to EUR
             </a>
-            <a href="/convert/gbp-to-usd" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+            <a href="/convert/gbp-to-usd" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               GBP to USD
             </a>
-            <a href="/convert/eur-to-gbp" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+            <a href="/convert/eur-to-gbp" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               EUR to GBP
             </a>
-            <a href="/convert/usd-to-cad" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+            <a href="/convert/usd-to-cad" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               USD to CAD
             </a>
-            <a href="/convert/jpy-to-usd" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+            <a href="/convert/jpy-to-usd" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               JPY to USD
             </a>
-            <a href="/convert/aud-to-usd" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+            <a href="/convert/aud-to-usd" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               AUD to USD
             </a>
-            <a href="/convert/usd-to-chf" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+            <a href="/convert/usd-to-chf" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               USD to CHF
             </a>
-            <a href="/convert/eur-to-jpy" className="text-primary hover:text-primary-hover transition-colors p-2 rounded border hover:border-primary text-center">
+            <a href="/convert/eur-to-jpy" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
               EUR to JPY
             </a>
           </div>
