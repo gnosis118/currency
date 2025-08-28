@@ -10,8 +10,8 @@ category: "Risk Management"
 tags: ["currency hedging", "forex risk management", "currency volatility", "investment protection", "portfolio hedging"]
 featured: true
 author: "Gavin Victor Clay"
-cover: "/src/assets/currency-volatility-protection-2025.png"
-image: "/src/assets/currency-volatility-protection-2025.png"
+cover: "/images/uploads/v2-101byn-hrhle.jpg"
+image: "/images/uploads/v2-101byn-hrhle.jpg"
 keywords: "currency hedging strategies 2025, forex risk management, currency volatility protection, portfolio hedging, investment risk"
 wordCount: 3939
 readingTime: "20 min read"
