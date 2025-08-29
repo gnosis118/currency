@@ -10,8 +10,8 @@ category: "International Transfers"
 tags: ["international money transfer", "remittance", "send money abroad", "wire transfer", "money transfer comparison"]
 featured: true
 author: "Gavin Victor Clay"
-cover: "/images/uploads/v2-101byn-hrhle.jpg"
-image: "/images/uploads/v2-101byn-hrhle.jpg"
+cover: "/src/assets/international-money-transfer-2025.jpeg"
+image: "/src/assets/international-money-transfer-2025.jpeg"
 keywords: "international money transfer 2025, send money abroad, remittance services, wire transfer comparison, money transfer fees"
 wordCount: 4190
 readingTime: "21 min read"

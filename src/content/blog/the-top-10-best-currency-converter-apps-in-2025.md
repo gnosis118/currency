@@ -6,8 +6,8 @@ date: "2025-01-25"
 updated: "2025-01-15T12:00:00.000-07:00"
 author: "Gavin Victor Clay"
 category: "Apps"
-cover: "/images/uploads/currency-comparison.jpg"
-image: "/images/uploads/currency-comparison.jpg"
+cover: "/src/assets/wise-money-transfer.jpg"
+image: "/src/assets/wise-money-transfer.jpg"
 keywords: "best currency converter apps 2025, top currency apps, exchange rate apps, travel money converter, offline currency converter, currency conversion tools, mobile finance apps"
 published: true
 featured: true

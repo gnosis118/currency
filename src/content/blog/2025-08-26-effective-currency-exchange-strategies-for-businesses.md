@@ -6,8 +6,8 @@ date: "2025-08-26"
 updated: "2025-01-15T12:00:00.000-07:00"
 author: "Gavin Victor Clay"
 category: "Business Finance"
-cover: "/images/uploads/v2-101byn-hrhle.jpg"
-image: "/images/uploads/v2-101byn-hrhle.jpg"
+cover: "/src/assets/business-currency-exchange-strategies-2025.png"
+image: "/src/assets/business-currency-exchange-strategies-2025.png"
 keywords: "business currency exchange 2025, forex hedging strategies, international business finance, multi-currency operations, currency risk management, business forex, international payments, currency hedging, forex risk management"
 published: true
 featured: true

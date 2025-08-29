@@ -10,8 +10,8 @@ category: "Trading Psychology"
 tags: ["forex trading psychology", "trading mindset", "forex mental game", "trading discipline", "emotional trading", "trading success"]
 featured: true
 author: "Gavin Victor Clay"
-cover: "/images/uploads/v2-101byn-hrhle.jpg"
-image: "/images/uploads/v2-101byn-hrhle.jpg"
+cover: "/src/assets/forex-trading-psychology-2025.jpg"
+image: "/src/assets/forex-trading-psychology-2025.jpg"
 keywords: "forex trading psychology 2025, trading mindset, emotional trading control, forex mental game, trading discipline strategies"
 wordCount: 4634
 readingTime: "24 min read"

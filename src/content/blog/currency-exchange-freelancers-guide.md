@@ -8,8 +8,8 @@ updated: "2025-01-15T12:00:00.000-07:00"
 author: "Gavin Victor Clay"
 tags: ["Freelancing", "Currency Exchange", "Multi-Currency", "Payment Processing", "International Business"]
 category: "Freelancing"
-cover: "/images/uploads/v2-101byn-hrhle.jpg"
-image: "/images/uploads/v2-101byn-hrhle.jpg"
+cover: "/src/assets/freelancer-currency-exchange.jpeg"
+image: "/src/assets/freelancer-currency-exchange.jpeg"
 keywords: "freelancer currency exchange 2025, multi-currency payments, freelance payment processing, international freelancing, currency conversion"
 published: true
 featured: true
