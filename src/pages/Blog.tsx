@@ -8,6 +8,11 @@ import blogHero from '@/assets/blog-hero.jpg';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
 
 const Blog = () => {
+  // Build-time map of local assets so we can resolve '/src/assets/*' and filenames safely at runtime
+  const localAssetModules = import.meta.glob('@/assets/*', { eager: true, import: 'default' }) as Record<string, string>;
+  const assetBasenameToUrl: Record<string, string> = Object.fromEntries(
+    Object.entries(localAssetModules).map(([path, url]) => [path.split('/').pop() as string, url])
+  );
   const [searchParams, setSearchParams] = useSearchParams();
   const pageParam = parseInt(searchParams.get('page') || '1', 10);
   const currentPage = isNaN(pageParam) || pageParam < 1 ? 1 : pageParam;
@@ -32,11 +37,20 @@ const Blog = () => {
     // Handle different image path formats
     if (url.startsWith('/public/')) url = url.replace(/^\/public\//, '/');
     if (url.startsWith('public/')) url = url.replace(/^public\//, '/');
+    // Resolve any /src/assets/* (or src/assets/*) to built asset URL via basename match
     if (url.startsWith('/src/assets/')) {
-      // /src/assets/ paths aren't accessible in browser, use placeholder
-      return '/placeholder.svg';
+      const basename = url.split('/').pop() as string;
+      return assetBasenameToUrl[basename] || '/placeholder.svg';
     }
-    if (url.startsWith('src/assets/')) url = '/' + url;
+    if (url.startsWith('src/assets/')) {
+      const basename = url.split('/').pop() as string;
+      return assetBasenameToUrl[basename] || '/placeholder.svg';
+    }
+    // As a last resort, try matching by basename even if path is different
+    if (!url.startsWith('http') && !url.startsWith('/images/')) {
+      const basename = url.split('/').pop() as string;
+      if (assetBasenameToUrl[basename]) return assetBasenameToUrl[basename];
+    }
     if (url.startsWith('images/')) url = '/' + url;
     if (url.startsWith('/images/')) return url; // Already correct
     if (url.startsWith('http://')) url = url.replace(/^http:\/\//, 'https://');
