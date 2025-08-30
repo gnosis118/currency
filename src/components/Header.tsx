@@ -122,6 +122,15 @@ const Header = () => {
               Brokers
             </Link>
             <Link 
+              to="/dashboard" 
+              className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-2 ${
+                isActive('/dashboard') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              <BarChart3 className="h-4 w-4" />
+              Dashboard
+            </Link>
+            <Link 
               to="/blog" 
               className={`text-sm font-medium transition-colors hover:text-primary flex items-center gap-2 ${
                 isActive('/blog') ? 'text-primary' : 'text-muted-foreground'
@@ -248,6 +257,16 @@ const Header = () => {
                   >
                     <TrendingUp className="h-5 w-5" />
                     Brokers
+                  </Link>
+                  <Link 
+                    to="/dashboard" 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-11 touch-manipulation ${
+                      isActive('/dashboard') ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-accent-foreground'
+                    }`}
+                  >
+                    <BarChart3 className="h-5 w-5" />
+                    Dashboard
                   </Link>
                   <Link 
                     to="/blog" 

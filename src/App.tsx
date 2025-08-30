@@ -23,6 +23,7 @@ const BlogPost = React.lazy(() => import("./pages/BlogPost"));
 const CurrencyPair = React.lazy(() => import("./pages/CurrencyPair"));
 const Convert = React.lazy(() => import("./pages/Convert"));
 const Brokers = React.lazy(() => import("./pages/Brokers"));
+const Dashboard = React.lazy(() => import("./components/MasterCurrencyDashboard"));
 
 // Loading component for route transitions
 const RouteLoader = () => (
@@ -62,6 +63,7 @@ const App = () => {
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/convert" element={<Convert />} />
                 <Route path="/convert/:pair" element={<CurrencyPair />} />
+                <Route path="/dashboard" element={<Dashboard />} />
                 
                 {/* Redirect routes for old currency pair URLs */}
                 <Route path="/usd-to-eur" element={<RedirectRoute />} />
