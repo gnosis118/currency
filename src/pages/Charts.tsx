@@ -4,10 +4,10 @@ import { Button } from '@/components/ui/button';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { Badge } from '@/components/ui/badge';
-import { 
-  BarChart3, 
-  TrendingUp, 
-  TrendingDown, 
+import {
+  BarChart3,
+  TrendingUp,
+  TrendingDown,
   Calendar,
   Download,
   Share2,
@@ -21,6 +21,7 @@ import {
   ZoomIn,
   ZoomOut
 } from 'lucide-react';
+import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart } from 'recharts';
 import SEOHead from '@/components/SEOHead';
 import chartsHero from '@/assets/charts-hero.jpg';
 
@@ -62,16 +63,31 @@ const Charts = () => {
     { from: 'USD', to: 'AUD', name: 'USD/AUD', currentRate: 1.35, change24h: -0.02, changePercent: -1.46 },
   ];
 
-  // Mock chart data - replace with real API data
+  // Enhanced chart data with more realistic values
   const chartData: ChartData[] = [
-    { date: '2025-01-01', open: 0.85, high: 0.86, low: 0.84, close: 0.85, volume: 1200000 },
-    { date: '2025-01-02', open: 0.85, high: 0.87, low: 0.84, close: 0.86, volume: 1500000 },
-    { date: '2025-01-03', open: 0.86, high: 0.88, low: 0.85, close: 0.87, volume: 1800000 },
-    { date: '2025-01-04', open: 0.87, high: 0.89, low: 0.86, close: 0.88, volume: 1400000 },
-    { date: '2025-01-05', open: 0.88, high: 0.89, low: 0.87, close: 0.87, volume: 1600000 },
-    { date: '2025-01-06', open: 0.87, high: 0.88, low: 0.86, close: 0.87, volume: 1300000 },
-    { date: '2025-01-07', open: 0.87, high: 0.88, low: 0.85, close: 0.86, volume: 1700000 },
+    { date: '2025-01-01', open: 0.8500, high: 0.8520, low: 0.8480, close: 0.8510, volume: 1200000 },
+    { date: '2025-01-02', open: 0.8510, high: 0.8540, low: 0.8490, close: 0.8530, volume: 1500000 },
+    { date: '2025-01-03', open: 0.8530, high: 0.8560, low: 0.8510, close: 0.8550, volume: 1800000 },
+    { date: '2025-01-04', open: 0.8550, high: 0.8580, low: 0.8530, close: 0.8570, volume: 1400000 },
+    { date: '2025-01-05', open: 0.8570, high: 0.8590, low: 0.8550, close: 0.8560, volume: 1600000 },
+    { date: '2025-01-06', open: 0.8560, high: 0.8570, low: 0.8530, close: 0.8540, volume: 1300000 },
+    { date: '2025-01-07', open: 0.8540, high: 0.8560, low: 0.8520, close: 0.8530, volume: 1700000 },
+    { date: '2025-01-08', open: 0.8530, high: 0.8550, low: 0.8500, close: 0.8510, volume: 1400000 },
+    { date: '2025-01-09', open: 0.8510, high: 0.8530, low: 0.8480, close: 0.8500, volume: 1600000 },
+    { date: '2025-01-10', open: 0.8500, high: 0.8520, low: 0.8470, close: 0.8490, volume: 1800000 },
+    { date: '2025-01-11', open: 0.8490, high: 0.8510, low: 0.8460, close: 0.8480, volume: 1500000 },
+    { date: '2025-01-12', open: 0.8480, high: 0.8500, low: 0.8450, close: 0.8470, volume: 1200000 },
+    { date: '2025-01-13', open: 0.8470, high: 0.8490, low: 0.8440, close: 0.8460, volume: 1100000 },
+    { date: '2025-01-14', open: 0.8460, high: 0.8480, low: 0.8430, close: 0.8450, volume: 1300000 },
   ];
+
+  // Calculate chart statistics
+  const chartStats = {
+    highest: Math.max(...chartData.map(d => d.high)),
+    lowest: Math.min(...chartData.map(d => d.low)),
+    average: chartData.reduce((sum, d) => sum + d.close, 0) / chartData.length,
+    change: ((chartData[chartData.length - 1]?.close || 0) - (chartData[0]?.open || 0)) / (chartData[0]?.open || 1) * 100
+  };
 
   const timeframes = [
     { value: '1H', label: '1 Hour' },
@@ -92,6 +108,13 @@ const Charts = () => {
   ];
 
   const selectedPairData = currencyPairs.find(pair => `${pair.from}-${pair.to}` === selectedPair);
+
+  // Refresh chart data
+  const refreshChartData = () => {
+    // In a real app, this would fetch fresh data from an API
+    // For now, we'll just show a toast message
+    console.log('Refreshing chart data...');
+  };
 
   const structuredData = {
     "@context": "https://schema.org",
@@ -178,7 +201,7 @@ const Charts = () => {
               </div>
               
               <div className="flex flex-wrap gap-2">
-                <Button variant="outline" size="sm">
+                <Button variant="outline" size="sm" onClick={refreshChartData}>
                   <RefreshCw className="h-4 w-4 mr-2" />
                   Refresh
                 </Button>
@@ -267,17 +290,198 @@ const Charts = () => {
             </div>
 
             {/* Chart Display */}
-            <div className="border rounded-lg p-4 bg-muted/20 min-h-[400px] flex items-center justify-center">
-              <div className="text-center text-muted-foreground">
-                <BarChart3 className="h-16 w-16 mx-auto mb-4 opacity-50" />
-                <h3 className="text-lg font-semibold mb-2">Interactive Chart</h3>
-                <p className="text-sm">
+            <div className="border rounded-lg p-4 bg-white min-h-[400px]">
+              <ResponsiveContainer width="100%" height={400}>
+                {(() => {
+                  if (chartType === 'line') {
+                    return (
+                      <LineChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <XAxis 
+                          dataKey="date" 
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        />
+                        <YAxis 
+                          domain={['dataMin - 0.001', 'dataMax + 0.001']}
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => value.toFixed(4)}
+                        />
+                        <Tooltip 
+                          formatter={(value: number) => [value.toFixed(4), 'Rate']}
+                          labelFormatter={(label) => new Date(label).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        />
+                        <Line 
+                          type="monotone" 
+                          dataKey="close" 
+                          stroke="#2563eb" 
+                          strokeWidth={2} 
+                          dot={{ fill: '#2563eb', strokeWidth: 2, r: 4 }}
+                          activeDot={{ r: 6, stroke: '#2563eb', strokeWidth: 2, fill: '#fff' }}
+                        />
+                      </LineChart>
+                    );
+                  }
+                  
+                  if (chartType === 'area') {
+                    return (
+                      <AreaChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <XAxis 
+                          dataKey="date" 
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        />
+                        <YAxis 
+                          domain={['dataMin - 0.001', 'dataMax + 0.001']}
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => value.toFixed(4)}
+                        />
+                        <Tooltip 
+                          formatter={(value: number) => [value.toFixed(4), 'Rate']}
+                          labelFormatter={(label) => new Date(label).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        />
+                        <Area 
+                          type="monotone" 
+                          dataKey="close" 
+                          stroke="#2563eb" 
+                          fill="#2563eb" 
+                          fillOpacity={0.3}
+                          strokeWidth={2}
+                        />
+                      </AreaChart>
+                    );
+                  }
+                  
+                  if (chartType === 'bar') {
+                    return (
+                      <BarChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <XAxis 
+                          dataKey="date" 
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        />
+                        <YAxis 
+                          domain={['dataMin - 0.001', 'dataMin + 0.01']}
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => value.toFixed(4)}
+                        />
+                        <Tooltip 
+                          formatter={(value: number) => [value.toFixed(4), 'Rate']}
+                          labelFormatter={(label) => new Date(label).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        />
+                        <Bar dataKey="close" fill="#2563eb" radius={[2, 2, 0, 0]} />
+                      </BarChart>
+                    );
+                  }
+                  
+                  if (chartType === 'candlestick') {
+                    return (
+                      <ComposedChart data={chartData} margin={{ top: 5, right: 30, left: 20, bottom: 5 }}>
+                        <CartesianGrid strokeDasharray="3 3" stroke="#f0f0f0" />
+                        <XAxis 
+                          dataKey="date" 
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => new Date(value).toLocaleDateString('en-US', { month: 'short', day: 'numeric' })}
+                        />
+                        <YAxis 
+                          domain={['dataMin - 0.001', 'dataMax + 0.001']}
+                          tick={{ fontSize: 12 }}
+                          tickFormatter={(value) => value.toFixed(4)}
+                        />
+                        <Tooltip 
+                          formatter={(value: number) => [value.toFixed(4), 'Rate']}
+                          labelFormatter={(label) => new Date(label).toLocaleDateString('en-US', { 
+                            year: 'numeric', 
+                            month: 'long', 
+                            day: 'numeric' 
+                          })}
+                        />
+                        {/* High-Low lines */}
+                        <Line 
+                          type="monotone" 
+                          dataKey="high" 
+                          stroke="#10b981" 
+                          strokeWidth={1} 
+                          dot={false}
+                          connectNulls={false}
+                        />
+                        <Line 
+                          type="monotone" 
+                          dataKey="low" 
+                          stroke="#ef4444" 
+                          strokeWidth={1} 
+                          dot={false}
+                          connectNulls={false}
+                        />
+                        {/* Open-Close bars */}
+                        <Bar 
+                          dataKey="close" 
+                          fill="#2563eb" 
+                          radius={[1, 1, 0, 0]}
+                          opacity={0.8}
+                        />
+                        <Bar 
+                          dataKey="open" 
+                          fill="#7c3aed" 
+                          radius={[1, 1, 0, 0]}
+                          opacity={0.6}
+                        />
+                      </ComposedChart>
+                    );
+                  }
+                  
+                  return null;
+                })()}
+              </ResponsiveContainer>
+              
+              {/* Chart Info */}
+              <div className="mt-4 text-center text-sm text-muted-foreground">
+                <p>
                   {chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart for {selectedPairData?.name} 
-                  ({timeframe} timeframe)
+                  ({timeframe} timeframe) • {chartData.length} data points • Zoom: {zoomLevel.toFixed(1)}x
                 </p>
-                <p className="text-xs mt-2">
-                  Chart data: {chartData.length} data points • Zoom: {zoomLevel.toFixed(1)}x
-                </p>
+              </div>
+              
+              {/* Chart Statistics */}
+              <div className="mt-6 grid grid-cols-2 md:grid-cols-4 gap-4 pt-6 border-t">
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-green-600">
+                    {chartStats.highest.toFixed(4)}
+                  </div>
+                  <div className="text-xs text-muted-foreground">Highest</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-red-600">
+                    {chartStats.lowest.toFixed(4)}
+                  </div>
+                  <div className="text-xs text-muted-foreground">Lowest</div>
+                </div>
+                <div className="text-center">
+                  <div className="text-2xl font-bold text-blue-600">
+                    {chartStats.average.toFixed(4)}
+                  </div>
+                  <div className="text-xs text-muted-foreground">Average</div>
+                </div>
+                <div className="text-center">
+                  <div className={`text-2xl font-bold ${chartStats.change >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                    {chartStats.change >= 0 ? '+' : ''}{chartStats.change.toFixed(2)}%
+                  </div>
+                  <div className="text-xs text-muted-foreground">Change</div>
+                </div>
               </div>
             </div>
 
