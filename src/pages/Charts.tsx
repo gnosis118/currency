@@ -50,6 +50,7 @@ const Charts = () => {
   const [showVolume, setShowVolume] = useState(true);
   const [showIndicators, setShowIndicators] = useState(true);
   const [zoomLevel, setZoomLevel] = useState(1);
+  const [isLoading, setIsLoading] = useState(false);
 
   // Popular currency pairs with real-time data
   const currencyPairs: CurrencyPair[] = [
@@ -63,23 +64,51 @@ const Charts = () => {
     { from: 'USD', to: 'AUD', name: 'USD/AUD', currentRate: 1.35, change24h: -0.02, changePercent: -1.46 },
   ];
 
-  // Enhanced chart data with more realistic values
-  const chartData: ChartData[] = [
-    { date: '2025-01-01', open: 0.8500, high: 0.8520, low: 0.8480, close: 0.8510, volume: 1200000 },
-    { date: '2025-01-02', open: 0.8510, high: 0.8540, low: 0.8490, close: 0.8530, volume: 1500000 },
-    { date: '2025-01-03', open: 0.8530, high: 0.8560, low: 0.8510, close: 0.8550, volume: 1800000 },
-    { date: '2025-01-04', open: 0.8550, high: 0.8580, low: 0.8530, close: 0.8570, volume: 1400000 },
-    { date: '2025-01-05', open: 0.8570, high: 0.8590, low: 0.8550, close: 0.8560, volume: 1600000 },
-    { date: '2025-01-06', open: 0.8560, high: 0.8570, low: 0.8530, close: 0.8540, volume: 1300000 },
-    { date: '2025-01-07', open: 0.8540, high: 0.8560, low: 0.8520, close: 0.8530, volume: 1700000 },
-    { date: '2025-01-08', open: 0.8530, high: 0.8550, low: 0.8500, close: 0.8510, volume: 1400000 },
-    { date: '2025-01-09', open: 0.8510, high: 0.8530, low: 0.8480, close: 0.8500, volume: 1600000 },
-    { date: '2025-01-10', open: 0.8500, high: 0.8520, low: 0.8470, close: 0.8490, volume: 1800000 },
-    { date: '2025-01-11', open: 0.8490, high: 0.8510, low: 0.8460, close: 0.8480, volume: 1500000 },
-    { date: '2025-01-12', open: 0.8480, high: 0.8500, low: 0.8450, close: 0.8470, volume: 1200000 },
-    { date: '2025-01-13', open: 0.8470, high: 0.8490, low: 0.8440, close: 0.8460, volume: 1100000 },
-    { date: '2025-01-14', open: 0.8460, high: 0.8480, low: 0.8430, close: 0.8450, volume: 1300000 },
-  ];
+  // Generate dynamic chart data based on selected pair and timeframe
+  const generateChartData = (pair: string, tf: string): ChartData[] => {
+    const baseRate = currencyPairs.find(p => `${p.from}-${p.to}` === pair)?.currentRate || 0.85;
+    const volatility = 0.005; // 0.5% volatility
+    const dataPoints = tf === '1H' ? 24 : tf === '4H' ? 30 : tf === '1D' ? 7 : tf === '1W' ? 14 : tf === '1M' ? 30 : tf === '3M' ? 90 : tf === '6M' ? 180 : 365;
+    
+    const data: ChartData[] = [];
+    let currentRate = baseRate;
+    
+    for (let i = 0; i < dataPoints; i++) {
+      const change = (Math.random() - 0.5) * volatility;
+      const newRate = currentRate * (1 + change);
+      const high = newRate * (1 + Math.random() * 0.002);
+      const low = newRate * (1 - Math.random() * 0.002);
+      const open = currentRate;
+      const close = newRate;
+      
+      data.push({
+        date: new Date(Date.now() - (dataPoints - i) * 24 * 60 * 60 * 1000).toISOString().split('T')[0],
+        open,
+        high,
+        low,
+        close,
+        volume: Math.floor(Math.random() * 1000000) + 500000
+      });
+      
+      currentRate = newRate;
+    }
+    
+    return data;
+  };
+
+  // State for dynamic chart data
+  const [chartData, setChartData] = useState<ChartData[]>([]);
+
+  // Update chart data when pair or timeframe changes
+  useEffect(() => {
+    setIsLoading(true);
+    // Simulate API delay for better UX
+    setTimeout(() => {
+      const newData = generateChartData(selectedPair, timeframe);
+      setChartData(newData);
+      setIsLoading(false);
+    }, 300);
+  }, [selectedPair, timeframe]);
 
   // Calculate chart statistics
   const chartStats = {
@@ -111,8 +140,9 @@ const Charts = () => {
 
   // Refresh chart data
   const refreshChartData = () => {
-    // In a real app, this would fetch fresh data from an API
-    // For now, we'll just show a toast message
+    // Generate fresh data with current settings
+    const newData = generateChartData(selectedPair, timeframe);
+    setChartData(newData);
     console.log('Refreshing chart data...');
   };
 
@@ -254,7 +284,14 @@ const Charts = () => {
               
               <div>
                 <label className="text-sm font-medium mb-2 block">Chart Type</label>
-                <Select value={chartType} onValueChange={setChartType}>
+                <Select value={chartType} onValueChange={(value) => {
+                  setChartType(value as any);
+                  // Trigger a small refresh when changing chart type
+                  setTimeout(() => {
+                    const newData = generateChartData(selectedPair, timeframe);
+                    setChartData(newData);
+                  }, 100);
+                }}>
                   <SelectTrigger>
                     <SelectValue />
                   </SelectTrigger>
@@ -291,6 +328,14 @@ const Charts = () => {
 
             {/* Chart Display */}
             <div className="border rounded-lg p-4 bg-white min-h-[400px]">
+              {isLoading ? (
+                <div className="h-[400px] flex items-center justify-center">
+                  <div className="text-center">
+                    <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
+                    <p className="text-muted-foreground">Loading chart data...</p>
+                  </div>
+                </div>
+              ) : (
               <ResponsiveContainer width="100%" height={400}>
                 {(() => {
                   if (chartType === 'line') {
@@ -445,10 +490,11 @@ const Charts = () => {
                   }
                   
                   return null;
-                })()}
-              </ResponsiveContainer>
-              
-              {/* Chart Info */}
+                                 })()}
+               </ResponsiveContainer>
+               )}
+               
+               {/* Chart Info */}
               <div className="mt-4 text-center text-sm text-muted-foreground">
                 <p>
                   {chartType.charAt(0).toUpperCase() + chartType.slice(1)} chart for {selectedPairData?.name} 
