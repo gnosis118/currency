@@ -391,6 +391,7 @@ const Index = () => {
         description="Convert 150+ currencies instantly with live rates. Free real-time forex calculator with crypto support, charts & alerts. No registration required."
         keywords="currency converter, exchange rates, live rates, cryptocurrency prices, currency conversion, foreign exchange, forex, bitcoin converter, real-time rates, USD to EUR, GBP to USD, currency calculator, money converter"
         canonical="https://currencytocurrency.app/"
+        robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
         structuredData={structuredData}
       />
       {/* Hero Section */}

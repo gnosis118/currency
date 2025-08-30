@@ -7,6 +7,7 @@ interface SEOHeadProps {
   canonical?: string;
   ogType?: string;
   structuredData?: object;
+  robots?: string;
 }
 
 const SEOHead = ({ 
@@ -15,7 +16,8 @@ const SEOHead = ({
   keywords = "currency converter, exchange rates, live rates, cryptocurrency prices, currency conversion, foreign exchange, forex, bitcoin converter",
   canonical,
   ogType = "website",
-  structuredData
+  structuredData,
+  robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 }: SEOHeadProps) => {
   
   useEffect(() => {
@@ -43,6 +45,7 @@ const SEOHead = ({
     // Basic meta tags
     updateMetaTag('description', description);
     updateMetaTag('keywords', keywords);
+    updateMetaTag('robots', robots);
     
     // Open Graph tags
     updateMetaTag('og:title', title, true);
@@ -83,7 +86,7 @@ const SEOHead = ({
         }
       };
     }
-  }, [title, description, keywords, canonical, ogType, structuredData]);
+  }, [title, description, keywords, canonical, ogType, structuredData, robots]);
 
   return null;
 };

@@ -220,8 +220,6 @@ Allow: /
 Crawl-delay: 2
 
 # Block access to sensitive directories and files
-Disallow: /api/
-Disallow: /admin/
 Disallow: /.env
 Disallow: /config/
 Disallow: /temp/
@@ -261,24 +259,7 @@ Disallow: /*?campaign=*
 
 # High-priority currency conversion pages
 Allow: /convert/
-
-# Block legacy currency pair URLs to prevent duplicate content
-Disallow: /usd-to-eur
-Disallow: /usd-to-gbp
-Disallow: /usd-to-jpy
-Disallow: /eur-to-gbp
-Disallow: /usd-to-cad
-Disallow: /usd-to-aud
-Disallow: /gbp-to-usd
-Disallow: /eur-to-usd
-Disallow: /jpy-to-usd
-Disallow: /eur-to-jpy
-Disallow: /cad-to-usd
-Disallow: /aud-to-usd
-Disallow: /chf-to-usd
-Disallow: /usd-to-chf
-Disallow: /nzd-to-usd
-Disallow: /usd-to-nzd
+Allow: /convert/*
 
 # Important content pages
 Allow: /blog/
@@ -286,6 +267,7 @@ Allow: /charts/
 Allow: /alerts/
 Allow: /travel/
 Allow: /faq/
+Allow: /brokers/
 
 # Static assets
 Allow: /assets/
@@ -301,9 +283,11 @@ Allow: /fonts/
 # Main sitemap
 Sitemap: https://currencytocurrency.app/sitemap.xml
 
-# Currency-specific sitemaps (if they exist)
-Sitemap: https://currencytocurrency.app/sitemap-currencies.xml
+# Blog sitemap
 Sitemap: https://currencytocurrency.app/sitemap-blog.xml
+
+# Sitemap index
+Sitemap: https://currencytocurrency.app/sitemap-index.xml
 
 # Host declaration for clarity
 Host: currencytocurrency.app
