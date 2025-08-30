@@ -15,6 +15,8 @@ published: true
 featured: true
 readingTime: "13 min read"
 wordCount: 2543
+canonical: "https://currencytocurrency.app/blog/currency-exchange-freelancers-guide"
+robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 ---
 
 # Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments

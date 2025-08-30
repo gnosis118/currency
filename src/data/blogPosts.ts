@@ -254,25 +254,25 @@ Effective currency management can save digital nomads 10-20% of their travel bud
     keywords: "AI forex trading, automated forex trading, forex robots, AI trading bots, algorithmic trading, forex automation, machine learning trading, AI trading strategies",
     robots: "index, follow",
     author: "Gavin",
-    canonical: "https://currencytocurrency.com/blog/ai-forex-trading-beginners-guide-2025",
+    canonical: "https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025",
     openGraph: {
       title: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
       description: "Master AI forex trading in 2025 with our complete beginner's guide. Learn automated trading strategies, best AI tools, and profitable forex automation.",
-      image: "https://currencytocurrency.com/assets/ai-forex-trading-guide-2025.jpg",
-      url: "https://currencytocurrency.com/blog/ai-forex-trading-beginners-guide-2025"
+      image: "https://currencytocurrency.app/assets/ai-forex-trading-guide-2025.jpg",
+      url: "https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025"
     },
     twitterCard: {
       card: "summary_large_image",
       title: "AI Forex Trading for Beginners: Complete 2025 Guide",
       description: "Master AI forex trading in 2025. Learn automated strategies, best AI tools, and profitable forex automation.",
-      image: "https://currencytocurrency.com/assets/ai-forex-trading-guide-2025.jpg"
+      image: "https://currencytocurrency.app/assets/ai-forex-trading-guide-2025.jpg"
     },
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
       "description": "Master AI forex trading in 2025 with our complete beginner's guide. Learn automated trading strategies, best AI tools, and step-by-step setup instructions for profitable forex trading.",
-      "image": "https://currencytocurrency.com/assets/ai-forex-trading-guide-2025.jpg",
+      "image": "https://currencytocurrency.app/assets/ai-forex-trading-guide-2025.jpg",
       "author": {
         "@type": "Person",
         "name": "Gavin"
@@ -282,14 +282,14 @@ Effective currency management can save digital nomads 10-20% of their travel bud
         "name": "CurrencyToCurrency",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://currencytocurrency.com/logo.png"
+          "url": "https://currencytocurrency.app/logo.png"
         }
       },
       "datePublished": "2025-08-11",
       "dateModified": "2025-08-11",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://currencytocurrency.com/blog/ai-forex-trading-beginners-guide-2025"
+        "@id": "https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025"
       }
     },
     content: `# AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading
@@ -854,6 +854,9 @@ Understanding exchange rates helps you make better decisions about money, whethe
     image: businessHedgingStrategies,
     tags: ["Small Business", "Currency Hedging", "Risk Management", "International Trade", "Foreign Exchange"],
     metaDescription: "Learn currency hedging strategies for small businesses. Protect against exchange rate risk, minimize foreign exchange losses, and stabilize international cash flows.",
+    keywords: "currency hedging small business, exchange rate risk management, foreign exchange protection, SME currency strategies, international trade hedging",
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    canonical: "https://currencytocurrency.app/blog/currency-hedging-small-business",
     author: "Gavin",
     content: `# Currency Hedging for Small Business: Protect Your Profits from Exchange Rate Risk
 
@@ -934,6 +937,9 @@ By implementing appropriate currency hedging strategies, small businesses can tr
     image: travelBudgetPlanning,
     tags: ["Travel Finance", "Budgeting", "Currency Exchange", "Travel Planning", "Money Management"],
     metaDescription: "Master travel money budgeting with expert strategies. Learn currency planning, minimize exchange fees, and optimize your travel budget across different countries.",
+    keywords: "travel money budgeting, vacation currency planning, travel budget currency allocation, smart travel money management, international travel finance",
+    robots: "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1",
+    canonical: "https://currencytocurrency.app/blog/travel-money-budgeting-strategies",
     author: "Gavin",
     content: `# Travel Money Budgeting: Smart Strategies for Managing Currency on Your Next Trip
 
@@ -1807,25 +1813,25 @@ By implementing the strategies in this guide, freelancers can optimize their cur
     metaDescription: "Advanced currency management for digital nomads. Master multi-currency budgeting, minimize exchange fees, and handle currency fluctuations while traveling globally.",
     keywords: "digital nomad currency management, nomad budgeting strategies, multi-currency travel, nomad finance, international travel money, currency exchange nomads",
     robots: "index, follow",
-    canonical: "https://currencytocurrency.com/blog/digital-nomad-currency-expanded",
+    canonical: "https://currencytocurrency.app/blog/digital-nomad-currency-expanded",
     openGraph: {
       title: "Digital Nomad Currency Management: Advanced Multi-Currency Budgeting Strategies",
       description: "Advanced currency management for digital nomads. Master multi-currency budgeting, minimize exchange fees, and handle currency fluctuations while traveling globally.",
-      image: "https://currencytocurrency.com/assets/nomad-remote-work-lifestyle-2025.jpeg",
-      url: "https://currencytocurrency.com/blog/digital-nomad-currency-expanded"
+      image: "https://currencytocurrency.app/assets/nomad-remote-work-lifestyle-2025.jpeg",
+      url: "https://currencytocurrency.app/blog/digital-nomad-currency-expanded"
     },
     twitterCard: {
       card: "summary_large_image",
       title: "Digital Nomad Currency Management: Advanced Strategies",
       description: "Advanced currency management for digital nomads. Master multi-currency budgeting and travel finance.",
-      image: "https://currencytocurrency.com/assets/nomad-remote-work-lifestyle-2025.jpeg"
+      image: "https://currencytocurrency.app/assets/nomad-remote-work-lifestyle-2025.jpeg"
     },
     schema: {
       "@context": "https://schema.org",
       "@type": "BlogPosting",
       "headline": "Digital Nomad Currency Management: Advanced Multi-Currency Budgeting Strategies",
       "description": "Advanced guide to currency management for digital nomads. Learn sophisticated multi-currency budgeting, minimize exchange fees, and handle currency fluctuations while traveling the world.",
-      "image": "https://currencytocurrency.com/assets/nomad-remote-work-lifestyle-2025.jpeg",
+      "image": "https://currencytocurrency.app/assets/nomad-remote-work-lifestyle-2025.jpeg",
       "author": {
         "@type": "Person",
         "name": "Gavin"
@@ -1835,14 +1841,14 @@ By implementing the strategies in this guide, freelancers can optimize their cur
         "name": "CurrencyToCurrency",
         "logo": {
           "@type": "ImageObject",
-          "url": "https://currencytocurrency.com/logo.png"
+          "url": "https://currencytocurrency.app/logo.png"
         }
       },
       "datePublished": "2025-08-11",
       "dateModified": "2025-08-11",
       "mainEntityOfPage": {
         "@type": "WebPage",
-        "@id": "https://currencytocurrency.com/blog/digital-nomad-currency-expanded"
+        "@id": "https://currencytocurrency.app/blog/digital-nomad-currency-expanded"
       }
     },
     author: "Gavin",
