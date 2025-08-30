@@ -168,6 +168,56 @@ const Blog = () => {
                     Data loaded at: {lastLoaded} | Total posts: {posts.length}
                   </div>
                 )}
+              {/* Featured Recent Posts */}
+              <div className="mb-8">
+                <h2 className="text-2xl font-bold mb-6 text-center">Latest Articles</h2>
+                <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-8">
+                  {posts.slice(0, 3).map((post) => (
+                    <Card key={`featured-${post.slug}`} className="overflow-hidden group hover:shadow-lg transition-shadow border-0 md:border shadow-sm md:shadow-md">
+                      <div className="aspect-video overflow-hidden">
+                        <img 
+                          src={getSafeImageSrc((post as any).image)} 
+                          alt={post.title}
+                          className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
+                          onError={(e) => {
+                            const img = e.currentTarget as HTMLImageElement;
+                            img.onerror = null;
+                            img.src = '/placeholder.svg';
+                          }}
+                        />
+                      </div>
+                      <div className="p-4">
+                        <div className="flex items-center gap-2 mb-3">
+                          {post.category && <Badge variant="secondary" className="text-xs">{post.category}</Badge>}
+                          <Badge variant="default" className="text-xs">New</Badge>
+                        </div>
+                        <CardTitle className="text-lg hover:text-primary transition-colors mb-2 leading-tight line-clamp-2">
+                          <Link to={`/blog/${post.slug}`}>
+                            {post.title}
+                          </Link>
+                        </CardTitle>
+                        <p className="text-muted-foreground mb-3 line-clamp-2 text-sm">
+                          {post.excerpt}
+                        </p>
+                        <div className="flex items-center justify-between">
+                          <div className="flex items-center gap-1 text-xs text-muted-foreground">
+                            <Calendar className="h-3 w-3" />
+                            {new Date(post.publishDate).toLocaleDateString()}
+                          </div>
+                          <Link 
+                            to={`/blog/${post.slug}`}
+                            className="text-primary hover:underline font-medium text-sm"
+                          >
+                            Read More →
+                          </Link>
+                        </div>
+                      </div>
+                    </Card>
+                  ))}
+                </div>
+              </div>
+
+              {/* All Posts */}
               <div className="space-y-6 md:space-y-8">
                 {currentPosts.map((post) => (
                   <Card key={post.slug} className="overflow-hidden group hover:shadow-lg transition-shadow border-0 md:border shadow-sm md:shadow-md">
