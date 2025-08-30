@@ -13,25 +13,6 @@
 [context.production.environment]
   DISABLE_NETLIFY_VISUAL_EDITOR = "true"
 
-# HTTP to HTTPS redirects
-[[redirects]]
-  from = "http://currencytocurrency.app/*"
-  to = "https://currencytocurrency.app/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "http://www.currencytocurrency.app/*"
-  to = "https://currencytocurrency.app/:splat"
-  status = 301
-  force = true
-
-[[redirects]]
-  from = "https://www.currencytocurrency.app/*"
-  to = "https://currencytocurrency.app/:splat"
-  status = 301
-  force = true
-
 # Redirect rules for SPA
 [[redirects]]
   from = "/*"
