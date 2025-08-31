@@ -14,6 +14,8 @@ readingTime: "18 min read"
 
 Managing multiple currencies as a digital nomad is one of the biggest financial challenges of location-independent living. With the right strategy, tools, and knowledge, you can minimize fees, optimize tax efficiency, and maintain financial flexibility across borders. This comprehensive guide covers everything you need to know about currency management for digital nomads in 2025.
 
+For foundational knowledge on currency conversion principles, start with our [Ultimate Currency Conversion Guide 2025](/blog/ultimate-currency-conversion-guide-2025). If you're working as a freelancer while nomading, also check our specialized [Currency Exchange Guide for Freelancers](/blog/currency-exchange-freelancers-guide).
+
 ## Table of Contents
 
 1. [Digital Nomad Currency Challenges](#digital-nomad-currency-challenges)
@@ -188,9 +190,11 @@ Managing multiple currencies as a digital nomad is one of the biggest financial 
 **Real Nomad Example:**
 *Sarah, a freelance designer earning $5,000/month in USD while living in Thailand:*
 - Keeps USD for US clients
-- Converts to THB as needed
+- Converts to THB as needed using [real-time exchange rates](/convert)
 - Saves $150/month vs traditional bank
 - Uses Wise card for daily expenses
+
+For more freelancer-specific currency strategies, see our [Currency Exchange Guide for Freelancers](/blog/currency-exchange-freelancers-guide).
 
 #### 2. Revolut Business
 **Overall Rating: 8.8/10**

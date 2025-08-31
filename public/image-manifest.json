@@ -1,0 +1,406 @@
+{
+  "totalAssets": 80,
+  "lastUpdated": "2025-08-31T22:45:21.414Z",
+  "assets": [
+    {
+      "filename": "ai-forex-trading-guide-2025.jpg",
+      "path": "/src/assets/ai-forex-trading-guide-2025.jpg",
+      "category": "trading"
+    },
+    {
+      "filename": "alerts-hero.jpg",
+      "path": "/src/assets/alerts-hero.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "alerts-hero.webp",
+      "path": "/src/assets/alerts-hero.webp",
+      "category": "general"
+    },
+    {
+      "filename": "bank-exchange-fees.jpg",
+      "path": "/src/assets/bank-exchange-fees.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "bank-vs-online-exchange.png",
+      "path": "/src/assets/bank-vs-online-exchange.png",
+      "category": "currency"
+    },
+    {
+      "filename": "bitcoin-investment-strategies.jpg",
+      "path": "/src/assets/bitcoin-investment-strategies.jpg",
+      "category": "crypto"
+    },
+    {
+      "filename": "bitcoin-trading-dashboard.jpg",
+      "path": "/src/assets/bitcoin-trading-dashboard.jpg",
+      "category": "trading"
+    },
+    {
+      "filename": "bitcoin-vs-traditional-currency.jpg",
+      "path": "/src/assets/bitcoin-vs-traditional-currency.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "blog-hero.jpg",
+      "path": "/src/assets/blog-hero.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "blog-hero.webp",
+      "path": "/src/assets/blog-hero.webp",
+      "category": "general"
+    },
+    {
+      "filename": "blog-post-background.jpg",
+      "path": "/src/assets/blog-post-background.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "broker-comparison-table-chart-2025.png",
+      "path": "/src/assets/broker-comparison-table-chart-2025.png",
+      "category": "general"
+    },
+    {
+      "filename": "business-coding-macbook.jpg",
+      "path": "/src/assets/business-coding-macbook.jpg",
+      "category": "business"
+    },
+    {
+      "filename": "business-currency-exchange-2025.png",
+      "path": "/src/assets/business-currency-exchange-2025.png",
+      "category": "business"
+    },
+    {
+      "filename": "business-currency-exchange-strategies-2025.png",
+      "path": "/src/assets/business-currency-exchange-strategies-2025.png",
+      "category": "business"
+    },
+    {
+      "filename": "business-hedging-strategies-2025.webp",
+      "path": "/src/assets/business-hedging-strategies-2025.webp",
+      "category": "business"
+    },
+    {
+      "filename": "business-laptop-currency.jpg",
+      "path": "/src/assets/business-laptop-currency.jpg",
+      "category": "business"
+    },
+    {
+      "filename": "business-software-code.jpg",
+      "path": "/src/assets/business-software-code.jpg",
+      "category": "business"
+    },
+    {
+      "filename": "business-team-laptops.jpg",
+      "path": "/src/assets/business-team-laptops.jpg",
+      "category": "business"
+    },
+    {
+      "filename": "cbdc-complete-guide-2025.png",
+      "path": "/src/assets/cbdc-complete-guide-2025.png",
+      "category": "general"
+    },
+    {
+      "filename": "cbdc-guide-2025.jpg",
+      "path": "/src/assets/cbdc-guide-2025.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "charts-hero.jpg",
+      "path": "/src/assets/charts-hero.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "charts-hero.webp",
+      "path": "/src/assets/charts-hero.webp",
+      "category": "general"
+    },
+    {
+      "filename": "currency-analytics.jpg",
+      "path": "/src/assets/currency-analytics.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-arbitrage-profit.jpg",
+      "path": "/src/assets/currency-arbitrage-profit.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-calculator-guide.jpg",
+      "path": "/src/assets/currency-calculator-guide.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-codes-guide.jpg",
+      "path": "/src/assets/currency-codes-guide.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-comparison.jpg",
+      "path": "/src/assets/currency-comparison.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-exchange-fees-hero.jpg",
+      "path": "/src/assets/currency-exchange-fees-hero.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-exchange-sites-hero.jpg",
+      "path": "/src/assets/currency-exchange-sites-hero.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-hedging-business.jpg",
+      "path": "/src/assets/currency-hedging-business.jpg",
+      "category": "business"
+    },
+    {
+      "filename": "currency-safety-hero.jpg",
+      "path": "/src/assets/currency-safety-hero.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-volatility-domino.jpg",
+      "path": "/src/assets/currency-volatility-domino.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-volatility-protection-2025.png",
+      "path": "/src/assets/currency-volatility-protection-2025.png",
+      "category": "currency"
+    },
+    {
+      "filename": "currency-volatility-protection-strategies-2025.png",
+      "path": "/src/assets/currency-volatility-protection-strategies-2025.png",
+      "category": "currency"
+    },
+    {
+      "filename": "digital-banking-laptop.jpg",
+      "path": "/src/assets/digital-banking-laptop.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "digital-nomad-laptop.jpg",
+      "path": "/src/assets/digital-nomad-laptop.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "digital-nomad-working.jpeg",
+      "path": "/src/assets/digital-nomad-working.jpeg",
+      "category": "travel"
+    },
+    {
+      "filename": "economic-trends-global.jpg",
+      "path": "/src/assets/economic-trends-global.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "exchange-rates-guide.jpg",
+      "path": "/src/assets/exchange-rates-guide.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "financial-expert-predictions.jpg",
+      "path": "/src/assets/financial-expert-predictions.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "financial-technology-circuit.jpg",
+      "path": "/src/assets/financial-technology-circuit.jpg",
+      "category": "technology"
+    },
+    {
+      "filename": "forex-broker-comparison-2025.png",
+      "path": "/src/assets/forex-broker-comparison-2025.png",
+      "category": "trading"
+    },
+    {
+      "filename": "forex-risk-management-2025.png",
+      "path": "/src/assets/forex-risk-management-2025.png",
+      "category": "trading"
+    },
+    {
+      "filename": "forex-trading-psychology-2025.jpg",
+      "path": "/src/assets/forex-trading-psychology-2025.jpg",
+      "category": "trading"
+    },
+    {
+      "filename": "forex-trading-psychology-guide-2025.png",
+      "path": "/src/assets/forex-trading-psychology-guide-2025.png",
+      "category": "trading"
+    },
+    {
+      "filename": "freelancer-currency-exchange.jpeg",
+      "path": "/src/assets/freelancer-currency-exchange.jpeg",
+      "category": "currency"
+    },
+    {
+      "filename": "freelancer-payment-methods-2025.png",
+      "path": "/src/assets/freelancer-payment-methods-2025.png",
+      "category": "general"
+    },
+    {
+      "filename": "freelancer-payment-options-2025.jpg",
+      "path": "/src/assets/freelancer-payment-options-2025.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "global-finance.jpg",
+      "path": "/src/assets/global-finance.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "home-hero.jpg",
+      "path": "/src/assets/home-hero.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "home-hero.webp",
+      "path": "/src/assets/home-hero.webp",
+      "category": "general"
+    },
+    {
+      "filename": "international-money-transfer-2025.jpeg",
+      "path": "/src/assets/international-money-transfer-2025.jpeg",
+      "category": "general"
+    },
+    {
+      "filename": "international-money-transfer-comparison-2025.png",
+      "path": "/src/assets/international-money-transfer-comparison-2025.png",
+      "category": "general"
+    },
+    {
+      "filename": "mobile-currency-security.jpg",
+      "path": "/src/assets/mobile-currency-security.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "money-saving-strategies.jpg",
+      "path": "/src/assets/money-saving-strategies.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "money-transfer-comparison.jpeg",
+      "path": "/src/assets/money-transfer-comparison.jpeg",
+      "category": "general"
+    },
+    {
+      "filename": "nomad-coding-workspace.jpg",
+      "path": "/src/assets/nomad-coding-workspace.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "nomad-money-management-2025.png",
+      "path": "/src/assets/nomad-money-management-2025.png",
+      "category": "travel"
+    },
+    {
+      "filename": "nomad-remote-work-lifestyle-2025.jpeg",
+      "path": "/src/assets/nomad-remote-work-lifestyle-2025.jpeg",
+      "category": "travel"
+    },
+    {
+      "filename": "nomad-remote-work.jpg",
+      "path": "/src/assets/nomad-remote-work.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "north-america-travel-currency.jpg",
+      "path": "/src/assets/north-america-travel-currency.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "oanda-trading.jpg",
+      "path": "/src/assets/oanda-trading.jpg",
+      "category": "trading"
+    },
+    {
+      "filename": "realtime-vs-historical-rates.jpg",
+      "path": "/src/assets/realtime-vs-historical-rates.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "remitly-transfer.jpg",
+      "path": "/src/assets/remitly-transfer.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "smart-travel-money-strategy.jpg",
+      "path": "/src/assets/smart-travel-money-strategy.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "sme-finance.jpg",
+      "path": "/src/assets/sme-finance.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "top-5-brokers-ranking-chart-2025.png",
+      "path": "/src/assets/top-5-brokers-ranking-chart-2025.png",
+      "category": "general"
+    },
+    {
+      "filename": "travel-budget-planning.jpg",
+      "path": "/src/assets/travel-budget-planning.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "travel-budget-template-2025.jpg",
+      "path": "/src/assets/travel-budget-template-2025.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "travel-hero.jpg",
+      "path": "/src/assets/travel-hero.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "travel-hero.webp",
+      "path": "/src/assets/travel-hero.webp",
+      "category": "travel"
+    },
+    {
+      "filename": "travel-money-management-2025.jpg",
+      "path": "/src/assets/travel-money-management-2025.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "travelex-travel-money.jpg",
+      "path": "/src/assets/travelex-travel-money.jpg",
+      "category": "travel"
+    },
+    {
+      "filename": "trump-tariffs-currency-impact.jpg",
+      "path": "/src/assets/trump-tariffs-currency-impact.jpg",
+      "category": "currency"
+    },
+    {
+      "filename": "usd-eur-hero.jpg",
+      "path": "/src/assets/usd-eur-hero.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "vacation-financial-planning.jpg",
+      "path": "/src/assets/vacation-financial-planning.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "western-union-global.jpg",
+      "path": "/src/assets/western-union-global.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "wise-money-transfer.jpg",
+      "path": "/src/assets/wise-money-transfer.jpg",
+      "category": "general"
+    },
+    {
+      "filename": "xe-currency-data.jpg",
+      "path": "/src/assets/xe-currency-data.jpg",
+      "category": "currency"
+    }
+  ]
+}

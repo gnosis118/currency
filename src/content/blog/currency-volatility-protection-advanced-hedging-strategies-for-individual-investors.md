@@ -26,6 +26,8 @@ For individual investors, currency risk represents one of the most overlooked ye
 
 This comprehensive guide provides individual investors with practical, actionable strategies for managing currency risk across various investment scenarios. Unlike academic treatments that focus on theoretical models, our approach emphasizes real-world implementation, cost-effective techniques, and strategies that can be executed through retail brokerage accounts and accessible financial instruments. We'll explore everything from basic hedging concepts to sophisticated multi-currency portfolio protection strategies, providing you with the knowledge and tools needed to navigate currency volatility successfully.
 
+For foundational currency knowledge, start with our [Ultimate Currency Conversion Guide](/blog/ultimate-currency-conversion-guide-2025). Business owners should also explore our [International Business Currency Strategy Guide](/blog/international-business-currency-strategy-guide).
+
 ## Understanding Currency Risk: Beyond the Basics
 
 Currency risk, also known as foreign exchange risk or FX risk, occurs when the value of investments or cash flows changes due to fluctuations in exchange rates. While this concept seems straightforward, the reality of currency risk is far more complex and pervasive than most individual investors realize.

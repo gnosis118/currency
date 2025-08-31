@@ -4,12 +4,18 @@
     "slug": "ultimate-currency-conversion-guide-2025",
     "excerpt": "Master currency conversion with our comprehensive 2025 guide. Learn about exchange rates, fees, best practices, and tools to save money on every conversion.",
     "publishDate": "2025-08-31",
-    "image": "/images/blog/currency-conversion-guide-2025.jpg",
+    "image": "/src/assets/exchange-rates-guide.jpg",
     "readTime": "12 min read",
     "wordCount": 3200,
     "category": "Guides",
     "featured": true,
-    "tags": ["currency conversion", "exchange rates", "money transfer", "forex", "travel money"],
+    "tags": [
+      "currency conversion",
+      "exchange rates",
+      "money transfer",
+      "forex",
+      "travel money"
+    ],
     "metaDescription": "Master currency conversion with our comprehensive 2025 guide. Learn about exchange rates, fees, best practices, and tools to save money on every conversion."
   },
   {
@@ -17,12 +23,18 @@
     "slug": "best-currency-exchange-rates-comparison-2025",
     "excerpt": "Find the best currency exchange rates in 2025. Compare 15+ providers, hidden fees, and real costs. Save up to $500 on every $10,000 exchanged.",
     "publishDate": "2025-08-31",
-    "image": "/images/blog/best-exchange-rates-2025.jpg",
+    "image": "/src/assets/currency-comparison.jpg",
     "readTime": "15 min read",
     "wordCount": 4100,
     "category": "Comparison",
     "featured": true,
-    "tags": ["exchange rates", "currency exchange", "money transfer", "comparison", "savings"],
+    "tags": [
+      "exchange rates",
+      "currency exchange",
+      "money transfer",
+      "comparison",
+      "savings"
+    ],
     "metaDescription": "Find the best currency exchange rates in 2025. Compare 15+ providers, hidden fees, and real costs. Save up to $500 on every $10,000 exchanged."
   },
   {
@@ -30,12 +42,18 @@
     "slug": "digital-nomad-currency-management-complete-guide",
     "excerpt": "Master currency management as a digital nomad. Learn about multi-currency accounts, tax optimization, and the best financial tools for location-independent professionals.",
     "publishDate": "2025-08-31",
-    "image": "/images/blog/digital-nomad-currency-guide.jpg",
+    "image": "/src/assets/digital-nomad-laptop.jpg",
     "readTime": "18 min read",
     "wordCount": 5200,
     "category": "Digital Nomad",
     "featured": true,
-    "tags": ["digital nomad", "multi-currency", "remote work", "international banking", "tax optimization"],
+    "tags": [
+      "digital nomad",
+      "multi-currency",
+      "remote work",
+      "international banking",
+      "tax optimization"
+    ],
     "metaDescription": "Master currency management as a digital nomad. Learn about multi-currency accounts, tax optimization, and the best financial tools for location-independent professionals."
   },
   {
@@ -43,12 +61,18 @@
     "slug": "real-time-exchange-rate-analysis-trading-guide",
     "excerpt": "Master real-time exchange rate analysis with advanced techniques, AI-powered predictions, and professional trading strategies. Optimize your currency timing for maximum savings.",
     "publishDate": "2025-08-31",
-    "image": "/images/blog/real-time-exchange-rate-analysis.jpg",
+    "image": "/src/assets/realtime-vs-historical-rates.jpg",
     "readTime": "20 min read",
     "wordCount": 6800,
     "category": "Analysis",
     "featured": true,
-    "tags": ["exchange rates", "forex analysis", "real-time data", "trading strategies", "market timing"],
+    "tags": [
+      "exchange rates",
+      "forex analysis",
+      "real-time data",
+      "trading strategies",
+      "market timing"
+    ],
     "metaDescription": "Master real-time exchange rate analysis with advanced techniques, AI-powered predictions, and professional trading strategies. Optimize your currency timing for maximum savings."
   },
   {
@@ -56,12 +80,18 @@
     "slug": "international-business-currency-strategy-guide",
     "excerpt": "Master international business currency strategy with advanced hedging techniques, cash flow optimization, and risk management. Protect profits from exchange rate volatility.",
     "publishDate": "2025-08-31",
-    "image": "/images/blog/international-business-currency-strategy.jpg",
+    "image": "/src/assets/business-currency-exchange-2025.png",
     "readTime": "22 min read",
     "wordCount": 7500,
     "category": "Business",
     "featured": true,
-    "tags": ["international business", "currency hedging", "risk management", "corporate finance", "forex strategy"],
+    "tags": [
+      "international business",
+      "currency hedging",
+      "risk management",
+      "corporate finance",
+      "forex strategy"
+    ],
     "metaDescription": "Master international business currency strategy with advanced hedging techniques, cash flow optimization, and risk management. Protect profits from exchange rate volatility."
   },
   {

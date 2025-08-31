@@ -27,7 +27,7 @@
     "generate:gap": "node scripts/generate_gap_article.cjs",
     "generate:sitemap": "node scripts/presidential_sitemap_generator.cjs",
     "update-browserslist": "npx --yes update-browserslist-db@latest",
-    "optimize:images": "echo 'Image optimization completed'",
+    "optimize:images": "node scripts/fix_blog_images.cjs",
     "test:lighthouse": "echo 'Lighthouse audit ready'",
     "deploy:preview": "npm run build && npm run preview"
   },

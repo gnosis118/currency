@@ -31,31 +31,49 @@ const Blog = () => {
   };
 
   const getSafeImageSrc = (src?: string) => {
-    if (!src) return '/placeholder.svg';
+    if (!src) return blogHero; // Use blog hero as fallback instead of placeholder
     let url = src.trim();
-    
+
     // Handle different image path formats
     if (url.startsWith('/public/')) url = url.replace(/^\/public\//, '/');
     if (url.startsWith('public/')) url = url.replace(/^public\//, '/');
+
     // Resolve any /src/assets/* (or src/assets/*) to built asset URL via basename match
     if (url.startsWith('/src/assets/')) {
       const basename = url.split('/').pop() as string;
-      return assetBasenameToUrl[basename] || '/placeholder.svg';
+      const resolvedUrl = assetBasenameToUrl[basename];
+      if (resolvedUrl) {
+        return resolvedUrl;
+      } else {
+        console.warn(`Asset not found: ${basename}, falling back to blog hero`);
+        return blogHero;
+      }
     }
     if (url.startsWith('src/assets/')) {
       const basename = url.split('/').pop() as string;
-      return assetBasenameToUrl[basename] || '/placeholder.svg';
+      const resolvedUrl = assetBasenameToUrl[basename];
+      if (resolvedUrl) {
+        return resolvedUrl;
+      } else {
+        console.warn(`Asset not found: ${basename}, falling back to blog hero`);
+        return blogHero;
+      }
     }
+
     // As a last resort, try matching by basename even if path is different
     if (!url.startsWith('http') && !url.startsWith('/images/')) {
       const basename = url.split('/').pop() as string;
       if (assetBasenameToUrl[basename]) return assetBasenameToUrl[basename];
     }
+
+    // Handle /images/ paths
     if (url.startsWith('images/')) url = '/' + url;
     if (url.startsWith('/images/')) return url; // Already correct
+
+    // Handle external URLs
     if (url.startsWith('http://')) url = url.replace(/^http:\/\//, 'https://');
     if (url.startsWith('https://')) return url; // External URL
-    
+
     return url;
   };
 
@@ -182,7 +200,7 @@ const Blog = () => {
                           onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
                             img.onerror = null;
-                            img.src = '/placeholder.svg';
+                            img.src = blogHero; // Use blog hero as fallback
                           }}
                         />
                       </div>
@@ -232,7 +250,7 @@ const Blog = () => {
                             onError={(e) => {
                               const img = e.currentTarget as HTMLImageElement;
                               img.onerror = null;
-                              img.src = '/placeholder.svg';
+                              img.src = blogHero; // Use blog hero as fallback
                             }}
                           />
                         </div>
