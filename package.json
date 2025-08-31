@@ -15,6 +15,7 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run prebuild && vite build && npm run postbuild",
+    "build:safe": "node scripts/generate_blog_index.mjs && vite build && node scripts/presidential_sitemap_generator.cjs",
     "prebuild": "node scripts/generate_blog_index.mjs && npm run update-browserslist",
     "postbuild": "npm run generate:sitemap && npm run optimize:images",
     "build:dev": "vite build --mode development",
@@ -25,7 +26,7 @@
     "preview": "vite preview",
     "generate:gap": "node scripts/generate_gap_article.cjs",
     "generate:sitemap": "node scripts/presidential_sitemap_generator.cjs",
-    "update-browserslist": "npx update-browserslist-db@latest",
+    "update-browserslist": "npx --yes update-browserslist-db@latest",
     "optimize:images": "echo 'Image optimization completed'",
     "test:lighthouse": "echo 'Lighthouse audit ready'",
     "deploy:preview": "npm run build && npm run preview"
@@ -99,6 +100,7 @@
     "globals": "^15.9.0",
     "postcss": "^8.4.47",
     "tailwindcss": "^3.4.11",
+    "terser": "^5.36.0",
     "typescript": "^5.5.3",
     "typescript-eslint": "^8.0.1",
     "vite": "^5.4.1"

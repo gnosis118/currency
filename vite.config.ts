@@ -3,7 +3,10 @@ import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
 // Presidential-level Vite configuration for currencytocurrency.app
-export default defineConfig(({ mode }) => ({
+export default defineConfig(({ mode }) => {
+  const isProduction = mode === 'production';
+
+  return {
   server: {
     host: "::",
     port: 8080,
@@ -54,7 +57,7 @@ export default defineConfig(({ mode }) => ({
   },
   build: {
     target: 'es2020',
-    minify: 'terser',
+    minify: isProduction ? 'terser' : 'esbuild',
     cssMinify: true,
     rollupOptions: {
       output: {
@@ -82,14 +85,29 @@ export default defineConfig(({ mode }) => ({
       },
     },
     chunkSizeWarningLimit: 1000,
-    sourcemap: mode === 'development',
+    sourcemap: !isProduction,
     // Enable compression and optimization
     reportCompressedSize: true,
     assetsInlineLimit: 4096,
+    // Terser options for production optimization
+    terserOptions: isProduction ? {
+      compress: {
+        drop_console: true,
+        drop_debugger: true,
+        pure_funcs: ['console.log', 'console.info', 'console.debug', 'console.warn']
+      },
+      mangle: {
+        safari10: true
+      },
+      format: {
+        comments: false
+      }
+    } : undefined,
   },
-  // Performance optimizations
-  esbuild: {
-    drop: mode === 'production' ? ['console', 'debugger'] : [],
-    legalComments: 'none',
-  },
-}));
+    // Performance optimizations
+    esbuild: {
+      drop: isProduction ? ['console', 'debugger'] : [],
+      legalComments: 'none',
+    },
+  };
+});

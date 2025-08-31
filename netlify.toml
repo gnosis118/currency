@@ -1,7 +1,7 @@
 # Presidential-level Netlify configuration for currencytocurrency.app
 [build]
   publish = "dist"
-  command = "npm run build"
+  command = "npm install terser && npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
