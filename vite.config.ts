@@ -2,14 +2,24 @@ import { defineConfig } from "vite";
 import react from "@vitejs/plugin-react-swc";
 import path from "path";
 
-// https://vitejs.dev/config/
+// Presidential-level Vite configuration for currencytocurrency.app
 export default defineConfig(({ mode }) => ({
   server: {
     host: "::",
     port: 8080,
+    cors: true,
+    headers: {
+      'Cross-Origin-Embedder-Policy': 'credentialless',
+      'Cross-Origin-Opener-Policy': 'same-origin'
+    }
   },
   plugins: [
-    react(),
+    react({
+      // Enable React Fast Refresh for development
+      fastRefresh: mode === 'development',
+      // Optimize JSX runtime for production
+      jsxRuntime: 'automatic'
+    }),
   ],
   resolve: {
     alias: {
@@ -43,17 +53,43 @@ export default defineConfig(({ mode }) => ({
     force: true,
   },
   build: {
+    target: 'es2020',
+    minify: 'terser',
+    cssMinify: true,
     rollupOptions: {
       output: {
         manualChunks: {
-          // Remove React from manual chunking to prevent conflicts
-          vendor: ['react-router-dom'],
+          // Strategic code splitting for optimal loading
+          vendor: ['react-router-dom', '@tanstack/react-query'],
           charts: ['recharts'],
           ui: ['@radix-ui/react-select', '@radix-ui/react-dialog', '@radix-ui/react-tabs'],
+          utils: ['clsx', 'tailwind-merge', 'date-fns'],
         },
+        // Optimize asset naming for caching
+        assetFileNames: (assetInfo) => {
+          const info = assetInfo.name.split('.');
+          const ext = info[info.length - 1];
+          if (/png|jpe?g|svg|gif|tiff|bmp|ico/i.test(ext)) {
+            return `assets/images/[name]-[hash][extname]`;
+          }
+          if (/css/i.test(ext)) {
+            return `assets/css/[name]-[hash][extname]`;
+          }
+          return `assets/[name]-[hash][extname]`;
+        },
+        chunkFileNames: 'assets/js/[name]-[hash].js',
+        entryFileNames: 'assets/js/[name]-[hash].js',
       },
     },
     chunkSizeWarningLimit: 1000,
     sourcemap: mode === 'development',
+    // Enable compression and optimization
+    reportCompressedSize: true,
+    assetsInlineLimit: 4096,
+  },
+  // Performance optimizations
+  esbuild: {
+    drop: mode === 'production' ? ['console', 'debugger'] : [],
+    legalComments: 'none',
   },
 }));

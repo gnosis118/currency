@@ -1,17 +1,25 @@
+# Presidential-level Netlify configuration for currencytocurrency.app
 [build]
   publish = "dist"
   command = "npm run build"
 
 [build.environment]
   NODE_VERSION = "18"
-  # Omit benign public identifiers from secrets scanning (prevents false positives)
+  NPM_FLAGS = "--production=false"
+  # Build optimizations
+  NODE_OPTIONS = "--max-old-space-size=4096"
+  # Omit benign public identifiers from secrets scanning
   SECRETS_SCAN_OMIT_KEYS = "AUTH0_AUDIENCE,AUTH0_CLIENT_ID,AUTH0_DOMAIN,AUTH0_ISSUER_BASE_URL,SUPABASE_ANON_KEY"
-  # Ignore generated public outputs where those identifiers necessarily appear
   SECRETS_SCAN_OMIT_PATHS = "public/sitemap*.xml,public/robots.txt,dist/**"
 
-# Disable Netlify Visual Editor to prevent Studio Preview Error
+# Production environment optimizations
 [context.production.environment]
   DISABLE_NETLIFY_VISUAL_EDITOR = "true"
+  NODE_ENV = "production"
+
+# Development environment
+[context.deploy-preview.environment]
+  NODE_ENV = "development"
 
 # Redirect rules for SPA
 [[redirects]]
@@ -25,16 +33,60 @@
   to = "/admin/index.html"
   status = 200
 
-# Headers for security and performance
+# Presidential-level security and performance headers
 [[headers]]
   for = "/*"
   [headers.values]
+    # Security headers
     X-Frame-Options = "SAMEORIGIN"
     X-XSS-Protection = "1; mode=block"
     X-Content-Type-Options = "nosniff"
+    Referrer-Policy = "strict-origin-when-cross-origin"
+    Permissions-Policy = "camera=(), microphone=(), geolocation=()"
+    # Performance headers
+    X-DNS-Prefetch-Control = "on"
+    # SEO headers
+    X-Robots-Tag = "index, follow"
 
 [[headers]]
   for = "/assets/*"
   [headers.values]
     Cache-Control = "public, max-age=31536000, immutable"
+    X-Content-Type-Options = "nosniff"
+
+[[headers]]
+  for = "*.css"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "text/css; charset=utf-8"
+
+[[headers]]
+  for = "*.js"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "application/javascript; charset=utf-8"
+
+[[headers]]
+  for = "/sitemap*.xml"
+  [headers.values]
+    Content-Type = "application/xml; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "/robots.txt"
+  [headers.values]
+    Content-Type = "text/plain; charset=utf-8"
+    Cache-Control = "public, max-age=3600"
+
+[[headers]]
+  for = "*.webp"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "image/webp"
+
+[[headers]]
+  for = "*.jpg"
+  [headers.values]
+    Cache-Control = "public, max-age=31536000, immutable"
+    Content-Type = "image/jpeg"
 

@@ -1,4 +1,4 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, memo, useCallback } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { User, Session } from '@supabase/supabase-js';
 import { supabase } from '@/integrations/supabase/client';
@@ -330,4 +330,5 @@ const Header = () => {
   );
 };
 
-export default Header;
+// Presidential-level performance optimization with React.memo
+export default memo(Header);

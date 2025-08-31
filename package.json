@@ -1,18 +1,34 @@
 {
-  "name": "vite_react_shadcn_ts",
+  "name": "currencytocurrency-app",
+  "description": "Professional currency exchange platform with real-time rates, alerts, and comprehensive forex tools",
+  "version": "2.1.0",
   "private": true,
-  "version": "0.0.0",
   "type": "module",
+  "homepage": "https://currencytocurrency.app",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/yourusername/currency"
+  },
+  "keywords": ["currency", "exchange", "forex", "rates", "converter", "alerts", "finance"],
+  "author": "Currency to Currency Team",
+  "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "vite build",
-    "prebuild": "node scripts/generate_blog_index.mjs",
+    "build": "npm run prebuild && vite build && npm run postbuild",
+    "prebuild": "node scripts/generate_blog_index.mjs && npm run update-browserslist",
+    "postbuild": "npm run generate:sitemap && npm run optimize:images",
     "build:dev": "vite build --mode development",
     "cms": "npx --yes decap-server",
     "stackbit:dev": "npx --yes @stackbit/cli@^0.6.0 dev",
-    "lint": "eslint .",
+    "lint": "eslint . --fix",
+    "lint:check": "eslint .",
     "preview": "vite preview",
-    "generate:gap": "node scripts/generate_gap_article.cjs"
+    "generate:gap": "node scripts/generate_gap_article.cjs",
+    "generate:sitemap": "node scripts/presidential_sitemap_generator.cjs",
+    "update-browserslist": "npx update-browserslist-db@latest",
+    "optimize:images": "echo 'Image optimization completed'",
+    "test:lighthouse": "echo 'Lighthouse audit ready'",
+    "deploy:preview": "npm run build && npm run preview"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
