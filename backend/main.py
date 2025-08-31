@@ -7,12 +7,12 @@ from time import time
 
 from services import get_cross_rate, convert_amount, generate_history, generate_forecast, supported, normalize_currency
 from schemas import ConvertResponse, HistoryResponse, ForecastResponse, RatePoint
-from backend.middleware import AuthRateLimitMiddleware
-from backend.limits import PLAN_CFG
-from backend.settings import get_settings
-from backend.routers import billing as billing_router
-from backend.routers import admin as admin_router
-from backend.routers import alerts as alerts_router
+from middleware import AuthRateLimitMiddleware
+from limits import PLAN_CFG
+from settings import get_settings
+from routers import billing as billing_router
+from routers import admin as admin_router
+from routers import alerts as alerts_router
 
 app = FastAPI(
     title="Currency to Currency API",
