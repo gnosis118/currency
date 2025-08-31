@@ -12,6 +12,7 @@ from backend.limits import PLAN_CFG
 from backend.settings import get_settings
 from backend.routers import billing as billing_router
 from backend.routers import admin as admin_router
+from backend.routers import alerts as alerts_router
 
 app = FastAPI(
     title="Currency to Currency API",
@@ -129,6 +130,7 @@ def forecast(
 # Routers
 app.include_router(billing_router.router)
 app.include_router(admin_router.router)
+app.include_router(alerts_router.router)
 
 
 # Run locally:

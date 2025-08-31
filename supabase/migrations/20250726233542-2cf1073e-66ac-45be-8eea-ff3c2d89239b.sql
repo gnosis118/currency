@@ -8,6 +8,9 @@ CREATE TABLE public.rate_alerts (
   condition TEXT NOT NULL CHECK (condition IN ('above', 'below')),
   email TEXT NOT NULL,
   is_active BOOLEAN NOT NULL DEFAULT true,
+  last_triggered_at TIMESTAMP WITH TIME ZONE,
+  last_triggered_rate DECIMAL(15,6),
+  trigger_count INTEGER NOT NULL DEFAULT 0,
   created_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now(),
   updated_at TIMESTAMP WITH TIME ZONE NOT NULL DEFAULT now()
 );

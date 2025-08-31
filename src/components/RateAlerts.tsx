@@ -75,6 +75,7 @@ const RateAlertsContent = ({ user }: { user: User }) => {
   const [alerts, setAlerts] = useState<RateAlert[]>([]);
   const [isCreating, setIsCreating] = useState(false);
   const [isLoading, setIsLoading] = useState(false);
+  const [isSendingTest, setIsSendingTest] = useState(false);
   const { toast } = useToast();
 
   // Fetch current exchange rate
@@ -173,8 +174,19 @@ const RateAlertsContent = ({ user }: { user: User }) => {
 
       toast({
         title: "Alert Created!",
-        description: `We'll notify you when ${fromCurrency}/${toCurrency} goes ${condition} ${rate.toFixed(4)}`,
+        description: `We'll notify you at ${email} when ${fromCurrency}/${toCurrency} goes ${condition} ${rate.toFixed(4)}. You should receive a welcome email shortly.`,
       });
+
+      // Send welcome email for first-time users (optional)
+      try {
+        await fetch('/api/alerts/welcome-email', {
+          method: 'POST',
+          headers: { 'Content-Type': 'application/json' },
+          body: JSON.stringify({ email, user_name: user.email?.split('@')[0] })
+        });
+      } catch (error) {
+        console.log('Welcome email not sent:', error);
+      }
     } catch (error) {
       console.error('Error creating alert:', error);
       toast({
@@ -237,6 +249,50 @@ const RateAlertsContent = ({ user }: { user: User }) => {
   const swapCurrencies = () => {
     setFromCurrency(toCurrency);
     setToCurrency(fromCurrency);
+  };
+
+  const sendTestEmail = async () => {
+    if (!email || !targetRate) {
+      toast({
+        title: "Missing Information",
+        description: "Please enter both email and target rate before sending test email.",
+        variant: "destructive"
+      });
+      return;
+    }
+
+    setIsSendingTest(true);
+    try {
+      const response = await fetch('/api/alerts/test-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          email,
+          from_currency: fromCurrency,
+          to_currency: toCurrency,
+          target_rate: parseFloat(targetRate),
+          condition
+        })
+      });
+
+      if (response.ok) {
+        toast({
+          title: "Test Email Sent!",
+          description: `A test alert email has been sent to ${email}. Check your inbox.`,
+        });
+      } else {
+        throw new Error('Failed to send test email');
+      }
+    } catch (error) {
+      console.error('Error sending test email:', error);
+      toast({
+        title: "Test Email Failed",
+        description: "Could not send test email. The email service may not be configured.",
+        variant: "destructive"
+      });
+    } finally {
+      setIsSendingTest(false);
+    }
   };
 
   return (
@@ -357,23 +413,39 @@ const RateAlertsContent = ({ user }: { user: User }) => {
             </Select>
           </div>
           
-          <Button 
-            onClick={createAlert} 
-            disabled={isCreating}
-            className="w-full"
-          >
-            {isCreating ? (
-              <>
-                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
-                Creating Alert...
-              </>
-            ) : (
-              <>
-                <Mail className="h-4 w-4 mr-2" />
-                Create Alert
-              </>
-            )}
-          </Button>
+          <div className="flex gap-2">
+            <Button
+              onClick={createAlert}
+              disabled={isCreating}
+              className="flex-1"
+            >
+              {isCreating ? (
+                <>
+                  <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-white mr-2"></div>
+                  Creating Alert...
+                </>
+              ) : (
+                <>
+                  <Mail className="h-4 w-4 mr-2" />
+                  Create Alert
+                </>
+              )}
+            </Button>
+
+            <Button
+              onClick={sendTestEmail}
+              disabled={isSendingTest || !email || !targetRate}
+              variant="outline"
+              size="sm"
+              title="Send a test email to verify your email address"
+            >
+              {isSendingTest ? (
+                <div className="animate-spin rounded-full h-4 w-4 border-b-2 border-current"></div>
+              ) : (
+                "Test"
+              )}
+            </Button>
+          </div>
           
           <p className="text-xs text-muted-foreground">
             Current rate: 1 {fromCurrency} = {currentRate.toFixed(6)} {toCurrency}

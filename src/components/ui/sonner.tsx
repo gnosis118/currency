@@ -1,10 +1,42 @@
 import { useTheme } from "next-themes"
 import { Toaster as Sonner, toast } from "sonner"
+import { useEffect, useState } from "react"
 
 type ToasterProps = React.ComponentProps<typeof Sonner>
 
 const Toaster = ({ ...props }: ToasterProps) => {
-  const { theme = "system" } = useTheme()
+  const [mounted, setMounted] = useState(false)
+
+  // Fallback theme detection for when ThemeProvider is not available
+  const [systemTheme, setSystemTheme] = useState<"light" | "dark">("light")
+
+  useEffect(() => {
+    setMounted(true)
+
+    // Detect system theme
+    const mediaQuery = window.matchMedia('(prefers-color-scheme: dark)')
+    setSystemTheme(mediaQuery.matches ? 'dark' : 'light')
+
+    const handleChange = (e: MediaQueryListEvent) => {
+      setSystemTheme(e.matches ? 'dark' : 'light')
+    }
+
+    mediaQuery.addEventListener('change', handleChange)
+    return () => mediaQuery.removeEventListener('change', handleChange)
+  }, [])
+
+  // Try to use next-themes, fallback to system detection
+  let theme = "system"
+  try {
+    const themeHook = useTheme()
+    theme = themeHook?.theme || "system"
+  } catch {
+    // ThemeProvider not available, use system detection
+    theme = systemTheme
+  }
+
+  // Don't render until mounted to avoid hydration issues
+  if (!mounted) return null
 
   return (
     <Sonner

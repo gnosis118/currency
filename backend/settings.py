@@ -15,6 +15,14 @@ class Settings(BaseSettings):
     PRO_PRICE_ID: str = ""
     SCALE_PRICE_ID: str = ""
 
+    # SendGrid Email
+    SENDGRID_API_KEY: str = ""
+    FROM_EMAIL: str = "alerts@currencytocurrency.app"
+
+    # Alert Monitoring
+    ALERT_CHECK_INTERVAL: int = 300  # 5 minutes
+    ALERT_COOLDOWN_HOURS: int = 1    # Minimum time between notifications for same alert
+
     # Features
     FORECAST_FEATURE_FLAG: bool = True
 
