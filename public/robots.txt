@@ -286,6 +286,9 @@ Sitemap: https://currencytocurrency.app/sitemap.xml
 # Blog sitemap
 Sitemap: https://currencytocurrency.app/sitemap-blog.xml
 
+# Image sitemap
+Sitemap: https://currencytocurrency.app/sitemap-images.xml
+
 # Sitemap index
 Sitemap: https://currencytocurrency.app/sitemap-index.xml
 

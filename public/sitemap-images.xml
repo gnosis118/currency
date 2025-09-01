@@ -2,206 +2,183 @@
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
         xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
 
-  <!-- Homepage Images -->
+  <!-- Main Site Images -->
   <url>
     <loc>https://currencytocurrency.app/</loc>
-    <lastmod>2025-08-03</lastmod>
     <image:image>
-      <image:loc>https://currencytocurrency.app/assets/home-hero.webp</image:loc>
-      <image:caption>Currency to Currency - Free Real-time Exchange Rate Converter</image:caption>
-      <image:title>Professional currency converter homepage with live rates</image:title>
+      <image:loc>https://currencytocurrency.app/assets/currency-converter-hero.jpg</image:loc>
+      <image:title>Currency to Currency - Free Real-time Exchange Rate Converter</image:title>
+      <image:caption>Professional currency converter with live exchange rates and real-time data</image:caption>
+      <image:license>https://creativecommons.org/licenses/by/4.0/</image:license>
     </image:image>
   </url>
 
-  <!-- Blog Images -->
-  <url>
-    <loc>https://currencytocurrency.app/blog</loc>
-    <lastmod>2025-08-03</lastmod>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/blog-hero.webp</image:loc>
-      <image:caption>Currency Exchange Blog and Expert Guides</image:caption>
-      <image:title>Expert insights on currency exchange and financial markets</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/usd-eur-hero.jpg</image:loc>
-      <image:caption>USD to EUR Exchange Rate Analysis</image:caption>
-      <image:title>US Dollar to Euro conversion rate trends and forecasts</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/bitcoin-trading-dashboard.jpg</image:loc>
-      <image:caption>Bitcoin to USD Trading Dashboard</image:caption>
-      <image:title>Real-time Bitcoin price tracking and technical analysis</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/currency-safety-hero.jpg</image:loc>
-      <image:caption>Safe Currency Conversion Practices Guide</image:caption>
-      <image:title>Security guide for online currency exchanges and transactions</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/trump-tariffs-currency-impact.jpg</image:loc>
-      <image:caption>Trump Tariffs Impact on Currency Markets</image:caption>
-      <image:title>Analysis of trade policy effects on global exchange rates</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/currency-exchange-sites-hero.jpg</image:loc>
-      <image:caption>Best Currency Exchange Sites for Money Conversion 2025</image:caption>
-      <image:title>Professional currency exchange platforms and services comparison</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/wise-money-transfer.jpg</image:loc>
-      <image:caption>Wise Money Transfer Platform Review</image:caption>
-      <image:title>Professional using laptop for Wise online banking and international transfers</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/xe-currency-data.jpg</image:loc>
-      <image:caption>Xe Currency Exchange Platform Data</image:caption>
-      <image:title>Real-time currency exchange rates and financial data from Xe</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/remitly-transfer.jpg</image:loc>
-      <image:caption>Remitly Money Transfer Service</image:caption>
-      <image:title>Remittance and money transfer to family abroad via Remitly</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/western-union-global.jpg</image:loc>
-      <image:caption>Western Union Global Money Transfer Network</image:caption>
-      <image:title>Worldwide money transfer coverage and agent locations</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/oanda-trading.jpg</image:loc>
-      <image:caption>OANDA Forex Trading Platform</image:caption>
-      <image:title>Professional forex trading dashboard with charts and analysis tools</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/travelex-travel-money.jpg</image:loc>
-      <image:caption>Travelex Travel Money Exchange Service</image:caption>
-      <image:title>Currency exchange for vacation and business travel money</image:title>
-    </image:image>
-  </url>
-
-  <!-- Best Currency Exchange Sites 2025 Blog Post Images -->
-  <url>
-    <loc>https://currencytocurrency.app/blog/best-currency-exchange-sites-2025</loc>
-    <lastmod>2025-02-05</lastmod>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/currency-exchange-sites-hero.jpg</image:loc>
-      <image:caption>Best Currency Exchange Sites for Money Conversion 2025</image:caption>
-      <image:title>Professional currency exchange platforms and services comparison</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/wise-money-transfer.jpg</image:loc>
-      <image:caption>Wise Money Transfer Platform Review</image:caption>
-      <image:title>Professional using laptop for Wise online banking and international transfers</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/xe-currency-data.jpg</image:loc>
-      <image:caption>Xe Currency Exchange Platform Data</image:caption>
-      <image:title>Real-time currency exchange rates and financial data from Xe</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/remitly-transfer.jpg</image:loc>
-      <image:caption>Remitly Money Transfer Service</image:caption>
-      <image:title>Remittance and money transfer to family abroad via Remitly</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/western-union-global.jpg</image:loc>
-      <image:caption>Western Union Global Money Transfer Network</image:caption>
-      <image:title>Worldwide money transfer coverage and agent locations</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/oanda-trading.jpg</image:loc>
-      <image:caption>OANDA Forex Trading Platform</image:caption>
-      <image:title>Professional forex trading dashboard with charts and analysis tools</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/travelex-travel-money.jpg</image:loc>
-      <image:caption>Travelex Travel Money Exchange Service</image:caption>
-      <image:title>Currency exchange for vacation and business travel money</image:title>
-    </image:image>
-  </url>
-
-  <!-- Charts Page Images -->
-  <url>
-    <loc>https://currencytocurrency.app/charts</loc>
-    <lastmod>2025-08-03</lastmod>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/charts-hero.webp</image:loc>
-      <image:caption>Live Currency Exchange Rate Charts and Analytics</image:caption>
-      <image:title>Interactive currency rate charts with historical data analysis</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/currency-analytics.jpg</image:loc>
-      <image:caption>Advanced Currency Analytics Dashboard</image:caption>
-      <image:title>Professional currency market analysis tools and indicators</image:title>
-    </image:image>
-  </url>
-
-  <!-- Travel Page Images -->
-  <url>
-    <loc>https://currencytocurrency.app/travel</loc>
-    <lastmod>2025-08-03</lastmod>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/travel-hero.webp</image:loc>
-      <image:caption>Travel Money and Currency Exchange Guide</image:caption>
-      <image:title>Smart travel money exchange strategies and international banking tips</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/digital-nomad-laptop.jpg</image:loc>
-      <image:caption>Digital Nomad Banking Solutions</image:caption>
-      <image:title>Best banking and currency exchange options for remote workers</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/north-america-travel-currency.jpg</image:loc>
-      <image:caption>North America Travel Currency Guide</image:caption>
-      <image:title>Currency exchange tips for traveling across North America</image:title>
-    </image:image>
-  </url>
-
-  <!-- Alerts Page Images -->
-  <url>
-    <loc>https://currencytocurrency.app/alerts</loc>
-    <lastmod>2025-08-03</lastmod>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/alerts-hero.webp</image:loc>
-      <image:caption>Currency Rate Alerts and Notifications System</image:caption>
-      <image:title>Set custom alerts for favorable exchange rates and market changes</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/mobile-currency-security.jpg</image:loc>
-      <image:caption>Mobile Currency Security and Alerts</image:caption>
-      <image:title>Secure mobile currency tracking with real-time notifications</image:title>
-    </image:image>
-  </url>
-
-  <!-- Business and Financial Images -->
-  <url>
-    <loc>https://currencytocurrency.app/blog/currency-conversion-small-business-guide</loc>
-    <lastmod>2025-08-03</lastmod>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/business-team-laptops.jpg</image:loc>
-      <image:caption>Small Business Currency Conversion Guide</image:caption>
-      <image:title>Professional currency management strategies for small businesses</image:title>
-    </image:image>
-    <image:image>
-      <image:loc>https://currencytocurrency.app/assets/business-laptop-currency.jpg</image:loc>
-      <image:caption>Business Currency Exchange Solutions</image:caption>
-      <image:title>Corporate currency conversion tools and international payment methods</image:title>
-    </image:image>
-  </url>
-
-  <!-- Financial Technology Images -->
   <url>
     <loc>https://currencytocurrency.app/convert</loc>
-    <lastmod>2025-08-03</lastmod>
     <image:image>
-      <image:loc>https://currencytocurrency.app/assets/financial-technology-circuit.jpg</image:loc>
-      <image:caption>Advanced Financial Technology Platform</image:caption>
-      <image:title>Cutting-edge fintech solutions for currency conversion</image:title>
+      <image:loc>https://currencytocurrency.app/assets/currency-converter-tool.jpg</image:loc>
+      <image:title>Currency Converter Tool</image:title>
+      <image:caption>Real-time currency conversion calculator with 150+ currencies</image:caption>
     </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/charts</loc>
     <image:image>
-      <image:loc>https://currencytocurrency.app/assets/digital-banking-laptop.jpg</image:loc>
-      <image:caption>Digital Banking and Currency Services</image:caption>
-      <image:title>Modern digital banking solutions for international transactions</image:title>
+      <image:loc>https://currencytocurrency.app/assets/currency-charts.jpg</image:loc>
+      <image:title>Currency Exchange Rate Charts</image:title>
+      <image:caption>Interactive currency charts and historical exchange rate data</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/blog-hero.jpg</image:loc>
+      <image:title>Currency Exchange Blog</image:title>
+      <image:caption>Expert forex insights, currency exchange analysis and trading strategies</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Blog Post Images -->
+  <url>
+    <loc>https://currencytocurrency.app/blog/forex-currency-pairs-complete-trading-guide-2025</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/forex-risk-management-2025.png</image:loc>
+      <image:title>Forex Risk Management Guide 2025</image:title>
+      <image:caption>Complete guide to forex risk management and trading strategies</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/ai-forex-trading-beginners-guide-2025</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/ai-forex-trading-guide-2025.jpg</image:loc>
+      <image:title>AI Forex Trading for Beginners 2025</image:title>
+      <image:caption>Complete guide to AI-powered forex trading and automated strategies</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/digital-nomad-currency-management</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/digital-nomad-laptop.jpg</image:loc>
+      <image:title>Digital Nomad Currency Management</image:title>
+      <image:caption>Complete guide to managing multiple currencies while traveling</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-exchange-freelancers-guide</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/freelancer-currency-exchange.jpeg</image:loc>
+      <image:title>Currency Exchange for Freelancers</image:title>
+      <image:caption>Complete guide to managing multi-currency payments as a freelancer</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-hedging-small-business</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/business-hedging-strategies-2025.webp</image:loc>
+      <image:title>Currency Hedging for Small Business</image:title>
+      <image:caption>Protect your business profits from exchange rate risk</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/travel-money-budgeting-strategies</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/travel-money-management-2025.jpg</image:loc>
+      <image:title>Travel Money Budgeting Strategies</image:title>
+      <image:caption>Smart travel money management and budgeting strategies</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Currency Pair Images -->
+  <url>
+    <loc>https://currencytocurrency.app/convert/usd-to-eur</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/usd-eur-chart.jpg</image:loc>
+      <image:title>USD to EUR Exchange Rate</image:title>
+      <image:caption>Real-time USD to EUR conversion rates and charts</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/convert/usd-to-gbp</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/usd-gbp-chart.jpg</image:loc>
+      <image:title>USD to GBP Exchange Rate</image:title>
+      <image:caption>Real-time USD to GBP conversion rates and charts</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/convert/eur-to-gbp</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/eur-gbp-chart.jpg</image:loc>
+      <image:title>EUR to GBP Exchange Rate</image:title>
+      <image:caption>Real-time EUR to GBP conversion rates and charts</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Educational Content Images -->
+  <url>
+    <loc>https://currencytocurrency.app/blog/what-are-exchange-rates-complete-beginners-guide</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/exchange-rates-guide.jpg</image:loc>
+      <image:title>What Are Exchange Rates? Complete Beginner Guide</image:title>
+      <image:caption>Comprehensive guide to understanding exchange rates for beginners</image:caption>
+    </image:image>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/ultimate-currency-conversion-guide-2025</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/exchange-rates-guide.jpg</image:loc>
+      <image:title>Ultimate Currency Conversion Guide 2025</image:title>
+      <image:caption>Complete guide to currency conversion and exchange rates</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Technology and App Images -->
+  <url>
+    <loc>https://currencytocurrency.app/blog/2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/currency-comparison.jpg</image:loc>
+      <image:title>Best Currency Converter Apps 2025</image:title>
+      <image:caption>Top currency converter apps for accurate real-time exchange rates</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Business and Finance Images -->
+  <url>
+    <loc>https://currencytocurrency.app/blog/international-business-currency-strategy-guide</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/business-currency-exchange-2025.png</image:loc>
+      <image:title>International Business Currency Strategy</image:title>
+      <image:caption>Complete guide to international business currency strategies</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Risk Management Images -->
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-volatility-protection-advanced-hedging-strategies-for-individual-investors</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/currency-volatility-domino.jpg</image:loc>
+      <image:title>Currency Volatility Protection Strategies</image:title>
+      <image:caption>Advanced hedging strategies for individual investors</image:caption>
+    </image:image>
+  </url>
+
+  <!-- Digital Currency Images -->
+  <url>
+    <loc>https://currencytocurrency.app/blog/central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money</loc>
+    <image:image>
+      <image:loc>https://currencytocurrency.app/assets/cbdc-guide-2025.jpg</image:loc>
+      <image:title>Central Bank Digital Currencies (CBDCs) Guide</image:title>
+      <image:caption>Complete guide to the future of money and digital currencies</image:caption>
     </image:image>
   </url>
 
