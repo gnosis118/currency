@@ -209,3 +209,25 @@ export {
   wiseMoney,
   blogHero
 };
+
+// Default export for compatibility with dynamic imports
+export default {
+  blogImageMap,
+  categoryImageMap,
+  getBlogImage,
+  exchangeRatesGuide,
+  currencyComparison,
+  digitalNomadLaptop,
+  businessCurrencyExchange,
+  aiForexTradingGuide,
+  forexTradingPsychology,
+  forexRiskManagement,
+  freelancerCurrencyExchange,
+  internationalMoneyTransfer,
+  currencyVolatilityDomino,
+  cbdcGuide,
+  realtimeVsHistoricalRates,
+  bankExchangeFees,
+  wiseMoney,
+  blogHero
+};
