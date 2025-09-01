@@ -2,7 +2,11 @@ backend:
   name: git-gateway
   branch: main
 
+# Enable local backend for development
 local_backend: true
+
+# Disable identity for local development
+disable_local_backend: false
 
 media_folder: "public/images/uploads"
 public_folder: "/images/uploads"
