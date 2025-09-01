@@ -30,6 +30,7 @@
     "optimize:images": "node scripts/fix_blog_images.cjs",
     "test:lighthouse": "echo 'Lighthouse audit ready'",
     "test:images": "node scripts/test_blog_images.cjs",
+    "create:favicon": "node scripts/create_favicon.cjs",
     "deploy:preview": "npm run build && npm run preview"
   },
   "dependencies": {

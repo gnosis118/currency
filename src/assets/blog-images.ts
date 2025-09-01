@@ -97,6 +97,9 @@ import blogPostBackground from './blog-post-background.jpg';
 
 // Blog Image Mapping - Maps blog post slugs to appropriate images
 export const blogImageMap: Record<string, string> = {
+  // Featured articles
+  'hidden-currency-conversion-fees-how-banks-disguise-charges': bankExchangeFees,
+
   // Main guides
   'ultimate-currency-conversion-guide-2025': exchangeRatesGuide,
   'best-currency-exchange-rates-comparison-2025': currencyComparison,
@@ -156,6 +159,7 @@ export const categoryImageMap: Record<string, string> = {
   'Digital Nomad': digitalNomadLaptop,
   'Business': businessCurrencyExchange,
   'Business Finance': businessLaptopCurrency,
+  'Banking': bankExchangeFees,
   'Analysis': realtimeVsHistoricalRates,
   'Trading': forexTradingPsychology,
   'Trading Psychology': forexTradingPsychology,
@@ -199,5 +203,6 @@ export {
   currencyVolatilityDomino,
   cbdcGuide,
   realtimeVsHistoricalRates,
+  bankExchangeFees,
   blogHero
 };

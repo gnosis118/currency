@@ -1,0 +1,26 @@
+{
+  "generatedAt": "2025-09-01T00:42:59.574Z",
+  "theme": "Calculator/Currency Converter",
+  "primaryColor": "#3B82F6",
+  "secondaryColor": "#1E40AF",
+  "backgroundColor": "#F8FAFC",
+  "files": {
+    "favicon.svg": "Primary modern favicon (scalable)",
+    "favicon.ico": "Legacy browser support",
+    "icon-192.png": "Android/PWA icon",
+    "icon-512.png": "High-res PWA icon"
+  },
+  "features": [
+    "Calculator design with currency symbols",
+    "Blue gradient theme matching site colors",
+    "Scalable SVG for crisp display at any size",
+    "PWA-compatible icons",
+    "Cross-browser compatibility"
+  ],
+  "browserSupport": {
+    "Modern browsers": "SVG favicon",
+    "Legacy browsers": "ICO fallback",
+    "Mobile devices": "PNG icons",
+    "PWA": "Manifest icons"
+  }
+}

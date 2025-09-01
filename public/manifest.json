@@ -4,12 +4,22 @@
   "description": "Free currency converter with real-time exchange rates and cryptocurrency prices",
   "start_url": "/",
   "display": "standalone",
-  "background_color": "#0F172A",
+  "background_color": "#F8FAFC",
   "theme_color": "#3B82F6",
   "orientation": "portrait-primary",
-  "categories": ["finance", "productivity", "utilities"],
+  "categories": [
+    "finance",
+    "productivity",
+    "utilities"
+  ],
   "lang": "en",
   "icons": [
+    {
+      "src": "/favicon.svg",
+      "sizes": "any",
+      "type": "image/svg+xml",
+      "purpose": "any maskable"
+    },
     {
       "src": "/icon-192.png",
       "sizes": "192x192",
@@ -17,7 +27,7 @@
       "purpose": "any maskable"
     },
     {
-      "src": "/icon-512.png", 
+      "src": "/icon-512.png",
       "sizes": "512x512",
       "type": "image/png",
       "purpose": "any maskable"
@@ -26,17 +36,27 @@
   "shortcuts": [
     {
       "name": "Quick Convert",
-      "short_name": "Convert", 
+      "short_name": "Convert",
       "description": "Quickly convert currencies",
       "url": "/?tab=converter",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     },
     {
       "name": "Price Charts",
       "short_name": "Charts",
-      "description": "View exchange rate charts", 
+      "description": "View exchange rate charts",
       "url": "/?tab=charts",
-      "icons": [{ "src": "/icon-192.png", "sizes": "192x192" }]
+      "icons": [
+        {
+          "src": "/icon-192.png",
+          "sizes": "192x192"
+        }
+      ]
     }
   ]
 }

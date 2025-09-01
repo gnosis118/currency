@@ -1,14 +1,21 @@
 {
-  "generatedAt": "2025-09-01T00:27:57.112Z",
-  "totalPosts": 24,
+  "generatedAt": "2025-09-01T00:51:11.451Z",
+  "totalPosts": 25,
   "totalAssets": 80,
   "imageStatus": {
-    "working": 19,
+    "working": 20,
     "external": 5,
     "broken": 0,
     "missing": 0
   },
   "posts": [
+    {
+      "slug": "hidden-currency-conversion-fees-how-banks-disguise-charges",
+      "title": "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers",
+      "category": "Banking",
+      "image": "/src/assets/bank-exchange-fees.jpg",
+      "status": "working"
+    },
     {
       "slug": "ultimate-currency-conversion-guide-2025",
       "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
@@ -181,7 +188,6 @@
   "unusedAssets": [
     "alerts-hero.jpg",
     "alerts-hero.webp",
-    "bank-exchange-fees.jpg",
     "bank-vs-online-exchange.png",
     "bitcoin-investment-strategies.jpg",
     "bitcoin-trading-dashboard.jpg",
