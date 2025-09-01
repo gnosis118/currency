@@ -1,6 +1,52 @@
-# Robots.txt for Currency to Currency - Enhanced SEO & Security Configuration
-# Generated: January 2025
+# Robots.txt for Currency to Currency - Optimized for Google Indexing
+# Generated: August 2025
 # Contact: admin@currencytocurrency.app
+
+# Allow all search engines to crawl everything
+User-agent: *
+Allow: /
+
+# Specific directives for major search engines
+User-agent: Googlebot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Bingbot
+Allow: /
+Crawl-delay: 1
+
+User-agent: Slurp
+Allow: /
+Crawl-delay: 2
+
+# Block AI training bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Google-Extended
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+# Block malicious bots
+User-agent: SemrushBot-SA
+Disallow: /
+
+User-agent: AhrefsBot-Extended
+Disallow: /
+
+# Sitemap locations
+Sitemap: https://currencytocurrency.app/sitemap-index.xml
+Sitemap: https://currencytocurrency.app/sitemap.xml
+Sitemap: https://currencytocurrency.app/sitemap-blog.xml
+Sitemap: https://currencytocurrency.app/sitemap-images.xml
+
+# Host declaration
+Host: currencytocurrency.app
 
 # ===========================================
 # SEARCH ENGINE BOTS - ALLOW ALL CONTENT

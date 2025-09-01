@@ -107,6 +107,24 @@
   </url>
 
   <url>
+    <loc>https://currencytocurrency.app/about</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/about" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/about" />
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/help</loc>
+    <lastmod>2025-08-31</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.7</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/help" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/help" />
+  </url>
+
+  <url>
     <loc>https://currencytocurrency.app/blog/currency-exchange-freelancers-guide</loc>
     <lastmod>2025-08-11</lastmod>
     <changefreq>weekly</changefreq>

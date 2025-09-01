@@ -21,11 +21,19 @@
 [context.deploy-preview.environment]
   NODE_ENV = "development"
 
-# Redirect rules for SPA
+# Redirect rules for SPA with SEO optimization
 [[redirects]]
   from = "/*"
   to = "/index.html"
   status = 200
+  headers = {X-Robots-Tag = "index, follow"}
+
+# Ensure proper content types for SEO
+[[headers]]
+  for = "/*.html"
+  [headers.values]
+    Content-Type = "text/html; charset=utf-8"
+    X-Robots-Tag = "index, follow"
 
 # Admin redirect for Netlify CMS
 [[redirects]]

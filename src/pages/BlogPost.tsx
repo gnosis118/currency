@@ -41,6 +41,16 @@ const BlogPost = () => {
 
   const isHtmlPost = /^\s*</.test(currentPost.content || '');
 
+  // Filter out any schema data from the content to prevent it from being rendered as visible text
+  const cleanContent = (content: string) => {
+    // Remove any JSON-LD schema blocks that might be in the content
+    return content.replace(/<script[^>]*type="application\/ld\+json"[^>]*>[\s\S]*?<\/script>/gi, '')
+                  .replace(/schema:\s*\{[\s\S]*?\}/gi, '')
+                  .replace(/@context[\s\S]*?schema\.org[\s\S]*?}/gi, '');
+  };
+
+  const processedContent = cleanContent(currentPost.content || '');
+
   // Build BlogPosting schema
   const blogPosting = {
     "@type": "BlogPosting",
@@ -58,13 +68,13 @@ const BlogPost = () => {
     "mainEntityOfPage": { "@type": "WebPage", "@id": `https://currencytocurrency.app/blog/${slug}` },
     "url": `https://currencytocurrency.app/blog/${slug}`,
     "articleSection": currentPost.category || 'Guide',
-    "wordCount": (currentPost as any).wordCount || Math.max(1, (currentPost.content || '').split(/\s+/).length)
+    "wordCount": (currentPost as any).wordCount || Math.max(1, (processedContent || '').split(/\s+/).length)
   };
 
   // Build optional FAQPage schema if FAQs detected
   const buildFaq = () => {
     const qas: Array<{ q: string; a: string }> = [];
-    const content = currentPost.content || '';
+    const content = processedContent;
     if (isHtmlPost) {
       const faqBlock = content.match(/<h2[^>]*>\s*Frequently Asked Questions[\s\S]*?<\/h2>([\s\S]*)/i)?.[1] || content;
       const qMatches = [...faqBlock.matchAll(/<h4[^>]*>([\s\S]*?)<\/h4>\s*<p[^>]*>([\s\S]*?)<\/p>/gi)];
@@ -178,9 +188,9 @@ const BlogPost = () => {
 
         <div className="prose prose-lg max-w-none" data-sb-field-path="body">
           {isHtmlPost ? (
-            <div dangerouslySetInnerHTML={{ __html: currentPost.content }} />
+            <div dangerouslySetInnerHTML={{ __html: processedContent }} />
           ) : (
-            currentPost.content.split('\n\n').map((paragraph: string, index: number) => {
+            processedContent.split('\n\n').map((paragraph: string, index: number) => {
               if (paragraph.trim() === '<BrokerComparisonChart />') return <BrokerComparisonChart key={index} className="my-8" />;
               if (paragraph.startsWith('## ')) return <h2 key={index} className="text-2xl font-bold mt-8 mb-4 text-primary">{paragraph.substring(3)}</h2>;
               if (paragraph.startsWith('### ')) return <h3 key={index} className="text-xl font-semibold mt-6 mb-3">{paragraph.substring(4)}</h3>;
@@ -228,7 +238,7 @@ const BlogPost = () => {
             })
           )}
 
-          {currentPost.content.length < 500 && (
+          {processedContent.length < 500 && (
             <div className="bg-amber-50 border border-amber-200 rounded-lg p-6 mt-8">
               <p className="text-amber-800 mb-2">
                 <strong>📝 Content Preview</strong>

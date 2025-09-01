@@ -14,7 +14,7 @@
   "license": "MIT",
   "scripts": {
     "dev": "vite",
-    "build": "npm run prebuild && vite build && npm run postbuild",
+    "build": "npm run prebuild && vite build && npm run postbuild && npm run prerender",
     "build:safe": "node scripts/generate_blog_index.mjs && vite build && node scripts/presidential_sitemap_generator.cjs",
     "prebuild": "node scripts/generate_blog_index.mjs && npm run update-browserslist",
     "postbuild": "npm run generate:sitemap && npm run optimize:images",
@@ -33,7 +33,8 @@
     "create:favicon": "node scripts/create_favicon.cjs",
     "seo:audit": "node scripts/seo_optimization.cjs",
     "schema:add": "node scripts/add_schema_markup.cjs",
-    "deploy:preview": "npm run build && npm run preview"
+    "deploy:preview": "npm run build && npm run preview",
+    "prerender": "node prerender.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
