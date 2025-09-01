@@ -1,4 +1,3 @@
----
 title: "International Money Transfer Guide 2025: Complete Comparison of 15+ Services"
 description: "Comprehensive guide to international money transfers in 2025. Compare 15+ services, fees, exchange rates, and transfer speeds. Expert analysis and ratings to find the best option for your needs."
 metaDescription: "Comprehensive guide to international money transfers in 2025. Compare 15+ services, fees, exchange rates, and transfer speeds. Expert analysis and ratings to find the best option for your needs."
@@ -16,7 +15,79 @@ keywords: "international money transfer 2025, send money abroad, remittance serv
 wordCount: 4190
 readingTime: "21 min read"
 published: true
+---schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/international-money-transfer-guide-2025-complete-comparison-of-15-services"
+  },
+  "headline": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
+  "description": "Comprehensive guide to international money transfers in 2025. Compare 15+ services, fees, exchange rates, and transfer speeds. Expert analysis and ratings to find the best option for your needs.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://currencytocurrency.app/src/assets/international-money-transfer-2025.jpeg",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "url": "https://currencytocurrency.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "datePublished": "2025-08-11",
+  "dateModified": "2025-08-11",
+  "articleSection": "International Transfers",
+  "keywords": [],
+  "wordCount": 4190,
+  "timeRequired": "PT28M",
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "about": {
+    "@type": "Thing",
+    "name": "",
+    "description": ""
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://currencytocurrency.app"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://currencytocurrency.app/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
+        "item": "https://currencytocurrency.app/blog/international-money-transfer-guide-2025-complete-comparison-of-15-services"
+      }
+    ]
+  }
+}
 ---
+
 
 # International Money Transfer Guide 2025: Complete Comparison of 15+ Services
 

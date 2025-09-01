@@ -98,6 +98,7 @@ import blogPostBackground from './blog-post-background.jpg';
 // Blog Image Mapping - Maps blog post slugs to appropriate images
 export const blogImageMap: Record<string, string> = {
   // Featured articles
+  'forex-currency-pairs-complete-trading-guide-2025': forexRiskManagement,
   'hidden-currency-conversion-fees-how-banks-disguise-charges': bankExchangeFees,
 
   // Main guides
@@ -198,6 +199,7 @@ export {
   businessCurrencyExchange,
   aiForexTradingGuide,
   forexTradingPsychology,
+  forexRiskManagement,
   freelancerCurrencyExchange,
   internationalMoneyTransfer,
   currencyVolatilityDomino,

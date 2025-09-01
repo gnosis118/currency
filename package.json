@@ -31,6 +31,8 @@
     "test:lighthouse": "echo 'Lighthouse audit ready'",
     "test:images": "node scripts/test_blog_images.cjs",
     "create:favicon": "node scripts/create_favicon.cjs",
+    "seo:audit": "node scripts/seo_optimization.cjs",
+    "schema:add": "node scripts/add_schema_markup.cjs",
     "deploy:preview": "npm run build && npm run preview"
   },
   "dependencies": {

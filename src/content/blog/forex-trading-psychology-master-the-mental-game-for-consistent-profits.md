@@ -1,4 +1,3 @@
----
 title: "Forex Trading Psychology: Master the Mental Game for Consistent Profits"
 description: "Master forex trading psychology with proven strategies to control emotions, develop discipline, and achieve consistent profits. Complete guide to the mental aspects of successful forex trading."
 metaDescription: "Master forex trading psychology with proven strategies to control emotions, develop discipline, and achieve consistent profits. Complete guide to the mental aspects of successful forex trading."
@@ -16,7 +15,79 @@ keywords: "forex trading psychology 2025, trading mindset, emotional trading con
 wordCount: 4634
 readingTime: "24 min read"
 published: true
+---schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/forex-trading-psychology-master-the-mental-game-for-consistent-profits"
+  },
+  "headline": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
+  "description": "Master forex trading psychology with proven strategies to control emotions, develop discipline, and achieve consistent profits. Complete guide to the mental aspects of successful forex trading.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://currencytocurrency.app/src/assets/forex-trading-psychology-2025.jpg",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "url": "https://currencytocurrency.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "datePublished": "2025-08-11",
+  "dateModified": "2025-08-11",
+  "articleSection": "Trading Psychology",
+  "keywords": [],
+  "wordCount": 4634,
+  "timeRequired": "PT25M",
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "about": {
+    "@type": "Thing",
+    "name": "",
+    "description": ""
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://currencytocurrency.app"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://currencytocurrency.app/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
+        "item": "https://currencytocurrency.app/blog/forex-trading-psychology-master-the-mental-game-for-consistent-profits"
+      }
+    ]
+  }
+}
 ---
+
 
 # Forex Trading Psychology: Master the Mental Game for Consistent Profits
 

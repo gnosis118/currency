@@ -1,4 +1,3 @@
----
 title: "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money"
 description: "Comprehensive guide to Central Bank Digital Currencies (CBDCs) in 2025. Understand how CBDCs work, their impact on traditional banking, investment implications, and what they mean for your financial future."
 metaDescription: "Comprehensive guide to Central Bank Digital Currencies (CBDCs) in 2025. Understand how CBDCs work, their impact on traditional banking, investment implications, and what they mean for your financial future."
@@ -16,7 +15,79 @@ keywords: "CBDC 2025, central bank digital currency, digital money, cryptocurren
 wordCount: 4024
 readingTime: "21 min read"
 published: true
+---schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money"
+  },
+  "headline": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
+  "description": "Comprehensive guide to Central Bank Digital Currencies (CBDCs) in 2025. Understand how CBDCs work, their impact on traditional banking, investment implications, and what they mean for your financial future.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://currencytocurrency.app/src/assets/cbdc-guide-2025.jpg",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "url": "https://currencytocurrency.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "datePublished": "2025-08-11",
+  "dateModified": "2025-08-11",
+  "articleSection": "Digital Currency",
+  "keywords": [],
+  "wordCount": 4024,
+  "timeRequired": "PT24M",
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "about": {
+    "@type": "Thing",
+    "name": "",
+    "description": ""
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://currencytocurrency.app"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://currencytocurrency.app/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
+        "item": "https://currencytocurrency.app/blog/central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money"
+      }
+    ]
+  }
+}
 ---
+
 
 # Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money
 
