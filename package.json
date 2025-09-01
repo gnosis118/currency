@@ -29,6 +29,7 @@
     "update-browserslist": "npx --yes update-browserslist-db@latest",
     "optimize:images": "node scripts/fix_blog_images.cjs",
     "test:lighthouse": "echo 'Lighthouse audit ready'",
+    "test:images": "node scripts/test_blog_images.cjs",
     "deploy:preview": "npm run build && npm run preview"
   },
   "dependencies": {

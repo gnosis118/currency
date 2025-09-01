@@ -6,6 +6,7 @@ import { Calendar, Clock, TrendingUp } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
 import blogHero from '@/assets/blog-hero.jpg';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
+import { getBlogImage } from '@/assets/blog-images';
 
 const Blog = () => {
   // Build-time map of local assets so we can resolve '/src/assets/*' and filenames safely at runtime
@@ -30,9 +31,21 @@ const Blog = () => {
     }
   };
 
-  const getSafeImageSrc = (src?: string) => {
-    if (!src) return blogHero; // Use blog hero as fallback instead of placeholder
+  const getSafeImageSrc = (src?: string, slug?: string, category?: string) => {
+    // First try the reliable blog image mapping
+    if (slug) {
+      const mappedImage = getBlogImage(slug, category);
+      if (mappedImage !== blogHero) {
+        return mappedImage;
+      }
+    }
+
+    if (!src) return blogHero;
     let url = src.trim();
+
+    // Handle external URLs first (these should work)
+    if (url.startsWith('https://')) return url;
+    if (url.startsWith('http://')) return url.replace(/^http:\/\//, 'https://');
 
     // Handle different image path formats
     if (url.startsWith('/public/')) url = url.replace(/^\/public\//, '/');
@@ -45,8 +58,8 @@ const Blog = () => {
       if (resolvedUrl) {
         return resolvedUrl;
       } else {
-        console.warn(`Asset not found: ${basename}, falling back to blog hero`);
-        return blogHero;
+        console.warn(`Asset not found: ${basename}, using mapped image for ${slug}`);
+        return slug ? getBlogImage(slug, category) : blogHero;
       }
     }
     if (url.startsWith('src/assets/')) {
@@ -55,8 +68,8 @@ const Blog = () => {
       if (resolvedUrl) {
         return resolvedUrl;
       } else {
-        console.warn(`Asset not found: ${basename}, falling back to blog hero`);
-        return blogHero;
+        console.warn(`Asset not found: ${basename}, using mapped image for ${slug}`);
+        return slug ? getBlogImage(slug, category) : blogHero;
       }
     }
 
@@ -68,13 +81,10 @@ const Blog = () => {
 
     // Handle /images/ paths
     if (url.startsWith('images/')) url = '/' + url;
-    if (url.startsWith('/images/')) return url; // Already correct
+    if (url.startsWith('/images/')) return url;
 
-    // Handle external URLs
-    if (url.startsWith('http://')) url = url.replace(/^http:\/\//, 'https://');
-    if (url.startsWith('https://')) return url; // External URL
-
-    return url;
+    // Final fallback to mapped image
+    return slug ? getBlogImage(slug, category) : blogHero;
   };
 
   // Use ONLY the static JSON to avoid duplicates
@@ -193,14 +203,14 @@ const Blog = () => {
                   {posts.slice(0, 3).map((post) => (
                     <Card key={`featured-${post.slug}`} className="overflow-hidden group hover:shadow-lg transition-shadow border-0 md:border shadow-sm md:shadow-md">
                       <div className="aspect-video overflow-hidden">
-                        <img 
-                          src={getSafeImageSrc((post as any).image)} 
+                        <img
+                          src={getSafeImageSrc((post as any).image, post.slug, post.category)}
                           alt={post.title}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
                             img.onerror = null;
-                            img.src = blogHero; // Use blog hero as fallback
+                            img.src = getBlogImage(post.slug, post.category); // Use mapped image as fallback
                           }}
                         />
                       </div>
@@ -243,14 +253,14 @@ const Blog = () => {
                       {/* Featured Image */}
                       <div className="md:col-span-1">
                         <div className="aspect-video md:aspect-square overflow-hidden">
-                          <img 
-                            src={getSafeImageSrc((post as any).image)} 
+                          <img
+                            src={getSafeImageSrc((post as any).image, post.slug, post.category)}
                             alt={post.title}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             onError={(e) => {
                               const img = e.currentTarget as HTMLImageElement;
                               img.onerror = null;
-                              img.src = blogHero; // Use blog hero as fallback
+                              img.src = getBlogImage(post.slug, post.category); // Use mapped image as fallback
                             }}
                           />
                         </div>
