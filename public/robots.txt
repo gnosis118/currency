@@ -40,10 +40,7 @@ User-agent: AhrefsBot-Extended
 Disallow: /
 
 # Sitemap locations
-Sitemap: https://currencytocurrency.app/sitemap-index.xml
 Sitemap: https://currencytocurrency.app/sitemap.xml
-Sitemap: https://currencytocurrency.app/sitemap-blog.xml
-Sitemap: https://currencytocurrency.app/sitemap-images.xml
 
 # Host declaration
 Host: currencytocurrency.app
@@ -326,17 +323,8 @@ Allow: /fonts/
 # SITEMAPS & DISCOVERY
 # ===========================================
 
-# Main sitemap
+# Comprehensive sitemap with all content
 Sitemap: https://currencytocurrency.app/sitemap.xml
-
-# Blog sitemap
-Sitemap: https://currencytocurrency.app/sitemap-blog.xml
-
-# Image sitemap
-Sitemap: https://currencytocurrency.app/sitemap-images.xml
-
-# Sitemap index
-Sitemap: https://currencytocurrency.app/sitemap-index.xml
 
 # Host declaration for clarity
 Host: currencytocurrency.app
