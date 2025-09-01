@@ -77,7 +77,7 @@ import currencyArbitrageProfit from './currency-arbitrage-profit.jpg';
 // Banking & Financial Services
 import bankExchangeFees from './bank-exchange-fees.jpg';
 import bankVsOnlineExchange from './bank-vs-online-exchange.png';
-import wiseMoneyTransfer from './wise-money-transfer.jpg';
+import wiseMoney from './wise-money-transfer.jpg';
 import remitlyTransfer from './remitly-transfer.jpg';
 import travelexTravelMoney from './travelex-travel-money.jpg';
 import westernUnionGlobal from './western-union-global.jpg';
@@ -134,7 +134,7 @@ export const blogImageMap: Record<string, string> = {
   // Technology & apps
   '2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025': currencyComparison,
   'ultimate-guide-choosing-best-currency-converter-app-2025': currencyComparison,
-  'the-top-10-best-currency-converter-apps-in-2025': wiseMoneyTransfer,
+  'the-top-10-best-currency-converter-apps-in-2025': wiseMoney,
   'best-currency-converter-apps': currencyComparison,
   'how-to-use-currency-converter-apis-for-real-time-exchange-rates': financialTechnologyCircuit,
   
@@ -206,6 +206,6 @@ export {
   cbdcGuide,
   realtimeVsHistoricalRates,
   bankExchangeFees,
-  wiseMoneyTransfer,
+  wiseMoney,
   blogHero
 };
