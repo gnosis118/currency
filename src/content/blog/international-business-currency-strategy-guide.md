@@ -1150,6 +1150,4 @@ Effective international business currency strategy requires a comprehensive appr
 
 The companies that master currency risk management will gain significant competitive advantages through reduced earnings volatility, improved cash flow predictability, and enhanced strategic flexibility in global markets.
 
----
-
 *Ready to develop your currency strategy? Access our [business risk assessment tool](/business-risk-assessment) to quantify your exposure and identify optimization opportunities.*

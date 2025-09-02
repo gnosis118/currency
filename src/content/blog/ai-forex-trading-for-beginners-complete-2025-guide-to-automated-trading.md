@@ -384,8 +384,6 @@ Whether you choose a simple Expert Advisor, a copy trading platform, or a sophis
 
 The world of AI forex trading is full of possibilities. With the right knowledge and approach, you can be part of this exciting financial revolution. Good luck on your trading journey!
 
----
-
 *Disclaimer: Forex trading involves substantial risk and is not suitable for all investors. Past performance is not indicative of future results. Always consult with a qualified financial advisor before making investment decisions.*
 
 
