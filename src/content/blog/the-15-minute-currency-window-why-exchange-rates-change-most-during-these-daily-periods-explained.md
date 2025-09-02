@@ -202,3 +202,4 @@ Rapid shifts usually happen when new information suddenly hits the market and sh
 Traders react fast—they'll buy or sell currencies in a hurry, and that can send rates soaring or tumbling in minutes.
 
 If you want to dig deeper into how exchange rates bounce around during the day, check out [How Often Does Currency Exchange Rate Change Daily? - CGAA](https://www.cgaa.org/article/how-often-does-currency-exchange-rate-change).
+
