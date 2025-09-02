@@ -1,5 +1,47 @@
 [
   {
+    "title": "The 15-Minute Currency Window: Why Exchange Rates Change Most During These Daily Periods Explained",
+    "slug": "the-15-minute-currency-window-why-exchange-rates-change-most-during-these-daily-periods-explained",
+    "excerpt": "Discover why exchange rates swing the most during specific 15-minute daily windows. Learn about market overlaps, economic news timing, and how to leverage these volatile periods for better trading decisions.",
+    "publishDate": "2025-01-21",
+    "image": "/src/assets/realtime-vs-historical-rates.jpg",
+    "readTime": "12 min read",
+    "wordCount": 3200,
+    "category": "Analysis",
+    "featured": true,
+    "tags": [
+      "exchange rates",
+      "forex trading",
+      "market volatility",
+      "trading windows",
+      "currency analysis",
+      "intraday trading",
+      "market timing"
+    ],
+    "metaDescription": "Learn why exchange rates change most during specific 15-minute daily windows. Expert analysis of market overlaps, volatility patterns, and trading strategies for currency traders."
+  },
+  {
+    "title": "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: What Changes in 2025-2026",
+    "slug": "central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026",
+    "excerpt": "Comprehensive guide to CBDCs and how they'll transform your daily financial life in 2025-2026. Learn about digital currency implementation, privacy implications, and preparation strategies.",
+    "publishDate": "2025-01-21",
+    "image": "/src/assets/cbdc-complete-guide-2025.png",
+    "readTime": "25 min read",
+    "wordCount": 8500,
+    "category": "Digital Currency",
+    "featured": true,
+    "tags": [
+      "CBDC",
+      "digital currency",
+      "central bank",
+      "digital payments",
+      "financial technology",
+      "cryptocurrency",
+      "future of money"
+    ],
+    "metaDescription": "Complete guide to Central Bank Digital Currencies (CBDCs) and their impact on your wallet in 2025-2026. Learn about implementation timeline, privacy concerns, and preparation strategies."
+  },
+  {
     "title": "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy",
     "slug": "forex-currency-pairs-complete-trading-guide-2025",
     "excerpt": "Master forex currency pair trading with our comprehensive 2025 guide. Learn risk management, leverage strategies, broker selection, and psychology for major, minor, and exotic pairs.",
