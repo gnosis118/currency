@@ -41,6 +41,8 @@ Disallow: /
 
 # Sitemap locations
 Sitemap: https://currencytocurrency.app/sitemap.xml
+Sitemap: https://currencytocurrency.app/sitemap-index.xml
+Sitemap: https://currencytocurrency.app/sitemap-blog.xml
 
 # Host declaration
 Host: currencytocurrency.app
