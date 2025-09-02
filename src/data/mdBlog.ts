@@ -1,4 +1,5 @@
 // Lightweight frontmatter parser to avoid Node-only Buffer in the browser
+import { getBlogImage } from '@/assets/blog-images';
 
 export interface MarkdownBlogPost {
   title: string;
@@ -146,7 +147,7 @@ export function loadAllBlogPosts(): MarkdownBlogPost[] {
         wordCount,
         category: data.category || 'Currency',
         featured: Boolean(data.featured),
-        image: data.image || data.cover || (() => {
+        image: data.image || data.cover || getBlogImage(baseSlug, data.category) || (() => {
           const imgMatch = mainContent.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
           return imgMatch?.[1] || '/placeholder.svg';
         })(),
@@ -196,7 +197,7 @@ export function loadAllBlogPostsFallback(): Pick<MarkdownBlogPost, 'title'|'slug
         const para = raw.split(/\n\n+/).find(s => s.trim() && !s.startsWith('#')) || '';
         excerpt = para.replace(/\[(.*?)\]\((.*?)\)/g, '$1').trim().slice(0, 200);
       }
-      const image = (() => {
+      const image = getBlogImage(baseSlug) || (() => {
         const m = raw.match(/<img[^>]+src=["']([^"']+)["'][^>]*>/i);
         return m?.[1] || '/placeholder.svg';
       })();
