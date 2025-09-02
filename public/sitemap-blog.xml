@@ -649,4 +649,55 @@
     </news:news>
   </url>
 
+  <url>
+    <loc>https://currencytocurrency.app/blog/the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates</loc>
+    <lastmod>2025-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-01-21</news:publication_date>
+      <news:title>The Geopolitical Currency Map: How Elections and Trade Wars Move Exchange Rates</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-conversion-tax-traps-irs-rules-international-freelancers-miss</loc>
+    <lastmod>2025-01-21</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.9</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/currency-conversion-tax-traps-irs-rules-international-freelancers-miss" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/currency-conversion-tax-traps-irs-rules-international-freelancers-miss" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-01-21</news:publication_date>
+      <news:title>Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss</news:title>
+    </news:news>
+  </url>
+
+  <url>
+    <loc>https://currencytocurrency.app/blog/currency-safety-and-security-protecting-your-money-in-global-markets</loc>
+    <lastmod>2025-08-19</lastmod>
+    <changefreq>monthly</changefreq>
+    <priority>0.8</priority>
+    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/currency-safety-and-security-protecting-your-money-in-global-markets" />
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/currency-safety-and-security-protecting-your-money-in-global-markets" />
+    <news:news>
+      <news:publication>
+        <news:name>Currency to Currency</news:name>
+        <news:language>en</news:language>
+      </news:publication>
+      <news:publication_date>2025-08-19</news:publication_date>
+      <news:title>Currency Safety and Security: Protecting Your Money in Global Markets</news:title>
+    </news:news>
+  </url>
+
 </urlset>
