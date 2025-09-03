@@ -16,7 +16,25 @@ const CurrencyPair = () => {
   const { pair } = useParams();
   const { toast } = useToast();
   
-  const [fromCurrency, toCurrency] = pair?.split('-to-').map(c => c.toUpperCase()) || ['USD', 'EUR'];
+  // Handle both formats: "usd-to-eur" and "usd-eur"
+  const parseCurrencyPair = (pairString: string | undefined) => {
+    if (!pairString) return ['USD', 'EUR'];
+    
+    // Check for "to" format first
+    if (pairString.includes('-to-')) {
+      return pairString.split('-to-').map(c => c.toUpperCase());
+    }
+    
+    // Handle direct format like "usd-eur"
+    const parts = pairString.split('-');
+    if (parts.length >= 2) {
+      return [parts[0].toUpperCase(), parts[1].toUpperCase()];
+    }
+    
+    return ['USD', 'EUR'];
+  };
+  
+  const [fromCurrency, toCurrency] = parseCurrencyPair(pair);
   const [amount, setAmount] = useState('1');
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates>({});
   const [loading, setLoading] = useState(false);
@@ -89,7 +107,7 @@ const CurrencyPair = () => {
       <EnhancedSEOHead
         title={`${fromCurrency} to ${toCurrency} Converter - Live Exchange Rate | Currency to Currency`}
         description={`Convert ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)} with real-time exchange rates. Live currency conversion rates updated every few minutes for accurate results.`}
-        canonicalUrl={`https://currencytocurrency.app/convert/${pair?.toLowerCase()}`}
+        canonicalUrl={`https://currencytocurrency.app/${pair?.toLowerCase()}`}
         keywords={`${fromCurrency} to ${toCurrency}, ${fromCurrency}${toCurrency}, ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)}, currency converter, exchange rate, live rates`}
         structuredData={structuredData}
         pageType="product"

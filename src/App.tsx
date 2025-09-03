@@ -66,6 +66,28 @@ const App = () => {
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/convert" element={<Convert />} />
                 <Route path="/convert/:pair" element={<CurrencyPair />} />
+                
+                {/* Dedicated routes for major currency pairs */}
+                <Route path="/usd-eur" element={<CurrencyPair />} />
+                <Route path="/usd-gbp" element={<CurrencyPair />} />
+                <Route path="/usd-jpy" element={<CurrencyPair />} />
+                <Route path="/usd-cad" element={<CurrencyPair />} />
+                <Route path="/usd-aud" element={<CurrencyPair />} />
+                <Route path="/usd-chf" element={<CurrencyPair />} />
+                <Route path="/gbp-usd" element={<CurrencyPair />} />
+                <Route path="/eur-usd" element={<CurrencyPair />} />
+                <Route path="/eur-gbp" element={<CurrencyPair />} />
+                <Route path="/eur-jpy" element={<CurrencyPair />} />
+                <Route path="/jpy-usd" element={<CurrencyPair />} />
+                <Route path="/aud-usd" element={<CurrencyPair />} />
+                <Route path="/cad-usd" element={<CurrencyPair />} />
+                <Route path="/chf-usd" element={<CurrencyPair />} />
+                <Route path="/gbp-eur" element={<CurrencyPair />} />
+                <Route path="/gbp-jpy" element={<CurrencyPair />} />
+                <Route path="/aud-eur" element={<CurrencyPair />} />
+                <Route path="/cad-eur" element={<CurrencyPair />} />
+                <Route path="/chf-eur" element={<CurrencyPair />} />
+                <Route path="/jpy-eur" element={<CurrencyPair />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/admin" element={<Admin />} />

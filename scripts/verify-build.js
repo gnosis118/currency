@@ -68,8 +68,8 @@ function verifyBuildRequirements() {
     });
     
     // Check for Vite React plugin
-    if (!packageJson.dependencies?['@vitejs/plugin-react'] && 
-        !packageJson.devDependencies?['@vitejs/plugin-react']) {
+    if (!packageJson.dependencies?.['@vitejs/plugin-react'] && 
+        !packageJson.devDependencies?.['@vitejs/plugin-react']) {
       warnings.push('Missing @vitejs/plugin-react - may cause build issues');
     }
     

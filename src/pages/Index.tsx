@@ -8,6 +8,7 @@ import InternalLinking from '@/components/InternalLinking';
 import WebPOptimizedImage from '@/components/WebPOptimizedImage';
 import SocialShare from '@/components/SocialShare';
 import SocialFollow from '@/components/SocialFollow';
+import CurrencyPairLinks from '@/components/CurrencyPairLinks';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -438,35 +439,9 @@ const Index = () => {
           </div>
         </div>
 
-        {/* Popular Currency Pairs - Internal Linking */}
-        <div className="mb-6 md:mb-8 bg-card p-4 md:p-6 rounded-lg border">
-          <h2 className="text-xl md:text-2xl font-semibold mb-4 text-foreground">Popular Currency Conversions</h2>
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-2 md:gap-3">
-            <a href="/convert/usd-to-eur" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              USD to EUR
-            </a>
-            <a href="/convert/gbp-to-usd" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              GBP to USD
-            </a>
-            <a href="/convert/eur-to-gbp" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              EUR to GBP
-            </a>
-            <a href="/convert/usd-to-cad" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              USD to CAD
-            </a>
-            <a href="/convert/jpy-to-usd" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              JPY to USD
-            </a>
-            <a href="/convert/aud-to-usd" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              AUD to USD
-            </a>
-            <a href="/convert/usd-to-chf" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              USD to CHF
-            </a>
-            <a href="/convert/eur-to-jpy" className="text-primary hover:text-primary-hover transition-colors p-3 md:p-2 rounded border hover:border-primary text-center text-sm md:text-base min-h-11 flex items-center justify-center touch-manipulation">
-              EUR to JPY
-            </a>
-          </div>
+        {/* Popular Currency Pairs */}
+        <div className="mb-6 md:mb-8">
+          <CurrencyPairLinks />
         </div>
       </div>
 
