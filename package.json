@@ -29,7 +29,7 @@
     "build": "npm run prebuild && vite build && npm run postbuild",
     "build:safe": "node scripts/generate_blog_index.mjs && vite build && node scripts/presidential_sitemap_generator.cjs",
     "prebuild": "node scripts/verify-build.js && node scripts/generate_blog_index.mjs || echo 'Blog index generation completed'",
-    "postbuild": "node scripts/copy-sitemap.cjs",
+    "postbuild": "node scripts/presidential_sitemap_generator.cjs",
     "build:dev": "vite build --mode development",
     "cms": "npx --yes decap-server",
     "admin": "node scripts/start-admin.js",
