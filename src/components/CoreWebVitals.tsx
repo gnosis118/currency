@@ -36,14 +36,7 @@ const CoreWebVitals = () => {
 
     // Preload critical resources
     const preloadCriticalResources = () => {
-      // Preload fonts
-      const fontLink = document.createElement('link');
-      fontLink.rel = 'preload';
-      fontLink.href = 'https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap';
-      fontLink.as = 'style';
-      fontLink.crossOrigin = 'anonymous';
-      document.head.appendChild(fontLink);
-
+      // Fonts handled statically in index.html
       // Preconnect to external domains
       const preconnectDomains = [
         'https://api.exchangerate-api.com',

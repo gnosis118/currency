@@ -6,6 +6,8 @@ import CurrencyGuide from '@/components/CurrencyGuide';
 import SEOHead from '@/components/SEOHead';
 import InternalLinking from '@/components/InternalLinking';
 import WebPOptimizedImage from '@/components/WebPOptimizedImage';
+import SocialShare from '@/components/SocialShare';
+import SocialFollow from '@/components/SocialFollow';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -725,6 +727,21 @@ const Index = () => {
         {/* Internal Linking */}
         <div className="mt-12">
           <InternalLinking currentPage="home" className="bg-card p-6 rounded-lg border" />
+        </div>
+
+        {/* Social Media Section */}
+        <div className="mt-12 bg-card p-6 rounded-lg border">
+          <h2 className="text-2xl font-bold mb-6 text-foreground">Share & Follow</h2>
+          <div className="space-y-6">
+            <div>
+              <h3 className="text-lg font-semibold mb-3 text-foreground">Share This Tool</h3>
+              <SocialShare />
+            </div>
+            <div>
+              <h3 className="text-lg font-semibold mb-3 text-foreground">Stay Updated</h3>
+              <SocialFollow />
+            </div>
+          </div>
         </div>
 
         {/* Install Prompt */}

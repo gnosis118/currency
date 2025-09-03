@@ -18,6 +18,9 @@ class Settings(BaseSettings):
     # SendGrid Email
     SENDGRID_API_KEY: str = ""
     FROM_EMAIL: str = "alerts@currencytocurrency.app"
+    # SendGrid Event Webhook
+    SENDGRID_EVENT_SIGNING_KEY: str = ""  # for Signature Verification
+    SENDGRID_EVENT_OAUTH_TOKEN: str = ""   # optional, if using OAuth verification
 
     # Alert Monitoring
     ALERT_CHECK_INTERVAL: int = 300  # 5 minutes

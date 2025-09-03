@@ -35,19 +35,10 @@ const MobileOptimizer = () => {
       }
     };
 
-    // Font loading optimization
+    // Font loading is handled statically in index.html to reduce requests
     const optimizeFonts = () => {
-      const fontLink = document.querySelector('link[href*="fonts.googleapis.com"]') as HTMLLinkElement;
-      if (fontLink && !fontLink.getAttribute('data-optimized')) {
-        fontLink.setAttribute('data-optimized', 'true');
-        // Add font-display: swap via CSS if not already present
-        if (!document.getElementById('font-display-css')) {
-          const style = document.createElement('style');
-          style.id = 'font-display-css';
-          style.textContent = '@import url("https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap");';
-          document.head.appendChild(style);
-        }
-      }
+      // no-op
+    };
 
       // Preload critical fonts for mobile
       const preloadFont = (href: string, weight = '400') => {

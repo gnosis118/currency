@@ -6,9 +6,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     
     <!-- Primary Meta Tags -->
-    <title>Free Currency Converter - Live Exchange Rates | Currency to Currency</title>
-    <meta name="title" content="Free Currency Converter - Live Exchange Rates | Currency to Currency">
-    <meta name="description" content="Convert 150+ currencies instantly with live rates. Free real-time forex calculator with crypto support, charts & alerts. No registration required.">
+    <title>Currency Converter - Live Exchange Rates & Trading</title>
+    <meta name="title" content="Currency Converter - Live Exchange Rates & Trading">
+    <meta name="description" content="Convert 150+ currencies with live rates. Free real-time forex calculator with crypto support, charts & alerts. Professional currency trading tools.">
     <meta name="keywords" content="currency converter, exchange rates, live rates, cryptocurrency prices, currency conversion, foreign exchange, forex, bitcoin converter, real-time rates, USD to EUR, GBP to USD, currency calculator, money converter">
     <meta name="author" content="Currency to Currency">
     <meta name="robots" content="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1">
@@ -19,8 +19,8 @@
     <!-- Open Graph / Facebook -->
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://currencytocurrency.app/">
-    <meta property="og:title" content="Free Currency Converter - Live Exchange Rates | Currency to Currency">
-    <meta property="og:description" content="Convert 150+ currencies instantly with live rates. Free real-time forex calculator with crypto support, charts & alerts. No registration required.">
+    <meta property="og:title" content="Currency Converter - Live Exchange Rates & Trading">
+    <meta property="og:description" content="Convert 150+ currencies with live rates. Free real-time forex calculator with crypto support, charts & alerts. Professional currency trading tools.">
     <meta property="og:image" content="https://currencytocurrency.app/og-image.jpg">
     <meta property="og:site_name" content="Currency to Currency">
     <meta property="og:locale" content="en_US">
@@ -28,9 +28,18 @@
     <!-- Twitter -->
     <meta property="twitter:card" content="summary_large_image">
     <meta property="twitter:url" content="https://currencytocurrency.app/">
-    <meta property="twitter:title" content="Free Currency Converter - Live Exchange Rates | Currency to Currency">
-    <meta property="twitter:description" content="Convert 150+ currencies instantly with live rates. Free real-time forex calculator with crypto support, charts & alerts. No registration required.">
+    <meta property="twitter:title" content="Currency Converter - Live Exchange Rates & Trading">
+    <meta property="twitter:description" content="Convert 150+ currencies with live rates. Free real-time forex calculator with crypto support, charts & alerts. Professional currency trading tools.">
     <meta property="twitter:image" content="https://currencytocurrency.app/og-image.jpg">
+    <meta property="twitter:site" content="@currencytocurrency">
+    <meta property="twitter:creator" content="@currencytocurrency">
+    
+    <!-- Social Media Links -->
+    <meta property="og:see_also" content="https://facebook.com/currencytocurrency">
+    <meta property="og:see_also" content="https://twitter.com/currencytocurrency">
+    <meta property="og:see_also" content="https://linkedin.com/company/currencytocurrency">
+    <meta property="og:see_also" content="https://instagram.com/currencytocurrency">
+    <meta property="og:see_also" content="https://youtube.com/@currencytocurrency">
     
     <!-- Additional SEO Meta Tags -->
     <meta name="googlebot" content="index, follow">
@@ -170,10 +179,21 @@
     }
     </script>
     
+    <!-- Critical CSS -->
+    <link rel="preload" href="/critical.css" as="style" onload="this.onload=null;this.rel='stylesheet'">
+    <noscript><link rel="stylesheet" href="/critical.css"></noscript>
+
     <!-- Preload Critical Resources -->
     <link rel="preload" href="/src/main.tsx" as="script">
+    <link rel="preload" href="/src/index.css" as="style">
+    <link rel="preload" href="/src/App.css" as="style">
     <link rel="dns-prefetch" href="//api.exchangerate-api.com">
     <link rel="dns-prefetch" href="//api.coingecko.com">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="dns-prefetch" href="//googletagmanager.com">
+    <link rel="dns-prefetch" href="//identity.netlify.com">
     
     <!-- Theme Color -->
     <meta name="theme-color" content="#2563eb">
@@ -189,12 +209,12 @@
     <div id="root">
       <!-- Fallback content for search engines -->
       <header>
-        <h1>Currency Converter</h1>
-        <p>Get real-time exchange rates and convert currencies instantly</p>
+        <h1>Currency Converter - Live Exchange Rates & Trading</h1>
+        <p>Get real-time exchange rates and convert currencies instantly with professional trading tools</p>
       </header>
       <main>
         <section>
-          <h2>Convert 150+ Currencies</h2>
+          <h2>Currency Rates & Trading Tools</h2>
           <p>Get instant currency conversions, track historical exchange rates, set price alerts, and access travel money tips. Our free currency converter provides accurate real-time data for over 150 fiat currencies and 100+ cryptocurrencies.</p>
           <ul>
             <li>Real-time rates</li>
@@ -215,6 +235,6 @@
         </section>
       </main>
     </div>
-    <script type="module" src="/src/main.tsx"></script>
+    <script type="module" src="/src/main.tsx" async></script>
   </body>
 </html>

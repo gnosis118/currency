@@ -2,6 +2,10 @@
 [build]
   publish = "dist"
   command = "npm run build"
+# Functions directory for serverless handlers
+[functions]
+  directory = "netlify/functions"
+
 
 [build.environment]
   NODE_VERSION = "18.19.0"

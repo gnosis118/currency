@@ -171,3 +171,4 @@ Based on the pattern (sharp drop on August 9th), here are the most probable caus
 ---
 
 **START TODAY**: Go to Google Search Console and check for manual actions, Core Web Vitals issues, and coverage problems. This will tell you exactly what caused your traffic drop.
+

@@ -185,3 +185,4 @@
 ---
 
 **Next Steps**: Start with the diagnostic actions in GSC to identify the specific cause of the traffic drop, then implement the appropriate recovery strategy.
+

@@ -27,7 +27,9 @@ import {
   BarChart3
 } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import WebPOptimizedImage from '@/components/WebPOptimizedImage';
 import alertsHero from '@/assets/alerts-hero.jpg';
+import alertsHeroWebP from '@/assets/alerts-hero.webp';
 
 interface Alert {
   id: string;
@@ -199,14 +201,16 @@ const Alerts = () => {
       
       {/* Hero Section */}
       <div className="relative h-80 md:h-96 overflow-hidden">
-        <img 
-          src={alertsHero} 
-          alt="Advanced smart currency rate alert system with multiple notification methods and professional monitoring tools" 
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          width="1200"
-          height="320"
+        <WebPOptimizedImage
+          src={alertsHero}
+          webpSrc={alertsHeroWebP}
+          alt="Advanced smart currency rate alert system with multiple notification methods and professional monitoring tools"
+          width={1200}
+          height={320}
+          className="w-full h-full"
+          loading="eager"
+          priority={true}
+          objectFit="cover"
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-4xl">

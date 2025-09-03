@@ -1,8 +1,12 @@
 from __future__ import annotations
-from fastapi import APIRouter, Depends, Header, HTTPException
+from fastapi import APIRouter, Depends, Header, HTTPException, Request
+from fastapi.responses import JSONResponse
 from pydantic import BaseModel
 from sqlalchemy.orm import Session
 from datetime import date
+import hmac
+import hashlib
+import base64
 
 from backend.db import get_db
 from backend.settings import get_settings
@@ -96,4 +100,45 @@ def keys_rotate(body: RotateKeyBody, x_admin_token: str | None = Header(default=
     new_key = issue_key(db, body.email, body.label)
     return {"api_key": new_key}
 
+
+@router.post("/sendgrid/events")
+async def sendgrid_events(request: Request):
+    """SendGrid Event Webhook receiver with optional signature verification.
+    Configure POST https://<api-domain>/admin/sendgrid/events
+    """
+    settings = get_settings()
+
+    raw_body = await request.body()
+    signature = request.headers.get("X-Twilio-Email-Event-Webhook-Signature")
+    timestamp = request.headers.get("X-Twilio-Email-Event-Webhook-Timestamp")
+
+    if settings.SENDGRID_EVENT_SIGNING_KEY:
+        if not signature or not timestamp:
+            return JSONResponse({"detail": "Missing signature headers"}, status_code=400)
+        try:
+            signed_payload = timestamp.encode() + raw_body
+            computed = hmac.new(
+                key=base64.b64decode(settings.SENDGRID_EVENT_SIGNING_KEY),
+                msg=signed_payload,
+                digestmod=hashlib.sha256,
+            ).digest()
+            expected_sig = base64.b64encode(computed).decode()
+            if not hmac.compare_digest(expected_sig, signature):
+                return JSONResponse({"detail": "Invalid signature"}, status_code=401)
+        except Exception:
+            return JSONResponse({"detail": "Signature verification error"}, status_code=400)
+
+    try:
+        events = await request.json()
+        if not isinstance(events, list):
+            return JSONResponse({"detail": "Expected a JSON array of events"}, status_code=400)
+    except Exception:
+        return JSONResponse({"detail": "Invalid JSON"}, status_code=400)
+
+    counts: dict[str, int] = {}
+    for e in events:
+        event_type = (e.get("event") or e.get("event_type") or "unknown").lower()
+        counts[event_type] = counts.get(event_type, 0) + 1
+
+    return {"received": len(events), "by_type": counts}
 

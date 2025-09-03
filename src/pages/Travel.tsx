@@ -31,7 +31,9 @@ import {
   Settings
 } from 'lucide-react';
 import SEOHead from '@/components/SEOHead';
+import WebPOptimizedImage from '@/components/WebPOptimizedImage';
 import travelHero from '@/assets/travel-hero.jpg';
+import travelHeroWebP from '@/assets/travel-hero.webp';
 
 interface Expense {
   id: string;
@@ -240,14 +242,16 @@ const Travel = () => {
       
       {/* Hero Section */}
       <div className="relative h-80 md:h-96 overflow-hidden">
-        <img 
-          src={travelHero} 
-          alt="Advanced travel money calculator with budget planning tools and multi-currency support for international travel financial management" 
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          width="1200"
-          height="320"
+        <WebPOptimizedImage
+          src={travelHero}
+          webpSrc={travelHeroWebP}
+          alt="Advanced travel money calculator with budget planning tools and multi-currency support for international travel financial management"
+          width={1200}
+          height={320}
+          className="w-full h-full"
+          loading="eager"
+          priority={true}
+          objectFit="cover"
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-4xl">

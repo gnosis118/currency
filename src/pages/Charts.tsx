@@ -23,7 +23,9 @@ import {
 } from 'lucide-react';
 import { LineChart, Line, AreaChart, Area, BarChart, Bar, XAxis, YAxis, CartesianGrid, Tooltip, ResponsiveContainer, ComposedChart } from 'recharts';
 import SEOHead from '@/components/SEOHead';
+import WebPOptimizedImage from '@/components/WebPOptimizedImage';
 import chartsHero from '@/assets/charts-hero.jpg';
+import chartsHeroWebP from '@/assets/charts-hero.webp';
 
 interface ChartData {
   date: string;
@@ -265,14 +267,16 @@ const Charts = () => {
       
       {/* Hero Section */}
       <div className="relative h-80 md:h-96 overflow-hidden">
-        <img 
-          src={chartsHero} 
-          alt="Advanced interactive historical currency exchange rate charts with technical analysis and professional trading tools" 
-          className="w-full h-full object-cover"
-          loading="lazy"
-          decoding="async"
-          width="1200"
-          height="320"
+        <WebPOptimizedImage
+          src={chartsHero}
+          webpSrc={chartsHeroWebP}
+          alt="Advanced interactive historical currency exchange rate charts with technical analysis and professional trading tools"
+          width={1200}
+          height={320}
+          className="w-full h-full"
+          loading="eager"
+          priority={true}
+          objectFit="cover"
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4 max-w-4xl">
@@ -377,9 +381,13 @@ const Charts = () => {
                 <Select value={chartType} onValueChange={(value) => {
                   setChartType(value as any);
                   // Trigger a small refresh when changing chart type
-                  setTimeout(() => {
-                    const newData = generateChartData(selectedPair, timeframe);
-                    setChartData(newData);
+                  setTimeout(async () => {
+                    try {
+                      const newData = await generateChartData(selectedPair, timeframe);
+                      setChartData(newData);
+                    } catch (e) {
+                      console.error('Failed to refresh chart data after type change:', e);
+                    }
                   }, 100);
                 }}>
                   <SelectTrigger>
