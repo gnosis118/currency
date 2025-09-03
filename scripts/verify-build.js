@@ -5,8 +5,8 @@
  * Verifies that all required files and dependencies are present before building
  */
 
-const fs = require('fs');
-const path = require('path');
+import fs from 'fs';
+import path from 'path';
 
 function verifyBuildRequirements() {
   console.log('🔍 VERIFYING BUILD REQUIREMENTS');
@@ -180,8 +180,8 @@ function main() {
 }
 
 // Execute if run directly
-if (require.main === module) {
+if (import.meta.url === `file://${process.argv[1]}`) {
   main();
 }
 
-module.exports = { verifyBuildRequirements, checkEnvironment, checkResources };
+export { verifyBuildRequirements, checkEnvironment, checkResources };
