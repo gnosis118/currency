@@ -88,6 +88,8 @@ const App = () => {
                 <Route path="/cad-eur" element={<CurrencyPair />} />
                 <Route path="/chf-eur" element={<CurrencyPair />} />
                 <Route path="/jpy-eur" element={<CurrencyPair />} />
+                <Route path="/nzd-usd" element={<CurrencyPair />} />
+                <Route path="/sek-usd" element={<CurrencyPair />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/admin" element={<Admin />} />

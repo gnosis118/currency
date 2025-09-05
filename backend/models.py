@@ -61,3 +61,21 @@ class UsageMonthly(Base):
     __table_args__ = (UniqueConstraint('user_id', 'month', name='uq_usage_monthly_user_month'),)
 
 
+class RateAlert(Base):
+    __tablename__ = "rate_alerts"
+
+    id = Column(String, primary_key=True, index=True)  # UUID
+    user_id = Column(String, nullable=False, index=True)  # UUID from auth.users
+    from_currency = Column(String, nullable=False)
+    to_currency = Column(String, nullable=False)
+    target_rate = Column(String, nullable=False)  # DECIMAL as string for precision
+    condition = Column(String, nullable=False)  # 'above' or 'below'
+    email = Column(String, nullable=False)
+    is_active = Column(Boolean, default=True, nullable=False)
+    last_triggered_at = Column(DateTime, nullable=True)
+    last_triggered_rate = Column(String, nullable=True)  # DECIMAL as string
+    trigger_count = Column(Integer, default=0, nullable=False)
+    created_at = Column(DateTime, default=datetime.utcnow, nullable=False)
+    updated_at = Column(DateTime, default=datetime.utcnow, onupdate=datetime.utcnow, nullable=False)
+
+

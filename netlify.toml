@@ -26,7 +26,89 @@
 [context.deploy-preview.environment]
   NODE_ENV = "development"
 
-# Redirect rules for SPA with SEO optimization
+# Specific redirects for currency pairs (old format to new format)
+[[redirects]]
+  from = "/usd-to-eur"
+  to = "/usd-eur"
+  status = 301
+  headers = {X-Robots-Tag = "index, follow"}
+
+[[redirects]]
+  from = "/usd-to-gbp"
+  to = "/usd-gbp"
+  status = 301
+
+[[redirects]]
+  from = "/usd-to-jpy"
+  to = "/usd-jpy"
+  status = 301
+
+[[redirects]]
+  from = "/usd-to-cad"
+  to = "/usd-cad"
+  status = 301
+
+[[redirects]]
+  from = "/usd-to-aud"
+  to = "/usd-aud"
+  status = 301
+
+[[redirects]]
+  from = "/usd-to-chf"
+  to = "/usd-chf"
+  status = 301
+
+[[redirects]]
+  from = "/gbp-to-usd"
+  to = "/gbp-usd"
+  status = 301
+
+[[redirects]]
+  from = "/eur-to-usd"
+  to = "/eur-usd"
+  status = 301
+
+[[redirects]]
+  from = "/eur-to-gbp"
+  to = "/eur-gbp"
+  status = 301
+
+[[redirects]]
+  from = "/eur-to-jpy"
+  to = "/eur-jpy"
+  status = 301
+
+[[redirects]]
+  from = "/jpy-to-usd"
+  to = "/jpy-usd"
+  status = 301
+
+[[redirects]]
+  from = "/aud-to-usd"
+  to = "/aud-usd"
+  status = 301
+
+[[redirects]]
+  from = "/cad-to-usd"
+  to = "/cad-usd"
+  status = 301
+
+[[redirects]]
+  from = "/chf-to-usd"
+  to = "/chf-usd"
+  status = 301
+
+[[redirects]]
+  from = "/nzd-to-usd"
+  to = "/nzd-usd"
+  status = 301
+
+[[redirects]]
+  from = "/sek-to-usd"
+  to = "/sek-usd"
+  status = 301
+
+# Catch-all redirect for SPA (must be last)
 [[redirects]]
   from = "/*"
   to = "/index.html"

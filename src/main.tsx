@@ -3,6 +3,7 @@ import * as ReactDOM from 'react-dom/client';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import { HelmetProvider } from 'react-helmet-async';
 import { TooltipProvider } from '@/components/ui/tooltip';
+import { Toaster } from '@/components/ui/toaster';
 import App from './App';
 import "./index.css";
 
@@ -40,6 +41,7 @@ ReactDOM.createRoot(rootEl).render(
       <QueryClientProvider client={queryClient}>
         <TooltipProvider>
           <App />
+          <Toaster />
         </TooltipProvider>
       </QueryClientProvider>
     </HelmetProvider>

@@ -4,10 +4,14 @@ from typing import List, Optional
 from datetime import datetime
 import asyncio
 import logging
+import uuid
 
 from ..alert_monitor import alert_monitor
 from ..email_service import email_service
 from ..settings import get_settings
+from ..db import get_db
+from ..models import RateAlert
+from sqlalchemy.orm import Session
 
 logger = logging.getLogger(__name__)
 
@@ -26,6 +30,36 @@ class AlertTestRequest(BaseModel):
 class WelcomeEmailRequest(BaseModel):
     email: EmailStr
     user_name: Optional[str] = None
+
+class CreateAlertRequest(BaseModel):
+    from_currency: str
+    to_currency: str
+    target_rate: float
+    condition: str
+    email: EmailStr
+
+class UpdateAlertRequest(BaseModel):
+    target_rate: Optional[float] = None
+    condition: Optional[str] = None
+    is_active: Optional[bool] = None
+
+class AlertResponse(BaseModel):
+    id: str
+    user_id: str
+    from_currency: str
+    to_currency: str
+    target_rate: str
+    condition: str
+    email: str
+    is_active: bool
+    last_triggered_at: Optional[datetime]
+    last_triggered_rate: Optional[str]
+    trigger_count: int
+    created_at: datetime
+    updated_at: datetime
+
+    class Config:
+        from_attributes = True
 
 @router.post("/check")
 async def trigger_alert_check(
@@ -186,3 +220,139 @@ async def health_check():
         "service": "alerts",
         "timestamp": datetime.now().isoformat()
     }
+
+# CRUD endpoints for alerts
+@router.get("/", response_model=List[AlertResponse])
+async def get_alerts(
+    user_id: str,
+    db: Session = Depends(get_db)
+):
+    """Get all alerts for a user"""
+    try:
+        alerts = db.query(RateAlert).filter(RateAlert.user_id == user_id).all()
+        return alerts
+    except Exception as e:
+        logger.error(f"Error fetching alerts: {str(e)}")
+        raise HTTPException(status_code=500, detail="Failed to fetch alerts")
+
+@router.post("/", response_model=AlertResponse)
+async def create_alert(
+    request: CreateAlertRequest,
+    user_id: str,
+    db: Session = Depends(get_db)
+):
+    """Create a new alert"""
+    try:
+        alert = RateAlert(
+            id=str(uuid.uuid4()),
+            user_id=user_id,
+            from_currency=request.from_currency.upper(),
+            to_currency=request.to_currency.upper(),
+            target_rate=str(request.target_rate),
+            condition=request.condition,
+            email=request.email
+        )
+        
+        db.add(alert)
+        db.commit()
+        db.refresh(alert)
+        
+        return alert
+    except Exception as e:
+        logger.error(f"Error creating alert: {str(e)}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Failed to create alert")
+
+@router.put("/{alert_id}", response_model=AlertResponse)
+async def update_alert(
+    alert_id: str,
+    request: UpdateAlertRequest,
+    user_id: str,
+    db: Session = Depends(get_db)
+):
+    """Update an existing alert"""
+    try:
+        alert = db.query(RateAlert).filter(
+            RateAlert.id == alert_id,
+            RateAlert.user_id == user_id
+        ).first()
+        
+        if not alert:
+            raise HTTPException(status_code=404, detail="Alert not found")
+        
+        if request.target_rate is not None:
+            alert.target_rate = str(request.target_rate)
+        if request.condition is not None:
+            alert.condition = request.condition
+        if request.is_active is not None:
+            alert.is_active = request.is_active
+        
+        alert.updated_at = datetime.utcnow()
+        
+        db.commit()
+        db.refresh(alert)
+        
+        return alert
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error updating alert: {str(e)}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Failed to update alert")
+
+@router.delete("/{alert_id}")
+async def delete_alert(
+    alert_id: str,
+    user_id: str,
+    db: Session = Depends(get_db)
+):
+    """Delete an alert"""
+    try:
+        alert = db.query(RateAlert).filter(
+            RateAlert.id == alert_id,
+            RateAlert.user_id == user_id
+        ).first()
+        
+        if not alert:
+            raise HTTPException(status_code=404, detail="Alert not found")
+        
+        db.delete(alert)
+        db.commit()
+        
+        return {"message": "Alert deleted successfully"}
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error deleting alert: {str(e)}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Failed to delete alert")
+
+@router.patch("/{alert_id}/toggle")
+async def toggle_alert(
+    alert_id: str,
+    user_id: str,
+    db: Session = Depends(get_db)
+):
+    """Toggle alert active status"""
+    try:
+        alert = db.query(RateAlert).filter(
+            RateAlert.id == alert_id,
+            RateAlert.user_id == user_id
+        ).first()
+        
+        if not alert:
+            raise HTTPException(status_code=404, detail="Alert not found")
+        
+        alert.is_active = not alert.is_active
+        alert.updated_at = datetime.utcnow()
+        
+        db.commit()
+        db.refresh(alert)
+        
+        return AlertResponse.from_orm(alert)
+    except HTTPException:
+        raise
+    except Exception as e:
+        logger.error(f"Error toggling alert: {str(e)}")
+        db.rollback()
+        raise HTTPException(status_code=500, detail="Failed to toggle alert")

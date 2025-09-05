@@ -74,31 +74,46 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
   };
 
   const signUp = async (email: string, password: string) => {
+    console.log('Starting signup process', { email, password });
     setIsSigningUp(true);
     const redirectUrl = `${window.location.origin}/`;
+    console.log('Redirect URL:', redirectUrl);
     
-    const { error } = await supabase.auth.signUp({
-      email,
-      password,
-      options: {
-        emailRedirectTo: redirectUrl
-      }
-    });
+    try {
+      const { data, error } = await supabase.auth.signUp({
+        email,
+        password,
+        options: {
+          emailRedirectTo: redirectUrl
+        }
+      });
+      
+      console.log('Supabase response:', { data, error });
 
-    if (error) {
+      if (error) {
+        console.error('Signup error:', error);
+        toast({
+          title: "Sign Up Failed",
+          description: error.message,
+          variant: "destructive"
+        });
+      } else {
+        console.log('Signup successful');
+        toast({
+          title: "Account Created!",
+          description: "Check your email to confirm your account.",
+        });
+        setSignUpEmail('');
+        setSignUpPassword('');
+        setConfirmPassword('');
+      }
+    } catch (err) {
+      console.error('Unexpected error during signup:', err);
       toast({
         title: "Sign Up Failed",
-        description: error.message,
+        description: "An unexpected error occurred. Please try again.",
         variant: "destructive"
       });
-    } else {
-      toast({
-        title: "Account Created!",
-        description: "Check your email to confirm your account.",
-      });
-      setSignUpEmail('');
-      setSignUpPassword('');
-      setConfirmPassword('');
     }
     setIsSigningUp(false);
   };
@@ -134,7 +149,10 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
+    console.log('Sign up form submitted', { signUpEmail, signUpPassword, confirmPassword });
+    
     if (!signUpEmail || !signUpPassword || !confirmPassword) {
+      console.log('Missing information');
       toast({
         title: "Missing Information",
         description: "Please fill in all fields.",
@@ -143,6 +161,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
       return;
     }
     if (signUpPassword !== confirmPassword) {
+      console.log('Password mismatch');
       toast({
         title: "Password Mismatch",
         description: "Passwords do not match.",
@@ -151,6 +170,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
       return;
     }
     if (signUpPassword.length < 6) {
+      console.log('Password too short');
       toast({
         title: "Weak Password",
         description: "Password must be at least 6 characters long.",
@@ -158,6 +178,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
       });
       return;
     }
+    console.log('Calling signUp function');
     signUp(signUpEmail, signUpPassword);
   };
 

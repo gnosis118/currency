@@ -46,7 +46,7 @@ const Auth = () => {
         structuredData={structuredData}
         pageType="website"
       />
-      <AuthGuard>
+      <AuthGuard fallback={null}>
         {() => <div></div>}
       </AuthGuard>
     </div>
