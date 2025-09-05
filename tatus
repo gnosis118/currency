@@ -1,0 +1,24 @@
+[33mcommit ce33e434d5baffe882dddfb7e7b8e3bacdd251c1[m[33m ([m[1;36mHEAD[m[33m -> [m[1;32mmain[m[33m)[m
+Author: gnosis118 <129726524+gnosis118@users.noreply.github.com>
+Date:   Fri Sep 5 00:35:15 2025 -0700
+
+    b
+    
+    b
+
+ALERTS_SYSTEM_SUMMARY.md
+backend/models.py
+backend/routers/alerts.py
+index.html
+netlify.toml
+public/404.html
+public/favicon-32x32.png
+public/favicon.svg
+public/robots.txt
+src/App.tsx
+src/components/AuthGuard.tsx
+src/main.tsx
+src/pages/Alerts.tsx
+src/pages/Auth.tsx
+src/services/alertsService.ts
+test_alerts_system.py
