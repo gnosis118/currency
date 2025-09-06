@@ -119,7 +119,7 @@ const Header = () => {
               }`}
             >
               <TrendingUp className="h-4 w-4" />
-              Brokers
+              Best Brokers
             </Link>
 
             <Link 
@@ -248,7 +248,7 @@ const Header = () => {
                     }`}
                   >
                     <TrendingUp className="h-5 w-5" />
-                    Brokers
+                    Best Brokers
                   </Link>
 
                   <Link 

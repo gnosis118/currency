@@ -624,13 +624,301 @@ const Brokers = () => {
         </CardContent>
       </Card>
 
-      {/* Disclaimer */}
-      <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
-        <p className="text-sm text-yellow-800">
-          <strong>Risk Warning:</strong> Trading forex involves substantial risk and may not be suitable for all investors. 
-          Past performance is not indicative of future results. Please ensure you fully understand the risks involved 
-          and seek independent advice if necessary.
-        </p>
+      {/* Comprehensive Forex Brokers Guide */}
+      <div className="mt-16">
+        <div className="text-center mb-12">
+          <h2 className="text-3xl font-bold mb-4">Best Forex Brokers for 2025: Top Platforms, Fees & Features</h2>
+          <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
+            Picking the right forex broker can really change your trading outcome. With so many platforms fighting for your attention in 2025, 
+            finding one that's actually reliable and fairly priced feels trickier than ever.
+          </p>
+        </div>
+
+        {/* Hero Image */}
+        <div className="mb-12">
+          <img 
+            src="https://koala.sh/api/image/v2-10miel-zhpw6.jpg?width=1216&height=832&dream" 
+            alt="Business professionals analyzing forex charts on multiple monitors in a modern office with a city skyline visible through large windows."
+            className="w-full h-auto rounded-lg shadow-lg"
+          />
+        </div>
+
+        {/* Key Takeaway */}
+        <Card className="mb-12 border-blue-200 bg-blue-50">
+          <CardContent className="p-6">
+            <div className="flex items-start gap-4">
+              <div className="w-8 h-8 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-1">
+                <Award className="h-4 w-4 text-white" />
+              </div>
+              <div>
+                <h3 className="font-semibold text-lg mb-2">IG stands out as the best overall forex broker for 2025</h3>
+                <p className="text-muted-foreground">
+                  Offering excellent trading platforms, comprehensive research tools, and regulation in eight major jurisdictions. 
+                  Interactive Brokers grabs second place with the widest market range and competitive pricing. 
+                  Saxo lands in the top three for its outstanding technology across desktop and mobile.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Key Takeaways */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <CheckCircle className="h-5 w-5 text-green-600" />
+              Key Takeaways
+            </CardTitle>
+          </CardHeader>
+          <CardContent>
+            <ul className="space-y-3">
+              <li className="flex items-start gap-3">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-1 flex-shrink-0" />
+                <span>IG leads the pack for 2025 with strong regulation, solid platforms, and a ton of educational resources.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-1 flex-shrink-0" />
+                <span>The best brokers keep pricing competitive, execution reliable, and offer thousands of tradeable instruments beyond just forex pairs.</span>
+              </li>
+              <li className="flex items-start gap-3">
+                <CheckCircle className="h-4 w-4 text-green-600 mt-1 flex-shrink-0" />
+                <span>Proper regulation and financial backing matter a lot for safety and reliability—don't skip checking those.</span>
+              </li>
+            </ul>
+          </CardContent>
+        </Card>
+
+        {/* Best Forex Brokers 2025 Section */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Best Forex Brokers for 2025</h2>
+          <img 
+            src="https://koala.sh/api/image/v2-10mif7-qy50d.jpg?width=1216&height=832&dream" 
+            alt="A business professional analyzing forex charts on multiple monitors in a modern office with a city skyline view."
+            className="w-full h-auto rounded-lg shadow-lg mb-6"
+          />
+          <p className="text-muted-foreground mb-6">
+            The 2025 forex scene has a few brokers that really shine in different ways. IC Markets and Pepperstone top the list for execution speed and tight spreads.
+          </p>
+        </div>
+
+        {/* Top Overall Brokers */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle>Top Overall Brokers</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div className="border-l-4 border-blue-500 pl-4">
+                <h4 className="font-semibold text-lg mb-2">IC Markets</h4>
+                <p className="text-muted-foreground mb-2">
+                  Keeps showing up among the best for its tight spreads, quick execution, and multiple account types. 
+                  You get MetaTrader 4, MetaTrader 5, and cTrader, with spreads from 0.0 pips on major currency pairs.
+                </p>
+              </div>
+              <div className="border-l-4 border-green-500 pl-4">
+                <h4 className="font-semibold text-lg mb-2">Pepperstone</h4>
+                <p className="text-muted-foreground mb-2">
+                  Offers institutional-grade execution speeds—usually under 30 milliseconds—and competitive pricing on over 100 currency pairs. 
+                  Plus, you can plug right into TradingView if that's your thing.
+                </p>
+              </div>
+              <div className="border-l-4 border-purple-500 pl-4">
+                <h4 className="font-semibold text-lg mb-2">OANDA</h4>
+                <p className="text-muted-foreground mb-2">
+                  Stands out for its research tools and educational resources. Fractional pip pricing and flexible position sizes 
+                  make it friendly for both new and advanced traders.
+                </p>
+              </div>
+              <div className="border-l-4 border-orange-500 pl-4">
+                <h4 className="font-semibold text-lg mb-2">IG Group</h4>
+                <p className="text-muted-foreground mb-2">
+                  Gives you access to over 80 currency markets. Their proprietary platform comes packed with advanced charting 
+                  and risk management tools that serious traders appreciate.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Trading Platforms Section */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Trading Platforms and Technology</h2>
+          <div className="mb-6">
+            <iframe 
+              style={{aspectRatio: "16 / 9", width: "100%"}} 
+              src="https://www.youtube.com/embed/it-kg2BfRCo" 
+              title="Trading Platforms Video" 
+              frameBorder="0" 
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+              allowFullScreen
+              className="rounded-lg"
+            ></iframe>
+          </div>
+          <p className="text-muted-foreground mb-6">
+            Your trading platform can really make or break your results. These days, brokers offer everything from classic MetaTrader to slick proprietary systems with AI features.
+          </p>
+        </div>
+
+        {/* MetaTrader Section */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle>MetaTrader 4 (MT4) and MetaTrader 5 (MT5)</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-4">
+              MetaTrader still sets the standard for forex in 2025. MT4 dominates retail trading with its simple interface and massive EA library.
+            </p>
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-600">MT4 Key Features</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• 2,000+ built-in indicators</li>
+                  <li>• MQL4 for custom EAs</li>
+                  <li>• One-click trading, trailing stops</li>
+                  <li>• Mobile apps for iOS and Android</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-green-600">MT5 Advantages</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• 21 timeframes (vs. MT4's 9)</li>
+                  <li>• Economic calendar integration</li>
+                  <li>• Advanced order types</li>
+                  <li>• MQL5 cloud network for algo trading</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Account Types Section */}
+        <div className="mb-12">
+          <h2 className="text-2xl font-bold mb-6">Account Types and Trading Costs</h2>
+          <img 
+            src="https://koala.sh/api/image/v2-10migl-sc6df.jpg?width=1216&height=832&dream" 
+            alt="A person analyzing forex trading charts on multiple computer screens in a bright office."
+            className="w-full h-auto rounded-lg shadow-lg mb-6"
+          />
+          <p className="text-muted-foreground mb-6">
+            Most forex brokers offer a few account types, each with its own pricing structure. The big split is between commission-free accounts with wider spreads, and commission-based accounts with raw, tight spreads.
+          </p>
+        </div>
+
+        {/* Cost Comparison Table */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle>Cost Comparison Example</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b bg-muted/50">
+                    <th className="text-left p-4 font-semibold">Account Type</th>
+                    <th className="text-left p-4 font-semibold">EUR/USD Spread</th>
+                    <th className="text-left p-4 font-semibold">Commission</th>
+                    <th className="text-left p-4 font-semibold">Total Cost (1 lot)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="p-4 font-medium">Standard</td>
+                    <td className="p-4">1.5 pips</td>
+                    <td className="p-4">$0</td>
+                    <td className="p-4">$15</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-4 font-medium">ECN</td>
+                    <td className="p-4">0.3 pips</td>
+                    <td className="p-4">$7 per side</td>
+                    <td className="p-4">$17</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Regulation Section */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle>Regulation and Security</CardTitle>
+          </CardHeader>
+          <CardContent>
+            <p className="text-muted-foreground mb-6">
+              Strong regulatory oversight and security measures make or break a broker's trustworthiness. Top regulated forex brokers for 2025 need licenses from tier-1 authorities, must protect clients from excessive losses, and keep trader funds totally separate from company cash.
+            </p>
+            
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div>
+                <h4 className="font-semibold mb-3 text-blue-600">Tier-1 Regulated Brokers</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• <strong>IG:</strong> FCA (UK), ASIC (Australia)</li>
+                  <li>• <strong>OANDA:</strong> FCA (UK), CFTC/NFA (US)</li>
+                  <li>• <strong>CMC Markets:</strong> FCA (UK), ASIC (Australia)</li>
+                </ul>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-3 text-green-600">Multi-Jurisdictional Coverage</h4>
+                <ul className="space-y-2 text-sm">
+                  <li>• <strong>XM:</strong> CySEC (Cyprus), ASIC (Australia)</li>
+                  <li>• <strong>AvaTrade:</strong> CBI (Ireland), ASIC (Australia)</li>
+                  <li>• <strong>eToro:</strong> CySEC (Cyprus), FCA (UK)</li>
+                </ul>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* FAQ Section */}
+        <Card className="mb-12">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <MessageCircle className="h-5 w-5" />
+              Frequently Asked Questions
+            </CardTitle>
+            <CardDescription>
+              Common questions about choosing a forex broker in 2025
+            </CardDescription>
+          </CardHeader>
+          <CardContent>
+            <div className="space-y-6">
+              <div>
+                <h4 className="font-semibold mb-2">What factors should traders consider when choosing a Forex broker in 2025?</h4>
+                <p className="text-sm text-muted-foreground">
+                  Regulatory compliance stands out as the most crucial factor when picking a broker. It's best to double-check registration with authorities like the CFTC, NFA, FCA, or ASIC. Trading costs—spreads, commissions, overnight fees, withdrawal charges—directly affect your bottom line. Platform stability and execution speed really do make or break trades.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">How do regulations impact the safety of trading with Forex brokers?</h4>
+                <p className="text-sm text-muted-foreground">
+                  Regulatory oversight pushes brokers to follow strict financial standards. Licensed brokers keep client funds separate and go through regular audits. Client fund protection depends on where the broker operates. European brokers might offer up to €20,000 in compensation, and US brokers sometimes cover even more.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">Which Forex brokers offer the most competitive spreads?</h4>
+                <p className="text-sm text-muted-foreground">
+                  ECN brokers almost always have the tightest spreads since they connect traders directly to liquidity providers. These brokers charge separate commissions instead of marking up the spread. Major currency pairs like EUR/USD often come with spreads below 1 pip at top brokers.
+                </p>
+              </div>
+              <div>
+                <h4 className="font-semibold mb-2">What technological advancements have Forex brokers incorporated to enhance trading in 2025?</h4>
+                <p className="text-sm text-muted-foreground">
+                  Artificial intelligence now powers advanced market analysis tools. Brokers offer AI-driven trade signals and risk management features. Mobile trading apps bring almost all platform features to your phone. Social trading platforms connect traders around the world, and API integration makes algorithmic trading easier.
+                </p>
+              </div>
+            </div>
+          </CardContent>
+        </Card>
+
+        {/* Disclaimer */}
+        <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
+          <p className="text-sm text-yellow-800">
+            <strong>Risk Warning:</strong> Trading forex involves substantial risk and may not be suitable for all investors. 
+            Past performance is not indicative of future results. Please ensure you fully understand the risks involved 
+            and seek independent advice if necessary.
+          </p>
+        </div>
       </div>
     </div>
   );
