@@ -21,6 +21,31 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   
   useEffect(() => {
+    // Add Google Consent Mode if not already present
+    if (!document.querySelector('script[data-cookieconsent="ignore"]')) {
+      const consentScript = document.createElement('script');
+      consentScript.setAttribute('data-cookieconsent', 'ignore');
+      consentScript.textContent = `
+        window.dataLayer = window.dataLayer || [];
+        function gtag() {
+          dataLayer.push(arguments);
+        }
+        gtag("consent", "default", {
+          ad_personalization: "denied",
+          ad_storage: "denied",
+          ad_user_data: "denied",
+          analytics_storage: "denied",
+          functionality_storage: "denied",
+          personalization_storage: "denied",
+          security_storage: "granted",
+          wait_for_update: 500,
+        });
+        gtag("set", "ads_data_redaction", true);
+        gtag("set", "url_passthrough", false);
+      `;
+      document.head.appendChild(consentScript);
+    }
+    
     // Add Cookiebot script if not already present
     if (!document.getElementById('Cookiebot')) {
       const script = document.createElement('script');

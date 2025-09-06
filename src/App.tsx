@@ -46,8 +46,31 @@ const RouteLoader = () => (
 const App = () => {
   return (
     <ErrorBoundary fallback={<div>Application failed to load</div>}>
-      {/* Global Cookiebot Script */}
+      {/* Global Google Consent Mode & Cookiebot Scripts */}
       <Helmet>
+        {/* Google Consent Mode (must precede gtag.js/GTM) */}
+        <script data-cookieconsent="ignore">
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag() {
+              dataLayer.push(arguments);
+            }
+            gtag("consent", "default", {
+              ad_personalization: "denied",
+              ad_storage: "denied",
+              ad_user_data: "denied",
+              analytics_storage: "denied",
+              functionality_storage: "denied",
+              personalization_storage: "denied",
+              security_storage: "granted",
+              wait_for_update: 500,
+            });
+            gtag("set", "ads_data_redaction", true);
+            gtag("set", "url_passthrough", false);
+          `}
+        </script>
+        
+        {/* Cookiebot Script */}
         <script 
           id="Cookiebot" 
           src="https://consent.cookiebot.com/uc.js" 

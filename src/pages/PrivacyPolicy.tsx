@@ -48,6 +48,29 @@ const PrivacyPolicy = () => {
           </div>
         </div>
 
+        {/* Cookie Declaration */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Globe className="h-5 w-5" />
+              Cookie Declaration
+            </CardTitle>
+            <p className="text-muted-foreground">
+              Detailed information about all cookies used on this website
+            </p>
+          </CardHeader>
+          <CardContent>
+            <div id="CookieDeclaration">
+              <script 
+                id="CookieDeclaration" 
+                src="https://consent.cookiebot.com/a316e185-0703-4964-b697-d0301f10cdb9/cd.js" 
+                type="text/javascript" 
+                async
+              />
+            </div>
+          </CardContent>
+        </Card>
+
         <div className="space-y-6">
           {/* Introduction */}
           <Card>

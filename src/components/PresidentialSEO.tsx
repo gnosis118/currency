@@ -117,10 +117,10 @@ const PresidentialSEO = memo(({
       <link rel="canonical" href={currentUrl} />
       
       {/* Hreflang tags for international SEO */}
-      <link rel="alternate" hreflang="x-default" href={currentUrl} />
-      <link rel="alternate" hreflang="en" href={currentUrl} />
+      <link rel="alternate" hrefLang="x-default" href={currentUrl} />
+      <link rel="alternate" hrefLang="en" href={currentUrl} />
       {Object.entries(hreflang).map(([lang, url]) => (
-        <link key={lang} rel="alternate" hreflang={lang} href={url} />
+        <link key={lang} rel="alternate" hrefLang={lang} href={url} />
       ))}
       
       {/* Open Graph / Facebook */}
