@@ -57,7 +57,7 @@ function toPost(file, raw) {
   const wordCount = plainText ? plainText.split(/\s+/).length : 0;
   const minutes = Math.max(1, Math.ceil(wordCount / 200));
   // Fix image paths - convert /src/assets/ to proper public path
-  let imageUrl = data.image || data.cover || (imgMatch?.[1] || '/placeholder.svg');
+  let imageUrl = data.image || data.cover || data.featuredImage || (imgMatch?.[1] || '/placeholder.svg');
   if (imageUrl.startsWith('/src/assets/')) {
     imageUrl = imageUrl.replace('/src/assets/', '/src/assets/');
   } else if (imageUrl.startsWith('src/assets/')) {

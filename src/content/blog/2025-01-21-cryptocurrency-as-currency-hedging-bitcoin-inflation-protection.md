@@ -1,7 +1,7 @@
 ---
 title: "Cryptocurrency as Currency Hedging: When Bitcoin Actually Protects Against Inflation Risks"
 slug: "cryptocurrency-as-currency-hedging-bitcoin-inflation-protection"
-date: "2025-01-21"
+date: "2025-08-21"
 category: "Cryptocurrency"
 tags: ["Bitcoin", "inflation", "hedging", "cryptocurrency", "currency protection", "digital assets"]
 featured: true

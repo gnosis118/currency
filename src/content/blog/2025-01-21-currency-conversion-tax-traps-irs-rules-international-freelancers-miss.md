@@ -1,7 +1,7 @@
 ---
 title: "Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss"
 slug: "currency-conversion-tax-traps-irs-rules-international-freelancers-miss"
-date: "2025-01-21"
+date: "2025-08-21"
 category: "Taxes"
 tags: ["IRS", "currency conversion", "freelancers", "international tax", "Section 988", "FEIE"]
 featured: true

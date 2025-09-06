@@ -1,7 +1,7 @@
 ---
 title: "The Geopolitical Currency Map: How Elections and Trade Wars Move Exchange Rates"
 slug: "the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates"
-date: "2025-01-21"
+date: "2025-08-21"
 category: "Geopolitics"
 tags: ["geopolitics", "elections", "trade wars", "FX", "currencies", "hedging"]
 featured: true

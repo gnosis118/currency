@@ -1,9 +1,9 @@
 ---
 title: "Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss"
 slug: "currency-conversion-tax-traps-irs-rules-international-freelancers-miss"
-date: "2025-01-22"
+date: "2025-08-22"
 excerpt: "International freelancers face a maze of tax compliance issues that can cost them thousands in penalties, interest, and overpaid taxes. The most dangerous traps involve currency conversion rules that the IRS strictly enforces but that most freelancers completely misunderstand or ignore entirely."
-featuredImage: "/assets/currency-conversion-tax-calculator.jpg"
+featuredImage: "https://koala.sh/api/image/v2-10m3u0-k5nuf.jpg?width=1216&height=832&dream"
 tags: ["tax", "freelancing", "currency", "IRS", "international"]
 author: "Currency to Currency Team"
 ---

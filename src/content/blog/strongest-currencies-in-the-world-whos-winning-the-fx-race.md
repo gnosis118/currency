@@ -1,7 +1,7 @@
 ---
 title: "Strongest Currencies in the World: Who's Winning the FX Race?"
 slug: "strongest-currencies-in-the-world-whos-winning-the-fx-race"
-date: "2025-01-22"
+date: "2025-08-22"
 excerpt: "The global currency market is a brutal contest. National economies constantly jockey for position, flexing their monetary strength in ways that can surprise you."
 featuredImage: "https://koala.sh/api/image/v2-10mb58-opeak.jpg?width=1216&height=832&dream"
 tags: ["currency", "forex", "exchange-rates", "global-economics", "monetary-policy"]
