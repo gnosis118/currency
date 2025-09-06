@@ -21,6 +21,17 @@ const SEOHead = ({
 }: SEOHeadProps) => {
   
   useEffect(() => {
+    // Add Cookiebot script if not already present
+    if (!document.getElementById('Cookiebot')) {
+      const script = document.createElement('script');
+      script.id = 'Cookiebot';
+      script.src = 'https://consent.cookiebot.com/uc.js';
+      script.setAttribute('data-cbid', 'a316e185-0703-4964-b697-d0301f10cdb9');
+      script.setAttribute('data-blockingmode', 'auto');
+      script.type = 'text/javascript';
+      document.head.appendChild(script);
+    }
+    
     // Update document title
     document.title = title;
     

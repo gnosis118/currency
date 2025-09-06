@@ -3,6 +3,7 @@ import { useNavigate } from 'react-router-dom';
 import { supabase } from '@/integrations/supabase/client';
 import AuthGuard from '@/components/AuthGuard';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import CookieConsent from '@/components/CookieConsent';
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -49,6 +50,7 @@ const Auth = () => {
       <AuthGuard fallback={null}>
         {() => <div></div>}
       </AuthGuard>
+      <CookieConsent />
     </div>
   );
 };

@@ -92,6 +92,15 @@ const PresidentialSEO = memo(({
 
   return (
     <Helmet>
+      {/* Cookiebot Script */}
+      <script 
+        id="Cookiebot" 
+        src="https://consent.cookiebot.com/uc.js" 
+        data-cbid="a316e185-0703-4964-b697-d0301f10cdb9" 
+        data-blockingmode="auto" 
+        type="text/javascript"
+      />
+      
       {/* Presidential-level title optimization */}
       <title>{title}</title>
       

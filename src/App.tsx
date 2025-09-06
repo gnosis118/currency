@@ -1,6 +1,7 @@
 
 import * as React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { Helmet } from "react-helmet-async";
 import Header from "@/components/Header";
 import { Skeleton } from "@/components/ui/skeleton";
 import ErrorBoundary from "@/components/ErrorBoundary";
@@ -45,6 +46,17 @@ const RouteLoader = () => (
 const App = () => {
   return (
     <ErrorBoundary fallback={<div>Application failed to load</div>}>
+      {/* Global Cookiebot Script */}
+      <Helmet>
+        <script 
+          id="Cookiebot" 
+          src="https://consent.cookiebot.com/uc.js" 
+          data-cbid="a316e185-0703-4964-b697-d0301f10cdb9" 
+          data-blockingmode="auto" 
+          type="text/javascript"
+        />
+      </Helmet>
+      
       <MobileEnhancement />
       <MobilePerformance />
       <BrowserRouter>
