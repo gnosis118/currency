@@ -78,6 +78,20 @@ const App = () => {
           data-blockingmode="auto" 
           type="text/javascript"
         />
+        
+        {/* Google Analytics */}
+        <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QQQGLR7SC"></script>
+        <script>
+          {`
+            window.dataLayer = window.dataLayer || [];
+            function gtag(){dataLayer.push(arguments);}
+            gtag('js', new Date());
+            gtag('config', 'G-4QQQGLR7SC', {
+              page_title: document.title,
+              page_location: window.location.href
+            });
+          `}
+        </script>
       </Helmet>
       
       <MobileEnhancement />

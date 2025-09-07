@@ -7,6 +7,7 @@ tags: ["security", "fraud prevention", "currency", "forex", "risk management", "
 featured: true
 published: true
 excerpt: "A practical guide to securing currency transactions worldwide: platform vetting, online and physical safety, fraud detection, AML/KYC compliance, and modern protection tools."
+featuredImage: "https://koala.sh/api/image/v2-currency-security-hero.jpg?width=1216&height=832&dream"
 metaDescription: "Protect your money in global markets. Learn currency safety best practices, secure platforms, fraud detection, AML/KYC, diversification, hedging, and incident response."
 cover: "https://koala.sh/api/image/v2-currency-security-hero.jpg?width=1216&height=832&dream"
 ---
