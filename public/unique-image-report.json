@@ -1,12 +1,12 @@
 {
-  "generatedAt": "2025-09-08T03:44:25.630Z",
+  "generatedAt": "2025-09-08T06:21:12.179Z",
   "totalPosts": 35,
-  "uniqueImageAssignments": 35,
+  "uniqueImageAssignments": 23,
   "imageUsageMap": {
     "/src/assets/currency-calculator-guide.jpg": [
       {
         "slug": "understanding-currency-conversion-a-comprehensive-guide-for-2025",
-        "title": "Understanding Currency Conversion: A Comprehensive Guide for 2025",
+        "title": "Understanding Currency Conversion: A Comprehensive Guide ...",
         "category": "Trading"
       }
     ],
@@ -20,14 +20,14 @@
     "/src/assets/mobile-currency-security.jpg": [
       {
         "slug": "top-10-best-currency-converter-apps-of-2025-complete-comparison-guide",
-        "title": "Top 10 Best Currency Converter Apps of 2025: Complete Comparison Guide",
+        "title": "Top 10 Best Currency Converter Apps of 2025: Comparison",
         "category": "Trading"
       }
     ],
     "/src/assets/broker-comparison-table-chart-2025.png": [
       {
         "slug": "the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings",
-        "title": "The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings",
+        "title": "The Complete Guide to Forex Brokers 2025: Expert Reviews ...",
         "category": "Trading"
       }
     ],
@@ -41,14 +41,7 @@
     "/src/assets/business-software-code.jpg": [
       {
         "slug": "how-to-use-currency-converter-apis-for-real-time-exchange-rates",
-        "title": "How to Use Currency Converter APIs for Real-Time Exchange Rates",
-        "category": "Banking"
-      }
-    ],
-    "/src/assets/bank-exchange-fees.jpg": [
-      {
-        "slug": "hidden-currency-conversion-fees-how-banks-disguise-charges",
-        "title": "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers",
+        "title": "How to Use Currency Converter APIs for Real-Time Exchange...",
         "category": "Banking"
       }
     ],
@@ -62,43 +55,36 @@
     "/src/assets/business-laptop-currency.jpg": [
       {
         "slug": "currency-exchange-for-international-business-complete-guide-to-multi-currency-operations",
-        "title": "Currency Exchange for International Business: Complete Guide to Multi-Currency Operations",
+        "title": "Currency Exchange for International Business: Multi-Curre...",
         "category": "Banking"
       }
     ],
     "/src/assets/currency-arbitrage-profit.jpg": [
       {
         "slug": "currency-arbitrage-for-digital-nomads-legal-ways-to-profit-from-rate-differences",
-        "title": "Currency Arbitrage for Digital Nomads: Legal Ways to Profit from Rate Differences",
+        "title": "Currency Arbitrage for Digital Nomads: Legal Ways to Prof...",
         "category": "Trading"
       }
     ],
     "/src/assets/financial-technology-circuit.jpg": [
       {
         "slug": "comparing-currency-converter-apps-features-fees-and-user-reviews",
-        "title": "Comparing Currency Converter Apps: Features, Fees, and User Reviews",
+        "title": "Comparing Currency Converter Apps: Features, Fees, and Us...",
         "category": "Trading"
       }
     ],
     "/src/assets/cbdc-complete-guide-2025.png": [
       {
         "slug": "central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026",
-        "title": "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: What Changes in 2025-2026",
+        "title": "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: ...",
         "category": "Trading"
       }
     ],
     "/src/assets/business-currency-exchange-strategies-2025.png": [
       {
         "slug": "effective-currency-exchange-strategies-for-businesses-complete-2025-playbook",
-        "title": "Effective Currency Exchange Strategies for Businesses: Complete 2025 Playbook",
+        "title": "Effective Currency Exchange Strategies for Businesses: Co...",
         "category": "Trading"
-      }
-    ],
-    "/src/assets/wise-money-transfer.jpg": [
-      {
-        "slug": "2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025",
-        "title": "Best Currency Converter Apps for Accurate Real-Time Exchange Rates in 2025: Complete Guide",
-        "category": "Apps"
       }
     ],
     "/src/assets/trump-tariffs-currency-impact.jpg": [
@@ -136,25 +122,11 @@
         "category": "Currency"
       }
     ],
-    "/src/assets/currency-volatility-domino.jpg": [
-      {
-        "slug": "currency-volatility-protection-advanced-hedging-strategies-for-individual-investors",
-        "title": "Currency Volatility Protection: Advanced Hedging Strategies for Individual Investors",
-        "category": "Risk Management"
-      }
-    ],
     "/src/assets/currency-analytics.jpg": [
       {
         "slug": "currency-conversion-tax-traps-irs-rules-international-freelancers-miss",
         "title": "Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss",
         "category": "Currency"
-      }
-    ],
-    "/src/assets/international-money-transfer-2025.jpeg": [
-      {
-        "slug": "international-money-transfer-guide-2025-complete-comparison-of-15-services",
-        "title": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
-        "category": "International Transfers"
       }
     ],
     "/src/assets/financial-expert-predictions.jpg": [
@@ -174,7 +146,7 @@
     "/src/assets/forex-trading-psychology-2025.jpg": [
       {
         "slug": "forex-trading-psychology-master-the-mental-game-for-consistent-profits",
-        "title": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
+        "title": "Forex Trading Psychology: Master the Mental Game for Cons...",
         "category": "Trading Psychology"
       }
     ],
@@ -185,67 +157,11 @@
         "category": "Currency"
       }
     ],
-    "/src/assets/forex-risk-management-2025.png": [
-      {
-        "slug": "forex-currency-pairs-complete-trading-guide-2025",
-        "title": "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy",
-        "category": "Trading"
-      }
-    ],
-    "/src/assets/digital-nomad-laptop.jpg": [
-      {
-        "slug": "digital-nomad-currency-management-complete-guide",
-        "title": "Digital Nomad Currency Management: Complete 2025 Guide to Multi-Currency Banking",
-        "category": "Digital Nomad"
-      }
-    ],
     "/src/assets/freelancer-currency-exchange.jpeg": [
       {
         "slug": "currency-exchange-freelancers-guide",
         "title": "Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments",
         "category": "Freelancing"
-      }
-    ],
-    "/src/assets/oanda-trading.jpg": [
-      {
-        "slug": "real-time-exchange-rate-analysis-trading-guide",
-        "title": "Real-Time Exchange Rate Analysis: Advanced Trading and Timing Guide 2025",
-        "category": "Trading"
-      }
-    ],
-    "/src/assets/cbdc-guide-2025.jpg": [
-      {
-        "slug": "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money",
-        "title": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
-        "category": "Digital Currency"
-      }
-    ],
-    "/src/assets/exchange-rates-guide.jpg": [
-      {
-        "slug": "ultimate-currency-conversion-guide-2025",
-        "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
-        "category": "Guides"
-      }
-    ],
-    "/src/assets/bank-vs-online-exchange.png": [
-      {
-        "slug": "best-currency-exchange-rates-comparison-2025",
-        "title": "Best Currency Exchange Rates 2025: Complete Provider Comparison Guide",
-        "category": "Comparison"
-      }
-    ],
-    "/src/assets/business-currency-exchange-2025.png": [
-      {
-        "slug": "international-business-currency-strategy-guide",
-        "title": "International Business Currency Strategy: Complete Risk Management Guide 2025",
-        "category": "Business"
-      }
-    ],
-    "/src/assets/ai-forex-trading-guide-2025.jpg": [
-      {
-        "slug": "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading",
-        "title": "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
-        "category": "Trading"
       }
     ]
   },

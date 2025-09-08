@@ -1,11 +1,12 @@
 ---
-title: "Currency Exchange for International Business: Complete Guide to Multi-Currency Operations"
+title: "Currency Exchange for International Business: Multi-Curre..."
 slug: "currency-exchange-for-international-business-complete-guide-to-multi-currency-operations"
 date: "2025-08-26"
 excerpt: "International business has never been more accessible, yet the complexities of managing multiple currencies continue to challenge even experienced companies...."
 image: "/src/assets/business-laptop-currency.jpg"
-tags: ["currency-conversion", "exchange-rates", "fees", "banking", "cryptocurrency"]
+tags: ["currency-conversion", "exchange-rates", "fees", "banking", "cryptocurrency", "hidden-fees"]
 category: "Banking"
+metaDescription: "International business has never been more accessible, yet the complexities of managing multiple currencies continue to challenge even experienced companies...."
 featured: false
 ---
 schema: {
@@ -43,7 +44,7 @@ schema: {
     }
   },
   "datePublished": "2025-01-30",
-  "dateModified": "2025-01-30",
+  "dateModified": "2025-09-08",
   "articleSection": "Currency",
   "keywords": [],
   "wordCount": 4553,

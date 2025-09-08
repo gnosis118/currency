@@ -1,11 +1,43 @@
+
+schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/international-money-transfer-guide-2025-complete-comparison-of-15-services"
+  },
+  "headline": "International Money Transfer 2025: Complete Comparison of...",
+  "description": "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As di...",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://currencytocurrency.app/src/assets/international-money-transfer-2025.jpeg",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "@name": "Currency to Currency"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/favicon-192x192.png"
+    }
+  },
+  "datePublished": "2025-08-21",
+  "dateModified": "2025-09-08"
+}
 ---
-title: "International Money Transfer Guide 2025: Complete Comparison of 15+ Services"
+title: "International Money Transfer 2025: Complete Comparison of..."
 slug: "international-money-transfer-guide-2025-complete-comparison-of-15-services"
 date: "2025-08-21"
 excerpt: "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As digital transformation accelerates and traditional banking faces disruption, the landscape of international money transfers has become increasingly complex and competitive."
 
-tags: ["money-transfer", "international", "remittance", "comparison", "fees"]
+tags: ["money-transfer", "international", "remittance", "comparison", "fees", "cross-border-payments"]
 category: "International Transfers"
+metaDescription: "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As di..."
 image: "/src/assets/international-money-transfer-2025.jpeg"
 ---
 

@@ -6,6 +6,8 @@ excerpt: "When you check currency rates online, those numbers update every few s
 image: "/src/assets/realtime-vs-historical-rates.jpg"
 tags: ["currency", "exchange-rates", "forex", "real-time", "trading"]
 author: "Currency to Currency Team"
+metaDescription: "Learn how real-time currency rates work and why they fluctuate. Expert guide to understanding live exchange rate movements and trading dynamics."
+category: "Currency"
 ---
 schema: {
   "@context": "https://schema.org",

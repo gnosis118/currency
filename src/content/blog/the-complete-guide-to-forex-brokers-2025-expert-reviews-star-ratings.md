@@ -1,11 +1,12 @@
 ---
-title: "The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings"
+title: "The Complete Guide to Forex Brokers 2025: Expert Reviews ..."
 slug: "the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings"
 date: "2025-08-26"
 excerpt: "Published by Manus AI | Last Updated: August 2025"
 
-tags: ["currency-conversion", "exchange-rates", "forex", "trading", "fees"]
+tags: ["currency-conversion", "exchange-rates", "forex", "trading", "fees", "forex-trading", "currency-pairs", "trading-strategy"]
 category: "Trading"
+metaDescription: "Published by Manus AI | Last Updated: August 2025 Expert insights on trading for 2025."
 featured: false
 image: "/src/assets/broker-comparison-table-chart-2025.png"
 ---

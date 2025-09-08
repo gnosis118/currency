@@ -1,11 +1,12 @@
 ---
-title: "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: What Changes in 2025-2026"
+title: "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: ..."
 slug: "central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026"
 date: "2025-08-26"
 excerpt: "The financial world stands at a historic inflection point as Central Bank Digital Currencies (CBDCs) transition from experimental pilot programs to real-worl..."
 image: "/src/assets/cbdc-complete-guide-2025.png"
-tags: ["currency-conversion", "exchange-rates", "trading", "fees", "banking"]
+tags: ["currency-conversion", "exchange-rates", "trading", "fees", "banking", "forex-trading", "currency-pairs", "trading-strategy"]
 category: "Trading"
+metaDescription: "The financial world stands at a historic inflection point as Central Bank Digital Currencies (CBDCs) transition from experimental pilot programs to real-worl..."
 featured: false
 ---
 schema: {
@@ -43,7 +44,7 @@ schema: {
     }
   },
   "datePublished": "2025-01-30",
-  "dateModified": "2025-01-30",
+  "dateModified": "2025-09-08",
   "articleSection": "Currency",
   "keywords": [],
   "wordCount": 3603,

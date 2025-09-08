@@ -5,6 +5,8 @@ date: "2025-08-22"
 excerpt: "The global currency market is a brutal contest. National economies constantly jockey for position, flexing their monetary strength in ways that can surprise you."
 image: "/src/assets/global-finance.jpg"
 tags: ["currency", "forex", "exchange-rates", "global-economics", "monetary-policy"]
+metaDescription: "Discover the strongest currencies in the world and who's winning the FX race. Expert analysis of global currency strength and market dynamics."
+category: "Currency"
 ---
 schema: {
   "@context": "https://schema.org",
@@ -17,7 +19,7 @@ schema: {
   "description": "The global currency market is a brutal contest. National economies constantly jockey for position, flexing their monetary strength in ways that can surprise you.",
   "image": {
     "@type": "ImageObject",
-    "url": "https://koala.sh/api/image/v2-10mb58-opeak.jpg?width=1216&height=832&dream",
+    "url": "https://currencytocurrency.app/src/assets/global-finance.jpg",
     "width": 1200,
     "height": 630
   },

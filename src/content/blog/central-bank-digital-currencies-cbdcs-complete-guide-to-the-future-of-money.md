@@ -1,11 +1,43 @@
+
+schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money"
+  },
+  "headline": "Central Bank Digital Currencies (CBDCs): the Future of Money",
+  "description": "The global financial landscape is on the brink of its most significant transformation since the abandonment of the gold standard. Central Bank Digital Curren...",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://currencytocurrency.app/src/assets/cbdc-guide-2025.jpg",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "@name": "Currency to Currency"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/favicon-192x192.png"
+    }
+  },
+  "datePublished": "2025-08-16",
+  "dateModified": "2025-09-08"
+}
 ---
-title: "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money"
+title: "Central Bank Digital Currencies (CBDCs): the Future of Money"
 slug: "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money"
 date: "2025-08-16"
 excerpt: "The global financial landscape is on the brink of its most significant transformation since the abandonment of the gold standard. Central Bank Digital Currencies (CBDCs) represent a revolutionary shift in how money is created, distributed, and used."
 
 tags: ["cbdc", "digital-currency", "central-bank", "future-of-money", "fintech"]
 category: "Digital Currency"
+metaDescription: "The global financial landscape is on the brink of its most significant transformation since the abandonment of the gold standard. Central Bank Digital Curren..."
 image: "/src/assets/cbdc-guide-2025.jpg"
 ---
 

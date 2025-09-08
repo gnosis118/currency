@@ -1,11 +1,43 @@
+
+schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/forex-currency-pairs-complete-trading-guide-2025"
+  },
+  "headline": "Forex Currency Pairs: Complete Trading 2025 - Risk Manage...",
+  "description": "The forex market trades over $7.5 trillion daily, making it the world's largest financial market. Yet most traders lose money because they don't understand t...",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://currencytocurrency.app/src/assets/forex-risk-management-2025.png",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "@name": "Currency to Currency"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/favicon-192x192.png"
+    }
+  },
+  "datePublished": "2025-08-19",
+  "dateModified": "2025-09-08"
+}
 ---
-title: "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy"
+title: "Forex Currency Pairs: Complete Trading 2025 - Risk Manage..."
 slug: "forex-currency-pairs-complete-trading-guide-2025"
 date: "2025-08-19"
 excerpt: "The forex market trades over $7.5 trillion daily, making it the world's largest financial market. Yet most traders lose money because they don't understand the fundamental differences between currency pair types and how to manage risk accordingly."
 
-tags: ["forex", "currency-pairs", "trading", "risk-management", "strategy"]
+tags: ["forex", "currency-pairs", "trading", "risk-management", "strategy", "forex-trading", "trading-strategy"]
 category: "Trading"
+metaDescription: "The forex market trades over $7.5 trillion daily, making it the world's largest financial market. Yet most traders lose money because they don't understand t..."
 image: "/src/assets/forex-risk-management-2025.png"
 ---
 

@@ -1,186 +1,363 @@
 {
-  "generatedAt": "2025-09-01T01:08:50.925Z",
+  "generatedAt": "2025-09-08T05:59:26.858Z",
   "summary": {
-    "totalArticles": 26,
-    "averageScore": 61,
-    "highPerforming": 4,
-    "needsImprovement": 16
+    "totalArticles": 35,
+    "averageScore": 66,
+    "highPerforming": 6,
+    "needsImprovement": 8
   },
   "articles": [
     {
-      "title": "Comparing Currency Converter Apps: Features, Fees, and User Reviews",
-      "slug": "best-currency-converter-apps",
-      "category": "Guides",
+      "title": "Currency to Currency vs. Leading Alternatives: Complete Feature Comparison",
+      "slug": "currency-to-currency-vs-leading-alternatives-feature-by-feature-comparison",
+      "category": "Comparison",
       "issues": [
-        "Title too long (67 chars, max 60)",
-        "Meta description too long (166 chars, max 160)",
+        "Title too long (74 chars, max 60)",
+        "Meta description too short (119 chars, min 120)",
         "Insufficient tags (0, min 3)",
         "Article file not found"
       ],
       "score": 40,
       "recommendations": [
-        "Consider adding current year to title for freshness",
-        "Add category-specific keywords: currency guide, exchange rates, money conversion"
+        "Consider adding current year to title for freshness"
       ],
       "scorePercentage": 40
     },
     {
-      "title": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
-      "slug": "forex-trading-psychology-master-the-mental-game-for-consistent-profits",
-      "category": "Trading Psychology",
+      "title": "Cryptocurrency as Currency Hedging: When Bitcoin Actually Protects Against Inflation Risks",
+      "slug": "cryptocurrency-as-currency-hedging-bitcoin-inflation-protection",
+      "category": "Cryptocurrency",
       "issues": [
-        "Title too long (71 chars, max 60)",
-        "Meta description too long (193 chars, max 160)",
+        "Title too long (90 chars, max 60)",
+        "Meta description too long (199 chars, max 160)",
         "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Article file not found"
       ],
-      "score": 50,
+      "score": 40,
       "recommendations": [
-        "Consider adding current year to title for freshness",
-        "Add more internal links to related articles",
-        "Add more images throughout the content"
+        "Consider adding current year to title for freshness"
       ],
-      "scorePercentage": 50
+      "scorePercentage": 40
     },
     {
-      "title": "Currency Exchange for International Business: Complete Guide to Multi-Currency Operations",
-      "slug": "currency-exchange-for-international-business-complete-guide-to-multi-currency-operations",
-      "category": "Business Finance",
+      "title": "The Ultimate Guide to Choosing the Best Currency Converter App Explained: Key Facts and Trends",
+      "slug": "the-ultimate-guide-to-choosing-the-best-currency-converter-app-explained-key-facts-and-trends",
+      "category": "Banking",
       "issues": [
-        "Title too long (89 chars, max 60)",
-        "Meta description too long (191 chars, max 160)",
+        "Title too long (94 chars, max 60)",
+        "Insufficient tags (0, min 3)",
+        "Article file not found"
+      ],
+      "score": 55,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: currency conversion, exchange rates, hidden fees"
+      ],
+      "scorePercentage": 55
+    },
+    {
+      "title": "The 15-Minute Currency Window: Why Exchange Rates Change Most During These Daily Periods Explained",
+      "slug": "the-15-minute-currency-window-why-exchange-rates-change-most-during-these-daily-periods-explained",
+      "category": "Trading",
+      "issues": [
+        "Title too long (98 chars, max 60)",
+        "Meta description too long (252 chars, max 160)",
         "Insufficient tags (0, min 3)",
         "Missing structured data/schema markup"
       ],
-      "score": 50,
+      "score": 55,
       "recommendations": [
         "Consider adding current year to title for freshness",
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy",
+        "Add more internal links to related articles"
+      ],
+      "scorePercentage": 55
+    },
+    {
+      "title": "The Geopolitical Currency Map: How Elections and Trade Wars Move Exchange Rates",
+      "slug": "the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates",
+      "category": "Geopolitics",
+      "issues": [
+        "Title too long (79 chars, max 60)",
+        "Insufficient tags (0, min 3)",
+        "Article file not found"
+      ],
+      "score": 55,
+      "recommendations": [
+        "Consider adding current year to title for freshness"
+      ],
+      "scorePercentage": 55
+    },
+    {
+      "title": "Historical Currency Charts: Why They Matter for Traders & Travelers",
+      "slug": "historical-currency-charts-why-they-matter-for-traders-travelers",
+      "category": "Analysis",
+      "issues": [
+        "Title too long (67 chars, max 60)",
+        "Insufficient tags (0, min 3)",
+        "Article file not found"
+      ],
+      "score": 55,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: market analysis, currency trends, exchange rate analysis"
+      ],
+      "scorePercentage": 55
+    },
+    {
+      "title": "What 156 Fiat + 536 Crypto Currencies Means for Global Users: Impact and Insights",
+      "slug": "what-156-fiat-536-crypto-currencies-means-for-global-users-impact-and-insights",
+      "category": "Currency",
+      "issues": [
+        "Title too long (81 chars, max 60)",
+        "Insufficient tags (0, min 3)",
+        "Article file not found"
+      ],
+      "score": 55,
+      "recommendations": [
+        "Consider adding current year to title for freshness"
+      ],
+      "scorePercentage": 55
+    },
+    {
+      "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
+      "slug": "ultimate-currency-conversion-guide-2025",
+      "category": "Currency",
+      "issues": [
+        "Title too long (68 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)",
+        "Content too short (1479 words, min 1500)"
+      ],
+      "score": 55,
+      "recommendations": [
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 55
+    },
+    {
+      "title": "FX Broker Review Research - Competitive Analysis",
+      "slug": "fx-broker-review-research-competitive-analysis",
+      "category": "Trading",
+      "issues": [
+        "Meta description too short (77 chars, min 120)",
+        "Excerpt too short (40 chars, min 100)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 60,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy",
         "Add more internal links to related articles",
         "Add more images throughout the content"
       ],
-      "scorePercentage": 50
+      "scorePercentage": 60
     },
     {
       "title": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
       "slug": "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money",
-      "category": "Digital Currency",
+      "category": "Currency",
       "issues": [
         "Title too long (78 chars, max 60)",
-        "Meta description too long (206 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 50,
+      "score": 60,
       "recommendations": [
         "Consider adding current year to title for freshness",
         "Add more internal links to related articles",
         "Add more images throughout the content"
       ],
-      "scorePercentage": 50
+      "scorePercentage": 60
     },
     {
-      "title": "How to Use Currency Converter APIs for Real-Time Exchange Rates",
-      "slug": "how-to-use-currency-converter-apis-for-real-time-exchange-rates",
+      "title": "Understanding Currency Conversion: A Comprehensive Guide ...",
+      "slug": "understanding-currency-conversion-a-comprehensive-guide-for-2025",
+      "category": "Trading",
+      "issues": [
+        "Insufficient tags (0, min 3)",
+        "Article file not found"
+      ],
+      "score": 65,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy"
+      ],
+      "scorePercentage": 65
+    },
+    {
+      "title": "The Complete Guide to Forex Brokers 2025: Expert Reviews ...",
+      "slug": "the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings",
+      "category": "Trading",
+      "issues": [
+        "Meta description too short (86 chars, min 120)",
+        "Excerpt too short (49 chars, min 100)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 65,
+      "recommendations": [
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy",
+        "Add more internal links to related articles",
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 65
+    },
+    {
+      "title": "Effective Currency Exchange Strategies for Businesses: Co...",
+      "slug": "effective-currency-exchange-strategies-for-businesses-complete-2025-playbook",
+      "category": "Trading",
+      "issues": [
+        "Insufficient tags (0, min 3)",
+        "Article file not found"
+      ],
+      "score": 65,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy"
+      ],
+      "scorePercentage": 65
+    },
+    {
+      "title": "Strongest Currencies in the World: Who's Winning the FX Race?",
+      "slug": "strongest-currencies-in-the-world-whos-winning-the-fx-race",
       "category": "Currency",
       "issues": [
-        "Title too long (63 chars, max 60)",
-        "Meta description too long (170 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Title too long (61 chars, max 60)",
+        "Meta description too long (161 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 50,
+      "score": 65,
       "recommendations": [
         "Consider adding current year to title for freshness",
-        "Add more internal links to related articles",
-        "Add more images throughout the content"
+        "Add more internal links to related articles"
       ],
-      "scorePercentage": 50
+      "scorePercentage": 65
     },
     {
-      "title": "Historical Currency Charts: Why They Matter for Traders & Travelers",
-      "slug": "2025-01-21-historical-currency-charts-why-they-matter-for-traders-travelers",
+      "title": "How Real-Time Currency Rates Work: Fluctuations Explained Fast",
+      "slug": "how-real-time-currency-rates-work-fluctuations-explained-fast",
       "category": "Currency",
       "issues": [
-        "Title too long (67 chars, max 60)",
-        "Meta description too long (199 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Title too long (62 chars, max 60)",
+        "Meta description too long (294 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 50,
+      "score": 65,
       "recommendations": [
         "Consider adding current year to title for freshness",
-        "Add more images throughout the content",
-        "Add more section headers for better structure"
+        "Add more internal links to related articles"
       ],
-      "scorePercentage": 50
+      "scorePercentage": 65
     },
     {
-      "title": "Effective Currency Exchange Strategies for Businesses: Complete 2025 Playbook",
-      "slug": "2025-08-26-effective-currency-exchange-strategies-for-businesses",
-      "category": "Business Finance",
+      "title": "Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss",
+      "slug": "currency-conversion-tax-traps-irs-rules-international-freelancers-miss",
+      "category": "Currency",
       "issues": [
-        "Title too long (77 chars, max 60)",
-        "Meta description too long (189 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Title too long (76 chars, max 60)",
+        "Meta description too long (296 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 55,
+      "score": 65,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add more internal links to related articles"
+      ],
+      "scorePercentage": 65
+    },
+    {
+      "title": "Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss",
+      "slug": "currency-conversion-tax-traps-irs-rules-international-freelancers-miss",
+      "category": "Taxes",
+      "issues": [
+        "Title too long (76 chars, max 60)",
+        "Meta description too long (193 chars, max 160)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 65,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add more internal links to related articles"
+      ],
+      "scorePercentage": 65
+    },
+    {
+      "title": "Real-Time Exchange Rate Analysis: Advanced Trading and Timing Guide 2025",
+      "slug": "real-time-exchange-rate-analysis-trading-guide",
+      "category": "Currency",
+      "issues": [
+        "Title too long (72 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 65,
       "recommendations": [
         "Add more internal links to related articles",
         "Add more images throughout the content"
       ],
-      "scorePercentage": 55
+      "scorePercentage": 65
+    },
+    {
+      "title": "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers",
+      "slug": "hidden-currency-conversion-fees-how-banks-disguise-charges",
+      "category": "Currency",
+      "issues": [
+        "Title too long (84 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 65,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add more internal links to related articles"
+      ],
+      "scorePercentage": 65
     },
     {
       "title": "Currency Volatility Protection: Advanced Hedging Strategies for Individual Investors",
       "slug": "currency-volatility-protection-advanced-hedging-strategies-for-individual-investors",
-      "category": "Risk Management",
+      "category": "Currency",
       "issues": [
         "Title too long (84 chars, max 60)",
-        "Meta description too long (190 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 55,
+      "score": 65,
       "recommendations": [
         "Consider adding current year to title for freshness",
         "Add more images throughout the content"
       ],
-      "scorePercentage": 55
+      "scorePercentage": 65
     },
     {
-      "title": "The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings",
-      "slug": "the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings",
-      "category": "Guide",
+      "title": "Best Currency Exchange Rates 2025: Complete Provider Comparison Guide",
+      "slug": "best-currency-exchange-rates-comparison-2025",
+      "category": "Currency",
       "issues": [
-        "Title too long (71 chars, max 60)",
-        "Meta description too long (190 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Title too long (69 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 55,
+      "score": 65,
       "recommendations": [
         "Add more internal links to related articles",
         "Add more images throughout the content"
       ],
-      "scorePercentage": 55
+      "scorePercentage": 65
     },
     {
-      "title": "FX Broker Review Research: Comprehensive Competitive Analysis 2025",
-      "slug": "fx-broker-review-research-competitive-analysis",
-      "category": "Guide",
+      "title": "Top 10 Best Currency Converter Apps of 2025: Comparison",
+      "slug": "top-10-best-currency-converter-apps-of-2025-complete-comparison-guide",
+      "category": "Trading",
       "issues": [
-        "Title too long (66 chars, max 60)",
-        "Meta description too long (164 chars, max 160)",
         "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Article file not found"
       ],
-      "score": 55,
+      "score": 70,
       "recommendations": [
-        "Add more internal links to related articles",
-        "Add more images throughout the content"
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy"
       ],
-      "scorePercentage": 55
+      "scorePercentage": 70
     },
     {
       "title": "Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments",
@@ -188,253 +365,198 @@
       "category": "Freelancing",
       "issues": [
         "Title too long (85 chars, max 60)",
-        "Meta description too long (172 chars, max 160)",
         "Insufficient tags (0, min 3)",
         "Missing structured data/schema markup"
       ],
-      "score": 55,
+      "score": 70,
       "recommendations": [
         "Consider adding current year to title for freshness",
         "Add more images throughout the content"
       ],
-      "scorePercentage": 55
-    },
-    {
-      "title": "The Ultimate Guide to Choosing the Best Currency Converter App Explained: Key Facts and Trends",
-      "slug": "ultimate-guide-choosing-best-currency-converter-app-2025",
-      "category": "Technology",
-      "issues": [
-        "Title too long (94 chars, max 60)",
-        "Meta description too long (183 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 55,
-      "recommendations": [
-        "Consider adding current year to title for freshness",
-        "Add category-specific keywords: currency API, forex technology, trading tools",
-        "Add more internal links to related articles"
-      ],
-      "scorePercentage": 55
-    },
-    {
-      "title": "Understanding Currency Conversion: A Comprehensive Guide for 2025",
-      "slug": "understanding-currency-conversion-a-comprehensive-guide",
-      "category": "Education",
-      "issues": [
-        "Title too long (65 chars, max 60)",
-        "Meta description too long (172 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 55,
-      "recommendations": [
-        "Add more internal links to related articles",
-        "Add more images throughout the content"
-      ],
-      "scorePercentage": 55
-    },
-    {
-      "title": "Top 10 Best Currency Converter Apps of 2025: Complete Comparison Guide",
-      "slug": "the-top-10-best-currency-converter-apps-in-2025",
-      "category": "Apps",
-      "issues": [
-        "Title too long (70 chars, max 60)",
-        "Meta description too long (183 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 55,
-      "recommendations": [
-        "Add more internal links to related articles",
-        "Add more images throughout the content"
-      ],
-      "scorePercentage": 55
-    },
-    {
-      "title": "Currency to Currency vs. Leading Alternatives: Complete Feature Comparison",
-      "slug": "2025-01-21-currency-to-currency-vs-leading-alternatives-feature-by-feature-comparison",
-      "category": "Currency",
-      "issues": [
-        "Title too long (74 chars, max 60)",
-        "Meta description too long (203 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 55,
-      "recommendations": [
-        "Consider adding current year to title for freshness",
-        "Add more internal links to related articles"
-      ],
-      "scorePercentage": 55
-    },
-    {
-      "title": "What 156 Fiat + 536 Crypto Currencies Means for Global Users: Impact and Insights",
-      "slug": "2025-01-20-what-156-fiat-536-crypto-currencies-means-for-global-users-impact-and-insights",
-      "category": "Currency",
-      "issues": [
-        "Title too long (81 chars, max 60)",
-        "Meta description too long (251 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 55,
-      "recommendations": [
-        "Consider adding current year to title for freshness",
-        "Add more internal links to related articles"
-      ],
-      "scorePercentage": 55
-    },
-    {
-      "title": "Best Currency Converter Apps for Accurate Real-Time Exchange Rates in 2025: Complete Guide",
-      "slug": "2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025",
-      "category": "Technology",
-      "issues": [
-        "Title too long (90 chars, max 60)",
-        "Meta description too long (191 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 60,
-      "recommendations": [
-        "Add category-specific keywords: currency API, forex technology, trading tools",
-        "Add more images throughout the content"
-      ],
-      "scorePercentage": 60
+      "scorePercentage": 70
     },
     {
       "title": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
       "slug": "international-money-transfer-guide-2025-complete-comparison-of-15-services",
-      "category": "International Transfers",
+      "category": "Currency",
       "issues": [
         "Title too long (76 chars, max 60)",
-        "Meta description too long (194 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 60,
+      "score": 70,
       "recommendations": [
         "Add more images throughout the content"
       ],
-      "scorePercentage": 60
-    },
-    {
-      "title": "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
-      "slug": "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading",
-      "category": "Guide",
-      "issues": [
-        "Title too long (72 chars, max 60)",
-        "Meta description too long (188 chars, max 160)",
-        "Insufficient tags (0, min 3)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 60,
-      "recommendations": [
-        "Add more images throughout the content"
-      ],
-      "scorePercentage": 60
-    },
-    {
-      "title": "Real-Time Exchange Rate Analysis: Advanced Trading and Timing Guide 2025",
-      "slug": "real-time-exchange-rate-analysis-trading-guide",
-      "category": "Analysis",
-      "issues": [
-        "Title too long (72 chars, max 60)",
-        "Meta description too long (177 chars, max 160)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 65,
-      "recommendations": [
-        "Add category-specific keywords: market analysis, currency trends, exchange rate analysis",
-        "Add more internal links to related articles",
-        "Add more images throughout the content"
-      ],
-      "scorePercentage": 65
-    },
-    {
-      "title": "Digital Nomad Currency Management: Complete 2025 Guide to Multi-Currency Banking",
-      "slug": "digital-nomad-currency-management-complete-guide",
-      "category": "Digital Nomad",
-      "issues": [
-        "Title too long (80 chars, max 60)",
-        "Meta description too long (170 chars, max 160)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 75,
-      "recommendations": [
-        "Add more images throughout the content"
-      ],
-      "scorePercentage": 75
+      "scorePercentage": 70
     },
     {
       "title": "International Business Currency Strategy: Complete Risk Management Guide 2025",
       "slug": "international-business-currency-strategy-guide",
-      "category": "Business",
+      "category": "Currency",
       "issues": [
         "Title too long (77 chars, max 60)",
-        "Meta description too long (173 chars, max 160)",
-        "Missing structured data/schema markup"
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 75,
+      "score": 70,
       "recommendations": [
         "Add more images throughout the content"
       ],
-      "scorePercentage": 75
+      "scorePercentage": 70
     },
     {
-      "title": "Best Currency Exchange Rates 2025: Complete Provider Comparison Guide",
-      "slug": "best-currency-exchange-rates-comparison-2025",
-      "category": "Comparison",
+      "title": "Digital Nomad Currency Management: Complete 2025 Guide to Multi-Currency Banking",
+      "slug": "digital-nomad-currency-management-complete-guide",
+      "category": "Currency",
       "issues": [
-        "Title too long (69 chars, max 60)",
-        "Missing structured data/schema markup"
+        "Title too long (80 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 80,
-      "recommendations": [
-        "Add more internal links to related articles",
-        "Add more images throughout the content"
-      ],
-      "scorePercentage": 80
-    },
-    {
-      "title": "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers",
-      "slug": "hidden-currency-conversion-fees-how-banks-disguise-charges",
-      "category": "Banking",
-      "issues": [
-        "Title too long (84 chars, max 60)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 85,
-      "recommendations": [
-        "Consider adding current year to title for freshness",
-        "Add more internal links to related articles"
-      ],
-      "scorePercentage": 85
-    },
-    {
-      "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
-      "slug": "ultimate-currency-conversion-guide-2025",
-      "category": "Guides",
-      "issues": [
-        "Title too long (68 chars, max 60)",
-        "Missing structured data/schema markup"
-      ],
-      "score": 90,
+      "score": 70,
       "recommendations": [
         "Add more images throughout the content"
       ],
-      "scorePercentage": 90
+      "scorePercentage": 70
+    },
+    {
+      "title": "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
+      "slug": "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading",
+      "category": "Currency",
+      "issues": [
+        "Title too long (72 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 70,
+      "recommendations": [
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 70
+    },
+    {
+      "title": "Best Currency Converter Apps for Accurate Real-Time Exchange Rates in 2025: Complete Guide",
+      "slug": "2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025",
+      "category": "Currency",
+      "issues": [
+        "Title too long (90 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 70,
+      "recommendations": [
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 70
     },
     {
       "title": "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy",
       "slug": "forex-currency-pairs-complete-trading-guide-2025",
+      "category": "Currency",
+      "issues": [
+        "Title too long (78 chars, max 60)",
+        "Meta description too long (200 chars, max 160)",
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 75,
+      "recommendations": [],
+      "scorePercentage": 75
+    },
+    {
+      "title": "How to Use Currency Converter APIs for Real-Time Exchange...",
+      "slug": "how-to-use-currency-converter-apis-for-real-time-exchange-rates",
+      "category": "Banking",
+      "issues": [
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 85,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: currency conversion, exchange rates, hidden fees",
+        "Add more internal links to related articles",
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 85
+    },
+    {
+      "title": "Currency Exchange for International Business: Multi-Curre...",
+      "slug": "currency-exchange-for-international-business-complete-guide-to-multi-currency-operations",
+      "category": "Banking",
+      "issues": [
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 85,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: currency conversion, exchange rates, hidden fees",
+        "Add more internal links to related articles",
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 85
+    },
+    {
+      "title": "Currency Arbitrage for Digital Nomads: Legal Ways to Prof...",
+      "slug": "currency-arbitrage-for-digital-nomads-legal-ways-to-profit-from-rate-differences",
       "category": "Trading",
       "issues": [
-        "Title too long (78 chars, max 60)"
+        "Insufficient tags (0, min 3)"
       ],
-      "score": 105,
-      "recommendations": [],
-      "scorePercentage": 105
+      "score": 85,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy",
+        "Add more internal links to related articles",
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 85
+    },
+    {
+      "title": "Comparing Currency Converter Apps: Features, Fees, and Us...",
+      "slug": "comparing-currency-converter-apps-features-fees-and-user-reviews",
+      "category": "Trading",
+      "issues": [
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 85,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy",
+        "Add more internal links to related articles",
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 85
+    },
+    {
+      "title": "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: ...",
+      "slug": "central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026",
+      "category": "Trading",
+      "issues": [
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 85,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add category-specific keywords: forex trading, currency pairs, trading strategy",
+        "Add more internal links to related articles",
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 85
+    },
+    {
+      "title": "Forex Trading Psychology: Master the Mental Game for Cons...",
+      "slug": "forex-trading-psychology-master-the-mental-game-for-consistent-profits",
+      "category": "Trading Psychology",
+      "issues": [
+        "Insufficient tags (0, min 3)"
+      ],
+      "score": 85,
+      "recommendations": [
+        "Consider adding current year to title for freshness",
+        "Add more internal links to related articles",
+        "Add more images throughout the content"
+      ],
+      "scorePercentage": 85
     }
   ],
   "standards": {

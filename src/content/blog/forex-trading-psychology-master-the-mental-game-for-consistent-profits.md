@@ -1,11 +1,12 @@
 ---
-title: "Forex Trading Psychology: Master the Mental Game for Consistent Profits"
+title: "Forex Trading Psychology: Master the Mental Game for Cons..."
 slug: "forex-trading-psychology-master-the-mental-game-for-consistent-profits"
 date: "2025-08-20"
 excerpt: "The foreign exchange market, with its $7.5 trillion daily trading volume, represents the world's largest and most liquid financial market. Yet despite the abundance of technical analysis tools, studies consistently show that 80-90% of retail forex traders lose money over time."
 image: "/src/assets/forex-trading-psychology-2025.jpg"
 tags: ["forex", "trading-psychology", "mental-game", "trading", "psychology"]
 category: "Trading Psychology"
+metaDescription: "The foreign exchange market, with its $7.5 trillion daily trading volume, represents the world's largest and most liquid financial market. Yet despite the ab..."
 ---
 schema: {
   "@context": "https://schema.org",
@@ -18,7 +19,7 @@ schema: {
   "description": "The foreign exchange market, with its $7.5 trillion daily trading volume, represents the world's largest and most liquid financial market. Yet despite the abundance of technical analysis tools, studies consistently show that 80-90% of retail forex traders lose money over time.",
   "image": {
     "@type": "ImageObject",
-    "url": "https://koala.sh/api/image/v2-forex-trading-psychology-guide-2025.jpg?width=1216&height=832&dream",
+    "url": "https://currencytocurrency.app/src/assets/forex-trading-psychology-2025.jpg",
     "width": 1200,
     "height": 630
   },
@@ -42,7 +43,7 @@ schema: {
     }
   },
   "datePublished": "2025-08-20",
-  "dateModified": "2025-08-20",
+  "dateModified": "2025-09-08",
   "articleSection": "Trading Psychology",
   "keywords": [],
   "wordCount": 4634,

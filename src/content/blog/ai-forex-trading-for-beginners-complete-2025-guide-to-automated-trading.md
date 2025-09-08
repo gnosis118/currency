@@ -1,11 +1,43 @@
+
+schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
+  },
+  "headline": "AI Forex Trading for Beginners: Complete 2025 Guide to Au...",
+  "description": "Are you curious about making money while you sleep? AI forex trading might be the answer you're looking for. This complete guide will teach you everything yo...",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://currencytocurrency.app/src/assets/ai-forex-trading-guide-2025.jpg",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "@name": "Currency to Currency"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "@name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/favicon-192x192.png"
+    }
+  },
+  "datePublished": "2025-08-14",
+  "dateModified": "2025-09-08"
+}
 ---
-title: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading"
+title: "AI Forex Trading for Beginners: Complete 2025 Guide to Au..."
 slug: "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
 date: "2025-08-14"
 excerpt: "Are you curious about making money while you sleep? AI forex trading might be the answer you're looking for. This complete guide will teach you everything you need to know about automated forex trading in 2025."
 
-tags: ["ai", "forex", "trading", "automation", "beginners"]
+tags: ["ai", "forex", "trading", "automation", "beginners", "forex-trading", "currency-pairs", "trading-strategy"]
 category: "Trading"
+metaDescription: "Are you curious about making money while you sleep? AI forex trading might be the answer you're looking for. This complete guide will teach you everything yo..."
 image: "/src/assets/ai-forex-trading-guide-2025.jpg"
 ---
 
