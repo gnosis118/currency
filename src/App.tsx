@@ -8,6 +8,7 @@ import ErrorBoundary from "@/components/ErrorBoundary";
 import RedirectRoute from "@/components/RedirectRoute";
 import MobileEnhancement from "@/components/MobileEnhancement";
 import MobilePerformance from "@/components/MobilePerformance";
+import CoreWebVitalsMonitor from "@/components/CoreWebVitalsMonitor";
 
 // Lazy load all route components for better code splitting
 const Index = React.lazy(() => import("./pages/Index"));
@@ -96,6 +97,7 @@ const App = () => {
       
       <MobileEnhancement />
       <MobilePerformance />
+      <CoreWebVitalsMonitor />
       <BrowserRouter>
         <div className="min-h-screen">
           <Header />

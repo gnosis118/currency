@@ -1,4 +1,13 @@
-
+---
+title: "International Money Transfer Guide 2025: Complete Comparison of 15+ Services"
+slug: "international-money-transfer-guide-2025-complete-comparison-of-15-services"
+date: "2025-01-30"
+excerpt: "Sending money internationally has never been more complex—or more affordable. With over 15 major services competing for your business, choosing the right platform can save you hundreds."
+image: "/src/assets/international-money-transfer-comparison-2025.png"
+tags: ["money-transfer", "international", "comparison", "remittance", "fees"]
+metaDescription: "Complete 2025 guide to international money transfers. Compare 15+ services, fees, and transfer times. Save hundreds on your next international payment."
+category: "International Transfers"
+---
 schema: {
   "@context": "https://schema.org",
   "@type": "Article",

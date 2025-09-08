@@ -1,4 +1,13 @@
-
+---
+title: "Ultimate Currency Conversion Guide 2025: Everything You Need to Know"
+slug: "ultimate-currency-conversion-guide-2025"
+date: "2025-01-30"
+excerpt: "Currency conversion is more than just swapping one currency for another—it's about understanding exchange rates, minimizing fees, and timing your conversions for maximum value."
+image: "/src/assets/currency-calculator-guide.jpg"
+tags: ["currency-conversion", "exchange-rates", "guide", "finance", "money-management"]
+metaDescription: "Complete currency conversion guide 2025. Learn exchange rates, minimize fees, and time conversions perfectly. Expert tips for travelers and businesses."
+category: "Guides"
+---
 schema: {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -1,13 +1,18 @@
 {
-  "generatedAt": "2025-09-08T06:21:12.179Z",
+  "generatedAt": "2025-09-08T07:06:15.099Z",
   "totalPosts": 35,
-  "uniqueImageAssignments": 23,
+  "uniqueImageAssignments": 31,
   "imageUsageMap": {
     "/src/assets/currency-calculator-guide.jpg": [
       {
         "slug": "understanding-currency-conversion-a-comprehensive-guide-for-2025",
         "title": "Understanding Currency Conversion: A Comprehensive Guide ...",
         "category": "Trading"
+      },
+      {
+        "slug": "ultimate-currency-conversion-guide-2025",
+        "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
+        "category": "Guides"
       }
     ],
     "/src/assets/xe-currency-data.jpg": [
@@ -22,6 +27,11 @@
         "slug": "top-10-best-currency-converter-apps-of-2025-complete-comparison-guide",
         "title": "Top 10 Best Currency Converter Apps of 2025: Comparison",
         "category": "Trading"
+      },
+      {
+        "slug": "2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025",
+        "title": "Best Currency Converter Apps for Accurate Real-Time Exchange Rates in 2025: Complete Guide",
+        "category": "Apps"
       }
     ],
     "/src/assets/broker-comparison-table-chart-2025.png": [
@@ -78,6 +88,11 @@
         "slug": "central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026",
         "title": "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: ...",
         "category": "Trading"
+      },
+      {
+        "slug": "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money",
+        "title": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
+        "category": "Digital Currency"
       }
     ],
     "/src/assets/business-currency-exchange-strategies-2025.png": [
@@ -120,6 +135,11 @@
         "slug": "how-real-time-currency-rates-work-fluctuations-explained-fast",
         "title": "How Real-Time Currency Rates Work: Fluctuations Explained Fast",
         "category": "Currency"
+      },
+      {
+        "slug": "real-time-exchange-rate-analysis-trading-guide",
+        "title": "Real-Time Exchange Rate Analysis: Advanced Trading and Timing Guide 2025",
+        "category": "Trading"
       }
     ],
     "/src/assets/currency-analytics.jpg": [
@@ -163,8 +183,125 @@
         "title": "Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments",
         "category": "Freelancing"
       }
+    ],
+    "/src/assets/international-money-transfer-comparison-2025.png": [
+      {
+        "slug": "international-money-transfer-guide-2025-complete-comparison-of-15-services",
+        "title": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
+        "category": "International Transfers"
+      }
+    ],
+    "/src/assets/business-hedging-strategies-2025.webp": [
+      {
+        "slug": "international-business-currency-strategy-guide",
+        "title": "International Business Currency Strategy: Complete Risk Management Guide 2025",
+        "category": "Business"
+      }
+    ],
+    "/src/assets/currency-exchange-fees-hero.jpg": [
+      {
+        "slug": "hidden-currency-conversion-fees-how-banks-disguise-charges",
+        "title": "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers",
+        "category": "Banking"
+      }
+    ],
+    "/src/assets/forex-trading-psychology-guide-2025.png": [
+      {
+        "slug": "forex-currency-pairs-complete-trading-guide-2025",
+        "title": "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy",
+        "category": "Trading"
+      }
+    ],
+    "/src/assets/nomad-money-management-2025.png": [
+      {
+        "slug": "digital-nomad-currency-management-complete-guide",
+        "title": "Digital Nomad Currency Management: Complete 2025 Guide to Multi-Currency Banking",
+        "category": "Digital Nomad"
+      }
+    ],
+    "/src/assets/currency-volatility-protection-2025.png": [
+      {
+        "slug": "currency-volatility-protection-advanced-hedging-strategies-for-individual-investors",
+        "title": "Currency Volatility Protection: Advanced Hedging Strategies for Individual Investors",
+        "category": "Risk Management"
+      }
+    ],
+    "/src/assets/currency-exchange-sites-hero.jpg": [
+      {
+        "slug": "best-currency-exchange-rates-comparison-2025",
+        "title": "Best Currency Exchange Rates 2025: Complete Provider Comparison Guide",
+        "category": "Comparison"
+      }
+    ],
+    "/src/assets/business-coding-macbook.jpg": [
+      {
+        "slug": "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading",
+        "title": "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
+        "category": "Trading"
+      }
     ]
   },
-  "duplicateImages": [],
-  "isValid": true
+  "duplicateImages": [
+    {
+      "image": "/src/assets/currency-calculator-guide.jpg",
+      "posts": [
+        {
+          "slug": "understanding-currency-conversion-a-comprehensive-guide-for-2025",
+          "title": "Understanding Currency Conversion: A Comprehensive Guide ...",
+          "category": "Trading"
+        },
+        {
+          "slug": "ultimate-currency-conversion-guide-2025",
+          "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
+          "category": "Guides"
+        }
+      ]
+    },
+    {
+      "image": "/src/assets/mobile-currency-security.jpg",
+      "posts": [
+        {
+          "slug": "top-10-best-currency-converter-apps-of-2025-complete-comparison-guide",
+          "title": "Top 10 Best Currency Converter Apps of 2025: Comparison",
+          "category": "Trading"
+        },
+        {
+          "slug": "2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025",
+          "title": "Best Currency Converter Apps for Accurate Real-Time Exchange Rates in 2025: Complete Guide",
+          "category": "Apps"
+        }
+      ]
+    },
+    {
+      "image": "/src/assets/cbdc-complete-guide-2025.png",
+      "posts": [
+        {
+          "slug": "central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026",
+          "title": "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: ...",
+          "category": "Trading"
+        },
+        {
+          "slug": "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money",
+          "title": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
+          "category": "Digital Currency"
+        }
+      ]
+    },
+    {
+      "image": "/src/assets/realtime-vs-historical-rates.jpg",
+      "posts": [
+        {
+          "slug": "how-real-time-currency-rates-work-fluctuations-explained-fast",
+          "title": "How Real-Time Currency Rates Work: Fluctuations Explained Fast",
+          "category": "Currency"
+        },
+        {
+          "slug": "real-time-exchange-rate-analysis-trading-guide",
+          "title": "Real-Time Exchange Rate Analysis: Advanced Trading and Timing Guide 2025",
+          "category": "Trading"
+        }
+      ]
+    }
+  ],
+  "isValid": false
 }

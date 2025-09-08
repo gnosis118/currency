@@ -1,4 +1,13 @@
-
+---
+title: "Digital Nomad Currency Management: Complete 2025 Guide to Multi-Currency Banking"
+slug: "digital-nomad-currency-management-complete-guide"
+date: "2025-01-30"
+excerpt: "Digital nomad currency management requires sophisticated strategies for handling multiple currencies, minimizing fees, and maintaining financial flexibility across borders."
+image: "/src/assets/nomad-money-management-2025.png"
+tags: ["digital-nomad", "currency-management", "multi-currency", "banking", "remote-work"]
+metaDescription: "Complete digital nomad currency management guide 2025. Master multi-currency banking, minimize fees, and optimize finances for location independence."
+category: "Digital Nomad"
+---
 schema: {
   "@context": "https://schema.org",
   "@type": "Article",

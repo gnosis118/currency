@@ -1,4 +1,13 @@
-
+---
+title: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading"
+slug: "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
+date: "2025-01-30"
+excerpt: "AI forex trading has revolutionized currency markets. Learn how beginners can leverage automated trading systems, algorithms, and machine learning for profitable forex trading."
+image: "/src/assets/business-coding-macbook.jpg"
+tags: ["ai-trading", "forex", "automated-trading", "beginners", "machine-learning"]
+metaDescription: "Complete AI forex trading guide for beginners 2025. Master automated trading systems, algorithms, and machine learning for profitable currency trading."
+category: "Trading"
+---
 schema: {
   "@context": "https://schema.org",
   "@type": "Article",

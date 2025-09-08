@@ -1,4 +1,13 @@
-
+---
+title: "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy"
+slug: "forex-currency-pairs-complete-trading-guide-2025"
+date: "2025-01-30"
+excerpt: "Master forex currency pairs trading with comprehensive risk management strategies. Learn major, minor, and exotic pairs for profitable trading in 2025."
+image: "/src/assets/forex-trading-psychology-guide-2025.png"
+tags: ["forex", "currency-pairs", "trading", "risk-management", "strategy"]
+metaDescription: "Complete forex currency pairs trading guide 2025. Master major, minor, and exotic pairs with expert risk management strategies for profitable trading."
+category: "Trading"
+---
 schema: {
   "@context": "https://schema.org",
   "@type": "Article",

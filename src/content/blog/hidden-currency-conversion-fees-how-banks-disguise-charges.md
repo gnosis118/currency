@@ -1,4 +1,13 @@
-
+---
+title: "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers"
+slug: "hidden-currency-conversion-fees-how-banks-disguise-charges"
+date: "2025-01-30"
+excerpt: "Banks market 'free' international transfers while secretly embedding 3-6% fees in poor exchange rates. Here's how to spot and avoid these hidden charges."
+image: "/src/assets/currency-exchange-fees-hero.jpg"
+tags: ["hidden-fees", "banks", "currency-conversion", "money-transfer", "consumer-protection"]
+metaDescription: "Expose hidden currency conversion fees banks disguise in exchange rates. Learn how to spot 3-6% hidden charges and save money on international transfers."
+category: "Banking"
+---
 schema: {
   "@context": "https://schema.org",
   "@type": "Article",

@@ -399,16 +399,17 @@ const Index = () => {
       />
       {/* Hero Section */}
       <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
-        <WebPOptimizedImage 
+        <WebPOptimizedImage
           src={homeHero}
           webpSrc={homeHeroWebP}
-          alt="Professional currency conversion interface showing real-time exchange rates for international finance and travel planning" 
+          alt="Professional currency conversion interface showing real-time exchange rates for international finance and travel planning"
           width={1200}
           height={400}
           className="w-full h-full"
           loading="eager"
           priority={true}
           objectFit="cover"
+          fetchPriority="high"
         />
         <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
           <div className="text-center text-white px-4 md:px-6 max-w-4xl">

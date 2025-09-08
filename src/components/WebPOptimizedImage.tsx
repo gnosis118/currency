@@ -12,19 +12,21 @@ interface WebPOptimizedImageProps {
   priority?: boolean;
   sizes?: string;
   objectFit?: 'cover' | 'contain' | 'fill' | 'none' | 'scale-down';
+  fetchPriority?: 'high' | 'low' | 'auto';
 }
 
-const WebPOptimizedImage = memo(({ 
-  src, 
+const WebPOptimizedImage = memo(({
+  src,
   webpSrc,
-  alt, 
-  width, 
-  height, 
-  className = "", 
+  alt,
+  width,
+  height,
+  className = "",
   loading = "lazy",
   priority = false,
   sizes = "100vw",
-  objectFit = 'cover'
+  objectFit = 'cover',
+  fetchPriority = 'auto'
 }: WebPOptimizedImageProps) => {
   const [isLoaded, setIsLoaded] = useState(false);
   const [hasError, setHasError] = useState(false);
@@ -67,6 +69,7 @@ const WebPOptimizedImage = memo(({
         height={height}
         loading={priority ? 'eager' : loading}
         decoding="async"
+        fetchPriority={fetchPriority}
         className={cn(
           "w-full h-full transition-opacity duration-300",
           isLoaded ? 'opacity-100' : 'opacity-0'

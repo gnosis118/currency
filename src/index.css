@@ -5,6 +5,60 @@
 @tailwind components;
 @tailwind utilities;
 
+/* Performance optimizations for Core Web Vitals */
+@layer base {
+  /* Optimize font loading for better FCP */
+  @font-face {
+    font-family: 'system-ui';
+    font-display: swap;
+  }
+
+  /* Prevent layout shifts with consistent sizing */
+  img, video {
+    height: auto;
+    max-width: 100%;
+  }
+
+  /* Optimize animations for better performance */
+  * {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
+    scroll-behavior: auto !important;
+  }
+
+  /* Re-enable animations for users who prefer them */
+  @media (prefers-reduced-motion: no-preference) {
+    * {
+      animation-duration: revert !important;
+      animation-iteration-count: revert !important;
+      transition-duration: revert !important;
+      scroll-behavior: revert !important;
+    }
+  }
+
+  /* Optimize rendering performance */
+  .will-change-transform {
+    will-change: transform;
+  }
+
+  .will-change-opacity {
+    will-change: opacity;
+  }
+
+  /* Optimize scroll performance */
+  .scroll-smooth {
+    scroll-behavior: smooth;
+  }
+
+  /* GPU acceleration for animations */
+  .gpu-accelerated {
+    transform: translateZ(0);
+    backface-visibility: hidden;
+    perspective: 1000px;
+  }
+}
+
 /* Definition of the design system. All colors, gradients, fonts, etc should be defined here. 
 All colors MUST be HSL.
 */

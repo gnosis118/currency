@@ -6,7 +6,63 @@
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    
+
+    <!-- Critical CSS inlined for fastest FCP -->
+    <style>
+      /* Critical above-the-fold styles for immediate rendering */
+      body { margin: 0; font-family: system-ui, -apple-system, sans-serif; background: hsl(220 30% 98%); }
+      #root { min-height: 100vh; }
+      .container { max-width: 1200px; margin: 0 auto; padding: 0 1rem; }
+      .bg-background { background-color: hsl(220 30% 98%); }
+      .text-foreground { color: hsl(220 20% 15%); }
+      .bg-card { background-color: hsl(0 0% 100%); }
+      .border { border: 1px solid hsl(220 15% 90%); }
+      .rounded-lg { border-radius: 0.5rem; }
+      .p-6 { padding: 1.5rem; }
+      .text-2xl { font-size: 1.5rem; line-height: 2rem; }
+      .font-bold { font-weight: 700; }
+      .mb-4 { margin-bottom: 1rem; }
+      .flex { display: flex; }
+      .min-h-screen { min-height: 100vh; }
+      .relative { position: relative; }
+      .h-64 { height: 16rem; }
+      .overflow-hidden { overflow: hidden; }
+      .w-full { width: 100%; }
+      .h-full { height: 100%; }
+      .absolute { position: absolute; }
+      .inset-0 { top: 0; right: 0; bottom: 0; left: 0; }
+      .text-center { text-align: center; }
+      .text-white { color: white; }
+      .px-4 { padding-left: 1rem; padding-right: 1rem; }
+      .max-w-4xl { max-width: 56rem; }
+      .mx-auto { margin-left: auto; margin-right: auto; }
+      .items-center { align-items: center; }
+      .justify-center { justify-content: center; }
+      @media (min-width: 768px) {
+        .md\\:h-80 { height: 20rem; }
+        .md\\:px-6 { padding-left: 1.5rem; padding-right: 1.5rem; }
+        .md\\:text-4xl { font-size: 2.25rem; line-height: 2.5rem; }
+      }
+      @media (min-width: 1024px) {
+        .lg\\:h-96 { height: 24rem; }
+        .lg\\:text-6xl { font-size: 3.75rem; line-height: 1; }
+      }
+    </style>
+
+    <!-- Preload critical resources for LCP optimization -->
+    <link rel="preload" href="/src/assets/home-hero.webp" as="image" type="image/webp" fetchpriority="high">
+    <link rel="preload" href="/src/assets/home-hero.jpg" as="image" fetchpriority="high">
+
+    <!-- Preload critical fonts -->
+    <link rel="preconnect" href="https://fonts.googleapis.com" crossorigin>
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+
+    <!-- DNS prefetch for external resources -->
+    <link rel="dns-prefetch" href="//consent.cookiebot.com">
+    <link rel="dns-prefetch" href="//www.googletagmanager.com">
+    <link rel="dns-prefetch" href="//api.exchangerate-api.com">
+    <link rel="dns-prefetch" href="//api.coingecko.com">
+
     <!-- Google Consent Mode (must precede gtag.js/GTM) -->
     <script data-cookieconsent="ignore">
       window.dataLayer = window.dataLayer || [];
@@ -27,18 +83,40 @@
       gtag("set", "url_passthrough", false);
     </script>
     
-    <!-- Cookiebot -->
-    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="a316e185-0703-4964-b697-d0301f10cdb9" data-blockingmode="auto" type="text/javascript"></script>
-    
-    <!-- Google Analytics -->
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QQQGLR7SC"></script>
+    <!-- Cookiebot - Deferred for better performance -->
     <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-      gtag('config', 'G-4QQQGLR7SC', {
-        page_title: document.title,
-        page_location: window.location.href
+      // Defer Cookiebot to improve TTI
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.id = 'Cookiebot';
+          script.src = 'https://consent.cookiebot.com/uc.js';
+          script.setAttribute('data-cbid', 'a316e185-0703-4964-b697-d0301f10cdb9');
+          script.setAttribute('data-blockingmode', 'auto');
+          script.type = 'text/javascript';
+          document.head.appendChild(script);
+        }, 500);
+      });
+    </script>
+    
+    <!-- Google Analytics - Deferred for better TTI -->
+    <script>
+      // Defer Google Analytics to improve TTI
+      window.addEventListener('load', function() {
+        setTimeout(function() {
+          var script = document.createElement('script');
+          script.async = true;
+          script.src = 'https://www.googletagmanager.com/gtag/js?id=G-4QQQGLR7SC';
+          document.head.appendChild(script);
+
+          window.dataLayer = window.dataLayer || [];
+          function gtag(){dataLayer.push(arguments);}
+          gtag('js', new Date());
+          gtag('config', 'G-4QQQGLR7SC', {
+            page_title: document.title,
+            page_location: window.location.href
+          });
+        }, 1000);
       });
     </script>
     
@@ -272,6 +350,12 @@
         </section>
       </main>
     </div>
-    <script type="module" src="/src/main.tsx" async></script>
+    <!-- Main application script with optimized loading -->
+    <script type="module" src="/src/main.tsx" defer></script>
+
+    <!-- Preload critical modules for faster execution -->
+    <link rel="modulepreload" href="/src/main.tsx">
+    <link rel="modulepreload" href="/src/App.tsx">
+    <link rel="modulepreload" href="/src/pages/Index.tsx">
   </body>
 </html>

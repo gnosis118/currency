@@ -157,19 +157,7 @@ export const blogImageMap: Record<string, string> = {
   'historical-currency-charts-why-they-matter-for-traders-travelers': chartsHero,
   'the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates': trumpTariffsCurrencyImpact,
 
-  // Additional mappings for remaining articles
-  'ultimate-currency-conversion-guide-2025': exchangeRatesGuide,
-  'real-time-exchange-rate-analysis-trading-guide': oandaTrading,
-  'international-money-transfer-guide-2025-complete-comparison-of-15-services': internationalMoneyTransfer,
-  'international-business-currency-strategy-guide': businessCurrencyExchange,
-  'hidden-currency-conversion-fees-how-banks-disguise-charges': bankExchangeFees,
-  'forex-currency-pairs-complete-trading-guide-2025': forexRiskManagement,
-  'digital-nomad-currency-management-complete-guide': digitalNomadLaptop,
-  'currency-volatility-protection-advanced-hedging-strategies-for-individual-investors': currencyVolatilityDomino,
-  'central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money': cbdcGuide,
-  'best-currency-exchange-rates-comparison-2025': bankVsOnlineExchange,
-  'ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading': aiForexTradingGuide,
-  '2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025': wiseMoney,
+
 };
 
 // Category-based fallback images
