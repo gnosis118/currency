@@ -27,9 +27,9 @@
   "scripts": {
     "dev": "vite",
     "build": "npm run prebuild && vite build && npm run postbuild",
-    "build:safe": "node scripts/generate_blog_index.mjs && vite build && node scripts/presidential_sitemap_generator.cjs",
+    "build:safe": "node scripts/generate_blog_index.mjs && vite build && node scripts/copy-sitemap.cjs",
     "prebuild": "node scripts/verify-build.js && node scripts/generate_blog_index.mjs || echo 'Blog index generation completed'",
-    "postbuild": "node scripts/presidential_sitemap_generator.cjs",
+    "postbuild": "node scripts/copy-sitemap.cjs",
     "build:dev": "vite build --mode development",
     "cms": "npx --yes decap-server",
     "admin": "node scripts/start-admin.js",
@@ -39,7 +39,7 @@
     "lint:check": "eslint .",
     "preview": "vite preview",
     "generate:gap": "node scripts/generate_gap_article.cjs",
-    "generate:sitemap": "node scripts/presidential_sitemap_generator.cjs || echo 'Sitemap generation completed'",
+    "generate:sitemap": "echo 'Using existing comprehensive sitemap'",
     "update-browserslist": "npx --yes update-browserslist-db@latest || echo 'Browserslist update skipped'",
     "optimize:images": "node scripts/fix_blog_images.cjs",
     "test:lighthouse": "echo 'Lighthouse audit ready'",
@@ -48,6 +48,10 @@
     "seo:audit": "node scripts/seo_optimization.cjs",
     "schema:add": "node scripts/add_schema_markup.cjs",
     "verify:indexing": "node scripts/verify-google-indexing.cjs",
+    "audit:seo": "node scripts/comprehensive-seo-audit.cjs",
+    "validate:robots": "node scripts/validate-robots-txt.cjs",
+    "fix:frontmatter": "node scripts/fix-missing-frontmatter.cjs",
+    "audit:seo": "node scripts/comprehensive-seo-audit.cjs",
     "deploy:preview": "npm run build && npm run preview"
   },
   "dependencies": {

@@ -3,9 +3,10 @@ title: "International Money Transfer Guide 2025: Complete Comparison of 15+ Serv
 slug: "international-money-transfer-guide-2025-complete-comparison-of-15-services"
 date: "2025-08-21"
 excerpt: "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As digital transformation accelerates and traditional banking faces disruption, the landscape of international money transfers has become increasingly complex and competitive."
-featuredImage: "https://koala.sh/api/image/v2-international-money-transfer-2025.jpeg?width=1216&height=832&dream"
+
 tags: ["money-transfer", "international", "remittance", "comparison", "fees"]
 category: "International Transfers"
+image: "/src/assets/international-money-transfer-2025.jpeg"
 ---
 
 # International Money Transfer Guide 2025: Complete Comparison of 15+ Services

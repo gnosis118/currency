@@ -3,10 +3,83 @@ title: "Forex Trading Psychology: Master the Mental Game for Consistent Profits"
 slug: "forex-trading-psychology-master-the-mental-game-for-consistent-profits"
 date: "2025-08-20"
 excerpt: "The foreign exchange market, with its $7.5 trillion daily trading volume, represents the world's largest and most liquid financial market. Yet despite the abundance of technical analysis tools, studies consistently show that 80-90% of retail forex traders lose money over time."
-featuredImage: "https://koala.sh/api/image/v2-forex-trading-psychology-guide-2025.jpg?width=1216&height=832&dream"
+image: "/src/assets/forex-trading-psychology-2025.jpg"
 tags: ["forex", "trading-psychology", "mental-game", "trading", "psychology"]
 category: "Trading Psychology"
 ---
+schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/forex-trading-psychology-master-the-mental-game-for-consistent-profits"
+  },
+  "headline": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
+  "description": "The foreign exchange market, with its $7.5 trillion daily trading volume, represents the world's largest and most liquid financial market. Yet despite the abundance of technical analysis tools, studies consistently show that 80-90% of retail forex traders lose money over time.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://koala.sh/api/image/v2-forex-trading-psychology-guide-2025.jpg?width=1216&height=832&dream",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "url": "https://currencytocurrency.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png",
+      "width": 512,
+      "height": 512
+    }
+  },
+  "datePublished": "2025-08-20",
+  "dateModified": "2025-08-20",
+  "articleSection": "Trading Psychology",
+  "keywords": [],
+  "wordCount": 4634,
+  "timeRequired": "PT24M",
+  "inLanguage": "en-US",
+  "isAccessibleForFree": true,
+  "about": {
+    "@type": "Thing",
+    "name": "",
+    "description": ""
+  },
+  "breadcrumb": {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      {
+        "@type": "ListItem",
+        "position": 1,
+        "name": "Home",
+        "item": "https://currencytocurrency.app"
+      },
+      {
+        "@type": "ListItem",
+        "position": 2,
+        "name": "Blog",
+        "item": "https://currencytocurrency.app/blog"
+      },
+      {
+        "@type": "ListItem",
+        "position": 3,
+        "name": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
+        "item": "https://currencytocurrency.app/blog/forex-trading-psychology-master-the-mental-game-for-consistent-profits"
+      }
+    ]
+  }
+}
+---
+
 
 # Forex Trading Psychology: Master the Mental Game for Consistent Profits
 

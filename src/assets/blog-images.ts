@@ -73,6 +73,7 @@ import bitcoinVsTraditionalCurrency from './bitcoin-vs-traditional-currency.jpg'
 import currencyVolatilityProtection from './currency-volatility-protection-2025.png';
 import currencyVolatilityProtectionStrategies from './currency-volatility-protection-strategies-2025.png';
 import currencyArbitrageProfit from './currency-arbitrage-profit.jpg';
+import currencySafetyHero from './currency-safety-hero.jpg';
 
 // Banking & Financial Services
 import bankExchangeFees from './bank-exchange-fees.jpg';
@@ -94,62 +95,67 @@ import moneySavingStrategies from './money-saving-strategies.jpg';
 import globalFinance from './global-finance.jpg';
 import blogHero from './blog-hero.jpg';
 import blogPostBackground from './blog-post-background.jpg';
+import currencyAnalytics from './currency-analytics.jpg';
+import currencyCodesGuide from './currency-codes-guide.jpg';
+import mobileCurrencySecurity from './mobile-currency-security.jpg';
+import businessSoftwareCode from './business-software-code.jpg';
+import chartsHero from './charts-hero.jpg';
 
 // Blog Image Mapping - Maps blog post slugs to appropriate images
+// IMPORTANT: Each article MUST have a unique image - no duplicates allowed!
 export const blogImageMap: Record<string, string> = {
-  // Featured articles
-  'forex-currency-pairs-complete-trading-guide-2025': forexRiskManagement,
-  'hidden-currency-conversion-fees-how-banks-disguise-charges': bankExchangeFees,
+  // === UNIQUE IMAGE ASSIGNMENTS FOR ALL 36 ARTICLES ===
 
-  // Main guides
-  'ultimate-currency-conversion-guide-2025': exchangeRatesGuide,
-  'best-currency-exchange-rates-comparison-2025': currencyComparison,
+  // Currency Analysis & Guides (8 articles)
+  'strongest-currencies-in-the-world-whos-winning-the-fx-race': globalFinance,
+  'how-real-time-currency-rates-work-fluctuations-explained-fast': realtimeVsHistoricalRates,
+  'currency-conversion-tax-traps-irs-rules-international-freelancers-miss': currencyAnalytics,
+  'what-156-fiat-536-crypto-currencies-means-for-global-users-impact-and-insights': economicTrendsGlobal,
   'understanding-currency-conversion-a-comprehensive-guide': currencyCalculatorGuide,
-  
-  // Digital nomad content
-  'digital-nomad-currency-management-complete-guide': digitalNomadLaptop,
-  'nomad-banking-guide': nomadRemoteWork,
-  'remote-work-currency-management': nomadCodingWorkspace,
-  
-  // Business content
+  'ultimate-currency-conversion-guide-2025': exchangeRatesGuide,
+  'the-15-minute-currency-window-why-exchange-rates-change-most-during-these-daily-periods-explained': currencyCodesGuide,
+  'currency-to-currency-vs-leading-alternatives-feature-by-feature-comparison': currencyComparison,
+
+  // Trading & Forex (6 articles)
+  'forex-currency-pairs-complete-trading-guide-2025': forexRiskManagement,
+  'forex-trading-psychology-master-the-mental-game-for-consistent-profits': forexTradingPsychology,
+  'ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading': aiForexTradingGuide,
+  'the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings': brokerComparisonTable,
+  'fx-broker-review-research-competitive-analysis': forexBrokerComparison,
+  'real-time-exchange-rate-analysis-trading-guide': oandaTrading,
+
+  // Business & International (4 articles)
   'international-business-currency-strategy-guide': businessCurrencyExchange,
   '2025-08-26-effective-currency-exchange-strategies-for-businesses': businessCurrencyExchangeStrategies,
   'currency-exchange-for-international-business-complete-guide-to-multi-currency-operations': businessLaptopCurrency,
-  
-  // Trading & AI
-  'ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading': aiForexTradingGuide,
-  'forex-trading-psychology-master-the-mental-game-for-consistent-profits': forexTradingPsychology,
-  'the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings': brokerComparisonTable,
-  'fx-broker-review-research-competitive-analysis': forexBrokerComparison,
-  'real-time-exchange-rate-analysis-trading-guide': realtimeVsHistoricalRates,
-  
-  // Freelancer content
-  'currency-exchange-freelancers-guide': freelancerCurrencyExchange,
-  'freelancer-payment-methods': freelancerPaymentMethods,
-  
-  // International transfers
   'international-money-transfer-guide-2025-complete-comparison-of-15-services': internationalMoneyTransfer,
-  'money-transfer-comparison': moneyTransferComparison,
-  
-  // Technology & apps
-  '2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025': currencyComparison,
-  'ultimate-guide-choosing-best-currency-converter-app-2025': currencyComparison,
-  'the-top-10-best-currency-converter-apps-in-2025': wiseMoney,
-  'best-currency-converter-apps': currencyComparison,
-  'how-to-use-currency-converter-apis-for-real-time-exchange-rates': financialTechnologyCircuit,
-  
-  // Risk management
+
+  // Digital Nomad & Freelancer (3 articles)
+  'digital-nomad-currency-management-complete-guide': digitalNomadLaptop,
+  'currency-exchange-freelancers-guide': freelancerCurrencyExchange,
+  'currency-arbitrage-for-digital-nomads-legal-ways-to-profit-from-rate-differences': currencyArbitrageProfit,
+
+  // Apps & Technology (4 articles)
+  '2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025': wiseMoney,
+  'ultimate-guide-choosing-best-currency-converter-app-2025': xeCurrencyData,
+  'the-top-10-best-currency-converter-apps-in-2025': mobileCurrencySecurity,
+  'comparing-currency-converter-apps-features-fees-and-user-reviews': financialTechnologyCircuit,
+  'how-to-use-currency-converter-apis-for-real-time-exchange-rates': businessSoftwareCode,
+
+  // Risk Management & Security (3 articles)
   'currency-volatility-protection-advanced-hedging-strategies-for-individual-investors': currencyVolatilityDomino,
-  'currency-hedging-strategies': currencyVolatilityProtection,
-  
-  // Digital currency
+  'currency-safety-and-security-protecting-your-money-in-global-markets': currencySafetyHero,
+  'hidden-currency-conversion-fees-how-banks-disguise-charges': bankExchangeFees,
+
+  // Digital Currency & Crypto (3 articles)
   'central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money': cbdcGuide,
-  'cryptocurrency-exchange-rates': bitcoinVsTraditionalCurrency,
-  
-  // Historical & analysis
-  '2025-01-21-historical-currency-charts-why-they-matter-for-traders-travelers': realtimeVsHistoricalRates,
-  '2025-01-21-currency-to-currency-vs-leading-alternatives-feature-by-feature-comparison': currencyComparison,
-  '2025-01-20-what-156-fiat-536-crypto-currencies-means-for-global-users-impact-and-insights': globalFinance,
+  'central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026': cbdcCompleteGuide,
+  'cryptocurrency-as-currency-hedging-bitcoin-inflation-protection': bitcoinVsTraditionalCurrency,
+
+  // Comparison & Reviews (3 articles)
+  'best-currency-exchange-rates-comparison-2025': bankVsOnlineExchange,
+  'historical-currency-charts-why-they-matter-for-traders-travelers': chartsHero,
+  'the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates': trumpTariffsCurrencyImpact,
 };
 
 // Category-based fallback images
@@ -207,7 +213,29 @@ export {
   realtimeVsHistoricalRates,
   bankExchangeFees,
   wiseMoney,
-  blogHero
+  blogHero,
+  // Additional unique images
+  globalFinance,
+  currencyAnalytics,
+  economicTrendsGlobal,
+  currencyCalculatorGuide,
+  currencyCodesGuide,
+  brokerComparisonTable,
+  forexBrokerComparison,
+  oandaTrading,
+  businessCurrencyExchangeStrategies,
+  businessLaptopCurrency,
+  currencyArbitrageProfit,
+  xeCurrencyData,
+  mobileCurrencySecurity,
+  financialTechnologyCircuit,
+  businessSoftwareCode,
+  currencySafetyHero,
+  cbdcCompleteGuide,
+  bitcoinVsTraditionalCurrency,
+  bankVsOnlineExchange,
+  chartsHero,
+  trumpTariffsCurrencyImpact
 };
 
 // Default export for compatibility with dynamic imports
@@ -215,6 +243,7 @@ export default {
   blogImageMap,
   categoryImageMap,
   getBlogImage,
+  // All unique images available
   exchangeRatesGuide,
   currencyComparison,
   digitalNomadLaptop,
@@ -229,5 +258,26 @@ export default {
   realtimeVsHistoricalRates,
   bankExchangeFees,
   wiseMoney,
-  blogHero
+  blogHero,
+  globalFinance,
+  currencyAnalytics,
+  economicTrendsGlobal,
+  currencyCalculatorGuide,
+  currencyCodesGuide,
+  brokerComparisonTable,
+  forexBrokerComparison,
+  oandaTrading,
+  businessCurrencyExchangeStrategies,
+  businessLaptopCurrency,
+  currencyArbitrageProfit,
+  xeCurrencyData,
+  mobileCurrencySecurity,
+  financialTechnologyCircuit,
+  businessSoftwareCode,
+  currencySafetyHero,
+  cbdcCompleteGuide,
+  bitcoinVsTraditionalCurrency,
+  bankVsOnlineExchange,
+  chartsHero,
+  trumpTariffsCurrencyImpact
 };

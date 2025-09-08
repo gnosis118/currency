@@ -1,14 +1,53 @@
 ---
 title: "The Geopolitical Currency Map: How Elections and Trade Wars Move Exchange Rates"
 slug: "the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates"
-date: "2025-08-21"
+date: "2025-08-26"
 category: "Geopolitics"
 tags: ["geopolitics", "elections", "trade wars", "FX", "currencies", "hedging"]
 featured: true
 published: true
 excerpt: "Political events and trade tensions can rapidly move exchange rates. Learn how elections, trade wars, and policy shifts drive currency volatility—and how to prepare."
 metaDescription: "How elections and trade wars move exchange rates. A practical guide to geopolitical currency dynamics, predictive frameworks, and risk management strategies."
-cover: "https://koala.sh/api/image/v2-geo-fx-map-01.jpg?width=1216&height=832&dream"
+image: "/src/assets/trump-tariffs-currency-impact.jpg"
+---
+schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates"
+  },
+  "headline": "The Geopolitical Currency Map: How Elections and Trade Wars Move Exchange Rates",
+  "description": "Political events and trade tensions can rapidly move exchange rates. Learn how elections, trade wars, and policy shifts drive currency volatility—and how to prepare.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://koala.sh/api/image/v2-geo-fx-map-01.jpg?width=1216&height=832&dream",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "url": "https://currencytocurrency.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "datePublished": "2025-08-26",
+  "dateModified": "2025-08-26",
+  "keywords": ["geopolitics", "elections", "trade wars", "FX", "currencies", "hedging", "exchange rates", "political risk"],
+  "articleSection": "Geopolitics",
+  "wordCount": 3500
+}
 ---
 
 # The Geopolitical Currency Map: How Elections and Trade Wars Move Exchange Rates

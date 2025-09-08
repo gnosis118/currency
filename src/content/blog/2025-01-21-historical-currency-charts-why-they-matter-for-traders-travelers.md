@@ -1,11 +1,50 @@
 ---
 title: "Historical Currency Charts: Why They Matter for Traders & Travelers"
 slug: "historical-currency-charts-why-they-matter-for-traders-travelers"
-date: "2025-08-21"
+date: "2025-08-26"
 excerpt: "Historical currency exchange rates help traders predict future movements and assist travelers in timing their currency exchanges for the best deals."
-featuredImage: "https://koala.sh/api/image/v2-10m3uz-sas97.jpg?width=1216&height=832&dream"
+image: "/src/assets/charts-hero.jpg"
 tags: ["currency", "charts", "trading", "historical-data"]
 category: "Analysis"
+---
+schema: {
+  "@context": "https://schema.org",
+  "@type": "Article",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://currencytocurrency.app/blog/historical-currency-charts-why-they-matter-for-traders-travelers"
+  },
+  "headline": "Historical Currency Charts: Why They Matter for Traders & Travelers",
+  "description": "Historical currency exchange rates help traders predict future movements and assist travelers in timing their currency exchanges for the best deals.",
+  "image": {
+    "@type": "ImageObject",
+    "url": "https://koala.sh/api/image/v2-10m3uz-sas97.jpg?width=1216&height=832&dream",
+    "width": 1200,
+    "height": 630
+  },
+  "author": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "url": "https://currencytocurrency.app",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Currency to Currency",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://currencytocurrency.app/icon-512.png"
+    }
+  },
+  "datePublished": "2025-08-26",
+  "dateModified": "2025-08-26",
+  "keywords": ["currency", "charts", "trading", "historical-data", "exchange rates", "forex analysis"],
+  "articleSection": "Analysis",
+  "wordCount": 1800
+}
 ---
 
 # Historical Currency Charts: Why They Matter for Traders & Travelers

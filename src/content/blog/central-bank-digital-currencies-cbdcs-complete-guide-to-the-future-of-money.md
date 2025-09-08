@@ -3,9 +3,10 @@ title: "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of
 slug: "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money"
 date: "2025-08-16"
 excerpt: "The global financial landscape is on the brink of its most significant transformation since the abandonment of the gold standard. Central Bank Digital Currencies (CBDCs) represent a revolutionary shift in how money is created, distributed, and used."
-featuredImage: "https://koala.sh/api/image/v2-cbdc-complete-guide-2025.jpg?width=1216&height=832&dream"
+
 tags: ["cbdc", "digital-currency", "central-bank", "future-of-money", "fintech"]
 category: "Digital Currency"
+image: "/src/assets/cbdc-guide-2025.jpg"
 ---
 
 # Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money

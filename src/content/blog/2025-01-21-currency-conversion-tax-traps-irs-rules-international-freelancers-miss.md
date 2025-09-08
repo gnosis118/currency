@@ -8,7 +8,7 @@ featured: true
 published: true
 excerpt: "International freelancers often misapply IRS currency conversion rules—triggering audits, penalties, and overpaid taxes. Learn the traps and compliant strategies."
 metaDescription: "A comprehensive guide to IRS currency conversion rules for international freelancers: functional currency, exchange rate selection, record-keeping, Section 988, audit defense, and optimization."
-cover: "https://koala.sh/api/image/v2-tax-traps-hero.jpg?width=1216&height=832&dream"
+image: "/src/assets/financial-expert-predictions.jpg"
 ---
 
 # Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss

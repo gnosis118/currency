@@ -3,7 +3,7 @@ title: "Currency Exchange for Freelancers: Complete Guide to Managing Multi-Curr
 slug: "currency-exchange-freelancers-guide"
 date: "2025-08-17"
 excerpt: "The freelance economy has exploded globally, with over 73.3 million Americans freelancing in 2023 and millions more worldwide earning income across borders."
-featuredImage: "https://koala.sh/api/image/v2-freelancer-currency-exchange.jpeg?width=1216&height=832&dream"
+image: "/src/assets/freelancer-currency-exchange.jpeg"
 tags: ["freelancing", "currency", "payments", "international", "multi-currency"]
 category: "Freelancing"
 ---

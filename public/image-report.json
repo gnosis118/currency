@@ -1,229 +1,344 @@
 {
-  "generatedAt": "2025-09-01T00:51:11.451Z",
-  "totalPosts": 25,
-  "totalAssets": 80,
+  "generatedAt": "2025-09-08T01:15:39.907Z",
+  "totalPosts": 36,
+  "totalAssets": 103,
   "imageStatus": {
-    "working": 20,
-    "external": 5,
-    "broken": 0,
+    "working": 0,
+    "external": 18,
+    "broken": 18,
     "missing": 0
   },
   "posts": [
     {
-      "slug": "hidden-currency-conversion-fees-how-banks-disguise-charges",
-      "title": "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers",
-      "category": "Banking",
-      "image": "/src/assets/bank-exchange-fees.jpg",
-      "status": "working"
+      "slug": "strongest-currencies-in-the-world-whos-winning-the-fx-race",
+      "title": "Strongest Currencies in the World: Who's Winning the FX Race?",
+      "category": "Currency",
+      "image": "https://koala.sh/api/image/v2-10mb58-opeak.jpg?width=1216&height=832&dream",
+      "status": "external"
     },
     {
-      "slug": "ultimate-currency-conversion-guide-2025",
-      "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
-      "category": "Guides",
-      "image": "/src/assets/exchange-rates-guide.jpg",
-      "status": "working"
-    },
-    {
-      "slug": "best-currency-exchange-rates-comparison-2025",
-      "title": "Best Currency Exchange Rates 2025: Complete Provider Comparison Guide",
-      "category": "Comparison",
-      "image": "/src/assets/currency-comparison.jpg",
-      "status": "working"
-    },
-    {
-      "slug": "digital-nomad-currency-management-complete-guide",
-      "title": "Digital Nomad Currency Management: Complete 2025 Guide to Multi-Currency Banking",
-      "category": "Digital Nomad",
-      "image": "/src/assets/digital-nomad-laptop.jpg",
-      "status": "working"
-    },
-    {
-      "slug": "real-time-exchange-rate-analysis-trading-guide",
-      "title": "Real-Time Exchange Rate Analysis: Advanced Trading and Timing Guide 2025",
-      "category": "Analysis",
-      "image": "/src/assets/realtime-vs-historical-rates.jpg",
-      "status": "working"
-    },
-    {
-      "slug": "international-business-currency-strategy-guide",
-      "title": "International Business Currency Strategy: Complete Risk Management Guide 2025",
-      "category": "Business",
-      "image": "/src/assets/business-currency-exchange-2025.png",
-      "status": "working"
-    },
-    {
-      "slug": "2025-08-26-effective-currency-exchange-strategies-for-businesses",
-      "title": "Effective Currency Exchange Strategies for Businesses: Complete 2025 Playbook",
-      "category": "Business Finance",
-      "image": "/src/assets/business-currency-exchange-strategies-2025.png",
-      "status": "working"
-    },
-    {
-      "slug": "2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025",
-      "title": "Best Currency Converter Apps for Accurate Real-Time Exchange Rates in 2025: Complete Guide",
-      "category": "Technology",
-      "image": "/src/assets/currency-comparison.jpg",
-      "status": "working"
-    },
-    {
-      "slug": "international-money-transfer-guide-2025-complete-comparison-of-15-services",
-      "title": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
-      "category": "International Transfers",
-      "image": "/src/assets/international-money-transfer-2025.jpeg",
-      "status": "working"
-    },
-    {
-      "slug": "forex-trading-psychology-master-the-mental-game-for-consistent-profits",
-      "title": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
-      "category": "Trading Psychology",
-      "image": "/src/assets/forex-trading-psychology-2025.jpg",
-      "status": "working"
+      "slug": "how-real-time-currency-rates-work-fluctuations-explained-fast",
+      "title": "How Real-Time Currency Rates Work: Fluctuations Explained Fast",
+      "category": "Currency",
+      "image": "https://koala.sh/api/image/v2-10m3sn-c92vt.jpg?width=1216&height=832&dream",
+      "status": "external"
     },
     {
       "slug": "currency-volatility-protection-advanced-hedging-strategies-for-individual-investors",
       "title": "Currency Volatility Protection: Advanced Hedging Strategies for Individual Investors",
       "category": "Risk Management",
-      "image": "/src/assets/currency-volatility-domino.jpg",
-      "status": "working"
+      "image": "https://koala.sh/api/image/v2-currency-volatility-protection-2025.png?width=1216&height=832&dream",
+      "status": "external"
     },
     {
-      "slug": "currency-exchange-for-international-business-complete-guide-to-multi-currency-operations",
-      "title": "Currency Exchange for International Business: Complete Guide to Multi-Currency Operations",
-      "category": "Business Finance",
-      "image": "/src/assets/business-currency-exchange-2025.png",
-      "status": "working"
+      "slug": "currency-conversion-tax-traps-irs-rules-international-freelancers-miss",
+      "title": "Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss",
+      "category": "Currency",
+      "image": "https://koala.sh/api/image/v2-10m3u0-k5nuf.jpg?width=1216&height=832&dream",
+      "status": "external"
     },
     {
-      "slug": "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money",
-      "title": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
-      "category": "Digital Currency",
-      "image": "/src/assets/cbdc-guide-2025.jpg",
-      "status": "working"
+      "slug": "international-money-transfer-guide-2025-complete-comparison-of-15-services",
+      "title": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
+      "category": "International Transfers",
+      "image": "https://koala.sh/api/image/v2-international-money-transfer-2025.jpeg?width=1216&height=832&dream",
+      "status": "external"
     },
     {
-      "slug": "the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings",
-      "title": "The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings",
-      "category": "Guide",
-      "image": "/src/assets/broker-comparison-table-chart-2025.png",
-      "status": "working"
+      "slug": "the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates",
+      "title": "The Geopolitical Currency Map: How Elections and Trade Wars Move Exchange Rates",
+      "category": "Geopolitics",
+      "image": "https://koala.sh/api/image/v2-geo-fx-map-01.jpg?width=1216&height=832&dream",
+      "status": "external"
     },
     {
-      "slug": "fx-broker-review-research-competitive-analysis",
-      "title": "FX Broker Review Research: Comprehensive Competitive Analysis 2025",
-      "category": "Guide",
-      "image": "/src/assets/forex-broker-comparison-2025.png",
-      "status": "working"
+      "slug": "historical-currency-charts-why-they-matter-for-traders-travelers",
+      "title": "Historical Currency Charts: Why They Matter for Traders & Travelers",
+      "category": "Analysis",
+      "image": "https://koala.sh/api/image/v2-10m3uz-sas97.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "currency-to-currency-vs-leading-alternatives-feature-by-feature-comparison",
+      "title": "Currency to Currency vs. Leading Alternatives: Complete Feature Comparison",
+      "category": "Comparison",
+      "image": "https://koala.sh/api/image/v2-109xac-xhv5a.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "currency-conversion-tax-traps-irs-rules-international-freelancers-miss",
+      "title": "Currency Conversion Tax Traps: IRS Rules Most International Freelancers Miss",
+      "category": "Taxes",
+      "image": "https://koala.sh/api/image/v2-tax-traps-hero.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "cryptocurrency-as-currency-hedging-bitcoin-inflation-protection",
+      "title": "Cryptocurrency as Currency Hedging: When Bitcoin Actually Protects Against Inflation Risks",
+      "category": "Cryptocurrency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "forex-trading-psychology-master-the-mental-game-for-consistent-profits",
+      "title": "Forex Trading Psychology: Master the Mental Game for Consistent Profits",
+      "category": "Trading Psychology",
+      "image": "https://koala.sh/api/image/v2-forex-trading-psychology-guide-2025.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "what-156-fiat-536-crypto-currencies-means-for-global-users-impact-and-insights",
+      "title": "What 156 Fiat + 536 Crypto Currencies Means for Global Users: Impact and Insights",
+      "category": "Currency",
+      "image": "https://koala.sh/api/image/v2-109jcm-cpu9m.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "forex-currency-pairs-complete-trading-guide-2025",
+      "title": "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy",
+      "category": "Trading",
+      "image": "https://koala.sh/api/image/v2-forex-currency-pairs-trading-guide-2025.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "currency-safety-and-security-protecting-your-money-in-global-markets",
+      "title": "Currency Safety and Security: Protecting Your Money in Global Markets",
+      "category": "Security",
+      "image": "https://koala.sh/api/image/v2-currency-security-hero.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "digital-nomad-currency-management-complete-guide",
+      "title": "Digital Nomad Currency Management: Complete 2025 Guide to Multi-Currency Banking",
+      "category": "Digital Nomad",
+      "image": "https://koala.sh/api/image/v2-digital-nomad-working.jpeg?width=1216&height=832&dream",
+      "status": "external"
     },
     {
       "slug": "currency-exchange-freelancers-guide",
       "title": "Currency Exchange for Freelancers: Complete Guide to Managing Multi-Currency Payments",
       "category": "Freelancing",
-      "image": "/src/assets/freelancer-currency-exchange.jpeg",
-      "status": "working"
+      "image": "https://koala.sh/api/image/v2-freelancer-currency-exchange.jpeg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "central-bank-digital-currencies-cbdcs-complete-guide-to-the-future-of-money",
+      "title": "Central Bank Digital Currencies (CBDCs): Complete Guide to the Future of Money",
+      "category": "Digital Currency",
+      "image": "https://koala.sh/api/image/v2-cbdc-complete-guide-2025.jpg?width=1216&height=832&dream",
+      "status": "external"
+    },
+    {
+      "slug": "best-currency-exchange-rates-comparison-2025",
+      "title": "Best Currency Exchange Rates 2025: Complete Provider Comparison Guide",
+      "category": "Comparison",
+      "image": "https://koala.sh/api/image/v2-currency-comparison.jpg?width=1216&height=832&dream",
+      "status": "external"
     },
     {
       "slug": "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading",
       "title": "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
-      "category": "Guide",
-      "image": "/src/assets/ai-forex-trading-guide-2025.jpg",
-      "status": "working"
-    },
-    {
-      "slug": "ultimate-guide-choosing-best-currency-converter-app-2025",
-      "title": "The Ultimate Guide to Choosing the Best Currency Converter App Explained: Key Facts and Trends",
-      "category": "Technology",
-      "image": "/src/assets/currency-comparison.jpg",
-      "status": "working"
-    },
-    {
-      "slug": "how-to-use-currency-converter-apis-for-real-time-exchange-rates",
-      "title": "How to Use Currency Converter APIs for Real-Time Exchange Rates",
-      "category": "Currency",
-      "image": "https://qtrypzzcjebvfcihiynt.supabase.co/storage/v1/object/public/base44-prod/public/a1f1318e1_generated_image.png",
+      "category": "Trading",
+      "image": "https://koala.sh/api/image/v2-ai-forex-trading-guide-2025.jpg?width=1216&height=832&dream",
       "status": "external"
     },
     {
       "slug": "understanding-currency-conversion-a-comprehensive-guide",
       "title": "Understanding Currency Conversion: A Comprehensive Guide for 2025",
-      "category": "Education",
-      "image": "/src/assets/currency-calculator-guide.jpg",
-      "status": "working"
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "ultimate-guide-choosing-best-currency-converter-app-2025",
+      "title": "The Ultimate Guide to Choosing the Best Currency Converter App Explained: Key Facts and Trends",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "ultimate-currency-conversion-guide-2025",
+      "title": "Ultimate Currency Conversion Guide 2025: Everything You Need to Know",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
     },
     {
       "slug": "the-top-10-best-currency-converter-apps-in-2025",
       "title": "Top 10 Best Currency Converter Apps of 2025: Complete Comparison Guide",
-      "category": "Apps",
-      "image": "/src/assets/wise-money-transfer.jpg",
-      "status": "working"
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
     },
     {
-      "slug": "best-currency-converter-apps",
+      "slug": "the-complete-guide-to-forex-brokers-2025-expert-reviews-star-ratings",
+      "title": "The Complete Guide to Forex Brokers 2025: Expert Reviews & Star Ratings",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "the-15-minute-currency-window-why-exchange-rates-change-most-during-these-daily-periods-explained",
+      "title": "The 15-Minute Currency Window: Why Exchange Rates Change Most During These Daily Periods Explained",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "real-time-exchange-rate-analysis-trading-guide",
+      "title": "Real-Time Exchange Rate Analysis: Advanced Trading and Timing Guide 2025",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "international-business-currency-strategy-guide",
+      "title": "International Business Currency Strategy: Complete Risk Management Guide 2025",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "how-to-use-currency-converter-apis-for-real-time-exchange-rates",
+      "title": "How to Use Currency Converter APIs for Real-Time Exchange Rates",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "hidden-currency-conversion-fees-how-banks-disguise-charges",
+      "title": "Hidden Currency Conversion Fees: How Banks Disguise 3-6% Charges in 'Free' Transfers",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "fx-broker-review-research-competitive-analysis",
+      "title": "FX Broker Review Research - Competitive Analysis",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "currency-exchange-for-international-business-complete-guide-to-multi-currency-operations",
+      "title": "Currency Exchange for International Business: Complete Guide to Multi-Currency Operations",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "currency-arbitrage-for-digital-nomads-legal-ways-to-profit-from-rate-differences",
+      "title": "Currency Arbitrage for Digital Nomads: Legal Ways to Profit from Rate Differences",
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
+    },
+    {
+      "slug": "comparing-currency-converter-apps-features-fees-and-user-reviews",
       "title": "Comparing Currency Converter Apps: Features, Fees, and User Reviews",
-      "category": "Guides",
-      "image": "https://currencytocurrency.app/og/blog-currency-converter-apps.jpg",
-      "status": "external"
+      "category": "Currency",
+      "image": "/placeholder.svg",
+      "status": "broken"
     },
     {
-      "slug": "2025-01-21-historical-currency-charts-why-they-matter-for-traders-travelers",
-      "title": "Historical Currency Charts: Why They Matter for Traders & Travelers",
+      "slug": "central-bank-digital-currencies-cbdcs-vs-your-wallet-what-changes-in-2025-2026",
+      "title": "Central Bank Digital Currencies (CBDCs) vs. Your Wallet: What Changes in 2025-2026",
       "category": "Currency",
-      "image": "https://koala.sh/api/image/v2-109kc2-ovml3.jpg?width=1216&height=832&dream",
-      "status": "external"
+      "image": "/placeholder.svg",
+      "status": "broken"
     },
     {
-      "slug": "2025-01-21-currency-to-currency-vs-leading-alternatives-feature-by-feature-comparison",
-      "title": "Currency to Currency vs. Leading Alternatives: Complete Feature Comparison",
+      "slug": "2025-08-26-effective-currency-exchange-strategies-for-businesses",
+      "title": "Effective Currency Exchange Strategies for Businesses: Complete 2025 Playbook",
       "category": "Currency",
-      "image": "https://koala.sh/api/image/v2-109xac-xhv5a.jpg?width=1216&height=832&dream",
-      "status": "external"
+      "image": "/placeholder.svg",
+      "status": "broken"
     },
     {
-      "slug": "2025-01-20-what-156-fiat-536-crypto-currencies-means-for-global-users-impact-and-insights",
-      "title": "What 156 Fiat + 536 Crypto Currencies Means for Global Users: Impact and Insights",
+      "slug": "2025-08-26-best-currency-converter-apps-for-accurate-real-time-exchange-rates-in-2025",
+      "title": "Best Currency Converter Apps for Accurate Real-Time Exchange Rates in 2025: Complete Guide",
       "category": "Currency",
-      "image": "https://koala.sh/api/image/v2-109jcm-cpu9m.jpg?width=1216&height=832&dream",
-      "status": "external"
+      "image": "/placeholder.svg",
+      "status": "broken"
     }
   ],
   "unusedAssets": [
+    "ai-forex-trading-guide-2025.jpg",
+    "ai-forex-trading-guide-2025.webp",
     "alerts-hero.jpg",
     "alerts-hero.webp",
+    "bank-exchange-fees.jpg",
+    "bank-exchange-fees.webp",
     "bank-vs-online-exchange.png",
+    "bank-vs-online-exchange.webp",
     "bitcoin-investment-strategies.jpg",
+    "bitcoin-investment-strategies.webp",
     "bitcoin-trading-dashboard.jpg",
+    "bitcoin-trading-dashboard.webp",
     "bitcoin-vs-traditional-currency.jpg",
+    "bitcoin-vs-traditional-currency.webp",
     "blog-hero.jpg",
     "blog-hero.webp",
     "blog-post-background.jpg",
+    "blog-post-background.webp",
+    "broker-comparison-table-chart-2025.png",
+    "broker-comparison-table-chart-2025.webp",
     "business-coding-macbook.jpg",
+    "business-coding-macbook.webp",
+    "business-currency-exchange-2025.png",
+    "business-currency-exchange-2025.webp",
+    "business-currency-exchange-strategies-2025.png",
+    "business-currency-exchange-strategies-2025.webp",
     "business-hedging-strategies-2025.webp",
     "business-laptop-currency.jpg",
+    "business-laptop-currency.webp",
     "business-software-code.jpg",
+    "business-software-code.webp",
     "business-team-laptops.jpg",
+    "business-team-laptops.webp",
     "cbdc-complete-guide-2025.png",
+    "cbdc-complete-guide-2025.webp",
+    "cbdc-guide-2025.jpg",
+    "cbdc-guide-2025.webp",
     "charts-hero.jpg",
     "charts-hero.webp",
     "currency-analytics.jpg",
+    "currency-analytics.webp",
     "currency-arbitrage-profit.jpg",
+    "currency-arbitrage-profit.webp",
+    "currency-calculator-guide.jpg",
+    "currency-calculator-guide.webp",
     "currency-codes-guide.jpg",
+    "currency-codes-guide.webp",
+    "currency-comparison.jpg",
+    "currency-comparison.webp",
     "currency-exchange-fees-hero.jpg",
+    "currency-exchange-fees-hero.webp",
     "currency-exchange-sites-hero.jpg",
+    "currency-exchange-sites-hero.webp",
     "currency-hedging-business.jpg",
     "currency-safety-hero.jpg",
+    "currency-volatility-domino.jpg",
     "currency-volatility-protection-2025.png",
     "currency-volatility-protection-strategies-2025.png",
     "digital-banking-laptop.jpg",
+    "digital-nomad-laptop.jpg",
     "digital-nomad-working.jpeg",
     "economic-trends-global.jpg",
+    "exchange-rates-guide.jpg",
     "financial-expert-predictions.jpg",
     "financial-technology-circuit.jpg",
+    "forex-broker-comparison-2025.png",
     "forex-risk-management-2025.png",
+    "forex-trading-psychology-2025.jpg",
     "forex-trading-psychology-guide-2025.png",
+    "freelancer-currency-exchange.jpeg",
     "freelancer-payment-methods-2025.png",
     "freelancer-payment-options-2025.jpg",
     "global-finance.jpg",
     "home-hero.jpg",
     "home-hero.webp",
+    "international-money-transfer-2025.jpeg",
     "international-money-transfer-comparison-2025.png",
     "mobile-currency-security.jpg",
     "money-saving-strategies.jpg",
@@ -234,6 +349,7 @@
     "nomad-remote-work.jpg",
     "north-america-travel-currency.jpg",
     "oanda-trading.jpg",
+    "realtime-vs-historical-rates.jpg",
     "remitly-transfer.jpg",
     "smart-travel-money-strategy.jpg",
     "sme-finance.jpg",
@@ -248,9 +364,11 @@
     "usd-eur-hero.jpg",
     "vacation-financial-planning.jpg",
     "western-union-global.jpg",
+    "wise-money-transfer.jpg",
     "xe-currency-data.jpg"
   ],
   "recommendations": [
+    "Fix broken image paths",
     "Consider removing unused assets to reduce bundle size"
   ]
 }

@@ -3,9 +3,10 @@ title: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading
 slug: "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
 date: "2025-08-14"
 excerpt: "Are you curious about making money while you sleep? AI forex trading might be the answer you're looking for. This complete guide will teach you everything you need to know about automated forex trading in 2025."
-featuredImage: "https://koala.sh/api/image/v2-ai-forex-trading-guide-2025.jpg?width=1216&height=832&dream"
+
 tags: ["ai", "forex", "trading", "automation", "beginners"]
 category: "Trading"
+image: "/src/assets/ai-forex-trading-guide-2025.jpg"
 ---
 
 # AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading

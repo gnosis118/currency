@@ -3,9 +3,10 @@ title: "Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & St
 slug: "forex-currency-pairs-complete-trading-guide-2025"
 date: "2025-08-19"
 excerpt: "The forex market trades over $7.5 trillion daily, making it the world's largest financial market. Yet most traders lose money because they don't understand the fundamental differences between currency pair types and how to manage risk accordingly."
-featuredImage: "https://koala.sh/api/image/v2-forex-currency-pairs-trading-guide-2025.jpg?width=1216&height=832&dream"
+
 tags: ["forex", "currency-pairs", "trading", "risk-management", "strategy"]
 category: "Trading"
+image: "/src/assets/forex-risk-management-2025.png"
 ---
 
 # Forex Currency Pairs: Complete Trading Guide 2025 - Risk Management & Strategy
