@@ -106,6 +106,9 @@ import chartsHero from './charts-hero.jpg';
 export const blogImageMap: Record<string, string> = {
   // === UNIQUE IMAGE ASSIGNMENTS FOR ALL 36 ARTICLES ===
 
+  // Pinned Top Article (2025-09-08)
+  'how-to-read-calculate-exchange-rates-like-a-pro-2025': exchangeRatesGuide,
+
   // Currency Analysis & Guides (8 articles)
   'strongest-currencies-in-the-world-whos-winning-the-fx-race': globalFinance,
   'how-real-time-currency-rates-work-fluctuations-explained-fast': realtimeVsHistoricalRates,
@@ -189,12 +192,12 @@ export function getBlogImage(slug: string, category?: string): string {
   if (blogImageMap[slug]) {
     return blogImageMap[slug];
   }
-  
+
   // Then try category mapping
   if (category && categoryImageMap[category]) {
     return categoryImageMap[category];
   }
-  
+
   // Default fallback
   return blogHero;
 }
