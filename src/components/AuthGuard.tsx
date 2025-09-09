@@ -174,6 +174,24 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
         setSignUpEmail('');
         setSignUpPassword('');
         setConfirmPassword('');
+        // Attempt to persist consent details if session/user is available
+        try {
+          const { data: userRes } = await supabase.auth.getUser();
+          const uid = (data && data.user && data.user.id) ? data.user.id : (userRes?.user?.id || null);
+          if (uid) {
+            await supabase.from('user_consents').insert({
+              user_id: uid,
+              email,
+              agree_to_terms: !!(meta && (meta as any).agree_to_terms),
+              agree_to_privacy: !!(meta && (meta as any).agree_to_privacy),
+              consented_at: (meta && (meta as any).consented_at) || new Date().toISOString(),
+              provider: (meta && (meta as any).recaptcha_provider) || 'unknown',
+              recaptcha_score: (meta && (meta as any).recaptcha_score) ?? null,
+            });
+          }
+        } catch (e) {
+          console.warn('Consent log insert failed (will try after first login):', e);
+        }
       }
     } catch (err) {
       console.error('Unexpected error during signup:', err);
