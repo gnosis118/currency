@@ -39,7 +39,43 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
 
   const [signInHumanConfirmed, setSignInHumanConfirmed] = useState(false);
 
-  // Human verification challenge
+  // reCAPTCHA v3 setup (fallback to math challenge when not configured)
+  const recaptchaSiteKey = (import.meta as any).env?.VITE_RECAPTCHA_SITE_KEY || '';
+  const loadRecaptcha = (): Promise<any> => new Promise((resolve) => {
+    if (!recaptchaSiteKey) return resolve(null);
+    const w: any = window as any;
+    if (w.grecaptcha) return resolve(w.grecaptcha);
+    const s = document.createElement('script');
+    s.src = `https://www.google.com/recaptcha/api.js?render=${recaptchaSiteKey}`;
+    s.async = true;
+    s.onload = () => resolve((window as any).grecaptcha);
+    document.head.appendChild(s);
+  });
+  const getRecaptchaToken = async (action: string) => {
+    const grecaptcha: any = await loadRecaptcha();
+    if (!grecaptcha || !recaptchaSiteKey) return null;
+    try {
+      return await grecaptcha.execute(recaptchaSiteKey, { action });
+    } catch {
+      return null;
+    }
+  };
+  const verifyRecaptcha = async (token: string | null, action: string): Promise<{ ok: boolean; score: number | null; }> => {
+    if (!token) return { ok: false, score: null };
+    try {
+      const res = await fetch('/.netlify/functions/verify-recaptcha', {
+        method: 'POST', headers: { 'Content-Type': 'application/json' }, body: JSON.stringify({ token, action })
+      });
+      if (!res.ok) return { ok: false, score: null };
+      const data = await res.json();
+      const score = typeof data.score === 'number' ? data.score : null;
+      return { ok: !!data.success && (score ?? 0) >= 0.5, score };
+    } catch {
+      return { ok: false, score: null };
+    }
+  };
+
+  // Human verification challenge (fallback)
   const [challengeQuestion, setChallengeQuestion] = useState('');
   const [challengeAnswer, setChallengeAnswer] = useState('');
   const [userAnswer, setUserAnswer] = useState('');
@@ -115,47 +151,33 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
     setIsSigningIn(false);
   };
 
-  const signUp = async (email: string, password: string) => {
-    console.log('Starting signup process', { email, password });
+  const signUp = async (email: string, password: string, meta?: Record<string, any>) => {
+    console.log('Starting signup process', { email });
     setIsSigningUp(true);
     const redirectUrl = `${window.location.origin}/`;
-    console.log('Redirect URL:', redirectUrl);
 
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: redirectUrl
+          emailRedirectTo: redirectUrl,
+          data: meta || {}
         }
       });
 
-      console.log('Supabase response:', { data, error });
-
       if (error) {
         console.error('Signup error:', error);
-        toast({
-          title: "Sign Up Failed",
-          description: error.message,
-          variant: "destructive"
-        });
+        toast({ title: "Sign Up Failed", description: error.message, variant: "destructive" });
       } else {
-        console.log('Signup successful');
-        toast({
-          title: "Account Created!",
-          description: "Check your email to confirm your account.",
-        });
+        toast({ title: "Account Created!", description: "Check your email to confirm your account." });
         setSignUpEmail('');
         setSignUpPassword('');
         setConfirmPassword('');
       }
     } catch (err) {
       console.error('Unexpected error during signup:', err);
-      toast({
-        title: "Sign Up Failed",
-        description: "An unexpected error occurred. Please try again.",
-        variant: "destructive"
-      });
+      toast({ title: "Sign Up Failed", description: "An unexpected error occurred. Please try again.", variant: "destructive" });
     }
     setIsSigningUp(false);
   };
@@ -176,84 +198,78 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
     }
   };
 
-  const handleSignIn = (e: React.FormEvent) => {
+  const handleSignIn = async (e: React.FormEvent) => {
     e.preventDefault();
     if (!signInEmail || !signInPassword) {
-      toast({
-        title: "Missing Information",
-        description: "Please enter both email and password.",
-        variant: "destructive"
-      });
+      toast({ title: "Missing Information", description: "Please enter both email and password.", variant: "destructive" });
       return;
     }
     if (!signInHumanConfirmed) {
-      toast({
-        title: "Confirmation Required",
-        description: "Please confirm you are human before signing in.",
-        variant: "destructive"
-      });
+      toast({ title: "Confirmation Required", description: "Please confirm you are human before signing in.", variant: "destructive" });
       return;
+    }
+    if (recaptchaSiteKey) {
+      const token = await getRecaptchaToken('signin');
+      const { ok } = await verifyRecaptcha(token, 'signin');
+      if (!ok) {
+        toast({ title: "Verification Failed", description: "We could not verify your request. Please try again.", variant: "destructive" });
+        return;
+      }
     }
     signIn(signInEmail, signInPassword);
   };
 
-  const handleSignUp = (e: React.FormEvent) => {
+  const handleSignUp = async (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Sign up form submitted', { signUpEmail, signUpPassword, confirmPassword, agreeToTerms, agreeToPrivacy, recaptchaVerified });
 
     if (!signUpEmail || !signUpPassword || !confirmPassword) {
-      console.log('Missing information');
-      toast({
-        title: "Missing Information",
-        description: "Please fill in all fields.",
-        variant: "destructive"
-      });
+      toast({ title: "Missing Information", description: "Please fill in all fields.", variant: "destructive" });
       return;
     }
     if (signUpPassword !== confirmPassword) {
-      console.log('Password mismatch');
-      toast({
-        title: "Password Mismatch",
-        description: "Passwords do not match.",
-        variant: "destructive"
-      });
+      toast({ title: "Password Mismatch", description: "Passwords do not match.", variant: "destructive" });
       return;
     }
     if (signUpPassword.length < 6) {
-      console.log('Password too short');
-      toast({
-        title: "Weak Password",
-        description: "Password must be at least 6 characters long.",
-        variant: "destructive"
-      });
+      toast({ title: "Weak Password", description: "Password must be at least 6 characters long.", variant: "destructive" });
       return;
     }
     if (!agreeToTerms) {
-      toast({
-        title: "Terms Required",
-        description: "You must agree to the Terms of Service to create an account.",
-        variant: "destructive"
-      });
+      toast({ title: "Terms Required", description: "You must agree to the Terms of Service to create an account.", variant: "destructive" });
       return;
     }
     if (!agreeToPrivacy) {
-      toast({
-        title: "Privacy Policy Required",
-        description: "You must agree to the Privacy Policy to create an account.",
-        variant: "destructive"
-      });
+      toast({ title: "Privacy Policy Required", description: "You must agree to the Privacy Policy to create an account.", variant: "destructive" });
       return;
     }
-    if (!recaptchaVerified) {
-      toast({
-        title: "Verification Required",
-        description: "Please complete the human verification to create an account.",
-        variant: "destructive"
-      });
-      return;
+
+    let recaptchaScore: number | null = null;
+    if (recaptchaSiteKey) {
+      const token = await getRecaptchaToken('signup');
+      const { ok, score } = await verifyRecaptcha(token, 'signup');
+      recaptchaScore = score;
+      if (!ok) {
+        toast({ title: "Verification Failed", description: "We could not verify your request. Please try again.", variant: "destructive" });
+        return;
+      }
+    } else {
+      if (!recaptchaVerified) {
+        toast({ title: "Verification Required", description: "Please complete the human verification to create an account.", variant: "destructive" });
+        return;
+      }
     }
-    console.log('Calling signUp function');
-    signUp(signUpEmail, signUpPassword);
+
+    const consentMeta = {
+      agree_to_terms: true,
+      agree_to_privacy: true,
+      consented_at: new Date().toISOString(),
+      consent_version: 'v1',
+      recaptcha_provider: recaptchaSiteKey ? 'recaptcha_v3' : 'math_challenge',
+      recaptcha_score: recaptchaScore,
+    };
+
+    signUp(signUpEmail, signUpPassword, consentMeta);
   };
 
   // Verify the math challenge
@@ -480,60 +496,66 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                 </div>
 
                 {/* Human Verification */}
-                <div className="space-y-3 pt-2">
-                  <Label className="text-sm font-medium">Human Verification</Label>
-                  {!recaptchaVerified ? (
-                    <div className="space-y-3 p-4 border-2 border-dashed border-muted-foreground/25 rounded-lg">
-                      <div className="text-center">
-                        <p className="text-sm text-muted-foreground mb-2">
-                          Please solve this simple math problem to verify you're human:
-                        </p>
-                        <p className="text-lg font-semibold">
-                          What is {challengeQuestion}?
-                        </p>
-                      </div>
-                      <div className="flex gap-2">
-                        <Input
-                          type="number"
-                          placeholder="Your answer"
-                          value={userAnswer}
-                          onChange={(e) => setUserAnswer(e.target.value)}
-                          className="flex-1"
-                        />
+                {recaptchaSiteKey ? (
+                  <div className="pt-2 text-xs text-muted-foreground">
+                    This form is protected by reCAPTCHA and the Google Privacy Policy and Terms of Service apply.
+                  </div>
+                ) : (
+                  <div className="space-y-3 pt-2">
+                    <Label className="text-sm font-medium">Human Verification</Label>
+                    {!recaptchaVerified ? (
+                      <div className="space-y-3 p-4 border-2 border-dashed border-muted-foreground/25 rounded-lg">
+                        <div className="text-center">
+                          <p className="text-sm text-muted-foreground mb-2">
+                            Please solve this simple math problem to verify you're human:
+                          </p>
+                          <p className="text-lg font-semibold">
+                            What is {challengeQuestion}?
+                          </p>
+                        </div>
+                        <div className="flex gap-2">
+                          <Input
+                            type="number"
+                            placeholder="Your answer"
+                            value={userAnswer}
+                            onChange={(e) => setUserAnswer(e.target.value)}
+                            className="flex-1"
+                          />
+                          <Button
+                            type="button"
+                            variant="outline"
+                            onClick={handleChallengeVerify}
+                            className="flex items-center gap-2"
+                          >
+                            <Shield className="h-4 w-4" />
+                            Verify
+                          </Button>
+                        </div>
                         <Button
                           type="button"
-                          variant="outline"
-                          onClick={handleChallengeVerify}
-                          className="flex items-center gap-2"
+                          variant="ghost"
+                          size="sm"
+                          onClick={generateChallenge}
+                          className="w-full text-xs"
                         >
-                          <Shield className="h-4 w-4" />
-                          Verify
+                          Generate New Challenge
                         </Button>
                       </div>
-                      <Button
-                        type="button"
-                        variant="ghost"
-                        size="sm"
-                        onClick={generateChallenge}
-                        className="w-full text-xs"
-                      >
-                        Generate New Challenge
-                      </Button>
-                    </div>
-                  ) : (
-                    <div className="flex items-center justify-center p-4 border-2 border-green-200 bg-green-50 rounded-lg">
-                      <div className="flex items-center gap-2 text-green-700">
-                        <CheckCircle className="h-4 w-4" />
-                        <span className="text-sm font-medium">Verification Complete</span>
+                    ) : (
+                      <div className="flex items-center justify-center p-4 border-2 border-green-200 bg-green-50 rounded-lg">
+                        <div className="flex items-center gap-2 text-green-700">
+                          <CheckCircle className="h-4 w-4" />
+                          <span className="text-sm font-medium">Verification Complete</span>
+                        </div>
                       </div>
-                    </div>
-                  )}
-                </div>
+                    )}
+                  </div>
+                )}
 
                 <Button
                   type="submit"
                   className="w-full"
-                  disabled={isSigningUp || !agreeToTerms || !agreeToPrivacy || !recaptchaVerified}
+                  disabled={isSigningUp || !agreeToTerms || !agreeToPrivacy || (!recaptchaSiteKey && !recaptchaVerified)}
                 >
                   {isSigningUp ? "Creating account..." : "Sign Up"}
                 </Button>
