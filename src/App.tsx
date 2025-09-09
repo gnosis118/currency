@@ -118,33 +118,33 @@ const App = () => {
                 <Route path="/convert" element={<Convert />} />
                 <Route path="/convert/:pair" element={<CurrencyPair />} />
                 
-                {/* Dedicated routes for major currency pairs */}
-                <Route path="/usd-eur" element={<CurrencyPair />} />
-                <Route path="/usd-gbp" element={<CurrencyPair />} />
-                <Route path="/usd-jpy" element={<CurrencyPair />} />
-                <Route path="/usd-cad" element={<CurrencyPair />} />
-                <Route path="/usd-aud" element={<CurrencyPair />} />
-                <Route path="/usd-chf" element={<CurrencyPair />} />
-                <Route path="/gbp-usd" element={<CurrencyPair />} />
-                <Route path="/eur-usd" element={<CurrencyPair />} />
-                <Route path="/eur-gbp" element={<CurrencyPair />} />
-                <Route path="/eur-jpy" element={<CurrencyPair />} />
-                <Route path="/jpy-usd" element={<CurrencyPair />} />
-                <Route path="/aud-usd" element={<CurrencyPair />} />
-                <Route path="/cad-usd" element={<CurrencyPair />} />
-                <Route path="/chf-usd" element={<CurrencyPair />} />
-                <Route path="/gbp-eur" element={<CurrencyPair />} />
-                <Route path="/gbp-jpy" element={<CurrencyPair />} />
-                <Route path="/aud-eur" element={<CurrencyPair />} />
-                <Route path="/cad-eur" element={<CurrencyPair />} />
-                <Route path="/chf-eur" element={<CurrencyPair />} />
-                <Route path="/jpy-eur" element={<CurrencyPair />} />
-                <Route path="/nzd-usd" element={<CurrencyPair />} />
-                <Route path="/sek-usd" element={<CurrencyPair />} />
+                {/* Dedicated routes for major currency pairs (redirect short to canonical) */}
+                <Route path="/usd-eur" element={<RedirectRoute />} />
+                <Route path="/usd-gbp" element={<RedirectRoute />} />
+                <Route path="/usd-jpy" element={<RedirectRoute />} />
+                <Route path="/usd-cad" element={<RedirectRoute />} />
+                <Route path="/usd-aud" element={<RedirectRoute />} />
+                <Route path="/usd-chf" element={<RedirectRoute />} />
+                <Route path="/gbp-usd" element={<RedirectRoute />} />
+                <Route path="/eur-usd" element={<RedirectRoute />} />
+                <Route path="/eur-gbp" element={<RedirectRoute />} />
+                <Route path="/eur-jpy" element={<RedirectRoute />} />
+                <Route path="/jpy-usd" element={<RedirectRoute />} />
+                <Route path="/aud-usd" element={<RedirectRoute />} />
+                <Route path="/cad-usd" element={<RedirectRoute />} />
+                <Route path="/chf-usd" element={<RedirectRoute />} />
+                <Route path="/gbp-eur" element={<RedirectRoute />} />
+                <Route path="/gbp-jpy" element={<RedirectRoute />} />
+                <Route path="/aud-eur" element={<RedirectRoute />} />
+                <Route path="/cad-eur" element={<RedirectRoute />} />
+                <Route path="/chf-eur" element={<RedirectRoute />} />
+                <Route path="/jpy-eur" element={<RedirectRoute />} />
+                <Route path="/nzd-usd" element={<RedirectRoute />} />
+                <Route path="/sek-usd" element={<RedirectRoute />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
                 <Route path="/admin" element={<Admin />} />
-                
+
                 {/* Redirect routes for old currency pair URLs */}
                 <Route path="/usd-to-eur" element={<RedirectRoute />} />
                 <Route path="/usd-to-gbp" element={<RedirectRoute />} />

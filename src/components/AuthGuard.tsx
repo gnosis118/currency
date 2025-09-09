@@ -30,13 +30,15 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
   const [signUpEmail, setSignUpEmail] = useState('');
   const [signUpPassword, setSignUpPassword] = useState('');
   const [confirmPassword, setConfirmPassword] = useState('');
-  
+
   // Compliance states
   const [agreeToTerms, setAgreeToTerms] = useState(false);
   const [agreeToPrivacy, setAgreeToPrivacy] = useState(false);
   const [recaptchaVerified, setRecaptchaVerified] = useState(false);
   const [recaptchaToken, setRecaptchaToken] = useState<string | null>(null);
-  
+
+  const [signInHumanConfirmed, setSignInHumanConfirmed] = useState(false);
+
   // Human verification challenge
   const [challengeQuestion, setChallengeQuestion] = useState('');
   const [challengeAnswer, setChallengeAnswer] = useState('');
@@ -70,7 +72,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
     const num1 = Math.floor(Math.random() * 10) + 1;
     const num2 = Math.floor(Math.random() * 10) + 1;
     const operation = Math.random() > 0.5 ? '+' : '-';
-    
+
     let question, answer;
     if (operation === '+') {
       question = `${num1} + ${num2}`;
@@ -82,7 +84,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
       question = `${larger} - ${smaller}`;
       answer = (larger - smaller).toString();
     }
-    
+
     setChallengeQuestion(question);
     setChallengeAnswer(answer);
     setUserAnswer('');
@@ -118,7 +120,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
     setIsSigningUp(true);
     const redirectUrl = `${window.location.origin}/`;
     console.log('Redirect URL:', redirectUrl);
-    
+
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
@@ -127,7 +129,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
           emailRedirectTo: redirectUrl
         }
       });
-      
+
       console.log('Supabase response:', { data, error });
 
       if (error) {
@@ -184,13 +186,21 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
       });
       return;
     }
+    if (!signInHumanConfirmed) {
+      toast({
+        title: "Confirmation Required",
+        description: "Please confirm you are human before signing in.",
+        variant: "destructive"
+      });
+      return;
+    }
     signIn(signInEmail, signInPassword);
   };
 
   const handleSignUp = (e: React.FormEvent) => {
     e.preventDefault();
     console.log('Sign up form submitted', { signUpEmail, signUpPassword, confirmPassword, agreeToTerms, agreeToPrivacy, recaptchaVerified });
-    
+
     if (!signUpEmail || !signUpPassword || !confirmPassword) {
       console.log('Missing information');
       toast({
@@ -310,7 +320,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
               <TabsTrigger value="signin">Sign In</TabsTrigger>
               <TabsTrigger value="signup">Sign Up</TabsTrigger>
             </TabsList>
-            
+
             <TabsContent value="signin">
               <form onSubmit={handleSignIn} className="space-y-4">
                 <div className="space-y-2">
@@ -328,7 +338,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="signin-password">Password</Label>
                   <div className="relative">
@@ -344,13 +354,28 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                     />
                   </div>
                 </div>
-                
-                <Button type="submit" className="w-full" disabled={isSigningIn}>
+
+                <div className="flex items-start space-x-2">
+                  <Checkbox
+                    id="signin-human"
+                    checked={signInHumanConfirmed}
+                    onCheckedChange={(checked) => setSignInHumanConfirmed(checked as boolean)}
+                    className="mt-1"
+                  />
+                  <Label
+                    htmlFor="signin-human"
+                    className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
+                  >
+                    I confirm I am human
+                  </Label>
+                </div>
+
+                <Button type="submit" className="w-full" disabled={isSigningIn || !signInHumanConfirmed}>
                   {isSigningIn ? "Signing in..." : "Sign In"}
                 </Button>
               </form>
             </TabsContent>
-            
+
             <TabsContent value="signup">
               <form onSubmit={handleSignUp} className="space-y-4">
                 <div className="space-y-2">
@@ -368,7 +393,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="signup-password">Password</Label>
                   <div className="relative">
@@ -384,7 +409,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                     />
                   </div>
                 </div>
-                
+
                 <div className="space-y-2">
                   <Label htmlFor="confirm-password">Confirm Password</Label>
                   <div className="relative">
@@ -416,9 +441,9 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         I agree to the{' '}
-                        <Link 
-                          to="/terms-of-service" 
-                          target="_blank" 
+                        <Link
+                          to="/terms-of-service"
+                          target="_blank"
                           className="text-primary hover:underline inline-flex items-center gap-1"
                         >
                           Terms of Service
@@ -441,9 +466,9 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                         className="text-sm font-medium leading-none peer-disabled:cursor-not-allowed peer-disabled:opacity-70"
                       >
                         I agree to the{' '}
-                        <Link 
-                          to="/privacy-policy" 
-                          target="_blank" 
+                        <Link
+                          to="/privacy-policy"
+                          target="_blank"
                           className="text-primary hover:underline inline-flex items-center gap-1"
                         >
                           Privacy Policy
@@ -504,17 +529,17 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
                     </div>
                   )}
                 </div>
-                
-                <Button 
-                  type="submit" 
-                  className="w-full" 
+
+                <Button
+                  type="submit"
+                  className="w-full"
                   disabled={isSigningUp || !agreeToTerms || !agreeToPrivacy || !recaptchaVerified}
                 >
                   {isSigningUp ? "Creating account..." : "Sign Up"}
                 </Button>
 
                 <p className="text-xs text-muted-foreground text-center">
-                  By creating an account, you agree to our Terms of Service and Privacy Policy. 
+                  By creating an account, you agree to our Terms of Service and Privacy Policy.
                   We use cookies to enhance your experience.
                 </p>
               </form>

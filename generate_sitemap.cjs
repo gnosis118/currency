@@ -33,64 +33,20 @@ if (blogPosts.length > 0) {
   console.log('Sample posts:', blogPosts.slice(0, 3).map(p => p.slug));
 }
 
-// Define static pages with their priorities and change frequencies
+// ISO date for lastmod
+const TODAY = new Date().toISOString().split('T')[0];
+
+// Define static pages with their priorities and change frequencies (simple sitemap entries only)
 const staticPages = [
-  {
-    url: 'https://currencytocurrency.app/',
-    lastmod: '2025-08-12',
-    changefreq: 'daily',
-    priority: '1.0',
-    title: 'Currency to Currency - Free Real-time Exchange Rate Converter',
-    description: 'Professional currency converter homepage with live rates'
-  },
-  {
-    url: 'https://currencytocurrency.app/convert',
-    lastmod: '2025-08-12',
-    changefreq: 'daily',
-    priority: '0.9'
-  },
-  {
-    url: 'https://currencytocurrency.app/charts',
-    lastmod: '2025-08-12',
-    changefreq: 'daily',
-    priority: '0.9'
-  },
-  {
-    url: 'https://currencytocurrency.app/alerts',
-    lastmod: '2025-08-12',
-    changefreq: 'weekly',
-    priority: '0.8'
-  },
-  {
-    url: 'https://currencytocurrency.app/travel',
-    lastmod: '2025-08-12',
-    changefreq: 'weekly',
-    priority: '0.8'
-  },
-  {
-    url: 'https://currencytocurrency.app/blog',
-    lastmod: '2025-08-12',
-    changefreq: 'weekly',
-    priority: '0.8'
-  },
-  {
-    url: 'https://currencytocurrency.app/faq',
-    lastmod: '2025-08-12',
-    changefreq: 'monthly',
-    priority: '0.7'
-  },
-  {
-    url: 'https://currencytocurrency.app/privacy-policy',
-    lastmod: '2025-08-12',
-    changefreq: 'yearly',
-    priority: '0.3'
-  },
-  {
-    url: 'https://currencytocurrency.app/terms-of-service',
-    lastmod: '2025-08-12',
-    changefreq: 'yearly',
-    priority: '0.3'
-  }
+  { url: 'https://currencytocurrency.app/', lastmod: TODAY, changefreq: 'daily', priority: '1.0' },
+  { url: 'https://currencytocurrency.app/convert', lastmod: TODAY, changefreq: 'daily', priority: '0.9' },
+  { url: 'https://currencytocurrency.app/charts', lastmod: TODAY, changefreq: 'daily', priority: '0.9' },
+  { url: 'https://currencytocurrency.app/alerts', lastmod: TODAY, changefreq: 'weekly', priority: '0.8' },
+  { url: 'https://currencytocurrency.app/travel', lastmod: TODAY, changefreq: 'weekly', priority: '0.8' },
+  { url: 'https://currencytocurrency.app/blog', lastmod: TODAY, changefreq: 'weekly', priority: '0.8' },
+  { url: 'https://currencytocurrency.app/faq', lastmod: TODAY, changefreq: 'monthly', priority: '0.7' },
+  { url: 'https://currencytocurrency.app/privacy-policy', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' },
+  { url: 'https://currencytocurrency.app/terms-of-service', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' }
 ];
 
 // Popular currency conversion pages
@@ -103,10 +59,7 @@ const currencyPairs = [
 
 // Generate main sitemap
 let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml"
-        xmlns:image="http://www.google.com/schemas/sitemap-image/1.1">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 `;
 
@@ -117,8 +70,6 @@ staticPages.forEach(page => {
     <lastmod>${page.lastmod}</lastmod>
     <changefreq>${page.changefreq}</changefreq>
     <priority>${page.priority}</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="${page.url}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="${page.url}" />
   </url>
 
 `;
@@ -134,16 +85,6 @@ blogPosts.forEach(post => {
     <lastmod>${post.date}</lastmod>
     <changefreq>${changefreq}</changefreq>
     <priority>${priority}</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/${post.slug}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/${post.slug}" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>${post.date}</news:publication_date>
-      <news:title>${post.title}</news:title>
-    </news:news>
   </url>
 
 `;
@@ -153,11 +94,9 @@ blogPosts.forEach(post => {
 currencyPairs.forEach(pair => {
   sitemapContent += `  <url>
     <loc>https://currencytocurrency.app/convert/${pair}</loc>
-    <lastmod>2025-08-12</lastmod>
+    <lastmod>${TODAY}</lastmod>
     <changefreq>daily</changefreq>
     <priority>0.9</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/convert/${pair}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/convert/${pair}" />
   </url>
 
 `;
@@ -170,9 +109,7 @@ fs.writeFileSync('public/sitemap.xml', sitemapContent);
 
 // Create a separate blog sitemap for better organization
 let blogSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
-        xmlns:news="http://www.google.com/schemas/sitemap-news/0.9"
-        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 
 `;
 
@@ -184,16 +121,6 @@ blogPosts.forEach(post => {
     <lastmod>${post.date}</lastmod>
     <changefreq>monthly</changefreq>
     <priority>${priority}</priority>
-    <xhtml:link rel="alternate" hreflang="en" href="https://currencytocurrency.app/blog/${post.slug}" />
-    <xhtml:link rel="alternate" hreflang="x-default" href="https://currencytocurrency.app/blog/${post.slug}" />
-    <news:news>
-      <news:publication>
-        <news:name>Currency to Currency</news:name>
-        <news:language>en</news:language>
-      </news:publication>
-      <news:publication_date>${post.date}</news:publication_date>
-      <news:title>${post.title}</news:title>
-    </news:news>
   </url>
 
 `;
@@ -208,11 +135,15 @@ const sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>
 <sitemapindex xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
   <sitemap>
     <loc>https://currencytocurrency.app/sitemap.xml</loc>
-    <lastmod>2025-08-12</lastmod>
+    <lastmod>${TODAY}</lastmod>
   </sitemap>
   <sitemap>
     <loc>https://currencytocurrency.app/sitemap-blog.xml</loc>
-    <lastmod>2025-08-12</lastmod>
+    <lastmod>${TODAY}</lastmod>
+  </sitemap>
+  <sitemap>
+    <loc>https://currencytocurrency.app/sitemap-images.xml</loc>
+    <lastmod>${TODAY}</lastmod>
   </sitemap>
 </sitemapindex>`;
 

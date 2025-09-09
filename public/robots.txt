@@ -307,8 +307,11 @@ Allow: /fonts/
 # SITEMAPS & DISCOVERY
 # ===========================================
 
-# Main comprehensive sitemap
+# Sitemaps
+Sitemap: https://currencytocurrency.app/sitemap-index.xml
 Sitemap: https://currencytocurrency.app/sitemap.xml
+Sitemap: https://currencytocurrency.app/sitemap-blog.xml
+Sitemap: https://currencytocurrency.app/sitemap-images.xml
 
 # Host declaration for clarity
 Host: currencytocurrency.app

@@ -16,8 +16,12 @@ function validateXML(filePath) {
       },
       {
         name: 'Root Element',
-        test: () => content.includes('<urlset') && content.includes('</urlset>'),
-        fix: 'File should have <urlset> root element'
+        test: () => {
+          const base = path.basename(filePath);
+          return (base.includes('sitemap-index') && content.includes('<sitemapindex') && content.includes('</sitemapindex>'))
+              || (!base.includes('sitemap-index') && content.includes('<urlset') && content.includes('</urlset>'));
+        },
+        fix: 'File should have <urlset> (or <sitemapindex> for index) root element'
       },
       {
         name: 'Unescaped Ampersands',
@@ -27,9 +31,12 @@ function validateXML(filePath) {
       {
         name: 'Balanced Tags',
         test: () => {
-          const openTags = (content.match(/<[^\/][^>]*>/g) || []).length;
-          const closeTags = (content.match(/<\/[^>]*>/g) || []).length;
-          const selfClosing = (content.match(/<[^>]*\/>/g) || []).length;
+          const sanitized = content
+            .replace(/<\?.*?\?>/gs, '')
+            .replace(/<!--[\s\S]*?-->/g, '');
+          const openTags = (sanitized.match(/<[^\/?][^>]*>/g) || []).length;
+          const closeTags = (sanitized.match(/<\/[^>]*>/g) || []).length;
+          const selfClosing = (sanitized.match(/<[^>]*\/>/g) || []).length;
           return openTags === closeTags + selfClosing;
         },
         fix: 'Ensure all opening tags have matching closing tags'

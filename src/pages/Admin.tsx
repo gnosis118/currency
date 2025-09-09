@@ -25,9 +25,9 @@ const Admin = () => {
       <SEOHead
         title="Admin - Currency to Currency"
         description="Admin interface for managing blog content"
-        noindex={true}
+        robots="noindex, nofollow"
       />
-      
+
       <div className="text-center">
         <div className="animate-spin rounded-full h-12 w-12 border-b-2 border-primary mx-auto mb-4"></div>
         <h1 className="text-2xl font-bold text-primary mb-2">Redirecting to Admin...</h1>

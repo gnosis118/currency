@@ -39,7 +39,7 @@
     "lint:check": "eslint .",
     "preview": "vite preview",
     "generate:gap": "node scripts/generate_gap_article.cjs",
-    "generate:sitemap": "echo 'Using existing comprehensive sitemap'",
+    "generate:sitemap": "node generate_sitemap.cjs",
     "update-browserslist": "npx --yes update-browserslist-db@latest || echo 'Browserslist update skipped'",
     "optimize:images": "node scripts/fix_blog_images.cjs",
     "test:lighthouse": "echo 'Lighthouse audit ready'",

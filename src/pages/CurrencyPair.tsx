@@ -107,7 +107,7 @@ const CurrencyPair = () => {
       <EnhancedSEOHead
         title={`${fromCurrency} to ${toCurrency} Converter - Live Exchange Rate | Currency to Currency`}
         description={`Convert ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)} with real-time exchange rates. Live currency conversion rates updated every few minutes for accurate results.`}
-        canonicalUrl={`https://currencytocurrency.app/${pair?.toLowerCase()}`}
+        canonicalUrl={`https://currencytocurrency.app/convert/${fromCurrency.toLowerCase()}-to-${toCurrency.toLowerCase()}`}
         keywords={`${fromCurrency} to ${toCurrency}, ${fromCurrency}${toCurrency}, ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)}, currency converter, exchange rate, live rates`}
         structuredData={structuredData}
         pageType="product"
