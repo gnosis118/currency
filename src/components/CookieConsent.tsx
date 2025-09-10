@@ -25,16 +25,16 @@ const ConsentManager = {
   saveConsent(preferences: Record<string, boolean>) {
     const expiryDate = new Date();
     expiryDate.setDate(expiryDate.getDate() + this.EXPIRY_DAYS);
-    
+
     const consentData = {
       preferences,
       timestamp: Date.now(),
       expiry: expiryDate.getTime(),
       region: window.isEEARegion ? 'EEA' : 'Non-EEA'
     };
-    
+
     localStorage.setItem(this.STORAGE_KEY, JSON.stringify(consentData));
-    
+
     // Track consent event
     if (window.gtag) {
       window.dataLayer = window.dataLayer || [];
@@ -52,13 +52,13 @@ const ConsentManager = {
     try {
       const stored = localStorage.getItem(this.STORAGE_KEY);
       if (!stored) return null;
-      
+
       const data = JSON.parse(stored);
       if (Date.now() > data.expiry) {
         localStorage.removeItem(this.STORAGE_KEY);
         return null;
       }
-      
+
       return data;
     } catch {
       return null;
@@ -67,7 +67,7 @@ const ConsentManager = {
 
   clearConsent() {
     localStorage.removeItem(this.STORAGE_KEY);
-    
+
     // Track withdrawal event
     if (window.gtag) {
       window.dataLayer.push({
@@ -85,7 +85,7 @@ const NativeCookieConsent = ({ onAccept, onReject, onSettings }: {
   onSettings: () => void;
 }) => {
   const isEEA = window?.isEEARegion || false;
-  
+
   return (
     <div className="fixed bottom-0 left-0 right-0 z-50 p-2 sm:p-4 bg-background/95 backdrop-blur-sm border-t shadow-lg safe-area-inset-bottom">
       <div className="container mx-auto max-w-6xl">
@@ -98,7 +98,7 @@ const NativeCookieConsent = ({ onAccept, onReject, onSettings }: {
                   {isEEA && <Badge variant="secondary">GDPR Compliant</Badge>}
                 </div>
                 <p className="text-xs sm:text-sm text-muted-foreground leading-relaxed">
-                  {isEEA 
+                  {isEEA
                     ? "We use cookies to enhance your experience and analyze our traffic. Under EU privacy laws, we need your consent for certain types of cookies."
                     : "We use cookies to enhance your experience and analyze our traffic."
                   }
@@ -145,7 +145,7 @@ const CookieSettings = ({ isOpen, onClose, onSave }: {
         <CardHeader>
           <CardTitle>Cookie Preferences</CardTitle>
           <CardDescription>
-            {isEEA 
+            {isEEA
               ? "Under EU privacy laws, you have the right to control how your data is processed."
               : "Choose which cookies you'd like to allow."
             }
@@ -160,7 +160,7 @@ const CookieSettings = ({ isOpen, onClose, onSave }: {
               </div>
               <Badge>Always Active</Badge>
             </div>
-            
+
             <div className="flex items-center justify-between p-3 border rounded">
               <div>
                 <p className="font-medium">Analytics Cookies</p>
@@ -174,7 +174,7 @@ const CookieSettings = ({ isOpen, onClose, onSave }: {
                 {analytical ? "Enabled" : "Disabled"}
               </Button>
             </div>
-            
+
             <div className="flex items-center justify-between p-3 border rounded">
               <div>
                 <p className="font-medium">Advertising Cookies</p>
@@ -189,7 +189,7 @@ const CookieSettings = ({ isOpen, onClose, onSave }: {
               </Button>
             </div>
           </div>
-          
+
           <div className="flex gap-2 pt-4">
             <Button variant="outline" onClick={onClose} className="flex-1">
               Cancel
@@ -230,7 +230,7 @@ const CookieConsent = () => {
     // Try to initialize Silktide with timeout
     const initializeSilktide = () => {
       if (typeof window === 'undefined') return false;
-      
+
       if (!window.silktideCookieBannerManager) {
         return false;
       }
@@ -238,12 +238,12 @@ const CookieConsent = () => {
       setSilktideLoaded(true);
 
       const isEEA = window.isEEARegion || false;
-      
+
       // Enhanced descriptions for legal compliance
-      const analyticalDescription = isEEA 
+      const analyticalDescription = isEEA
         ? "<p>These cookies collect information about how you use our website, such as which pages you visit most often. This data helps us improve our website and your user experience. We use Google Analytics for this purpose. <strong>We need your explicit consent to use these cookies.</strong></p>"
         : "<p>These cookies help us improve the site by tracking which pages are most popular and how visitors move around the site.</p>";
-        
+
       const advertisingDescription = isEEA
         ? "<p>These cookies enable us and our advertising partners to show you relevant advertisements both on our site and on other websites you visit. They also help measure the effectiveness of advertising campaigns. <strong>Under GDPR, we require your explicit consent for advertising cookies.</strong></p>"
         : "<p>These cookies provide extra features and personalization to improve your experience. They may be set by us or by partners whose services we use.</p>";
@@ -352,7 +352,7 @@ const CookieConsent = () => {
           },
           preferences: {
             title: isEEA ? "Your Privacy Rights - Cookie Preferences" : "Customize your cookie preferences",
-            description: isEEA 
+            description: isEEA
               ? "<p>Under EU privacy laws, you have the right to control how your data is processed. You can withdraw consent at any time. Your preferences will be saved and respected across our website.</p>"
               : "<p>We respect your right to privacy. You can choose not to allow some types of cookies. Your cookie preferences will apply across our website.</p>",
             creditLinkText: "Get this banner for free",
@@ -374,7 +374,7 @@ const CookieConsent = () => {
     const maxAttempts = isMobile ? 8 : 15;
     const retryInterval = isMobile ? 150 : 200;
     let attempts = 0;
-    
+
     // Force fallback on mobile if localStorage is restricted
     const isMobileRestricted = isMobile && (() => {
       try {
@@ -386,20 +386,20 @@ const CookieConsent = () => {
         return true;
       }
     })();
-    
+
     const checkSilktide = () => {
       // Debug logging for mobile
       if (isMobile) {
         console.log(`[Mobile Cookie Debug] Attempt ${attempts + 1}/${maxAttempts}, Silktide available: ${!!window.silktideCookieBannerManager}`);
       }
-      
+
       // Force fallback for mobile with localStorage restrictions
       if (isMobileRestricted) {
         console.log('[Mobile Cookie Debug] localStorage restricted, using fallback banner');
         setShowBanner(true);
         return;
       }
-      
+
       if (initializeSilktide()) {
         console.log('Silktide cookie banner initialized successfully');
       } else if (attempts < maxAttempts) {
@@ -409,7 +409,7 @@ const CookieConsent = () => {
         console.warn(`Cookie Consent Manager not available after ${maxAttempts} attempts - using fallback banner`);
         // Show native fallback banner
         setShowBanner(true);
-        
+
         // Set conservative default consent when Silktide fails
         if (window.gtag) {
           window.gtag('consent', 'default', {
@@ -440,12 +440,19 @@ const CookieConsent = () => {
       setShowBanner(true);
       setShowSettings(false);
     };
+
+	    // Expose cookie settings opener
+	    (window as any).openCookieSettings = () => {
+	      setShowSettings(true);
+	      setShowBanner(false);
+	    };
+
   }, []);
 
   const handleAcceptAll = () => {
     const preferences = { analytical: true, advertising: true };
     ConsentManager.saveConsent(preferences);
-    
+
     if (window.gtag) {
       window.gtag('consent', 'update', {
         analytics_storage: 'granted',
@@ -454,7 +461,7 @@ const CookieConsent = () => {
         ad_personalization: 'granted',
       });
     }
-    
+
     setShowBanner(false);
     setShowSettings(false);
   };
@@ -462,7 +469,7 @@ const CookieConsent = () => {
   const handleRejectAll = () => {
     const preferences = { analytical: false, advertising: false };
     ConsentManager.saveConsent(preferences);
-    
+
     if (window.gtag) {
       window.gtag('consent', 'update', {
         analytics_storage: 'denied',
@@ -471,14 +478,14 @@ const CookieConsent = () => {
         ad_personalization: 'denied',
       });
     }
-    
+
     setShowBanner(false);
     setShowSettings(false);
   };
 
   const handleSavePreferences = (preferences: { analytical: boolean; advertising: boolean }) => {
     ConsentManager.saveConsent(preferences);
-    
+
     if (window.gtag) {
       window.gtag('consent', 'update', {
         analytics_storage: preferences.analytical ? 'granted' : 'denied',
@@ -487,7 +494,7 @@ const CookieConsent = () => {
         ad_personalization: preferences.advertising ? 'granted' : 'denied',
       });
     }
-    
+
     setShowBanner(false);
     setShowSettings(false);
   };

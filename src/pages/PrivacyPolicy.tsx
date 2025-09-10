@@ -61,15 +61,43 @@ const PrivacyPolicy = () => {
           </CardHeader>
           <CardContent>
             <div id="CookieDeclaration">
-              <script 
-                id="CookieDeclaration" 
-                src="https://consent.cookiebot.com/a316e185-0703-4964-b697-d0301f10cdb9/cd.js" 
-                type="text/javascript" 
+              <script
+                id="CookieDeclaration"
+                src="https://consent.cookiebot.com/a316e185-0703-4964-b697-d0301f10cdb9/cd.js"
+                type="text/javascript"
                 async
               />
             </div>
           </CardContent>
         </Card>
+
+        {/* Cookie Preferences (Manage/Withdraw) */}
+        <Card className="mb-8">
+          <CardHeader>
+            <CardTitle className="flex items-center gap-2">
+              <Shield className="h-5 w-5" />
+              Manage Your Cookie Preferences
+            </CardTitle>
+            <p className="text-muted-foreground">
+              You can change or withdraw your cookie consent at any time.
+            </p>
+          </CardHeader>
+          <CardContent className="flex flex-wrap gap-3">
+            <Button
+              variant="outline"
+              onClick={() => (window as any).openCookieSettings?.() || (window as any).withdrawConsent?.()}
+            >
+              Open Cookie Settings
+            </Button>
+            <Button
+              variant="destructive"
+              onClick={() => (window as any).withdrawConsent?.()}
+            >
+              Withdraw Consent
+            </Button>
+          </CardContent>
+        </Card>
+
 
         <div className="space-y-6">
           {/* Introduction */}
@@ -105,7 +133,7 @@ const PrivacyPolicy = () => {
                   We do not collect personal information such as names, email addresses, or phone numbers unless you voluntarily provide them to us.
                 </p>
               </div>
-              
+
               <div>
                 <h3 className="font-semibold mb-2">Usage Data</h3>
                 <p className="text-sm text-muted-foreground">
@@ -165,13 +193,15 @@ const PrivacyPolicy = () => {
               <p className="text-sm text-muted-foreground">
                 We do not sell, trade, or otherwise transfer your personal information to third parties except in the following circumstances:
               </p>
-              
+
               <div>
                 <h3 className="font-semibold mb-2">Service Providers</h3>
                 <p className="text-sm text-muted-foreground">
                   We may employ third-party companies and individuals to facilitate our Service, provide support, or perform analytics on our behalf.
                 </p>
               </div>
+
+
 
               <div>
                 <h3 className="font-semibold mb-2">Legal Requirements</h3>
@@ -238,6 +268,8 @@ const PrivacyPolicy = () => {
                 </ul>
                 <p className="text-sm text-muted-foreground mt-2">
                   These services may collect data according to their own privacy policies.
+
+
                 </p>
               </div>
             </CardContent>
@@ -280,6 +312,46 @@ const PrivacyPolicy = () => {
                 If you have any questions about this Privacy Policy, please contact us:
               </p>
               <div className="bg-muted p-4 rounded-lg">
+
+          {/* Legal Basis for Processing (GDPR) */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Legal Basis for Processing</CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-gray max-w-none">
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li><strong>Consent:</strong> Analytics and advertising cookies/processes are used only with your consent.</li>
+                <li><strong>Contract:</strong> If you create an account, we process necessary data to provide the service (authentication, account management).</li>
+                <li><strong>Legitimate Interests:</strong> Essential security and fraud prevention (e.g., rate limiting, error logging) with minimal impact on your privacy.</li>
+                <li><strong>Legal Obligation:</strong> Where required to comply with applicable laws and regulations.</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* International Data Transfers */}
+          <Card>
+            <CardHeader>
+              <CardTitle>International Data Transfers</CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-gray max-w-none">
+              <p className="text-sm text-muted-foreground">
+                Your information may be processed in countries outside your own (including the United States and EU). Where applicable, we rely on appropriate safeguards such as Standard Contractual Clauses (SCCs) or equivalent mechanisms provided by our service providers.
+              </p>
+            </CardContent>
+          </Card>
+
+          {/* Data Breach Procedures */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Data Breach Procedures</CardTitle>
+            </CardHeader>
+            <CardContent className="prose prose-gray max-w-none">
+              <p className="text-sm text-muted-foreground">
+                We maintain incident response processes including prompt detection, containment, and remediation. Where legally required, we will notify affected users and authorities without undue delay and provide guidance on protective steps.
+              </p>
+            </CardContent>
+          </Card>
+
                 <p className="text-sm"><strong>Website:</strong> currencytocurrency.app</p>
                 <p className="text-sm"><strong>Email:</strong> privacy@currencytocurrency.app</p>
               </div>

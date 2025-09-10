@@ -9,6 +9,8 @@ import RedirectRoute from "@/components/RedirectRoute";
 import MobileEnhancement from "@/components/MobileEnhancement";
 import MobilePerformance from "@/components/MobilePerformance";
 import CoreWebVitalsMonitor from "@/components/CoreWebVitalsMonitor";
+import CookieConsent from "@/components/CookieConsent";
+
 
 // Lazy load all route components for better code splitting
 const Index = React.lazy(() => import("./pages/Index"));
@@ -70,16 +72,16 @@ const App = () => {
             gtag("set", "url_passthrough", false);
           `}
         </script>
-        
+
         {/* Cookiebot Script */}
-        <script 
-          id="Cookiebot" 
-          src="https://consent.cookiebot.com/uc.js" 
-          data-cbid="a316e185-0703-4964-b697-d0301f10cdb9" 
-          data-blockingmode="auto" 
+        <script
+          id="Cookiebot"
+          src="https://consent.cookiebot.com/uc.js"
+          data-cbid="a316e185-0703-4964-b697-d0301f10cdb9"
+          data-blockingmode="auto"
           type="text/javascript"
         />
-        
+
         {/* Google Analytics */}
         <script async src="https://www.googletagmanager.com/gtag/js?id=G-4QQQGLR7SC"></script>
         <script>
@@ -94,7 +96,7 @@ const App = () => {
           `}
         </script>
       </Helmet>
-      
+
       <MobileEnhancement />
       <MobilePerformance />
       <CoreWebVitalsMonitor />
@@ -117,7 +119,7 @@ const App = () => {
                 <Route path="/blog/:slug" element={<BlogPost />} />
                 <Route path="/convert" element={<Convert />} />
                 <Route path="/convert/:pair" element={<CurrencyPair />} />
-                
+
                 {/* Dedicated routes for major currency pairs (redirect short to canonical) */}
                 <Route path="/usd-eur" element={<RedirectRoute />} />
                 <Route path="/usd-gbp" element={<RedirectRoute />} />
@@ -162,10 +164,34 @@ const App = () => {
                 <Route path="/chf-to-usd" element={<RedirectRoute />} />
                 <Route path="/nzd-to-usd" element={<RedirectRoute />} />
                 <Route path="/sek-to-usd" element={<RedirectRoute />} />
-                
+
                 <Route path="/sitemap.xml" element={null} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
+
+              {/* Site-wide footer (legal links) */}
+              <footer className="border-t mt-8 py-8 text-sm text-muted-foreground">
+                <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
+                  <div>
+                    © {new Date().getFullYear()} Currency to Currency
+                  </div>
+                  <nav className="space-x-4">
+                    <a href="/privacy-policy" className="hover:text-foreground underline">Privacy Policy</a>
+                    <a href="/terms-of-service" className="hover:text-foreground underline">Terms of Service</a>
+                    <button
+                      type="button"
+                      onClick={() => (window as any).openCookieSettings?.() || (window as any).withdrawConsent?.()}
+                      className="underline hover:text-foreground"
+                    >
+                      Cookie Settings
+                    </button>
+                  </nav>
+                </div>
+              </footer>
+
+              {/* Global Cookie Consent Banner */}
+              <CookieConsent />
+
             </React.Suspense>
           </ErrorBoundary>
         </div>
