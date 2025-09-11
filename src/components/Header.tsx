@@ -140,41 +140,22 @@ const Header = () => {
               FAQ
             </Link>
             
-            <NavigationMenu>
-              <NavigationMenuList>
-                <NavigationMenuItem>
-                  <NavigationMenuTrigger className="text-sm font-medium">
-                    Legal
-                  </NavigationMenuTrigger>
-                  <NavigationMenuContent>
-                    <div className="w-48 p-2">
-                      <NavigationMenuLink asChild>
-                        <Link 
-                          to="/privacy-policy"
-                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
-                          <div className="text-sm font-medium leading-none">Privacy Policy</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            How we handle your data
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                      <NavigationMenuLink asChild>
-                        <Link 
-                          to="/terms-of-service"
-                          className="block select-none space-y-1 rounded-md p-3 leading-none no-underline outline-none transition-colors hover:bg-accent hover:text-accent-foreground focus:bg-accent focus:text-accent-foreground"
-                        >
-                          <div className="text-sm font-medium leading-none">Terms of Service</div>
-                          <p className="line-clamp-2 text-sm leading-snug text-muted-foreground">
-                            Terms and conditions
-                          </p>
-                        </Link>
-                      </NavigationMenuLink>
-                    </div>
-                  </NavigationMenuContent>
-                </NavigationMenuItem>
-              </NavigationMenuList>
-            </NavigationMenu>
+            <Link 
+              to="/privacy-policy" 
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/privacy-policy') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              Privacy
+            </Link>
+            <Link 
+              to="/terms-of-service" 
+              className={`text-sm font-medium transition-colors hover:text-primary ${
+                isActive('/terms-of-service') ? 'text-primary' : 'text-muted-foreground'
+              }`}
+            >
+              Terms
+            </Link>
           </nav>
 
           {/* Mobile Navigation */}
@@ -270,23 +251,26 @@ const Header = () => {
                   >
                     FAQ
                   </Link>
-                  <div className="border-t pt-2 mt-4">
-                    <div className="text-xs font-medium text-muted-foreground px-3 py-2">Legal</div>
-                    <Link 
-                      to="/privacy-policy" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-11 touch-manipulation hover:bg-accent hover:text-accent-foreground"
-                    >
-                      Privacy Policy
-                    </Link>
-                    <Link 
-                      to="/terms-of-service" 
-                      onClick={() => setMobileMenuOpen(false)}
-                      className="flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-11 touch-manipulation hover:bg-accent hover:text-accent-foreground"
-                    >
-                      Terms of Service
-                    </Link>
-                  </div>
+                  
+                  {/* Privacy and Legal Links - Prominent in Mobile */}
+                  <Link 
+                    to="/privacy-policy" 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-11 touch-manipulation ${
+                      isActive('/privacy-policy') ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-accent-foreground'
+                    }`}
+                  >
+                    Privacy Policy
+                  </Link>
+                  <Link 
+                    to="/terms-of-service" 
+                    onClick={() => setMobileMenuOpen(false)}
+                    className={`flex items-center gap-3 px-3 py-3 rounded-lg text-sm font-medium transition-colors min-h-11 touch-manipulation ${
+                      isActive('/terms-of-service') ? 'bg-primary text-primary-foreground' : 'hover:bg-accent hover:text-accent-foreground'
+                    }`}
+                  >
+                    Terms of Service
+                  </Link>
                 </nav>
               </div>
             </SheetContent>

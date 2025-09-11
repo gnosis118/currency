@@ -9,7 +9,10 @@ import RedirectRoute from "@/components/RedirectRoute";
 import MobileEnhancement from "@/components/MobileEnhancement";
 import MobilePerformance from "@/components/MobilePerformance";
 import CoreWebVitalsMonitor from "@/components/CoreWebVitalsMonitor";
+import AccessibilityEnhancements from "@/components/AccessibilityEnhancements";
 import CookieConsent from "@/components/CookieConsent";
+import AccessibilityNavigationLink from "@/components/AccessibilityNavigationLink";
+import PrivacyComplianceChecker from "@/components/PrivacyComplianceChecker";
 
 
 // Lazy load all route components for better code splitting
@@ -29,6 +32,7 @@ const Convert = React.lazy(() => import("./pages/Convert"));
 const Brokers = React.lazy(() => import("./pages/Brokers"));
 const About = React.lazy(() => import("./pages/About"));
 const Help = React.lazy(() => import("./pages/Help"));
+const Contact = React.lazy(() => import("./pages/Contact"));
 const Admin = React.lazy(() => import("./pages/Admin"));
 
 
@@ -100,7 +104,10 @@ const App = () => {
       <MobileEnhancement />
       <MobilePerformance />
       <CoreWebVitalsMonitor />
+      <AccessibilityEnhancements />
       <BrowserRouter>
+        {/* Skip to main content link for accessibility */}
+        <AccessibilityNavigationLink />
         <div className="min-h-screen">
           <Header />
           <ErrorBoundary>
@@ -145,6 +152,7 @@ const App = () => {
                 <Route path="/sek-usd" element={<RedirectRoute />} />
                 <Route path="/about" element={<About />} />
                 <Route path="/help" element={<Help />} />
+                <Route path="/contact" element={<Contact />} />
                 <Route path="/admin" element={<Admin />} />
 
                 {/* Redirect routes for old currency pair URLs */}
@@ -169,28 +177,102 @@ const App = () => {
                 <Route path="*" element={<NotFound />} />
               </Routes>
 
-              {/* Site-wide footer (legal links) */}
-              <footer className="border-t mt-8 py-8 text-sm text-muted-foreground">
-                <div className="container mx-auto px-4 flex flex-col md:flex-row items-center justify-between gap-3">
-                  <div>
-                    © {new Date().getFullYear()} Currency to Currency
+              {/* Site-wide footer (legal links) - Enhanced for Privacy Compliance */}
+              <footer className="border-t mt-8 py-8 bg-muted/30" role="contentinfo">
+                <div className="container mx-auto px-4">
+                  {/* Main footer content */}
+                  <div className="grid grid-cols-1 md:grid-cols-3 gap-6 mb-6">
+                    {/* Company Info */}
+                    <div>
+                      <h3 className="font-semibold text-sm mb-3">Currency to Currency</h3>
+                      <p className="text-xs text-muted-foreground mb-2">
+                        Real-time currency conversion and financial data platform
+                      </p>
+                      <p className="text-xs text-muted-foreground">
+                        © {new Date().getFullYear()} Currency to Currency. All rights reserved.
+                      </p>
+                    </div>
+
+                    {/* Privacy & Legal - Prominent Section */}
+                    <div>
+                      <h3 className="font-semibold text-sm mb-3 text-primary">Privacy & Legal</h3>
+                      <nav className="space-y-2" aria-label="Privacy and legal information">
+                        <a 
+                          href="/privacy-policy" 
+                          className="block text-sm hover:text-primary hover:underline transition-colors"
+                          aria-label="Read our privacy policy"
+                        >
+                          📄 Privacy Policy
+                        </a>
+                        <a 
+                          href="/terms-of-service" 
+                          className="block text-sm hover:text-primary hover:underline transition-colors"
+                          aria-label="Read our terms of service"
+                        >
+                          📋 Terms of Service
+                        </a>
+                        <button
+                          type="button"
+                          onClick={() => (window as any).openCookieSettings?.() || (window as any).withdrawConsent?.()}
+                          className="block text-sm hover:text-primary hover:underline transition-colors text-left"
+                          aria-label="Manage your cookie preferences"
+                        >
+                          🍪 Cookie Settings
+                        </button>
+                        <a 
+                          href="/contact" 
+                          className="block text-sm hover:text-primary hover:underline transition-colors"
+                          aria-label="Contact us for support or privacy inquiries"
+                        >
+                          📧 Contact & Data Protection
+                        </a>
+                      </nav>
+                    </div>
+
+                    {/* Data Protection Rights */}
+                    <div>
+                      <h3 className="font-semibold text-sm mb-3">Your Data Rights</h3>
+                      <div className="space-y-2">
+                        <p className="text-xs text-muted-foreground">
+                          🛡️ GDPR & CCPA Compliant
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          📧 DPO: dpo@currencytocurrency.app
+                        </p>
+                        <p className="text-xs text-muted-foreground">
+                          ⏱️ Response within 72 hours
+                        </p>
+                        <button
+                          type="button"
+                          onClick={() => (window as any).withdrawConsent?.()}
+                          className="text-xs text-primary hover:underline"
+                          aria-label="Withdraw your consent for data processing"
+                        >
+                          Withdraw Consent
+                        </button>
+                      </div>
+                    </div>
                   </div>
-                  <nav className="space-x-4">
-                    <a href="/privacy-policy" className="hover:text-foreground underline">Privacy Policy</a>
-                    <a href="/terms-of-service" className="hover:text-foreground underline">Terms of Service</a>
-                    <button
-                      type="button"
-                      onClick={() => (window as any).openCookieSettings?.() || (window as any).withdrawConsent?.()}
-                      className="underline hover:text-foreground"
-                    >
-                      Cookie Settings
-                    </button>
-                  </nav>
+
+                  {/* Bottom bar with essential links */}
+                  <div className="border-t pt-4 flex flex-col sm:flex-row items-center justify-between gap-3">
+                    <div className="text-xs text-muted-foreground">
+                      Built with privacy by design • Secure & compliant
+                    </div>
+                    <nav className="flex flex-wrap gap-4 text-xs" aria-label="Quick legal links">
+                      <a href="/privacy-policy" className="hover:text-primary underline">Privacy</a>
+                      <a href="/terms-of-service" className="hover:text-primary underline">Terms</a>
+                      <a href="/contact" className="hover:text-primary underline">Contact</a>
+                    </nav>
+                  </div>
                 </div>
               </footer>
 
               {/* Global Cookie Consent Banner */}
               <CookieConsent />
+              
+              {/* Privacy Compliance Checker (Development Only) */}
+              <PrivacyComplianceChecker />
 
             </React.Suspense>
           </ErrorBoundary>

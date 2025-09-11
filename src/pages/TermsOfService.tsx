@@ -266,6 +266,65 @@ const TermsOfService = () => {
             </CardContent>
           </Card>
 
+          {/* Security Practices */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Shield className="h-5 w-5 mr-2" />
+                Security Practices
+              </CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground mb-3">
+                We implement comprehensive security measures to protect our Service and your data:
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="font-semibold mb-2">Technical Security</h3>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>HTTPS encryption for all communications</li>
+                    <li>Regular security audits and penetration testing</li>
+                    <li>Secure hosting infrastructure with monitoring</li>
+                    <li>Access controls and authentication systems</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">Data Protection</h3>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>Data encryption at rest and in transit</li>
+                    <li>Regular security updates and patches</li>
+                    <li>Incident response procedures</li>
+                    <li>Compliance with privacy regulations</li>
+                  </ul>
+                </div>
+              </div>
+              <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg">
+                <p className="text-sm font-medium text-blue-800 mb-1">Report Security Issues</p>
+                <p className="text-sm text-blue-700">
+                  If you discover a security vulnerability, please email security@currencytocurrency.app
+                </p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Data Breach Notification */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Data Breach Notification</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-3">
+                In the unlikely event of a data breach:
+              </p>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li>We will assess the risk and take immediate containment measures</li>
+                <li>We will notify supervisory authorities within 72 hours when required by law</li>
+                <li>We will notify affected users promptly if there is a high risk to their rights</li>
+                <li>We will provide clear guidance on protective actions users can take</li>
+              </ul>
+            </CardContent>
+          </Card>
+
           {/* Contact Information */}
           <Card>
             <CardHeader>
@@ -275,9 +334,13 @@ const TermsOfService = () => {
               <p className="text-sm text-muted-foreground mb-4">
                 If you have any questions about these Terms of Service, please contact us:
               </p>
-              <div className="bg-muted p-4 rounded-lg">
+              <div className="bg-muted p-4 rounded-lg space-y-2">
                 <p className="text-sm"><strong>Website:</strong> currencytocurrency.app</p>
-                <p className="text-sm"><strong>Email:</strong> legal@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Legal Questions:</strong> legal@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Data Protection:</strong> dpo@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Security Issues:</strong> security@currencytocurrency.app</p>
+                <p className="text-sm"><strong>General Support:</strong> support@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Response Time:</strong> 72 hours for legal and privacy matters</p>
               </div>
             </CardContent>
           </Card>

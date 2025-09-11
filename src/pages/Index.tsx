@@ -389,6 +389,7 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-converter-bg">
+      <main id="main-content" tabIndex={-1} role="main" aria-label="Currency converter application">
       <SEOHead
         title="Free Currency Converter - Live Exchange Rates | Currency to Currency"
         description="Convert 150+ currencies instantly with live rates. Free real-time forex calculator with crypto support, charts & alerts. No registration required."
@@ -725,6 +726,7 @@ const Index = () => {
           <InstallPrompt />
         </div>
       </div>
+      </main>
     </div>
   );
 };

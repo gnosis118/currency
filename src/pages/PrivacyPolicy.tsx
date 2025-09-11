@@ -299,20 +299,6 @@ const PrivacyPolicy = () => {
             </CardContent>
           </Card>
 
-          {/* Contact Information */}
-          <Card>
-            <CardHeader>
-              <CardTitle className="flex items-center">
-                <Mail className="h-5 w-5 mr-2" />
-                Contact Us
-              </CardTitle>
-            </CardHeader>
-            <CardContent>
-              <p className="text-sm text-muted-foreground mb-4">
-                If you have any questions about this Privacy Policy, please contact us:
-              </p>
-              <div className="bg-muted p-4 rounded-lg">
-
           {/* Legal Basis for Processing (GDPR) */}
           <Card>
             <CardHeader>
@@ -340,20 +326,115 @@ const PrivacyPolicy = () => {
             </CardContent>
           </Card>
 
+          {/* Data Retention */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Data Retention</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground mb-3">
+                We retain your information only for as long as necessary to fulfill the purposes outlined in this policy:
+              </p>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li><strong>Usage Data:</strong> Retained for up to 26 months for analytics purposes</li>
+                <li><strong>Cookie Data:</strong> Varies by cookie type (see Cookie Declaration above)</li>
+                <li><strong>Account Data:</strong> Retained until account deletion is requested</li>
+                <li><strong>Legal Obligations:</strong> Retained as required by applicable laws</li>
+              </ul>
+            </CardContent>
+          </Card>
+
+          {/* Security Measures */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Security Measures</CardTitle>
+            </CardHeader>
+            <CardContent className="space-y-4">
+              <p className="text-sm text-muted-foreground mb-3">
+                We implement comprehensive security measures to protect your information:
+              </p>
+              <div className="grid md:grid-cols-2 gap-4">
+                <div>
+                  <h3 className="font-semibold mb-2">Technical Safeguards</h3>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>HTTPS encryption for all data transmission</li>
+                    <li>Regular security audits and penetration testing</li>
+                    <li>Secure hosting infrastructure</li>
+                    <li>Access controls and authentication</li>
+                  </ul>
+                </div>
+                <div>
+                  <h3 className="font-semibold mb-2">Organizational Measures</h3>
+                  <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                    <li>Employee privacy training</li>
+                    <li>Data protection impact assessments</li>
+                    <li>Incident response procedures</li>
+                    <li>Vendor security requirements</li>
+                  </ul>
+                </div>
+              </div>
+            </CardContent>
+          </Card>
+
           {/* Data Breach Procedures */}
           <Card>
             <CardHeader>
-              <CardTitle>Data Breach Procedures</CardTitle>
+              <CardTitle>Data Breach Notification</CardTitle>
             </CardHeader>
-            <CardContent className="prose prose-gray max-w-none">
+            <CardContent className="space-y-4">
               <p className="text-sm text-muted-foreground">
-                We maintain incident response processes including prompt detection, containment, and remediation. Where legally required, we will notify affected users and authorities without undue delay and provide guidance on protective steps.
+                In the unlikely event of a data breach affecting your personal information:
+              </p>
+              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
+                <li>We will assess the risk and take immediate containment measures</li>
+                <li>We will notify supervisory authorities within 72 hours when required by law</li>
+                <li>We will notify affected users without undue delay if there is a high risk to their rights</li>
+                <li>We will provide clear information about the breach and recommended protective actions</li>
+              </ul>
+              <div className="bg-red-50 border border-red-200 p-3 rounded-lg mt-3">
+                <p className="text-sm font-medium text-red-800">Report Security Issues</p>
+                <p className="text-sm text-red-700">Email: security@currencytocurrency.app</p>
+              </div>
+            </CardContent>
+          </Card>
+
+          {/* Automated Decision Making */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Automated Decision Making</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                We do not engage in automated decision-making or profiling that produces legal effects or significantly affects you. Any automated processing is limited to basic website functionality and fraud prevention.
               </p>
             </CardContent>
           </Card>
 
+          {/* Contact Information */}
+          <Card>
+            <CardHeader>
+              <CardTitle className="flex items-center">
+                <Mail className="h-5 w-5 mr-2" />
+                Contact Us
+              </CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground mb-4">
+                If you have any questions about this Privacy Policy or want to exercise your data protection rights, please contact us:
+              </p>
+              <div className="bg-muted p-4 rounded-lg space-y-2">
                 <p className="text-sm"><strong>Website:</strong> currencytocurrency.app</p>
-                <p className="text-sm"><strong>Email:</strong> privacy@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Privacy Email:</strong> privacy@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Data Protection Officer:</strong> dpo@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Security Issues:</strong> security@currencytocurrency.app</p>
+                <p className="text-sm"><strong>Response Time:</strong> Within 72 hours for privacy inquiries</p>
+                <p className="text-sm"><strong>Postal Address:</strong> Data Protection Team, Currency to Currency, [Your Business Address]</p>
+              </div>
+              <div className="bg-blue-50 border border-blue-200 p-3 rounded-lg mt-4">
+                <p className="text-sm font-medium text-blue-800 mb-1">For Data Subject Rights Requests:</p>
+                <p className="text-sm text-blue-700">
+                  Please clearly state your location (EU/California/Other) and specify the type of request (access, rectification, erasure, portability, restriction, objection) in your email.
+                </p>
               </div>
             </CardContent>
           </Card>
