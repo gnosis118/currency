@@ -14,29 +14,15 @@ try {
   // Read package.json
   const packageJson = JSON.parse(fs.readFileSync('package.json', 'utf8'));
   
-  // Check if @vitejs/plugin-react is installed
+  // Check if @vitejs/plugin-react is needed
   const hasViteReact = packageJson.devDependencies?.['@vitejs/plugin-react'];
   const hasViteReactSwc = packageJson.devDependencies?.['@vitejs/plugin-react-swc'];
   
-  if (!hasViteReact && hasViteReactSwc) {
-    console.log('⚠️  Missing @vitejs/plugin-react, but @vitejs/plugin-react-swc is available');
-    console.log('✅ Using SWC version for React plugin');
-  } else if (!hasViteReact && !hasViteReactSwc) {
-    console.log('❌ No Vite React plugin found!');
-    console.log('🔧 Installing @vitejs/plugin-react...');
-    
-    try {
-      execSync('npm install --save-dev @vitejs/plugin-react@^4.3.1', { 
-        stdio: 'inherit',
-        timeout: 60000 
-      });
-      console.log('✅ @vitejs/plugin-react installed successfully');
-    } catch (error) {
-      console.error('❌ Failed to install @vitejs/plugin-react:', error.message);
-      process.exit(1);
-    }
-  } else {
+  if (hasViteReact || hasViteReactSwc) {
     console.log('✅ Vite React plugin dependencies are satisfied');
+  } else {
+    console.log('❌ No Vite React plugin found!');
+    process.exit(1);
   }
   
   // Check other critical dependencies
