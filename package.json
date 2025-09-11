@@ -51,7 +51,6 @@
     "audit:seo": "node scripts/comprehensive-seo-audit.cjs",
     "validate:robots": "node scripts/validate-robots-txt.cjs",
     "fix:frontmatter": "node scripts/fix-missing-frontmatter.cjs",
-    "audit:seo": "node scripts/comprehensive-seo-audit.cjs",
     "deploy:preview": "npm run build && npm run preview"
   },
   "dependencies": {
