@@ -9,6 +9,7 @@ import WebPOptimizedImage from '@/components/WebPOptimizedImage';
 import SocialShare from '@/components/SocialShare';
 import SocialFollow from '@/components/SocialFollow';
 import CurrencyPairLinks from '@/components/CurrencyPairLinks';
+import PrivacyPolicyBanner from '@/components/PrivacyPolicyBanner';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -440,6 +441,9 @@ const Index = () => {
             <span>✓ Travel guides</span>
           </div>
         </div>
+
+        {/* Privacy Policy Banner for Maximum Visibility */}
+        <PrivacyPolicyBanner />
 
         {/* Popular Currency Pairs */}
         <div className="mb-6 md:mb-8">

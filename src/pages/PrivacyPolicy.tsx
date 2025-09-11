@@ -9,17 +9,32 @@ const PrivacyPolicy = () => {
     "@context": "https://schema.org",
     "@type": "WebPage",
     "name": "Privacy Policy - Currency to Currency",
-    "description": "Privacy policy for Currency to Currency converter app, detailing data collection, usage, and user rights.",
+    "description": "Comprehensive privacy policy detailing data collection, usage, and user rights for Currency to Currency converter app. GDPR and CCPA compliant.",
     "url": "https://currencytocurrency.app/privacy-policy",
+    "datePublished": "2024-01-01",
+    "dateModified": new Date().toISOString().split('T')[0],
+    "isPartOf": {
+      "@type": "WebSite",
+      "name": "Currency to Currency",
+      "url": "https://currencytocurrency.app"
+    },
+    "publisher": {
+      "@type": "Organization",
+      "name": "Currency to Currency",
+      "url": "https://currencytocurrency.app"
+    },
     "mainEntity": {
       "@type": "PrivacyPolicy",
       "datePublished": "2024-01-01",
-      "dateModified": "2024-01-01"
+      "dateModified": new Date().toISOString().split('T')[0],
+      "governmentAgency": "GDPR, CCPA Compliant",
+      "jurisdiction": "EU, California, International"
     }
   };
 
   return (
     <div className="min-h-screen bg-background">
+      <main id="main-content" tabIndex={-1} role="main" aria-label="Privacy policy information">
       <EnhancedSEOHead
         title="Privacy Policy - Currency to Currency | Data Protection & User Rights"
         description="Our privacy policy explains how we collect, use, and protect your data when using our currency converter. Learn about your rights and data protection measures."
@@ -456,6 +471,7 @@ const PrivacyPolicy = () => {
           </div>
         </div>
       </div>
+      </main>
     </div>
   );
 };

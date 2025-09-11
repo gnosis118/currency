@@ -22,6 +22,7 @@ const Alerts = React.lazy(() => import("./pages/Alerts"));
 const Travel = React.lazy(() => import("./pages/Travel"));
 const Auth = React.lazy(() => import("./pages/Auth"));
 const PrivacyPolicy = React.lazy(() => import("./pages/PrivacyPolicy"));
+const PrivacyHub = React.lazy(() => import("./pages/PrivacyHub"));
 const TermsOfService = React.lazy(() => import("./pages/TermsOfService"));
 const NotFound = React.lazy(() => import("./pages/NotFound"));
 const FAQ = React.lazy(() => import("./pages/FAQ"));
@@ -55,6 +56,13 @@ const App = () => {
     <ErrorBoundary fallback={<div>Application failed to load</div>}>
       {/* Global Google Consent Mode & Cookiebot Scripts */}
       <Helmet>
+        {/* Enhanced Privacy Policy Meta Tags for Better Discovery */}
+        <meta name="privacy-policy" content="https://currencytocurrency.app/privacy-policy" />
+        <meta name="data-protection" content="GDPR and CCPA compliant" />
+        <meta name="privacy-contact" content="dpo@currencytocurrency.app" />
+        <link rel="privacy-policy" href="https://currencytocurrency.app/privacy-policy" />
+        <meta name="robots" content="index, follow" />
+        
         {/* Google Consent Mode (must precede gtag.js/GTM) */}
         <script data-cookieconsent="ignore">
           {`
@@ -120,6 +128,7 @@ const App = () => {
                 <Route path="/brokers" element={<Brokers />} />
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
+                <Route path="/privacy" element={<PrivacyHub />} />
                 <Route path="/terms-of-service" element={<TermsOfService />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/blog" element={<Blog />} />
@@ -197,6 +206,13 @@ const App = () => {
                     <div>
                       <h3 className="font-semibold text-sm mb-3 text-primary">Privacy & Legal</h3>
                       <nav className="space-y-2" aria-label="Privacy and legal information">
+                        <a 
+                          href="/privacy" 
+                          className="block text-sm hover:text-primary hover:underline transition-colors font-medium"
+                          aria-label="Visit our privacy hub for complete privacy information"
+                        >
+                          🛡️ Privacy Hub
+                        </a>
                         <a 
                           href="/privacy-policy" 
                           className="block text-sm hover:text-primary hover:underline transition-colors"
