@@ -147,6 +147,32 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
       });
       setSignInEmail('');
       setSignInPassword('');
+
+      // Backfill consent log if missing (first login after email confirmation)
+      try {
+        const { data: userRes } = await supabase.auth.getUser();
+        const uid = userRes?.user?.id;
+        if (uid) {
+          const { count } = await supabase
+            .from('user_consents')
+            .select('user_id', { count: 'exact', head: true })
+            .eq('user_id', uid);
+          if (!count || count === 0) {
+            const meta: any = userRes.user.user_metadata || {};
+            await supabase.from('user_consents').insert({
+              user_id: uid,
+              email: userRes.user.email,
+              agree_to_terms: !!meta.agree_to_terms,
+              agree_to_privacy: !!meta.agree_to_privacy,
+              consented_at: meta.consented_at || new Date().toISOString(),
+              provider: meta.recaptcha_provider || 'unknown',
+              recaptcha_score: meta.recaptcha_score ?? null,
+            });
+          }
+        }
+      } catch (e) {
+        console.warn('Consent log backfill on login failed:', e);
+      }
     }
     setIsSigningIn(false);
   };
