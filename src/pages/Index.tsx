@@ -526,7 +526,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-price-bg p-4 rounded-lg">
+              <div className="bg-price-bg p-4 rounded-lg" role="status" aria-live="polite" aria-atomic="true">
                 <div className="flex items-center justify-between">
                   <div className="text-3xl font-bold text-foreground">
                     {fiatLoading ? (
@@ -621,7 +621,7 @@ const Index = () => {
                 </div>
               </div>
 
-              <div className="bg-price-bg p-4 rounded-lg">
+              <div className="bg-price-bg p-4 rounded-lg" role="status" aria-live="polite" aria-atomic="true">
                 <div className="text-3xl font-bold text-foreground">
                   {cryptoLoading ? (
                     <div className="animate-pulse bg-muted h-8 w-32 rounded" />

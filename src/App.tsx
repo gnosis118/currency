@@ -62,7 +62,7 @@ const App = () => {
         <meta name="privacy-contact" content="dpo@currencytocurrency.app" />
         <link rel="privacy-policy" href="https://currencytocurrency.app/privacy-policy" />
         <meta name="robots" content="index, follow" />
-        
+
         {/* Google Consent Mode (must precede gtag.js/GTM) */}
         <script data-cookieconsent="ignore">
           {`
@@ -205,22 +205,22 @@ const App = () => {
                     <div>
                       <h3 className="font-semibold text-sm mb-3 text-primary">Privacy & Legal</h3>
                       <nav className="space-y-2" aria-label="Privacy and legal information">
-                        <a 
-                          href="/privacy" 
+                        <a
+                          href="/privacy"
                           className="block text-sm hover:text-primary hover:underline transition-colors font-medium"
                           aria-label="Visit our privacy hub for complete privacy information"
                         >
                           🛡️ Privacy Hub
                         </a>
-                        <a 
-                          href="/privacy-policy" 
+                        <a
+                          href="/privacy-policy"
                           className="block text-sm hover:text-primary hover:underline transition-colors"
                           aria-label="Read our privacy policy"
                         >
                           📄 Privacy Policy
                         </a>
-                        <a 
-                          href="/terms-of-service" 
+                        <a
+                          href="/terms-of-service"
                           className="block text-sm hover:text-primary hover:underline transition-colors"
                           aria-label="Read our terms of service"
                         >
@@ -232,10 +232,10 @@ const App = () => {
                           className="block text-sm hover:text-primary hover:underline transition-colors text-left"
                           aria-label="Manage your cookie preferences"
                         >
-                          🍪 Cookie Settings
+                          🍪 Manage Cookies
                         </button>
-                        <a 
-                          href="/contact" 
+                        <a
+                          href="/contact"
                           className="block text-sm hover:text-primary hover:underline transition-colors"
                           aria-label="Contact us for support or privacy inquiries"
                         >
@@ -278,6 +278,9 @@ const App = () => {
                       <a href="/privacy-policy" className="hover:text-primary underline">Privacy</a>
                       <a href="/terms-of-service" className="hover:text-primary underline">Terms</a>
                       <a href="/contact" className="hover:text-primary underline">Contact</a>
+                          <button type="button" onClick={() => (window as any).openCookieSettings?.()} className="hover:text-primary underline" aria-label="Manage cookies">
+                            Manage Cookies
+                          </button>
                     </nav>
                   </div>
                 </div>
@@ -285,7 +288,7 @@ const App = () => {
 
               {/* Global Cookie Consent Banner */}
               <CookieConsent />
-              
+
               {/* Privacy Compliance Checker (Development Only) */}
               <PrivacyComplianceChecker />
 

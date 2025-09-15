@@ -149,7 +149,7 @@ const CurrencyPair = () => {
                 />
               </div>
 
-              <div className="bg-price-bg p-6 rounded-lg text-center">
+              <div className="bg-price-bg p-6 rounded-lg text-center" role="status" aria-live="polite" aria-atomic="true">
                 <div className="text-4xl font-bold text-foreground mb-2">
                   {loading ? (
                     <div className="animate-pulse bg-muted h-10 w-48 rounded mx-auto" />

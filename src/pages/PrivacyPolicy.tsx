@@ -297,7 +297,7 @@ const PrivacyPolicy = () => {
             </CardHeader>
             <CardContent>
               <p className="text-sm text-muted-foreground">
-                Our Service is not intended for children under the age of 13. We do not knowingly collect personal information from children under 13. If you are a parent or guardian and believe your child has provided us with personal information, please contact us.
+                Our Service is not intended for children under the age of 13 (or under 16 for users located in the EEA). We do not knowingly collect personal information from children under these ages. If you are a parent or guardian and believe your child has provided us with personal information, please contact us. Where legally required, we may implement reasonable age‑gating or consent mechanisms.
               </p>
             </CardContent>
           </Card>

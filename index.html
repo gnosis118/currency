@@ -83,21 +83,9 @@
       gtag("set", "url_passthrough", false);
     </script>
     
-    <!-- Cookiebot - Deferred for better performance -->
-    <script>
-      // Defer Cookiebot to improve TTI
-      window.addEventListener('load', function() {
-        setTimeout(function() {
-          var script = document.createElement('script');
-          script.id = 'Cookiebot';
-          script.src = 'https://consent.cookiebot.com/uc.js';
-          script.setAttribute('data-cbid', 'a316e185-0703-4964-b697-d0301f10cdb9');
-          script.setAttribute('data-blockingmode', 'auto');
-          script.type = 'text/javascript';
-          document.head.appendChild(script);
-        }, 500);
-      });
-    </script>
+    <!-- Cookiebot - Load immediately to ensure consent banner appears on first visit -->
+    <script id="Cookiebot" src="https://consent.cookiebot.com/uc.js" data-cbid="a316e185-0703-4964-b697-d0301f10cdb9" data-blockingmode="auto" type="text/javascript"></script>
+
     
     <!-- Google Analytics - Deferred for better TTI -->
     <script>

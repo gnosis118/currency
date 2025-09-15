@@ -160,6 +160,9 @@ export const blogImageMap: Record<string, string> = {
   'historical-currency-charts-why-they-matter-for-traders-travelers': chartsHero,
   'the-geopolitical-currency-map-how-elections-and-trade-wars-move-exchange-rates': trumpTariffsCurrencyImpact,
 
+  // New Articles
+  'currency-exchange-for-freelancers-complete-guide-2025': freelancerPaymentOptions,
+  'strategic-business-currency-management-2025': smeFinance,
 
 };
 

@@ -357,7 +357,7 @@ const Convert = () => {
                         </SelectContent>
                       </Select>
                     </div>
-                    <div className="h-10 px-3 py-2 bg-muted rounded-md flex items-center text-lg font-semibold">
+                    <div className="h-10 px-3 py-2 bg-muted rounded-md flex items-center text-lg font-semibold" role="status" aria-live="polite" aria-atomic="true">
                       {conversionResult ? conversionResult.toAmount.toFixed(2) : '0.00'}
                     </div>
                   </div>

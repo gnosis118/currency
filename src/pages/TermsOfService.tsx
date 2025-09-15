@@ -121,6 +121,19 @@ const TermsOfService = () => {
             </CardContent>
           </Card>
 
+          {/* Eligibility and Age Restrictions */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Eligibility and Age Restrictions</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <p className="text-sm text-muted-foreground">
+                This Service is intended for individuals who are at least 13 years old (or 16 years old for users located in the EEA). By using the Service, you represent that you meet the applicable minimum age or have verifiable parental consent where required by law. We do not knowingly allow children below these ages to use the Service.
+              </p>
+            </CardContent>
+          </Card>
+
+
           {/* Financial Disclaimer */}
           <Card>
             <CardHeader>
@@ -136,7 +149,7 @@ const TermsOfService = () => {
                   The information provided on this Service is for informational purposes only and should not be considered as financial advice, investment advice, trading advice, or any other sort of advice.
                 </p>
               </div>
-              
+
               <div>
                 <h3 className="font-semibold mb-2">No Financial Advice</h3>
                 <p className="text-sm text-muted-foreground">

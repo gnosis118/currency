@@ -39,7 +39,7 @@ const PrivacyHub = () => {
           structuredData={structuredData}
           pageType="article"
         />
-        
+
         <div className="max-w-4xl mx-auto p-6">
           {/* Header */}
           <div className="text-center mb-8">
@@ -51,6 +51,20 @@ const PrivacyHub = () => {
               Your privacy matters to us. Find everything you need to know about how we protect and handle your data.
             </p>
           </div>
+
+          {/* Compliance Badges */}
+          <div className="flex flex-wrap justify-center gap-3 mb-8" aria-label="Compliance badges">
+            <Badge variant="secondary" className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-green-600" /> GDPR
+            </Badge>
+            <Badge variant="secondary" className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-blue-600" /> CCPA
+            </Badge>
+            <Badge variant="secondary" className="flex items-center gap-2">
+              <Shield className="h-4 w-4 text-amber-600" /> Cookie Consent Active
+            </Badge>
+          </div>
+
 
           {/* Quick Access Cards */}
           <div className="grid md:grid-cols-2 gap-6 mb-8">
@@ -183,7 +197,7 @@ const PrivacyHub = () => {
                     </div>
                   </Button>
                 </Link>
-                
+
                 <Link to="/terms-of-service" className="block">
                   <Button variant="outline" className="w-full h-auto p-4">
                     <div className="text-center">
@@ -193,9 +207,9 @@ const PrivacyHub = () => {
                     </div>
                   </Button>
                 </Link>
-                
-                <Button 
-                  variant="outline" 
+
+                <Button
+                  variant="outline"
                   className="w-full h-auto p-4"
                   onClick={() => (window as any).openCookieSettings?.()}
                 >
