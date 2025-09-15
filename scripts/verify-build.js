@@ -89,11 +89,13 @@ function verifyBuildRequirements() {
     warnings.push('Blog index not found - will be generated');
   }
   
-  // Check sitemap
-  if (fs.existsSync('public/sitemap.xml')) {
-    console.log('✅ Sitemap exists');
+  // Check sitemaps
+  const sitemapFiles = ['public/sitemap.xml','public/sitemap-blog.xml','public/sitemap-images.xml','public/sitemap-index.xml'];
+  const missingSitemaps = sitemapFiles.filter(f => !fs.existsSync(f));
+  if (missingSitemaps.length) {
+    warnings.push(`Missing sitemap files: ${missingSitemaps.join(', ')}`);
   } else {
-    warnings.push('Sitemap not found');
+    console.log('✅ All sitemap files exist');
   }
   
   // Check assets

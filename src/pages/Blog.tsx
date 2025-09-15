@@ -158,6 +158,8 @@ const Blog = () => {
         canonical="https://currencytocurrency.app/blog"
         structuredData={structuredData}
       />
+      <link rel="alternate" hrefLang="en" href="https://currencytocurrency.app/blog" />
+      <link rel="alternate" hrefLang="x-default" href="https://currencytocurrency.app/blog" />
 
       <div className="container mx-auto px-3 md:px-4 max-w-6xl">
         <BreadcrumbNav className="mb-4" />

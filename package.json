@@ -29,7 +29,7 @@
     "build": "npm run prebuild && vite build && npm run postbuild",
     "build:safe": "node scripts/generate_blog_index.mjs && vite build && node scripts/copy-sitemap.cjs",
     "prebuild": "node scripts/verify-build.js && node scripts/generate_blog_index.mjs || echo 'Blog index generation completed'",
-    "postbuild": "node scripts/copy-sitemap.cjs",
+    "postbuild": "node scripts/copy-sitemap.cjs && node scripts/prerender_static_pages.cjs",
     "build:dev": "vite build --mode development",
     "cms": "npx --yes decap-server",
     "admin": "node scripts/start-admin.js",
@@ -51,7 +51,8 @@
     "audit:seo": "node scripts/comprehensive-seo-audit.cjs",
     "validate:robots": "node scripts/validate-robots-txt.cjs",
     "fix:frontmatter": "node scripts/fix-missing-frontmatter.cjs",
-    "deploy:preview": "npm run build && npm run preview"
+    "deploy:preview": "npm run build && npm run preview",
+    "validate:crawlability": "node scripts/validate_crawlability.cjs --base http://localhost:4173"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",

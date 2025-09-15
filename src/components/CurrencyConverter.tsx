@@ -287,20 +287,24 @@ const CurrencyConverter = () => {
   };
 
   return (
-    <div className="min-h-screen bg-converter-bg p-3 md:p-4">
+    <div className="min-h-screen bg-converter-bg p-3 sm:p-4 md:p-6 safe-area-inset-bottom">
       <div className="max-w-4xl mx-auto">
         {/* Header */}
-        <div className="text-center mb-6 md:mb-8 px-2">
-          <h1 className="text-2xl md:text-4xl font-bold text-foreground mb-2">Currency Converter</h1>
-          <p className="text-muted-foreground text-base md:text-lg">Real-time exchange rates and cryptocurrency prices</p>
-          <p className="text-muted-foreground max-w-2xl mx-auto mt-3 md:mt-4 text-sm md:text-base">
+        <div className="text-center mb-4 sm:mb-6 md:mb-8 px-1 sm:px-2">
+          <h1 className="text-xl sm:text-2xl md:text-4xl font-bold text-foreground mb-2 leading-tight">
+            Currency Converter
+          </h1>
+          <p className="text-muted-foreground text-sm sm:text-base md:text-lg">
+            Real-time exchange rates and cryptocurrency prices
+          </p>
+          <p className="text-muted-foreground max-w-2xl mx-auto mt-2 sm:mt-3 md:mt-4 text-xs sm:text-sm md:text-base leading-relaxed">
             Convert currencies instantly, track historical rates, set price alerts, and get travel money tips. 
             Our comprehensive currency tool provides everything you need for international finance, trading, and travel planning.
           </p>
         </div>
 
         <Tabs defaultValue="converter" className="w-full">
-          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1 p-1">
+          <TabsList className="grid w-full grid-cols-2 md:grid-cols-4 gap-1 p-1 sticky top-[4rem] z-40 bg-background/80 backdrop-blur supports-[backdrop-filter]:bg-background/60 safe-area-top">
             <TabsTrigger value="converter" className="text-xs md:text-sm min-h-10 md:min-h-11 touch-manipulation">
               <span className="hidden sm:inline">Converter</span>
               <span className="sm:hidden">Convert</span>
@@ -323,9 +327,9 @@ const CurrencyConverter = () => {
             <p className="text-muted-foreground text-center mb-6">
               Convert between 40+ currencies and cryptocurrencies with live exchange rates. Share your conversions and install as a mobile app for quick access.
             </p>
-            <div className="grid gap-4 md:gap-6 lg:grid-cols-2">
+            <div className="grid gap-3 sm:gap-4 md:gap-6 lg:grid-cols-2">
               {/* Fiat Currency Converter */}
-              <Card className="shadow-lg">
+              <Card className="shadow-lg mobile-card">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <span>Currency Converter</span>
@@ -334,7 +338,7 @@ const CurrencyConverter = () => {
                     </Button>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 sm:space-y-4">
                    <div className="space-y-2">
                      <label className="text-sm font-medium text-muted-foreground">Amount</label>
                      <Input
@@ -356,7 +360,7 @@ const CurrencyConverter = () => {
                          <SelectTrigger className="min-h-11 touch-manipulation">
                            <SelectValue />
                          </SelectTrigger>
-                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background">
+                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background mobile-scroll">
                            {fiatCurrencies.map((currency) => (
                              <SelectItem key={currency.code} value={currency.code} className="min-h-11 touch-manipulation">
                                <div className="flex items-center space-x-2">
@@ -386,7 +390,7 @@ const CurrencyConverter = () => {
                          <SelectTrigger className="min-h-11 touch-manipulation">
                            <SelectValue />
                          </SelectTrigger>
-                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background">
+                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background mobile-scroll">
                            {fiatCurrencies.map((currency) => (
                              <SelectItem key={currency.code} value={currency.code} className="min-h-11 touch-manipulation">
                                <div className="flex items-center space-x-2">
@@ -401,7 +405,7 @@ const CurrencyConverter = () => {
                      </div>
                    </div>
 
-                  <div className="bg-price-bg p-4 rounded-lg">
+                  <div className="bg-price-bg p-3 sm:p-4 rounded-lg">
                     <div className="flex items-center justify-between">
                       <div className="text-3xl font-bold text-foreground">
                         {fiatLoading ? (
@@ -430,7 +434,7 @@ const CurrencyConverter = () => {
               </Card>
 
               {/* Cryptocurrency Converter */}
-              <Card className="shadow-lg">
+              <Card className="shadow-lg mobile-card">
                 <CardHeader>
                   <CardTitle className="flex items-center justify-between">
                     <span>Cryptocurrency Converter</span>
@@ -439,7 +443,7 @@ const CurrencyConverter = () => {
                     </Button>
                   </CardTitle>
                 </CardHeader>
-                <CardContent className="space-y-4">
+                <CardContent className="space-y-3 sm:space-y-4">
                    <div className="space-y-2">
                      <label className="text-sm font-medium text-muted-foreground">Amount</label>
                      <Input
@@ -454,14 +458,14 @@ const CurrencyConverter = () => {
                      />
                    </div>
 
-                   <div className="grid grid-cols-2 gap-4">
+                   <div className="grid grid-cols-2 gap-2 sm:gap-4">
                      <div className="space-y-2">
                        <label className="text-sm font-medium text-muted-foreground">Cryptocurrency</label>
                        <Select value={selectedCrypto} onValueChange={setSelectedCrypto}>
                          <SelectTrigger className="min-h-11 touch-manipulation">
                            <SelectValue />
                          </SelectTrigger>
-                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background">
+                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background mobile-scroll">
                            {cryptocurrencies.map((crypto) => (
                              <SelectItem key={crypto.id} value={crypto.id} className="min-h-11 touch-manipulation">
                                <div className="flex items-center space-x-2">
@@ -481,7 +485,7 @@ const CurrencyConverter = () => {
                          <SelectTrigger className="min-h-11 touch-manipulation">
                            <SelectValue />
                          </SelectTrigger>
-                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background">
+                         <SelectContent className="max-h-60 overflow-y-auto z-50 bg-background mobile-scroll">
                            {fiatCurrencies.slice(0, 10).map((currency) => (
                              <SelectItem key={currency.code} value={currency.code} className="min-h-11 touch-manipulation">
                                <div className="flex items-center space-x-2">
@@ -496,7 +500,7 @@ const CurrencyConverter = () => {
                      </div>
                    </div>
 
-                  <div className="bg-price-bg p-4 rounded-lg">
+                  <div className="bg-price-bg p-3 sm:p-4 rounded-lg">
                     <div className="text-3xl font-bold text-foreground">
                       {cryptoLoading ? (
                         <div className="animate-pulse bg-muted h-8 w-32 rounded" />
@@ -553,7 +557,7 @@ const CurrencyConverter = () => {
         </Tabs>
 
         {/* Footer */}
-        <div className="text-center mt-8 text-sm text-muted-foreground">
+        <div className="text-center mt-6 sm:mt-8 text-xs sm:text-sm text-muted-foreground">
           {lastUpdated && (
             <div>
               Last updated: {lastUpdated.toLocaleTimeString()}

@@ -29,83 +29,168 @@
 # Specific redirects for currency pairs (old format to new format)
 [[redirects]]
   from = "/usd-to-eur"
-  to = "/usd-eur"
+  to = "/convert/usd-to-eur"
   status = 301
-  headers = {X-Robots-Tag = "index, follow"}
 
 [[redirects]]
   from = "/usd-to-gbp"
-  to = "/usd-gbp"
+  to = "/convert/usd-to-gbp"
   status = 301
 
 [[redirects]]
   from = "/usd-to-jpy"
-  to = "/usd-jpy"
+  to = "/convert/usd-to-jpy"
   status = 301
 
 [[redirects]]
   from = "/usd-to-cad"
-  to = "/usd-cad"
+  to = "/convert/usd-to-cad"
   status = 301
 
 [[redirects]]
   from = "/usd-to-aud"
-  to = "/usd-aud"
+  to = "/convert/usd-to-aud"
   status = 301
 
 [[redirects]]
   from = "/usd-to-chf"
-  to = "/usd-chf"
+  to = "/convert/usd-to-chf"
   status = 301
 
 [[redirects]]
   from = "/gbp-to-usd"
-  to = "/gbp-usd"
+  to = "/convert/gbp-to-usd"
   status = 301
 
 [[redirects]]
   from = "/eur-to-usd"
-  to = "/eur-usd"
+  to = "/convert/eur-to-usd"
   status = 301
 
 [[redirects]]
   from = "/eur-to-gbp"
-  to = "/eur-gbp"
+  to = "/convert/eur-to-gbp"
   status = 301
 
 [[redirects]]
   from = "/eur-to-jpy"
-  to = "/eur-jpy"
+  to = "/convert/eur-to-jpy"
   status = 301
 
 [[redirects]]
   from = "/jpy-to-usd"
-  to = "/jpy-usd"
+  to = "/convert/jpy-to-usd"
   status = 301
 
 [[redirects]]
   from = "/aud-to-usd"
-  to = "/aud-usd"
+  to = "/convert/aud-to-usd"
   status = 301
 
 [[redirects]]
   from = "/cad-to-usd"
-  to = "/cad-usd"
+  to = "/convert/cad-to-usd"
   status = 301
 
 [[redirects]]
   from = "/chf-to-usd"
-  to = "/chf-usd"
+  to = "/convert/chf-to-usd"
   status = 301
 
 [[redirects]]
   from = "/nzd-to-usd"
-  to = "/nzd-usd"
+  to = "/convert/nzd-to-usd"
   status = 301
 
 [[redirects]]
   from = "/sek-to-usd"
-  to = "/sek-usd"
+  to = "/convert/sek-to-usd"
+  status = 301
+
+# Short pair redirects to canonical /convert/{from}-to-{to}
+[[redirects]]
+  from = "/usd-eur"
+  to = "/convert/usd-to-eur"
+  status = 301
+
+[[redirects]]
+  from = "/usd-gbp"
+  to = "/convert/usd-to-gbp"
+  status = 301
+
+[[redirects]]
+  from = "/usd-jpy"
+  to = "/convert/usd-to-jpy"
+  status = 301
+
+[[redirects]]
+  from = "/usd-cad"
+  to = "/convert/usd-to-cad"
+  status = 301
+
+[[redirects]]
+  from = "/usd-aud"
+  to = "/convert/usd-to-aud"
+  status = 301
+
+[[redirects]]
+  from = "/usd-chf"
+  to = "/convert/usd-to-chf"
+  status = 301
+
+[[redirects]]
+  from = "/gbp-usd"
+  to = "/convert/gbp-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/eur-usd"
+  to = "/convert/eur-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/eur-gbp"
+  to = "/convert/eur-to-gbp"
+  status = 301
+
+[[redirects]]
+  from = "/eur-jpy"
+  to = "/convert/eur-to-jpy"
+  status = 301
+
+[[redirects]]
+  from = "/jpy-usd"
+  to = "/convert/jpy-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/aud-usd"
+  to = "/convert/aud-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/cad-usd"
+  to = "/convert/cad-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/chf-usd"
+  to = "/convert/chf-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/nzd-usd"
+  to = "/convert/nzd-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/sek-usd"
+  to = "/convert/sek-to-usd"
+  status = 301
+
+[[redirects]]
+  from = "/gbp-eur"
+  to = "/convert/gbp-to-eur"
   status = 301
 
 # Catch-all redirect for SPA (must be last)
@@ -121,6 +206,27 @@
   [headers.values]
     Content-Type = "text/html; charset=utf-8"
     X-Robots-Tag = "index, follow"
+
+# Ensure admin and auth are not indexed
+[[headers]]
+  for = "/admin/*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/auth*"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/404.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
+
+[[headers]]
+  for = "/offline.html"
+  [headers.values]
+    X-Robots-Tag = "noindex, nofollow"
 
 # Admin redirect for Netlify CMS
 [[redirects]]

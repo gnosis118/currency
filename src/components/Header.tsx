@@ -67,16 +67,16 @@ const Header = () => {
   const isActive = (path: string) => location.pathname === path;
 
   return (
-    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60">
-      <div className="container flex h-16 md:h-14 items-center justify-between px-4 md:px-6">
+    <header className="sticky top-0 z-50 w-full border-b bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60 safe-area-top">
+      <div className="container flex h-14 md:h-14 items-center justify-between px-3 sm:px-4 md:px-6 overflow-hidden">
         <div className="flex items-center gap-6">
-          <Link to="/" className="flex items-center space-x-2">
-            <Calculator className="h-6 w-6" />
-            <span className="font-bold text-lg">Currency Converter</span>
+          <Link to="/" className="flex items-center space-x-2 min-w-0">
+            <Calculator className="h-6 w-6 flex-shrink-0" />
+            <span className="font-bold text-base sm:text-lg truncate">Currency Converter</span>
           </Link>
 
           {/* Desktop Navigation */}
-          <nav className="hidden md:flex items-center gap-6">
+          <nav className="hidden md:flex items-center gap-4 lg:gap-6">
             <Link 
               to="/" 
               className={`text-sm font-medium transition-colors hover:text-primary ${
@@ -161,12 +161,11 @@ const Header = () => {
           {/* Mobile Navigation */}
           <Sheet open={mobileMenuOpen} onOpenChange={setMobileMenuOpen}>
             <SheetTrigger asChild className="md:hidden">
-              <Button variant="ghost" size="sm" className="min-h-11 min-w-11 touch-manipulation">
+              <Button variant="ghost" size="sm" className="min-h-11 min-w-11 touch-manipulation" aria-label="Open navigation menu">
                 <Menu className="h-5 w-5" />
-                <span className="sr-only">Open navigation menu</span>
               </Button>
             </SheetTrigger>
-            <SheetContent side="left" className="w-72 p-0 max-w-[90vw]">
+            <SheetContent side="left" className="w-72 p-0 max-w-[92vw] sm:max-w-[90vw]">
               <div className="flex flex-col h-full">
                 <div className="flex items-center justify-between p-6 border-b">
                   <div className="flex items-center space-x-2">
@@ -284,7 +283,7 @@ const Header = () => {
               <DropdownMenuTrigger asChild>
                 <Button variant="ghost" size="sm" className="flex items-center gap-2 min-h-11 touch-manipulation">
                   <UserIcon className="h-4 w-4" />
-                  <span className="hidden sm:inline">{user.email}</span>
+                  <span className="hidden sm:inline max-w-[40vw] truncate">{user.email}</span>
                 </Button>
               </DropdownMenuTrigger>
               <DropdownMenuContent align="end">
@@ -295,7 +294,7 @@ const Header = () => {
               </DropdownMenuContent>
             </DropdownMenu>
           ) : (
-            <div className="flex items-center gap-2">
+            <div className="flex items-center gap-1 sm:gap-2">
               <Link to="/auth">
                 <Button variant="ghost" size="sm" className="min-h-11 touch-manipulation">
                   Login

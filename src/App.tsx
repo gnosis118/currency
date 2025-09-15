@@ -182,7 +182,6 @@ const App = () => {
                 <Route path="/nzd-to-usd" element={<RedirectRoute />} />
                 <Route path="/sek-to-usd" element={<RedirectRoute />} />
 
-                <Route path="/sitemap.xml" element={null} />
                 <Route path="*" element={<NotFound />} />
               </Routes>
 
