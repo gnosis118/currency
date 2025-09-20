@@ -1,5 +1,6 @@
 import { Link, useSearchParams } from 'react-router-dom';
 import { useEffect, useState } from 'react';
+import { Helmet } from 'react-helmet-async';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { Calendar, Clock, TrendingUp } from 'lucide-react';
@@ -118,7 +119,7 @@ const Blog = () => {
               seen.add(post.slug);
               return true;
             });
-            
+
             console.log(`Loaded ${uniquePosts.length} unique posts from blog-index.json`);
             console.log('Posts loaded:', uniquePosts.map(p => ({ slug: p.slug, title: p.title })));
             setPosts(uniquePosts.sort((a, b) => (a.publishDate < b.publishDate ? 1 : -1)));
@@ -139,6 +140,55 @@ const Blog = () => {
   const totalPages = Math.max(1, Math.ceil(posts.length / pageSize));
   const pageIndex = Math.min(currentPage, totalPages) - 1;
   const currentPosts = posts.slice(pageIndex * pageSize, pageIndex * pageSize + pageSize);
+  // Canonical and pagination URLs
+  const baseBlogUrl = 'https://currencytocurrency.app/blog';
+  const canonical = currentPage > 1 ? `${baseBlogUrl}?page=${currentPage}` : baseBlogUrl;
+  const prevUrl = currentPage > 1 ? (currentPage === 2 ? baseBlogUrl : `${baseBlogUrl}?page=${currentPage - 1}`) : null;
+  const nextUrl = currentPage < totalPages ? `${baseBlogUrl}?page=${currentPage + 1}` : null;
+
+
+  // High-value internal links to pass authority to converter pages
+  const topConversions: Array<{ from: string; to: string; label?: string }> = [
+    { from: 'USD', to: 'EUR' },
+    { from: 'EUR', to: 'USD' },
+    { from: 'GBP', to: 'USD' },
+    { from: 'USD', to: 'JPY' },
+    { from: 'USD', to: 'CAD' },
+    { from: 'AUD', to: 'USD' },
+    { from: 'USD', to: 'INR' },
+    { from: 'USD', to: 'MXN' },
+  ];
+
+  // Order by observed popularity (client-side heuristic via localStorage)
+  const [orderedConversions, setOrderedConversions] = useState(topConversions);
+  useEffect(() => {
+    try {
+      const raw = localStorage.getItem('conversionClicks') || '{}';
+      const map = JSON.parse(raw) as Record<string, number>;
+      const scored = topConversions.map((p) => ({
+        p,
+        c: map[`${p.from.toLowerCase()}-${p.to.toLowerCase()}`] || 0,
+      }));
+      scored.sort((a, b) => b.c - a.c);
+      setOrderedConversions(scored.map((s) => s.p));
+    } catch {
+      // ignore
+    }
+  }, []);
+
+  const trackConversionClick = (from: string, to: string) => {
+    try {
+      const key = `${from.toLowerCase()}-${to.toLowerCase()}`;
+      const raw = localStorage.getItem('conversionClicks') || '{}';
+      const map = JSON.parse(raw) as Record<string, number>;
+      map[key] = (map[key] || 0) + 1;
+      localStorage.setItem('conversionClicks', JSON.stringify(map));
+    } catch {
+      // ignore
+    }
+  };
+
+
 
   const handlePageChange = (newPage: number) => {
     const clamped = Math.max(1, Math.min(totalPages, newPage));
@@ -155,18 +205,22 @@ const Blog = () => {
         title="Currency Exchange Blog - Expert Forex Insights | Currency to Currency"
         description="Expert forex insights, currency exchange analysis & conversion strategies. Latest market trends, rate forecasts & money-saving tips for travelers."
         keywords="forex blog, currency exchange insights, exchange rate analysis, forex news, currency trends"
-        canonical="https://currencytocurrency.app/blog"
+        canonical={canonical}
         structuredData={structuredData}
       />
-      <link rel="alternate" hrefLang="en" href="https://currencytocurrency.app/blog" />
-      <link rel="alternate" hrefLang="x-default" href="https://currencytocurrency.app/blog" />
+      <Helmet>
+        <link rel="alternate" hrefLang="en" href={canonical} />
+        <link rel="alternate" hrefLang="x-default" href={canonical} />
+        {prevUrl && <link rel="prev" href={prevUrl} />}
+        {nextUrl && <link rel="next" href={nextUrl} />}
+      </Helmet>
 
       <div className="container mx-auto px-3 md:px-4 max-w-6xl">
         <BreadcrumbNav className="mb-4" />
-        
+
         {/* Hero Section */}
         <div className="relative mb-8 md:mb-12 rounded-xl md:rounded-2xl overflow-hidden">
-          <div 
+          <div
             className="h-64 md:h-96 bg-cover bg-center relative"
             style={{ backgroundImage: `url(${blogHero})` }}
           >
@@ -234,7 +288,7 @@ const Blog = () => {
                             <Calendar className="h-3 w-3" />
                             {new Date(post.publishDate).toLocaleDateString()}
                           </div>
-                          <Link 
+                          <Link
                             to={`/blog/${post.slug}`}
                             className="text-primary hover:underline font-medium text-sm"
                           >
@@ -267,24 +321,24 @@ const Blog = () => {
                           />
                         </div>
                       </div>
-                      
+
                       {/* Content */}
                       <div className="md:col-span-2 p-4 md:p-6">
                         <div className="flex items-center gap-2 md:gap-4 mb-3">
                           {post.category && <Badge variant="secondary" className="text-xs md:text-sm">{post.category}</Badge>}
                           {(post as any).featured && <Badge variant="default" className="text-xs md:text-sm">Featured</Badge>}
                         </div>
-                        
+
                         <CardTitle className="text-lg md:text-2xl hover:text-primary transition-colors mb-3 leading-tight">
                           <Link to={`/blog/${post.slug}`}>
                             {post.title}
                           </Link>
                         </CardTitle>
-                        
+
                         <p className="text-muted-foreground mb-4 line-clamp-3">
                           {post.excerpt}
                         </p>
-                        
+
                         <div className="flex items-center justify-between">
                           <div className="flex items-center gap-4 text-sm text-muted-foreground">
                             <div className="flex items-center gap-1">
@@ -298,8 +352,8 @@ const Blog = () => {
                               </div>
                             )}
                           </div>
-                          
-                          <Link 
+
+                          <Link
                             to={`/blog/${post.slug}`}
                             className="text-primary hover:underline font-medium"
                           >
@@ -310,7 +364,7 @@ const Blog = () => {
                     </div>
                   </Card>
                 ))}
-                
+
                 {/* Pagination */}
                 <div className="flex items-center justify-between pt-4">
                   <button
@@ -320,11 +374,11 @@ const Blog = () => {
                   >
                     ← Newer Posts
                   </button>
-                  
+
                   <div className="text-sm text-muted-foreground">
                     Page {currentPage} of {totalPages}
                   </div>
-                  
+
                   <button
                     disabled={currentPage >= totalPages}
                     onClick={() => handlePageChange(currentPage + 1)}
@@ -346,6 +400,8 @@ const Blog = () => {
                   <TrendingUp className="h-5 w-5" />
                   Popular Topics
                 </CardTitle>
+
+
               </CardHeader>
               <CardContent>
                 <div className="space-y-2">
@@ -368,7 +424,7 @@ const Blog = () => {
                 <p className="text-sm text-muted-foreground mb-3">
                   Need a quick conversion? Use our live converter.
                 </p>
-                <Link 
+                <Link
                   to="/"
                   className="inline-flex items-center justify-center rounded-md bg-primary text-primary-foreground hover:bg-primary/90 h-10 px-4 py-2 text-sm font-medium transition-colors"
                 >
@@ -376,7 +432,29 @@ const Blog = () => {
                 </Link>
               </CardContent>
             </Card>
+            <Card>
+              <CardHeader>
+                <CardTitle>Top Conversions</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <div className="flex flex-wrap gap-2">
+                  {orderedConversions.map(({ from, to, label }) => (
+                    <Link
+                      key={`${from}-${to}`}
+                      to={`/convert/${from.toLowerCase()}-to-${to.toLowerCase()}`}
+                      onClick={() => trackConversionClick(from, to)}
+                      className="inline-flex items-center rounded-md border px-3 py-1.5 text-sm hover:border-primary hover:text-primary transition-colors"
+                    >
+                      {label || `${from} → ${to}`}
+                    </Link>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
           </div>
+
+
         </div>
       </div>
     </div>

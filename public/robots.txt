@@ -1,1 +1,29 @@
-User-agent: *\nAllow: /\n\n# Sitemap locations\nSitemap: https://currencytocurrency.app/sitemap.xml\nSitemap: https://currencytocurrency.app/sitemap-index.xml\n\n# Important pages for compliance\nAllow: /privacy-policy\nAllow: /terms-of-service\nAllow: /contact\n\n# Ensure privacy policy is crawlable\nAllow: /privacy*\nAllow: /terms*\n\n# Block admin and auth pages\nDisallow: /admin\nDisallow: /auth\n\n# Block temporary or test pages\nDisallow: /test\nDisallow: /temp\n\n# Crawl delay (optional)\nCrawl-delay: 1
+# robots.txt for https://currencytocurrency.app
+# Last updated: 2025-09-19
+
+User-agent: *
+Allow: /
+Disallow: /admin
+Disallow: /auth
+
+# Major search engines
+User-agent: Googlebot
+Allow: /
+User-agent: bingbot
+Allow: /
+
+# Sitemap locations
+Sitemap: https://currencytocurrency.app/sitemap-index.xml
+Sitemap: https://currencytocurrency.app/sitemap.xml
+Sitemap: https://currencytocurrency.app/sitemap-blog.xml
+Sitemap: https://currencytocurrency.app/sitemap-images.xml
+Sitemap: https://currencytocurrency.app/sitemap-convert.xml
+
+# Important pages for compliance
+Allow: /privacy-policy
+Allow: /terms-of-service
+Allow: /contact
+
+# Host declaration
+Host: currencytocurrency.app
+

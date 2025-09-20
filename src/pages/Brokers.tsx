@@ -2,6 +2,8 @@ import { Card, CardContent, CardDescription, CardHeader, CardTitle } from '@/com
 import { Badge } from '@/components/ui/badge';
 import { Button } from '@/components/ui/button';
 import { Star, Shield, TrendingUp, Users, Award, ExternalLink, CheckCircle, AlertTriangle, Globe, Clock, DollarSign, BarChart3, BookOpen, MessageCircle } from 'lucide-react';
+import SEOHead from '@/components/SEOHead';
+
 
 const Brokers = () => {
   const brokers = [
@@ -151,16 +153,25 @@ const Brokers = () => {
     ));
   };
 
+
   return (
     <div className="container mx-auto px-4 py-8">
+      <SEOHead
+        title="Best Forex Brokers 2025 - Expert Reviews & Rankings | Currency to Currency"
+        description="Independent reviews of top forex brokers in 2025. Compare regulation, spreads, platforms, fees, and features to choose the right broker."
+        canonical="https://currencytocurrency.app/brokers"
+        keywords="best forex brokers, forex broker reviews, spreads, regulation, MT4, MT5, trading platforms"
+      />
+
       {/* Header Section */}
       <div className="text-center mb-12">
         <h1 className="text-4xl font-bold mb-4">Best Forex Brokers 2025 - Expert Reviews & Rankings</h1>
         <p className="text-xl text-muted-foreground max-w-3xl mx-auto mb-6">
-          Our comprehensive analysis of 50+ forex brokers evaluates regulation, costs, platforms, and features. 
+          Our comprehensive analysis of 50+ forex brokers evaluates regulation, costs, platforms, and features.
           Find the perfect broker for your trading needs with our expert-backed recommendations.
+
         </p>
-        
+
         {/* Expert Credentials */}
         <div className="bg-blue-50 border border-blue-200 rounded-lg p-6 max-w-4xl mx-auto">
           <div className="flex items-center justify-center gap-4 mb-4">
@@ -202,7 +213,7 @@ const Brokers = () => {
             <Button size="sm" className="w-full">View Review</Button>
           </CardContent>
         </Card>
-        
+
         <Card className="border-blue-200 bg-blue-50">
           <CardContent className="p-6 text-center">
             <div className="text-2xl font-bold text-blue-600 mb-2">Best for Beginners</div>
@@ -214,7 +225,7 @@ const Brokers = () => {
             <Button size="sm" className="w-full">View Review</Button>
           </CardContent>
         </Card>
-        
+
         <Card className="border-purple-200 bg-purple-50">
           <CardContent className="p-6 text-center">
             <div className="text-2xl font-bold text-purple-600 mb-2">Best for Professionals</div>
@@ -455,7 +466,7 @@ const Brokers = () => {
                   <p className="text-sm text-muted-foreground">{broker.execution}</p>
                 </div>
               </div>
-              
+
               <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
                 <div>
                   <h4 className="font-semibold mb-3 text-green-600">Pros</h4>
@@ -549,7 +560,7 @@ const Brokers = () => {
               </div>
             </div>
           </div>
-          
+
           <div className="mt-8 p-6 bg-blue-50 border border-blue-200 rounded-lg">
             <h4 className="font-semibold mb-3 text-blue-900">Our Testing Process</h4>
             <div className="grid grid-cols-1 md:grid-cols-3 gap-4 text-sm">
@@ -595,28 +606,28 @@ const Brokers = () => {
             <div>
               <h4 className="font-semibold mb-2">What makes a forex broker trustworthy?</h4>
               <p className="text-sm text-muted-foreground">
-                Look for regulation by major authorities (FCA, SEC, ASIC), a long operating history, 
+                Look for regulation by major authorities (FCA, SEC, ASIC), a long operating history,
                 transparent fee structures, and positive user reviews. Our Trust Score combines all these factors.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-2">How important are trading costs?</h4>
               <p className="text-sm text-muted-foreground">
-                Trading costs directly impact your profitability. We evaluate spreads, commissions, 
+                Trading costs directly impact your profitability. We evaluate spreads, commissions,
                 and hidden fees. Lower costs mean more profit stays in your pocket.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-2">Should I choose a broker based on leverage?</h4>
               <p className="text-sm text-muted-foreground">
-                High leverage can amplify both gains and losses. Choose based on your risk tolerance 
+                High leverage can amplify both gains and losses. Choose based on your risk tolerance
                 and experience level. Most professional traders use lower leverage ratios.
               </p>
             </div>
             <div>
               <h4 className="font-semibold mb-2">What's the difference between ECN and Market Maker brokers?</h4>
               <p className="text-sm text-muted-foreground">
-                ECN brokers connect you directly to the interbank market, while Market Makers create 
+                ECN brokers connect you directly to the interbank market, while Market Makers create
                 their own prices. ECN typically offers better spreads but may have higher minimum deposits.
               </p>
             </div>
@@ -629,15 +640,15 @@ const Brokers = () => {
         <div className="text-center mb-12">
           <h2 className="text-3xl font-bold mb-4">Best Forex Brokers for 2025: Top Platforms, Fees & Features</h2>
           <p className="text-lg text-muted-foreground max-w-4xl mx-auto">
-            Picking the right forex broker can really change your trading outcome. With so many platforms fighting for your attention in 2025, 
+            Picking the right forex broker can really change your trading outcome. With so many platforms fighting for your attention in 2025,
             finding one that's actually reliable and fairly priced feels trickier than ever.
           </p>
         </div>
 
         {/* Hero Image */}
         <div className="mb-12">
-          <img 
-            src="https://koala.sh/api/image/v2-10miel-zhpw6.jpg?width=1216&height=832&dream" 
+          <img
+            src="https://koala.sh/api/image/v2-10miel-zhpw6.jpg?width=1216&height=832&dream"
             alt="Business professionals analyzing forex charts on multiple monitors in a modern office with a city skyline visible through large windows."
             className="w-full h-auto rounded-lg shadow-lg"
           />
@@ -653,8 +664,8 @@ const Brokers = () => {
               <div>
                 <h3 className="font-semibold text-lg mb-2">IG stands out as the best overall forex broker for 2025</h3>
                 <p className="text-muted-foreground">
-                  Offering excellent trading platforms, comprehensive research tools, and regulation in eight major jurisdictions. 
-                  Interactive Brokers grabs second place with the widest market range and competitive pricing. 
+                  Offering excellent trading platforms, comprehensive research tools, and regulation in eight major jurisdictions.
+                  Interactive Brokers grabs second place with the widest market range and competitive pricing.
                   Saxo lands in the top three for its outstanding technology across desktop and mobile.
                 </p>
               </div>
@@ -691,8 +702,8 @@ const Brokers = () => {
         {/* Best Forex Brokers 2025 Section */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6">Best Forex Brokers for 2025</h2>
-          <img 
-            src="https://koala.sh/api/image/v2-10mif7-qy50d.jpg?width=1216&height=832&dream" 
+          <img
+            src="https://koala.sh/api/image/v2-10mif7-qy50d.jpg?width=1216&height=832&dream"
             alt="A business professional analyzing forex charts on multiple monitors in a modern office with a city skyline view."
             className="w-full h-auto rounded-lg shadow-lg mb-6"
           />
@@ -711,28 +722,28 @@ const Brokers = () => {
               <div className="border-l-4 border-blue-500 pl-4">
                 <h4 className="font-semibold text-lg mb-2">IC Markets</h4>
                 <p className="text-muted-foreground mb-2">
-                  Keeps showing up among the best for its tight spreads, quick execution, and multiple account types. 
+                  Keeps showing up among the best for its tight spreads, quick execution, and multiple account types.
                   You get MetaTrader 4, MetaTrader 5, and cTrader, with spreads from 0.0 pips on major currency pairs.
                 </p>
               </div>
               <div className="border-l-4 border-green-500 pl-4">
                 <h4 className="font-semibold text-lg mb-2">Pepperstone</h4>
                 <p className="text-muted-foreground mb-2">
-                  Offers institutional-grade execution speeds—usually under 30 milliseconds—and competitive pricing on over 100 currency pairs. 
+                  Offers institutional-grade execution speeds—usually under 30 milliseconds—and competitive pricing on over 100 currency pairs.
                   Plus, you can plug right into TradingView if that's your thing.
                 </p>
               </div>
               <div className="border-l-4 border-purple-500 pl-4">
                 <h4 className="font-semibold text-lg mb-2">OANDA</h4>
                 <p className="text-muted-foreground mb-2">
-                  Stands out for its research tools and educational resources. Fractional pip pricing and flexible position sizes 
+                  Stands out for its research tools and educational resources. Fractional pip pricing and flexible position sizes
                   make it friendly for both new and advanced traders.
                 </p>
               </div>
               <div className="border-l-4 border-orange-500 pl-4">
                 <h4 className="font-semibold text-lg mb-2">IG Group</h4>
                 <p className="text-muted-foreground mb-2">
-                  Gives you access to over 80 currency markets. Their proprietary platform comes packed with advanced charting 
+                  Gives you access to over 80 currency markets. Their proprietary platform comes packed with advanced charting
                   and risk management tools that serious traders appreciate.
                 </p>
               </div>
@@ -744,12 +755,12 @@ const Brokers = () => {
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6">Trading Platforms and Technology</h2>
           <div className="mb-6">
-            <iframe 
-              style={{aspectRatio: "16 / 9", width: "100%"}} 
-              src="https://www.youtube.com/embed/it-kg2BfRCo" 
-              title="Trading Platforms Video" 
-              frameBorder="0" 
-              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+            <iframe
+              style={{aspectRatio: "16 / 9", width: "100%"}}
+              src="https://www.youtube.com/embed/it-kg2BfRCo"
+              title="Trading Platforms Video"
+              frameBorder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
               allowFullScreen
               className="rounded-lg"
             ></iframe>
@@ -794,8 +805,8 @@ const Brokers = () => {
         {/* Account Types Section */}
         <div className="mb-12">
           <h2 className="text-2xl font-bold mb-6">Account Types and Trading Costs</h2>
-          <img 
-            src="https://koala.sh/api/image/v2-10migl-sc6df.jpg?width=1216&height=832&dream" 
+          <img
+            src="https://koala.sh/api/image/v2-10migl-sc6df.jpg?width=1216&height=832&dream"
             alt="A person analyzing forex trading charts on multiple computer screens in a bright office."
             className="w-full h-auto rounded-lg shadow-lg mb-6"
           />
@@ -848,7 +859,7 @@ const Brokers = () => {
             <p className="text-muted-foreground mb-6">
               Strong regulatory oversight and security measures make or break a broker's trustworthiness. Top regulated forex brokers for 2025 need licenses from tier-1 authorities, must protect clients from excessive losses, and keep trader funds totally separate from company cash.
             </p>
-            
+
             <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
               <div>
                 <h4 className="font-semibold mb-3 text-blue-600">Tier-1 Regulated Brokers</h4>
@@ -914,8 +925,8 @@ const Brokers = () => {
         {/* Disclaimer */}
         <div className="mt-8 p-4 bg-yellow-50 border border-yellow-200 rounded-lg">
           <p className="text-sm text-yellow-800">
-            <strong>Risk Warning:</strong> Trading forex involves substantial risk and may not be suitable for all investors. 
-            Past performance is not indicative of future results. Please ensure you fully understand the risks involved 
+            <strong>Risk Warning:</strong> Trading forex involves substantial risk and may not be suitable for all investors.
+            Past performance is not indicative of future results. Please ensure you fully understand the risks involved
             and seek independent advice if necessary.
           </p>
         </div>

@@ -16,7 +16,7 @@ if (objectMatches) {
     const titleMatch = objStr.match(/title:\s*['"]([^'"]+)['"]/);
     const dateMatch = objStr.match(/publishDate:\s*['"]([^'"]+)['"]/);
     const featuredMatch = objStr.match(/featured:\s*(true|false)/);
-    
+
     if (slugMatch && titleMatch && dateMatch) {
       blogPosts.push({
         slug: slugMatch[1],
@@ -49,13 +49,14 @@ const staticPages = [
   { url: 'https://currencytocurrency.app/terms-of-service', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' }
 ];
 
-// Popular currency conversion pages
-const currencyPairs = [
-  'usd-to-eur', 'usd-to-gbp', 'usd-to-jpy', 'eur-to-gbp', 'usd-to-cad',
-  'usd-to-aud', 'gbp-to-usd', 'eur-to-usd', 'jpy-to-usd', 'aud-to-usd',
-  'usd-to-chf', 'eur-to-jpy', 'cad-to-usd', 'chf-to-usd', 'usd-to-nzd',
-  'nzd-to-usd'
-];
+// Generate popular currency conversion pages (bi-directional) from top currency list
+const topCurrencies = ['USD','EUR','GBP','JPY','AUD','CAD','CHF','NZD','CNY','INR','SEK','NOK','ZAR','MXN','SGD','HKD'];
+const currencyPairs = [];
+for (const from of topCurrencies) {
+  for (const to of topCurrencies) {
+    if (from !== to) currencyPairs.push(`${from.toLowerCase()}-to-${to.toLowerCase()}`);
+  }
+}
 
 // Generate main sitemap
 let sitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
@@ -79,7 +80,7 @@ staticPages.forEach(page => {
 blogPosts.forEach(post => {
   const priority = post.featured ? '0.9' : '0.8';
   const changefreq = post.featured ? 'weekly' : 'monthly';
-  
+
   sitemapContent += `  <url>
     <loc>https://currencytocurrency.app/blog/${post.slug}</loc>
     <lastmod>${post.date}</lastmod>
@@ -115,7 +116,7 @@ let blogSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
 
 blogPosts.forEach(post => {
   const priority = post.featured ? '0.9' : '0.8';
-  
+
   blogSitemapContent += `  <url>
     <loc>https://currencytocurrency.app/blog/${post.slug}</loc>
     <lastmod>${post.date}</lastmod>
@@ -127,6 +128,27 @@ blogPosts.forEach(post => {
 });
 
 blogSitemapContent += `</urlset>`;
+
+// Create a separate convert sitemap for currency pairs
+let convertSitemapContent = `<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
+
+`;
+
+currencyPairs.forEach(pair => {
+  convertSitemapContent += `  <url>
+    <loc>https://currencytocurrency.app/convert/${pair}</loc>
+    <lastmod>${TODAY}</lastmod>
+    <changefreq>daily</changefreq>
+    <priority>0.9</priority>
+  </url>
+
+`;
+});
+
+convertSitemapContent += `</urlset>`;
+
+fs.writeFileSync('public/sitemap-convert.xml', convertSitemapContent);
 
 fs.writeFileSync('public/sitemap-blog.xml', blogSitemapContent);
 
@@ -142,6 +164,10 @@ const sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>
     <lastmod>${TODAY}</lastmod>
   </sitemap>
   <sitemap>
+    <loc>https://currencytocurrency.app/sitemap-convert.xml</loc>
+    <lastmod>${TODAY}</lastmod>
+  </sitemap>
+  <sitemap>
     <loc>https://currencytocurrency.app/sitemap-images.xml</loc>
     <lastmod>${TODAY}</lastmod>
   </sitemap>
@@ -150,9 +176,10 @@ const sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>
 fs.writeFileSync('public/sitemap-index.xml', sitemapIndexContent);
 
 console.log('✅ Generated sitemaps:');
-console.log(`   - Main sitemap: ${staticPages.length + currencyPairs.length} static pages`);
+console.log(`   - Main sitemap: ${staticPages.length + blogPosts.length + currencyPairs.length} URLs`);
 console.log(`   - Blog sitemap: ${blogPosts.length} blog posts`);
-console.log(`   - Total URLs: ${staticPages.length + currencyPairs.length + blogPosts.length}`);
+console.log(`   - Convert sitemap: ${currencyPairs.length} currency pairs`);
+console.log(`   - Total unique URLs (by design): ${staticPages.length + blogPosts.length + currencyPairs.length}`);
 console.log('   - Sitemap index created');
 
 // Validate XML structure

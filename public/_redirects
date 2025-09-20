@@ -1,4 +1,8 @@
 # Currency pair redirects - 301 permanent redirects
+# Enforce canonical (non-www)
+https://www.currencytocurrency.app/* https://currencytocurrency.app/:splat 301!
+www.currencytocurrency.app/* https://currencytocurrency.app/:splat 301!
+
 /usd-to-eur /convert/usd-to-eur 301
 /usd-eur /convert/usd-to-eur 301
 /usd-to-gbp /convert/usd-to-gbp 301
