@@ -262,6 +262,8 @@ const Blog = () => {
                         <img
                           src={getSafeImageSrc((post as any).image, post.slug, post.category)}
                           alt={post.title}
+                          width={1200}
+                          height={675}
                           className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                           onError={(e) => {
                             const img = e.currentTarget as HTMLImageElement;
@@ -312,6 +314,8 @@ const Blog = () => {
                           <img
                             src={getSafeImageSrc((post as any).image, post.slug, post.category)}
                             alt={post.title}
+                            width={1200}
+                            height={675}
                             className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                             onError={(e) => {
                               const img = e.currentTarget as HTMLImageElement;

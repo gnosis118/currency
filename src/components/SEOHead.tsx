@@ -6,16 +6,18 @@ interface SEOHeadProps {
   keywords?: string;
   canonical?: string;
   ogType?: string;
+  ogImage?: string;
   structuredData?: object;
   robots?: string;
 }
 
-const SEOHead = ({ 
+const SEOHead = ({
   title = "Free Currency Converter - Live Exchange Rates | Currency to Currency",
   description = "Convert currencies instantly with live exchange rates. Support for 150+ fiat currencies and 100+ cryptocurrencies. Free real-time currency converter with historical charts and price alerts.",
   keywords = "currency converter, exchange rates, live rates, cryptocurrency prices, currency conversion, foreign exchange, forex, bitcoin converter",
   canonical,
   ogType = "website",
+  ogImage = 'https://currencytocurrency.app/og-image.jpg',
   structuredData,
   robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 }: SEOHeadProps) => {
@@ -90,12 +92,14 @@ const SEOHead = ({
     updateMetaTag('og:url', canonical || window.location.href, true);
     updateMetaTag('og:site_name', 'Currency to Currency', true);
     updateMetaTag('og:locale', 'en_US', true);
-    
+    updateMetaTag('og:image', ogImage, true);
+
     // Twitter tags
     updateMetaTag('twitter:card', 'summary_large_image');
     updateMetaTag('twitter:title', title);
     updateMetaTag('twitter:description', description);
     updateMetaTag('twitter:url', canonical || window.location.href);
+    updateMetaTag('twitter:image', ogImage);
 
     // Canonical URL - ensure all pages have canonical URLs
     let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
@@ -104,10 +108,25 @@ const SEOHead = ({
       link.rel = 'canonical';
       document.head.appendChild(link);
     }
-    
+
     // If canonical is provided, use it; otherwise, construct from current URL
     const canonicalUrl = canonical || `https://currencytocurrency.app${window.location.pathname}`;
     link.href = canonicalUrl;
+
+    // Hreflang alternates (en, x-default)
+    const ensureAlt = (hreflang: string) => {
+      const selector = `link[rel="alternate"][hreflang="${hreflang}"]`;
+      let alt = document.querySelector(selector) as HTMLLinkElement;
+      if (!alt) {
+        alt = document.createElement('link');
+        alt.setAttribute('rel', 'alternate');
+        alt.setAttribute('hreflang', hreflang);
+        document.head.appendChild(alt);
+      }
+      alt.setAttribute('href', canonicalUrl);
+    };
+    ensureAlt('en');
+    ensureAlt('x-default');
 
     // Structured data
     if (structuredData) {
@@ -122,7 +141,7 @@ const SEOHead = ({
         }
       };
     }
-  }, [title, description, keywords, canonical, ogType, structuredData, robots]);
+  }, [title, description, keywords, canonical, ogType, ogImage, structuredData, robots]);
 
   return null;
 };

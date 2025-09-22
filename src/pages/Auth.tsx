@@ -4,6 +4,8 @@ import { supabase } from '@/integrations/supabase/client';
 import AuthGuard from '@/components/AuthGuard';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 import CookieConsent from '@/components/CookieConsent';
+import { Helmet } from 'react-helmet-async';
+
 
 const Auth = () => {
   const navigate = useNavigate();
@@ -47,6 +49,9 @@ const Auth = () => {
         structuredData={structuredData}
         pageType="website"
       />
+      <Helmet>
+        <meta name="robots" content="noindex, nofollow" />
+      </Helmet>
       <AuthGuard fallback={null}>
         {() => <div></div>}
       </AuthGuard>
