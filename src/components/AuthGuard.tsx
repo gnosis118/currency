@@ -135,9 +135,10 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
     });
 
     if (error) {
+      const msg = (error && ((error as any).message || (typeof error === 'string' ? error : JSON.stringify(error)))) || 'Unknown error';
       toast({
         title: "Sign In Failed",
-        description: error.message,
+        description: msg,
         variant: "destructive"
       });
     } else {
@@ -194,7 +195,8 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
 
       if (error) {
         console.error('Signup error:', error);
-        toast({ title: "Sign Up Failed", description: error.message, variant: "destructive" });
+        const msg = (error && ((error as any).message || (typeof error === 'string' ? error : JSON.stringify(error)))) || 'Unknown error';
+        toast({ title: "Sign Up Failed", description: msg, variant: "destructive" });
       } else {
         toast({ title: "Account Created!", description: "Check your email to confirm your account." });
         setSignUpEmail('');
