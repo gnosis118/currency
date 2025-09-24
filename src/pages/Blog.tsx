@@ -436,6 +436,25 @@ const Blog = () => {
                 </Link>
               </CardContent>
             </Card>
+
+	            <Card>
+	              <CardHeader>
+	                <CardTitle>Topic Hubs</CardTitle>
+	              </CardHeader>
+	              <CardContent>
+	                <p className="text-sm text-muted-foreground mb-3">
+	                  Explore curated hubs that organize our content into clear themes.
+	                </p>
+	                <div className="flex flex-wrap gap-2 mb-3">
+	                  <Link to="/topics" className="inline-flex items-center rounded-md border px-3 py-1.5 text-sm hover:border-primary hover:text-primary transition-colors">All Topic Hubs</Link>
+	                  <Link to="/glossary" className="inline-flex items-center rounded-md border px-3 py-1.5 text-sm hover:border-primary hover:text-primary transition-colors">FX Glossary</Link>
+	                </div>
+	                <div className="text-xs text-muted-foreground">
+	                  Hubs: FX Hedging, International Transfers, Apps & Tools, SME Treasury, Travel Money, Trading Basics
+	                </div>
+	              </CardContent>
+	            </Card>
+
             <Card>
               <CardHeader>
                 <CardTitle>Top Conversions</CardTitle>

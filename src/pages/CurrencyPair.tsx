@@ -1,6 +1,7 @@
 import { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import { useParams, Link } from 'react-router-dom';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
+import { loadAllBlogPosts } from '@/data/mdBlog';
 import CurrencyPairLinks from '@/components/CurrencyPairLinks';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -15,25 +16,25 @@ interface ExchangeRates {
 const CurrencyPair = () => {
   const { pair } = useParams();
   const { toast } = useToast();
-  
+
   // Handle both formats: "usd-to-eur" and "usd-eur"
   const parseCurrencyPair = (pairString: string | undefined) => {
     if (!pairString) return ['USD', 'EUR'];
-    
+
     // Check for "to" format first
     if (pairString.includes('-to-')) {
       return pairString.split('-to-').map(c => c.toUpperCase());
     }
-    
+
     // Handle direct format like "usd-eur"
     const parts = pairString.split('-');
     if (parts.length >= 2) {
       return [parts[0].toUpperCase(), parts[1].toUpperCase()];
     }
-    
+
     return ['USD', 'EUR'];
   };
-  
+
   const [fromCurrency, toCurrency] = parseCurrencyPair(pair);
   const [amount, setAmount] = useState('1');
   const [exchangeRates, setExchangeRates] = useState<ExchangeRates>({});
@@ -67,9 +68,9 @@ const CurrencyPair = () => {
   const convertedAmount = () => {
     const numAmount = parseFloat(amount);
     if (isNaN(numAmount) || !exchangeRates[toCurrency]) return '0.00';
-    
+
     if (fromCurrency === toCurrency) return numAmount.toFixed(2);
-    
+
     const rate = exchangeRates[toCurrency];
     return (numAmount * rate).toFixed(4);
   };
@@ -157,13 +158,13 @@ const CurrencyPair = () => {
                     `${convertedAmount()} ${toCurrency}`
                   )}
                 </div>
-                
+
                 {!loading && getExchangeRate() && (
                   <div className="text-lg text-muted-foreground">
                     1 {fromCurrency} = {getExchangeRate()} {toCurrency}
                   </div>
                 )}
-                
+
                 {lastUpdated && (
                   <div className="text-sm text-muted-foreground mt-2">
                     Last updated: {lastUpdated.toLocaleTimeString()}
@@ -190,13 +191,13 @@ const CurrencyPair = () => {
             </CardHeader>
             <CardContent className="space-y-4 text-muted-foreground">
               <p>
-                The {fromCurrency} to {toCurrency} exchange rate shows how much one {getCurrencyName(fromCurrency)} 
-                is worth in {getCurrencyName(toCurrency)}. Exchange rates fluctuate constantly due to various 
+                The {fromCurrency} to {toCurrency} exchange rate shows how much one {getCurrencyName(fromCurrency)}
+                is worth in {getCurrencyName(toCurrency)}. Exchange rates fluctuate constantly due to various
                 economic factors including interest rates, inflation, political stability, and market sentiment.
               </p>
               <p>
-                Our converter uses real-time data from reliable financial sources to provide you with the most 
-                accurate rates available. For actual transactions, banks and money exchange services may apply 
+                Our converter uses real-time data from reliable financial sources to provide you with the most
+                accurate rates available. For actual transactions, banks and money exchange services may apply
                 fees and spreads that differ from the interbank rates shown here.
               </p>
               <div className="grid grid-cols-1 md:grid-cols-2 gap-4 mt-6">
@@ -207,6 +208,43 @@ const CurrencyPair = () => {
                 <div className="p-4 bg-muted/30 rounded-lg">
                   <h3 className="font-semibold text-foreground mb-2">Historical Data</h3>
                   <p className="text-sm">View our Charts page to analyze historical trends and make informed decisions.</p>
+
+	          {/* Learn more: internal links to relevant blog content */}
+	          {(() => {
+	            try {
+	              const posts = loadAllBlogPosts();
+	              const codes = [fromCurrency, toCurrency];
+	              const pick = posts
+	                .map((p:any) => ({
+	                  p,
+	                  s: ((p.title||'') + ' ' + (p.excerpt||'')).toUpperCase().split(/[^A-Z]+/)
+	                         .reduce((acc:number,w:string)=>acc + (codes.includes(w)?1:0),0)
+	                }))
+	                .filter((x:any)=>x.s>0)
+	                .sort((a:any,b:any)=>b.s-a.s)
+	                .slice(0,4)
+	                .map((x:any)=>x.p);
+	              return pick.length ? (
+	                <Card className="mt-2">
+	                  <CardHeader>
+	                    <CardTitle>Learn more about {fromCurrency} ↔ {toCurrency}</CardTitle>
+	                  </CardHeader>
+	                  <CardContent>
+	                    <ul className="list-disc ml-5 space-y-2">
+	                      {pick.map((rp:any)=> (
+	                        <li key={rp.slug}>
+	                          <Link to={`/blog/${rp.slug}`} className="text-primary hover:underline">{rp.title}</Link>
+	                        </li>
+	                      ))}
+	                    </ul>
+	                  </CardContent>
+	                </Card>
+	              ) : null;
+	            } catch {
+	              return null;
+	            }
+	          })()}
+
                 </div>
               </div>
             </CardContent>

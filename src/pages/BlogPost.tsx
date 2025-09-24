@@ -11,16 +11,18 @@ import BlogSEOBooster from '@/components/BlogSEOBooster';
 import SimpleImage from '@/components/SimpleImage';
 import BrokerComparisonChart from '@/components/BrokerComparisonChart';
 import { useToast } from '@/hooks/use-toast';
-import { loadAllBlogPosts } from '@/data/mdBlog';
+import { loadAllBlogPosts, type MarkdownBlogPost } from '@/data/mdBlog';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
+import { seoEnhancements } from '@/data/seoEnhancements';
+
 
 const BlogPost = () => {
   const { slug } = useParams();
   const { toast } = useToast();
 
-  const loaded = loadAllBlogPosts();
-  const currentPost = slug
-    ? (loaded.find(p => p.slug === slug) as any)
+  const loaded: MarkdownBlogPost[] = loadAllBlogPosts();
+  const currentPost: MarkdownBlogPost | undefined = slug
+    ? loaded.find((p: MarkdownBlogPost) => p.slug === slug)
     : undefined;
 
   if (!currentPost) {
@@ -48,18 +50,22 @@ const BlogPost = () => {
                   .replace(/schema:\s*\{[\s\S]*?\}/gi, '')
                   .replace(/@context[\s\S]*?schema\.org[\s\S]*?}/gi, '');
   };
+  const enhancement = seoEnhancements[String(currentPost.slug)] || undefined;
+  const effectiveTitle = enhancement?.title || currentPost.title;
+  const effectiveMeta = enhancement?.metaDescription || currentPost.metaDescription;
+
 
   const processedContent = cleanContent(currentPost.content || '');
 
   // Build BlogPosting schema
   const blogPosting = {
     "@type": "BlogPosting",
-    "headline": currentPost.title,
-    "description": currentPost.metaDescription,
+    "headline": effectiveTitle,
+    "description": effectiveMeta,
     "image": currentPost.image,
     "datePublished": currentPost.publishDate,
     "dateModified": new Date().toISOString().split('T')[0],
-    "author": [{ "@type": "Person", "name": currentPost.author || 'Gavin Victor Clay' }],
+    "author": [{ "@type": "Person", "name": 'Gavin Victor Clay' }],
     "publisher": {
       "@type": "Organization",
       "name": "Currency to Currency",
@@ -68,7 +74,7 @@ const BlogPost = () => {
     "mainEntityOfPage": { "@type": "WebPage", "@id": `https://currencytocurrency.app/blog/${slug}` },
     "url": `https://currencytocurrency.app/blog/${slug}`,
     "articleSection": currentPost.category || 'Guide',
-    "wordCount": (currentPost as any).wordCount || Math.max(1, (processedContent || '').split(/\s+/).length)
+    "wordCount": currentPost.wordCount || Math.max(1, (processedContent || '').split(/\s+/).length)
   };
 
   // Mini TOC: build heading list (h2/h3) and ensure anchor ids
@@ -89,9 +95,9 @@ const BlogPost = () => {
     const seen = new Set<string>();
     htmlWithAnchors = processedContent.replace(/<h(2|3)([^>]*)>([\s\S]*?)<\/h\1>/gi, (m, lvl, attrs, inner) => {
       const textOnly = String(inner).replace(/<[^>]+>/g, '').trim();
-      let idMatch = String(attrs).match(/\bid=["']([^"']+)["']/i);
+      const idMatch = String(attrs).match(/\bid=["']([^"']+)["']/i);
       let id = idMatch ? idMatch[1] : slugify(textOnly);
-      let base = id;
+      const base = id;
       let k = 1;
       while (seen.has(id)) { id = `${base}-${k++}`; }
       seen.add(id);
@@ -112,7 +118,7 @@ const BlogPost = () => {
         const level = line.startsWith('###') ? 3 : 2;
         const text = line.replace(/^###?\s+/, '').trim();
         let id = slugify(text);
-        let base = id; let k = 1; while (seen.has(id)) { id = `${base}-${k++}`; }
+        const base = id; let k = 1; while (seen.has(id)) { id = `${base}-${k++}`; }
         seen.add(id);
         tocHeadings.push({ level: level as 2 | 3, text, id });
       }
@@ -125,7 +131,7 @@ const BlogPost = () => {
   const [showBackToTop, setShowBackToTop] = useState(false);
   useEffect(() => {
     const onScroll = () => setShowBackToTop(window.scrollY > 600);
-    window.addEventListener('scroll', onScroll, { passive: true } as any);
+    window.addEventListener('scroll', onScroll, ({ passive: true } as AddEventListenerOptions));
     return () => window.removeEventListener('scroll', onScroll);
   }, []);
   const scrollToTop = () => window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -175,9 +181,50 @@ const BlogPost = () => {
   };
 
   const faqSchema = buildFaq();
+
+  // Generate light-weight related questions if no/low FAQs detected
+  const generateRelatedQuestions = (title: string) => {
+    const base = title.replace(/[:-].*$/, '').trim();
+    const t = base || 'currency exchange';
+    const qs = [
+      `What is ${t}?`,
+      `When should I use ${t}?`,
+      `How do I reduce fees or risk with ${t}?`
+    ];
+    const as = [
+      `${t} explained in simple terms, with key pros/cons and how it works.`,
+      `Situations where ${t} is typically useful, with a quick decision checklist.`,
+      `Practical steps to lower costs and manage risk when using ${t}.`
+    ];
+    return qs.map((q, i) => ({ q, a: as[i] }));
+  };
+  const hasFewFaqs = !!(faqSchema as any)?.mainEntity && (faqSchema as any).mainEntity.length < 3;
+  const fallbackQAs = (!faqSchema || hasFewFaqs) ? generateRelatedQuestions(currentPost.title || '') : null;
+  const fallbackFaqSchema = fallbackQAs ? {
+    "@type": "FAQPage",
+    "mainEntity": fallbackQAs.map(({ q, a }) => ({
+      "@type": "Question",
+      "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a }
+    }))
+  } : null;
+
+  const explicitFaq = enhancement?.faqs && enhancement.faqs.length ? {
+    "@type": "FAQPage",
+    "mainEntity": enhancement.faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a }
+    }))
+  } : null;
+
   const structuredData = {
     "@context": "https://schema.org",
-    "@graph": faqSchema ? [blogPosting, faqSchema] : [blogPosting]
+    "@graph": faqSchema
+      ? [blogPosting, faqSchema]
+      : (explicitFaq
+          ? [blogPosting, explicitFaq]
+          : (fallbackFaqSchema ? [blogPosting, fallbackFaqSchema] : [blogPosting]))
   };
 
   // Related posts based on tags/keywords and title similarity
@@ -265,8 +312,8 @@ const BlogPost = () => {
   return (
     <div className="min-h-screen bg-background py-8">
       <EnhancedSEOHead
-        title={currentPost.title}
-        description={currentPost.metaDescription}
+        title={effectiveTitle}
+        description={effectiveMeta}
         canonicalUrl={`https://currencytocurrency.app/blog/${slug}`}
         structuredData={structuredData}
         pageType="article"
@@ -289,7 +336,7 @@ const BlogPost = () => {
             <Badge data-sb-field-path="category">{currentPost.category}</Badge>
             {currentPost.featured && <Badge variant="outline">Featured</Badge>}
           </div>
-          <h1 className="text-4xl font-bold text-primary mb-4" data-sb-field-path="title">{currentPost.title}</h1>
+          <h1 className="text-4xl font-bold text-primary mb-4" data-sb-field-path="title">{effectiveTitle}</h1>
           <div className="flex items-center gap-6 text-muted-foreground" data-sb-field-path="date">
             <div className="flex items-center gap-2">
               <Calendar className="h-4 w-4" />
@@ -301,6 +348,23 @@ const BlogPost = () => {
             </div>
           </div>
         </header>
+
+        {/* Early related reading to strengthen internal linking and help intent satisfaction */}
+        {relatedPosts && relatedPosts.length > 0 && (
+          <aside className="mb-8 rounded-md border bg-muted/30 p-4">
+            <div className="text-sm font-semibold mb-2">Related reading</div>
+            <ul className="list-disc ml-5 space-y-1">
+              {relatedPosts.slice(0, 3).map((rp) => (
+                <li key={rp.slug}>
+                  <Link className="text-primary hover:underline" to={`/blog/${rp.slug}`}>
+                    {rp.title}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </aside>
+        )}
+
 
 
         {showTOC && tocHeadings.length > 0 && (
@@ -344,6 +408,7 @@ const BlogPost = () => {
                         __html: item.substring(2)
                           .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                           .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+
                       }} />
                     ))}
                   </ul>
@@ -403,7 +468,10 @@ const BlogPost = () => {
           <div className="mt-12 pt-8 border-t border-border">
             <h2 className="text-2xl font-semibold mb-6">Related Articles</h2>
             <div className="grid md:grid-cols-2 gap-6">
-              {relatedPosts.map((rp: any) => (
+
+
+
+              {relatedPosts.map((rp) => (
                 <Link key={rp.slug} to={`/blog/${rp.slug}`} className="group rounded-lg overflow-hidden border hover:shadow-md transition-shadow">
                   <div className="aspect-video overflow-hidden">
                     <img
@@ -411,6 +479,9 @@ const BlogPost = () => {
                       alt={rp.title}
                       className="w-full h-full object-cover group-hover:scale-105 transition-transform duration-300"
                       onError={(e) => {
+
+
+
                         const img = e.currentTarget as HTMLImageElement;
                         img.onerror = null;
                         img.src = '/placeholder.svg';
@@ -440,12 +511,28 @@ const BlogPost = () => {
                 >
 
 
+
                   {from} → {to}
                 </Link>
               ))}
             </div>
           </div>
         )}
+
+        {fallbackQAs && (
+          <section className="mt-12 pt-8 border-t border-border" aria-label="Related questions">
+            <h2 className="text-2xl font-semibold mb-4">Related Questions</h2>
+            <dl className="space-y-4">
+              {fallbackQAs.map(({ q, a }, i) => (
+                <div key={i}>
+                  <dt className="font-medium">{q}</dt>
+                  <dd className="text-muted-foreground">{a}</dd>
+                </div>
+              ))}
+            </dl>
+          </section>
+        )}
+
 
 
         <BlogSEOBooster currentSlug={slug} className="mt-12" />

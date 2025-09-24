@@ -36,6 +36,9 @@ const Help = React.lazy(() => import("./pages/Help"));
 const Contact = React.lazy(() => import("./pages/Contact"));
 const Admin = React.lazy(() => import("./pages/Admin"));
 
+	const Topics = React.lazy(() => import("./pages/Topics"));
+	const Glossary = React.lazy(() => import("./pages/Glossary"));
+
 
 // Loading component for route transitions
 const RouteLoader = () => (
@@ -129,6 +132,9 @@ const App = () => {
                 <Route path="/auth" element={<Auth />} />
                 <Route path="/privacy-policy" element={<PrivacyPolicy />} />
                 <Route path="/privacy" element={<PrivacyHub />} />
+	                <Route path="/topics" element={<Topics />} />
+	                <Route path="/glossary" element={<Glossary />} />
+
                 <Route path="/terms-of-service" element={<TermsOfService />} />
                 <Route path="/faq" element={<FAQ />} />
                 <Route path="/blog" element={<Blog />} />
