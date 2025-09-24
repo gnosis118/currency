@@ -307,6 +307,40 @@ const BlogPost = () => {
     });
     return result;
   })();
+  // Inline "See also" links to strengthen in-content internal linking
+  const seeAlsoLinks = (() => {
+    const links: Array<{ href: string; label: string }> = [];
+    try {
+      (relatedPosts || []).slice(0, 6).forEach((rp: any) => {
+        if (rp?.slug && rp?.title) links.push({ href: `/blog/${rp.slug}`, label: String(rp.title) });
+      });
+      if ((relatedConversionPairs || []).length > 0) {
+        const { from, to } = relatedConversionPairs[0];
+        links.push({ href: `/convert/${from.toLowerCase()}-to-${to.toLowerCase()}` , label: `${from}→${to} converter`});
+      }
+      const tagAnchors = Array.isArray(currentPost.tags) ? currentPost.tags.slice(0, 2).map(t => String(t).toLowerCase().replace(/[^a-z0-9]+/g, '-')) : [];
+      tagAnchors.forEach(id => links.push({ href: `/glossary#${id}`, label: id.replace(/-/g, ' ') }));
+    } catch {}
+    return links;
+  })();
+
+  const renderSeeAlso = (i: number) => {
+    if (!seeAlsoLinks.length) return null;
+    if (i % 3 !== 2) return null; // inject roughly every 3 paragraphs
+    const start = (i % seeAlsoLinks.length);
+    const picks = [seeAlsoLinks[start], seeAlsoLinks[(start + 1) % seeAlsoLinks.length], seeAlsoLinks[(start + 2) % seeAlsoLinks.length]]
+      .filter(Boolean);
+    return (
+      <div className="text-sm text-muted-foreground my-4">
+        See also: {picks.map((l, idx) => (
+          <span key={`${l.href}-${idx}`}>
+            <Link to={l.href} className="text-primary hover:underline">{l.label}</Link>{idx < picks.length - 1 ? ' · ' : ''}
+          </span>
+        ))}
+      </div>
+    );
+  };
+
 
 
   return (
@@ -430,13 +464,16 @@ const BlogPost = () => {
               }
               if (paragraph.trim() && !paragraph.startsWith('---')) {
                 return (
-                  <p key={index} className="mb-6 leading-relaxed"
-                     dangerouslySetInnerHTML={{
-                       __html: paragraph
-                         .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                         .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
-                     }}
-                  />
+                  <>
+                    <p className="mb-6 leading-relaxed"
+                       dangerouslySetInnerHTML={{
+                         __html: paragraph
+                           .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                           .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+                       }}
+                    />
+                    {renderSeeAlso(index)}
+                  </>
                 );
               }
               return null;
