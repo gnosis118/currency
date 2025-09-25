@@ -267,6 +267,58 @@ const CurrencyPair = () => {
             </CardContent>
           </Card>
 
+          {/* Related conversions to expand internal links */}
+          {(() => {
+            const popular = ['USD','EUR','GBP','CAD','AUD','JPY','CHF','CNY'];
+            const targets = popular.filter(c => c !== toCurrency && c !== fromCurrency).slice(0, 8);
+            const links = targets.map(tc => ({
+              href: `/convert/${fromCurrency.toLowerCase()}-to-${tc.toLowerCase()}`,
+              text: `${getCurrencyName(fromCurrency)} to ${getCurrencyName(tc)} – live rates & calculator`,
+            }));
+            // also include the reverse current pair
+            links.unshift({
+              href: `/convert/${toCurrency.toLowerCase()}-to-${fromCurrency.toLowerCase()}`,
+              text: `${getCurrencyName(toCurrency)} to ${getCurrencyName(fromCurrency)} – reverse converter`,
+            });
+            return (
+              <Card>
+                <CardHeader>
+                  <CardTitle>People also convert</CardTitle>
+                </CardHeader>
+                <CardContent>
+                  <ul className="list-disc ml-5 space-y-2">
+                    {links.map((l, i) => (
+                      <li key={i}>
+                        <Link to={l.href} className="text-primary hover:underline">{l.text}</Link>
+                      </li>
+                    ))}
+                  </ul>
+                </CardContent>
+              </Card>
+            );
+          })()}
+
+          {/* Topic hubs and glossary */}
+          <Card>
+            <CardHeader>
+              <CardTitle>Learn about currencies and exchange rates</CardTitle>
+            </CardHeader>
+            <CardContent>
+              <ul className="list-disc ml-5 space-y-2">
+                <li>
+                  <Link to="/topics" className="text-primary hover:underline">Explore Topic Hubs</Link> – curated guides on hedging, transfers, trading basics and more.
+                </li>
+                <li>
+                  <Link to="/glossary" className="text-primary hover:underline">FX Glossary</Link> – clear definitions of key terms like
+                  {' '}<Link to="/glossary#base-currency" className="text-primary hover:underline">base currency</Link>,
+                  {' '}<Link to="/glossary#quote-currency" className="text-primary hover:underline">quote currency</Link>, and
+                  {' '}<Link to="/glossary#spread" className="text-primary hover:underline">spread</Link>.
+                </li>
+              </ul>
+            </CardContent>
+          </Card>
+
+
           {/* FAQs for SEO and user help */}
           {faqs && faqs.length > 0 && (
             <Card>
