@@ -6,8 +6,10 @@ import CurrencyPairLinks from '@/components/CurrencyPairLinks';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
-import { ArrowUpDown, RefreshCw, TrendingUp, TrendingDown } from 'lucide-react';
+import { RefreshCw } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { getPairFaqs } from '@/data/pairFaqs';
+import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 
 interface ExchangeRates {
   [key: string]: number;
@@ -87,8 +89,18 @@ const CurrencyPair = () => {
 
   const getCurrencyName = (code: string) => currencyNames[code as keyof typeof currencyNames] || code;
 
-  const structuredData = {
-    "@context": "https://schema.org",
+  // FAQs for this currency pair (visible content + JSON-LD)
+  const faqs = getPairFaqs(fromCurrency, toCurrency);
+  const faqSchema = faqs.length ? {
+    "@type": "FAQPage",
+    "mainEntity": faqs.map(({ q, a }) => ({
+      "@type": "Question",
+      "name": q,
+      "acceptedAnswer": { "@type": "Answer", "text": a }
+    }))
+  } : null;
+
+  const financialProduct = {
     "@type": "FinancialProduct",
     "name": `${fromCurrency} to ${toCurrency} Currency Converter`,
     "description": `Convert ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)} with real-time exchange rates. Live currency conversion rates updated every few minutes.`,
@@ -101,6 +113,11 @@ const CurrencyPair = () => {
       "price": "0",
       "priceCurrency": "USD"
     }
+  };
+
+  const structuredData = {
+    "@context": "https://schema.org",
+    "@graph": faqSchema ? [financialProduct, faqSchema] : [financialProduct]
   };
 
   return (
@@ -249,6 +266,28 @@ const CurrencyPair = () => {
               </div>
             </CardContent>
           </Card>
+
+          {/* FAQs for SEO and user help */}
+          {faqs && faqs.length > 0 && (
+            <Card>
+              <CardHeader>
+                <CardTitle>{fromCurrency} to {toCurrency} FAQs</CardTitle>
+              </CardHeader>
+              <CardContent>
+                <Accordion type="single" collapsible>
+                  {faqs.map((qa, idx) => (
+                    <AccordionItem key={idx} value={`item-${idx}`}>
+                      <AccordionTrigger className="text-left">{qa.q}</AccordionTrigger>
+                      <AccordionContent>
+                        <p className="text-muted-foreground">{qa.a}</p>
+                      </AccordionContent>
+                    </AccordionItem>
+                  ))}
+                </Accordion>
+              </CardContent>
+            </Card>
+          )}
+
 
           <CurrencyPairLinks currentPair={pair} />
         </div>
