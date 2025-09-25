@@ -340,6 +340,66 @@ const BlogPost = () => {
       </div>
     );
   };
+  // Lightweight glossary autolinker (first few occurrences across the article)
+  const glossaryAnchors: Array<{ id: string; terms: string[]; label?: string }> = [
+    { id: 'forward-exchange-rate', terms: ['forward exchange rate','forward rate'] },
+    { id: 'spot-rate', terms: ['spot rate'] },
+    { id: 'hedging', terms: ['hedging','hedge'] },
+    { id: 'fx-exposure', terms: ['fx exposure','currency exposure','exposure'] },
+    { id: 'isda', terms: ['isda'] },
+    { id: 'mark-to-market', terms: ['mark-to-market','mtm'] },
+    { id: 'basis-points', terms: ['basis points','bps'] },
+    { id: 'forward-points', terms: ['forward points'] },
+    { id: 'natural-hedge', terms: ['natural hedge'] },
+    { id: 'counterparty-risk', terms: ['counterparty risk'] },
+    { id: 'base-currency', terms: ['base currency'] },
+    { id: 'quote-currency', terms: ['quote currency'] },
+    { id: 'spread', terms: ['spread','bid-ask spread'] },
+    { id: 'pip', terms: ['pip','pips'] },
+    { id: 'cross-rate', terms: ['cross rate'] },
+    { id: 'major-pairs', terms: ['major pairs'] },
+    { id: 'minor-pairs', terms: ['minor pairs'] },
+    { id: 'exotic-pairs', terms: ['exotic pairs'] },
+    { id: 'slippage', terms: ['slippage'] },
+    { id: 'liquidity', terms: ['liquidity'] },
+    { id: 'tplus2', terms: ['t+2', 't+2 settlement'] },
+    { id: 'notional', terms: ['notional'] },
+    { id: 'leverage', terms: ['leverage'] },
+    { id: 'carry-trade', terms: ['carry trade'] },
+    { id: 'hedge-ratio', terms: ['hedge ratio'] },
+    { id: 'exposure-netting', terms: ['exposure netting'] },
+    { id: 'basis-risk', terms: ['basis risk'] },
+    { id: 'forward-curve', terms: ['forward curve'] },
+    { id: 'markout', terms: ['markout'] },
+    { id: 'stop-loss', terms: ['stop-loss','stop loss'] },
+    { id: 'limit-order', terms: ['limit order'] },
+    { id: 'ndf', terms: ['ndf','non-deliverable forward'] },
+    { id: 'swap', terms: ['fx swap','currency swap'] },
+  ];
+  let autolinkCount = 0; // per-article cap
+  const AUTOLINK_CAP = 10;
+  const escapeReg = (s: string) => s.replace(/[.*+?^${}()|[\]\\]/g, '\\$&');
+  const autolinkGlossary = (text: string): string => {
+    if (isHtmlPost || autolinkCount >= AUTOLINK_CAP) return text;
+    let out = text;
+    for (const g of glossaryAnchors) {
+      if (autolinkCount >= AUTOLINK_CAP) break;
+      for (const term of g.terms) {
+        const re = new RegExp(`(^|[^\[])(\\b${escapeReg(term)}\\b)`, 'i');
+        if (re.test(out)) {
+          out = out.replace(re, (_m, pre, word) => `${pre}[${word}](/glossary#${g.id})`);
+          autolinkCount++;
+          break;
+        }
+      }
+    }
+    return out;
+  };
+
+  // Prefer hubs and glossary in see-also
+  seeAlsoLinks.push({ href: '/topics', label: 'Explore Topic Hubs' });
+  seeAlsoLinks.push({ href: '/glossary', label: 'FX Glossary' });
+
 
 
 
@@ -437,14 +497,17 @@ const BlogPost = () => {
                 const items = paragraph.split('\n').filter((line: string) => line.startsWith('- '));
                 return (
                   <ul key={index} className="list-disc ml-6 space-y-2 mb-6">
-                    {items.map((item: string, itemIndex: number) => (
-                      <li key={itemIndex} dangerouslySetInnerHTML={{
-                        __html: item.substring(2)
-                          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
-
-                      }} />
-                    ))}
+                    {items.map((item: string, itemIndex: number) => {
+                      const raw = item.substring(2);
+                      const linked = autolinkGlossary(raw);
+                      return (
+                        <li key={itemIndex} dangerouslySetInnerHTML={{
+                          __html: linked
+                            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+                        }} />
+                      );
+                    })}
                   </ul>
                 );
               }
@@ -452,22 +515,27 @@ const BlogPost = () => {
                 const items = paragraph.split('\n').filter((line: string) => /^\d+\./.test(line));
                 return (
                   <ol key={index} className="list-decimal ml-6 space-y-2 mb-6">
-                    {items.map((item: string, itemIndex: number) => (
-                      <li key={itemIndex} dangerouslySetInnerHTML={{
-                        __html: item.replace(/^\d+\.\s*/, '')
-                          .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
-                          .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
-                      }} />
-                    ))}
+                    {items.map((item: string, itemIndex: number) => {
+                      const raw = item.replace(/^\d+\.\s*/, '');
+                      const linked = autolinkGlossary(raw);
+                      return (
+                        <li key={itemIndex} dangerouslySetInnerHTML={{
+                          __html: linked
+                            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
+                            .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
+                        }} />
+                      );
+                    })}
                   </ol>
                 );
               }
               if (paragraph.trim() && !paragraph.startsWith('---')) {
+                const linked = autolinkGlossary(paragraph);
                 return (
                   <>
                     <p className="mb-6 leading-relaxed"
                        dangerouslySetInnerHTML={{
-                         __html: paragraph
+                         __html: linked
                            .replace(/\*\*(.+?)\*\*/g, '<strong>$1</strong>')
                            .replace(/\[(.+?)\]\((.+?)\)/g, '<a href="$2" class="text-primary hover:underline">$1</a>')
                        }}
