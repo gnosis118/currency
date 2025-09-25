@@ -5,11 +5,11 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { Switch } from '@/components/ui/switch';
 import { Badge } from '@/components/ui/badge';
-import { 
-  Bell, 
-  BellOff, 
-  TrendingUp, 
-  TrendingDown, 
+import {
+  Bell,
+  BellOff,
+  TrendingUp,
+  TrendingDown,
   Target,
   AlertTriangle,
   CheckCircle,
@@ -32,6 +32,8 @@ import alertsHero from '@/assets/alerts-hero.jpg';
 import alertsHeroWebP from '@/assets/alerts-hero.webp';
 import { alertsService, Alert, CreateAlertRequest } from '@/services/alertsService';
 import { useToast } from '@/hooks/use-toast';
+import { Link } from 'react-router-dom';
+
 
 // Alert interface is now imported from alertsService
 
@@ -56,6 +58,8 @@ const Alerts = () => {
   const [loading, setLoading] = useState(false);
   const [creating, setCreating] = useState(false);
   const { toast } = useToast();
+  const [authRequired, setAuthRequired] = useState(false);
+
 
   // Popular currency pairs
   const currencyPairs: CurrencyPair[] = [
@@ -81,11 +85,16 @@ const Alerts = () => {
       setAlerts(alertsData);
     } catch (error) {
       console.error('Error loading alerts:', error);
-      toast({
-        title: "Error",
-        description: "Failed to load alerts. Please try again.",
-        variant: "destructive"
-      });
+      const msg = (error && (error as any).message) ? String((error as any).message) : '';
+      if (/not authenticated/i.test(msg)) {
+        setAuthRequired(true);
+      } else {
+        toast({
+          title: "Error",
+          description: "Failed to load alerts. Please try again.",
+          variant: "destructive"
+        });
+      }
     } finally {
       setLoading(false);
     }
@@ -104,7 +113,7 @@ const Alerts = () => {
     try {
       setCreating(true);
       const [fromCurrency, toCurrency] = selectedPair.split('-');
-      
+
       const alertData: CreateAlertRequest = {
         from_currency: fromCurrency,
         to_currency: toCurrency,
@@ -115,7 +124,7 @@ const Alerts = () => {
 
       const newAlert = await alertsService.createAlert(alertData);
       setAlerts(prev => [newAlert, ...prev]);
-      
+
       toast({
         title: "Alert Created",
         description: "Your price alert has been created successfully.",
@@ -145,7 +154,7 @@ const Alerts = () => {
 
       const updatedAlert = await alertsService.toggleAlert(alertId, !alert.is_active);
       setAlerts(prev => prev.map(a => a.id === alertId ? updatedAlert : a));
-      
+
       toast({
         title: "Alert Updated",
         description: `Alert ${updatedAlert.is_active ? 'activated' : 'deactivated'} successfully.`,
@@ -164,7 +173,7 @@ const Alerts = () => {
     try {
       await alertsService.deleteAlert(alertId);
       setAlerts(prev => prev.filter(alert => alert.id !== alertId));
-      
+
       toast({
         title: "Alert Deleted",
         description: "Alert deleted successfully.",
@@ -182,8 +191,8 @@ const Alerts = () => {
   const filteredAlerts = alerts.filter(alert => {
     const currencyPair = `${alert.from_currency}-${alert.to_currency}`;
     const matchesSearch = currencyPair.toLowerCase().includes(searchTerm.toLowerCase());
-    const matchesFilter = filterStatus === 'all' || 
-      (filterStatus === 'active' && alert.is_active) || 
+    const matchesFilter = filterStatus === 'all' ||
+      (filterStatus === 'active' && alert.is_active) ||
       (filterStatus === 'inactive' && !alert.is_active);
     return matchesSearch && matchesFilter;
   });
@@ -192,7 +201,7 @@ const Alerts = () => {
 
   const structuredData = {
     "@context": "https://schema.org",
-    "@type": "WebApplication", 
+    "@type": "WebApplication",
     "name": "Advanced Currency Rate Alerts & Monitoring",
     "description": "Professional currency exchange rate alerts with multiple notification methods, advanced monitoring, and real-time tracking for optimal exchange opportunities.",
     "url": "https://currencytocurrency.app/alerts",
@@ -216,7 +225,7 @@ const Alerts = () => {
         canonical="https://currencytocurrency.app/alerts"
         structuredData={structuredData}
       />
-      
+
       {/* Hero Section */}
       <div className="relative h-80 md:h-96 overflow-hidden">
         <WebPOptimizedImage
@@ -244,11 +253,11 @@ const Alerts = () => {
       <div className="max-w-7xl mx-auto p-4 -mt-16 relative z-10">
         <div className="bg-converter-bg rounded-lg shadow-lg p-6 mb-8">
           <p className="text-muted-foreground text-center max-w-3xl mx-auto">
-            Set up professional-grade rate alerts with multiple notification methods, 
+            Set up professional-grade rate alerts with multiple notification methods,
             advanced monitoring, and real-time tracking to never miss optimal exchange opportunities.
           </p>
         </div>
-        
+
         {/* Main Alerts Interface */}
         <div className="grid gap-8 lg:grid-cols-3">
           <div className="lg:col-span-2">
@@ -259,126 +268,137 @@ const Alerts = () => {
                     <Bell className="h-5 w-5" />
                     Rate Alerts
                   </CardTitle>
-                  <Button onClick={() => setShowCreateForm(true)}>
+                  <Button onClick={() => setShowCreateForm(true)} disabled={authRequired} title={authRequired ? 'Sign in to create alerts' : undefined}>
                     <Plus className="h-4 w-4 mr-2" />
                     Create Alert
                   </Button>
                 </div>
               </CardHeader>
-              
-              <CardContent>
-                {/* Search and Filter */}
-                <div className="flex flex-col sm:flex-row gap-4 mb-6">
-                  <div className="flex-1 relative">
-                    <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
-                    <Input
-                      placeholder="Search alerts..."
-                      value={searchTerm}
-                      onChange={(e) => setSearchTerm(e.target.value)}
-                      className="pl-10"
-                    />
-                  </div>
-                  
-                  <Select value={filterStatus} onValueChange={(value: 'all' | 'active' | 'inactive') => setFilterStatus(value)}>
-                    <SelectTrigger className="w-full sm:w-32">
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      <SelectItem value="all">All Alerts</SelectItem>
-                      <SelectItem value="active">Active</SelectItem>
-                      <SelectItem value="inactive">Inactive</SelectItem>
-                    </SelectContent>
-                  </Select>
-                </div>
 
-                {/* Alerts List */}
-                <div className="space-y-4">
-                  {loading ? (
-                    <div className="text-center py-8">
-                      <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
-                      <p className="text-sm">Loading alerts...</p>
+              <CardContent>
+                {authRequired ? (
+                  <div className="text-center py-10">
+                    <Bell className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                    <h3 className="text-lg font-semibold mb-2">Sign in to manage your alerts</h3>
+                    <p className="text-sm text-muted-foreground mb-4">Create, view, and manage your currency rate alerts after signing in.</p>
+                    <Link to="/auth"><Button>Sign in</Button></Link>
+                  </div>
+                ) : (
+                  <>
+                    {/* Search and Filter */}
+                    <div className="flex flex-col sm:flex-row gap-4 mb-6">
+                      <div className="flex-1 relative">
+                        <Search className="absolute left-3 top-1/2 transform -translate-y-1/2 h-4 w-4 text-muted-foreground" />
+                        <Input
+                          placeholder="Search alerts..."
+                          value={searchTerm}
+                          onChange={(e) => setSearchTerm(e.target.value)}
+                          className="pl-10"
+                        />
+                      </div>
+
+                      <Select value={filterStatus} onValueChange={(value: 'all' | 'active' | 'inactive') => setFilterStatus(value)}>
+                        <SelectTrigger className="w-full sm:w-32">
+                          <SelectValue />
+                        </SelectTrigger>
+                        <SelectContent>
+                          <SelectItem value="all">All Alerts</SelectItem>
+                          <SelectItem value="active">Active</SelectItem>
+                          <SelectItem value="inactive">Inactive</SelectItem>
+                        </SelectContent>
+                      </Select>
                     </div>
-                  ) : filteredAlerts.length === 0 ? (
-                    <div className="text-center py-8 text-muted-foreground">
-                      <Bell className="h-12 w-12 mx-auto mb-4 opacity-50" />
-                      <h3 className="text-lg font-semibold mb-2">No alerts found</h3>
-                      <p className="text-sm">Create your first rate alert to get started</p>
-                    </div>
-                  ) : (
-                    filteredAlerts.map((alert) => {
-                      const currencyPair = `${alert.from_currency}-${alert.to_currency}`;
-                      const pairData = currencyPairs.find(p => `${p.from}-${p.to}` === currencyPair);
-                      return (
-                        <div key={alert.id} className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
-                          <div className="flex items-start justify-between gap-4">
-                            <div className="flex-1">
-                              <div className="flex items-center gap-3 mb-2">
-                                <h3 className="font-semibold">{currencyPair}</h3>
-                                <Badge variant={alert.is_active ? "default" : "secondary"}>
-                                  {alert.is_active ? "Active" : "Inactive"}
-                                </Badge>
-                                <Badge variant="outline">
-                                  {alert.condition.charAt(0).toUpperCase() + alert.condition.slice(1)}
-                                </Badge>
-                              </div>
-                              
-                              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
-                                <div>
-                                  <span className="text-muted-foreground">Target Rate:</span>
-                                  <div className="font-semibold">{alert.target_rate.toFixed(4)}</div>
-                                </div>
-                                <div>
-                                  <span className="text-muted-foreground">Current Rate:</span>
-                                  <div className="font-semibold">{pairData?.currentRate.toFixed(4) || 'N/A'}</div>
-                                </div>
-                                <div>
-                                  <span className="text-muted-foreground">Triggered:</span>
-                                  <div className="font-semibold">{alert.trigger_count} times</div>
-                                </div>
-                                <div>
-                                  <span className="text-muted-foreground">Created:</span>
-                                  <div className="font-semibold">
-                                    {new Date(alert.created_at).toLocaleDateString()}
+
+                    {/* Alerts List */}
+                    <div className="space-y-4">
+                      {loading ? (
+                        <div className="text-center py-8">
+                          <div className="animate-spin rounded-full h-8 w-8 border-b-2 border-primary mx-auto mb-4"></div>
+                          <p className="text-sm">Loading alerts...</p>
+                        </div>
+                      ) : filteredAlerts.length === 0 ? (
+                        <div className="text-center py-8 text-muted-foreground">
+                          <Bell className="h-12 w-12 mx-auto mb-4 opacity-50" />
+                          <h3 className="text-lg font-semibold mb-2">No alerts found</h3>
+                          <p className="text-sm">Create your first rate alert to get started</p>
+                        </div>
+                      ) : (
+                        filteredAlerts.map((alert) => {
+                          const currencyPair = `${alert.from_currency}-${alert.to_currency}`;
+                          const pairData = currencyPairs.find(p => `${p.from}-${p.to}` === currencyPair);
+                          return (
+                            <div key={alert.id} className="border rounded-lg p-4 hover:bg-muted/50 transition-colors">
+                              <div className="flex items-start justify-between gap-4">
+                                <div className="flex-1">
+                                  <div className="flex items-center gap-3 mb-2">
+                                    <h3 className="font-semibold">{currencyPair}</h3>
+                                    <Badge variant={alert.is_active ? "default" : "secondary"}>
+                                      {alert.is_active ? "Active" : "Inactive"}
+                                    </Badge>
+                                    <Badge variant="outline">
+                                      {alert.condition.charAt(0).toUpperCase() + alert.condition.slice(1)}
+                                    </Badge>
+                                  </div>
+
+                                  <div className="grid grid-cols-2 md:grid-cols-4 gap-4 text-sm">
+                                    <div>
+                                      <span className="text-muted-foreground">Target Rate:</span>
+                                      <div className="font-semibold">{alert.target_rate.toFixed(4)}</div>
+                                    </div>
+                                    <div>
+                                      <span className="text-muted-foreground">Current Rate:</span>
+                                      <div className="font-semibold">{pairData?.currentRate.toFixed(4) || 'N/A'}</div>
+                                    </div>
+                                    <div>
+                                      <span className="text-muted-foreground">Triggered:</span>
+                                      <div className="font-semibold">{alert.trigger_count} times</div>
+                                    </div>
+                                    <div>
+                                      <span className="text-muted-foreground">Created:</span>
+                                      <div className="font-semibold">
+                                        {new Date(alert.created_at).toLocaleDateString()}
+                                      </div>
+                                    </div>
+                                  </div>
+
+                                  {alert.last_triggered_at && (
+                                    <div className="mt-2 text-sm text-muted-foreground">
+                                      Last triggered: {new Date(alert.last_triggered_at).toLocaleString()}
+                                    </div>
+                                  )}
+
+                                  <div className="flex flex-wrap gap-2 mt-3">
+                                    <Badge variant="outline" className="text-xs">
+                                      <Mail className="h-3 w-3 mr-1" />
+                                      {alert.email}
+                                    </Badge>
                                   </div>
                                 </div>
-                              </div>
-                              
-                              {alert.last_triggered_at && (
-                                <div className="mt-2 text-sm text-muted-foreground">
-                                  Last triggered: {new Date(alert.last_triggered_at).toLocaleString()}
+
+                                <div className="flex flex-col gap-2">
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => toggleAlert(alert.id)}
+                                  >
+                                    {alert.is_active ? <BellOff className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
+                                  </Button>
+                                  <Button
+                                    variant="outline"
+                                    size="sm"
+                                    onClick={() => deleteAlert(alert.id)}
+                                  >
+                                    <Trash2 className="h-4 w-4" />
+                                  </Button>
                                 </div>
-                              )}
-                              
-                              <div className="flex flex-wrap gap-2 mt-3">
-                                <Badge variant="outline" className="text-xs">
-                                  <Mail className="h-3 w-3 mr-1" />
-                                  {alert.email}
-                                </Badge>
                               </div>
                             </div>
-                            
-                            <div className="flex flex-col gap-2">
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => toggleAlert(alert.id)}
-                              >
-                                {alert.is_active ? <BellOff className="h-4 w-4" /> : <Bell className="h-4 w-4" />}
-                              </Button>
-                              <Button
-                                variant="outline"
-                                size="sm"
-                                onClick={() => deleteAlert(alert.id)}
-                              >
-                                <Trash2 className="h-4 w-4" />
-                              </Button>
-                            </div>
-                          </div>
-                        </div>
-                      );
-                    })
-                  )}
-                </div>
+                          );
+                        })
+                      )}
+                    </div>
+                  </>
+                )}
               </CardContent>
             </Card>
           </div>
@@ -409,7 +429,7 @@ const Alerts = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div>
                     <label className="text-sm font-medium mb-2 block">Alert Type</label>
                     <Select value={alertType} onValueChange={(value: 'above' | 'below') => setAlertType(value)}>
@@ -422,7 +442,7 @@ const Alerts = () => {
                       </SelectContent>
                     </Select>
                   </div>
-                  
+
                   <div>
                     <label className="text-sm font-medium mb-2 block">Target Rate</label>
                     <Input
@@ -433,7 +453,7 @@ const Alerts = () => {
                       onChange={(e) => setTargetRate(e.target.value)}
                     />
                   </div>
-                  
+
                   <div>
                     <label className="text-sm font-medium mb-2 block">Email Address</label>
                     <Input
@@ -443,13 +463,13 @@ const Alerts = () => {
                       onChange={(e) => setEmail(e.target.value)}
                     />
                   </div>
-                  
+
                   <div className="flex gap-2">
                     <Button onClick={createAlert} className="flex-1" disabled={creating}>
                       {creating ? "Creating..." : "Create Alert"}
                     </Button>
-                    <Button 
-                      variant="outline" 
+                    <Button
+                      variant="outline"
                       onClick={() => setShowCreateForm(false)}
                       disabled={creating}
                     >
@@ -507,15 +527,15 @@ const Alerts = () => {
                     </div>
                     <div>
                       <div className="text-2xl font-bold text-green-600">
-                        {alerts.filter(a => a.isActive).length}
+                        {alerts.filter(a => a.is_active).length}
                       </div>
                       <div className="text-sm text-muted-foreground">Active</div>
                     </div>
                   </div>
-                  
+
                   <div className="text-center">
                     <div className="text-2xl font-bold text-orange-600">
-                      {alerts.reduce((sum, alert) => sum + alert.triggerCount, 0)}
+                      {alerts.reduce((sum, alert) => sum + alert.trigger_count, 0)}
                     </div>
                     <div className="text-sm text-muted-foreground">Total Triggers</div>
                   </div>

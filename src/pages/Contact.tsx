@@ -1,4 +1,7 @@
 import { Button } from '@/components/ui/button';
+import { useState } from 'react';
+import { Input } from '@/components/ui/input';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Badge } from '@/components/ui/badge';
 import { ArrowLeft, Mail, Shield, Clock, Globe, AlertTriangle, FileText } from 'lucide-react';
@@ -19,6 +22,31 @@ const Contact = () => {
       "availableLanguage": "English"
     }
   };
+  const isDev = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV;
+  const [testTo, setTestTo] = useState('you@example.com');
+  const [sending, setSending] = useState(false);
+  const sendTest = async () => {
+    try {
+      setSending(true);
+      const res = await fetch('/.netlify/functions/send-email', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          to: testTo,
+          subject: 'Test Email from CurrencyToCurrency',
+          text: 'This is a test email sent from the Contact page dev tool.'
+        })
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || data.message || 'Send failed');
+      alert('Email sent! RequestId: ' + (data.requestId || 'n/a'));
+    } catch (e) {
+      alert('Send failed: ' + (e && e.message ? e.message : String(e)));
+    } finally {
+      setSending(false);
+    }
+  };
+
 
   return (
     <div className="min-h-screen bg-background">
@@ -58,7 +86,7 @@ const Contact = () => {
               <Badge variant="secondary">Response Guarantee</Badge>
             </div>
             <p className="text-sm">
-              We respond to all privacy and data protection inquiries within <strong>72 hours</strong>. 
+              We respond to all privacy and data protection inquiries within <strong>72 hours</strong>.
               For urgent security matters, we aim to respond within 24 hours.
             </p>
           </CardContent>
@@ -80,8 +108,8 @@ const Contact = () => {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <p className="text-sm font-medium">Data Protection Officer:</p>
-                <a 
-                  href="mailto:dpo@currencytocurrency.app" 
+                <a
+                  href="mailto:dpo@currencytocurrency.app"
                   className="text-sm text-primary hover:underline block"
                 >
                   dpo@currencytocurrency.app
@@ -89,8 +117,8 @@ const Contact = () => {
               </div>
               <div className="space-y-2">
                 <p className="text-sm font-medium">Privacy Inquiries:</p>
-                <a 
-                  href="mailto:privacy@currencytocurrency.app" 
+                <a
+                  href="mailto:privacy@currencytocurrency.app"
                   className="text-sm text-primary hover:underline block"
                 >
                   privacy@currencytocurrency.app
@@ -98,7 +126,7 @@ const Contact = () => {
               </div>
               <div className="bg-muted p-3 rounded-lg">
                 <p className="text-xs text-muted-foreground">
-                  <strong>For GDPR/CCPA requests:</strong> Please include your location and specify the type of request 
+                  <strong>For GDPR/CCPA requests:</strong> Please include your location and specify the type of request
                   (access, rectification, erasure, portability, restriction, objection).
                 </p>
               </div>
@@ -119,8 +147,8 @@ const Contact = () => {
             <CardContent className="space-y-4">
               <div className="space-y-2">
                 <p className="text-sm font-medium">General Support:</p>
-                <a 
-                  href="mailto:support@currencytocurrency.app" 
+                <a
+                  href="mailto:support@currencytocurrency.app"
                   className="text-sm text-primary hover:underline block"
                 >
                   support@currencytocurrency.app
@@ -128,8 +156,8 @@ const Contact = () => {
               </div>
               <div className="space-y-2">
                 <p className="text-sm font-medium">Technical Issues:</p>
-                <a 
-                  href="mailto:tech@currencytocurrency.app" 
+                <a
+                  href="mailto:tech@currencytocurrency.app"
                   className="text-sm text-primary hover:underline block"
                 >
                   tech@currencytocurrency.app
@@ -182,7 +210,7 @@ const Contact = () => {
             <div className="mt-4 p-3 bg-blue-50 border border-blue-200 rounded-lg">
               <p className="text-sm font-medium mb-1">How to Exercise Your Rights:</p>
               <p className="text-xs text-muted-foreground">
-                Email us at <strong>dpo@currencytocurrency.app</strong> with your request. 
+                Email us at <strong>dpo@currencytocurrency.app</strong> with your request.
                 We'll verify your identity and respond within the legally required timeframe.
               </p>
             </div>
@@ -204,7 +232,7 @@ const Contact = () => {
             <div className="bg-red-50 border border-red-200 p-4 rounded-lg mb-4">
               <p className="text-sm font-medium text-red-800 mb-2">🚨 Urgent Security Issues</p>
               <p className="text-xs text-red-700">
-                If you've discovered a security vulnerability or suspect a data breach, 
+                If you've discovered a security vulnerability or suspect a data breach,
                 please email us immediately at <strong>security@currencytocurrency.app</strong>
               </p>
             </div>
@@ -221,7 +249,7 @@ const Contact = () => {
               <div>
                 <h3 className="font-semibold mb-1 text-sm">Our Response:</h3>
                 <p className="text-xs text-muted-foreground">
-                  We take security seriously and will investigate all reports promptly. 
+                  We take security seriously and will investigate all reports promptly.
                   We'll acknowledge receipt within 24 hours and provide updates as our investigation progresses.
                 </p>
               </div>
@@ -262,6 +290,36 @@ const Contact = () => {
             </div>
           </CardContent>
         </Card>
+        {isDev && (
+          <Card className="mb-8">
+            <CardHeader>
+              <CardTitle className="flex items-center gap-2">
+                <Mail className="h-5 w-5" />
+                Developer: Send Test Email
+              </CardTitle>
+              <p className="text-sm text-muted-foreground">
+                Dev-only helper to test Netlify SendGrid function locally.
+              </p>
+            </CardHeader>
+            <CardContent className="space-y-3">
+              <div className="flex gap-2">
+                <Input
+                  type="email"
+                  placeholder="Recipient email"
+                  value={testTo}
+                  onChange={(e) => setTestTo(e.target.value)}
+                />
+                <Button onClick={sendTest} disabled={sending}>
+                  {sending ? 'Sending...' : 'Send test'}
+                </Button>
+              </div>
+              <p className="text-xs text-muted-foreground">
+                Endpoint: /.netlify/functions/send-email
+              </p>
+            </CardContent>
+          </Card>
+        )}
+
 
         {/* Footer Navigation */}
         <div className="text-center">
