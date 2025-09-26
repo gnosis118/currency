@@ -178,7 +178,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
     setIsSigningIn(false);
   };
 
-  const signUp = async (email: string, password: string, meta?: Record<string, any>) => {
+  const signUp = async (email: string, password: string, meta?: Record<string, any>, captchaToken?: string) => {
     console.log('Starting signup process', { email });
     setIsSigningUp(true);
     // Use explicit redirect only if configured; otherwise rely on Supabase project's Site URL
@@ -190,6 +190,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
         password,
         options: {
           ...(configuredRedirect ? { emailRedirectTo: configuredRedirect } : {}),
+          ...(captchaToken ? { captchaToken } : {}),
           data: meta || {}
         }
       });
@@ -292,6 +293,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
     }
 
     let recaptchaScore: number | null = null;
+    let supabaseCaptchaToken: string | undefined = undefined;
     if (recaptchaSiteKey) {
       const token = await getRecaptchaToken('signup');
       const { ok, score } = await verifyRecaptcha(token, 'signup');
@@ -300,6 +302,8 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
         toast({ title: "Verification Failed", description: "We could not verify your request. Please try again.", variant: "destructive" });
         return;
       }
+      // Pass the raw captcha token through to Supabase in case Captcha is enabled there
+      if (token) supabaseCaptchaToken = token as string;
     } else {
       if (!recaptchaVerified) {
         toast({ title: "Verification Required", description: "Please complete the human verification to create an account.", variant: "destructive" });
@@ -316,7 +320,7 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
       recaptcha_score: recaptchaScore,
     };
 
-    signUp(signUpEmail, signUpPassword, consentMeta);
+    signUp(signUpEmail, signUpPassword, consentMeta, supabaseCaptchaToken);
   };
 
   // Verify the math challenge
