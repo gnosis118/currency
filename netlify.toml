@@ -21,6 +21,8 @@
 [context.production.environment]
   DISABLE_NETLIFY_VISUAL_EDITOR = "true"
   NODE_ENV = "production"
+  OPENEXCHANGERATES_APP_ID = "669f46bf3291450b876bd2a28d8410e6"
+
 
 # Development environment
 [context.deploy-preview.environment]

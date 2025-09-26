@@ -38,3 +38,7 @@ backend/.env.production
 *.njsproj
 *.sln
 *.sw?
+
+
+#Ignore vscode AI rules
+.github\instructions\codacy.instructions.md
