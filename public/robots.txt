@@ -1,29 +1,8 @@
 # robots.txt for https://currencytocurrency.app
-# Last updated: 2025-09-19
+# Optimized for Google. Last updated: 2025-09-26
 
 User-agent: *
 Allow: /
-Disallow: /admin
-Disallow: /auth
 
-# Major search engines
-User-agent: Googlebot
-Allow: /
-User-agent: bingbot
-Allow: /
-
-# Sitemap locations
+# Sitemap location
 Sitemap: https://currencytocurrency.app/sitemap-index.xml
-Sitemap: https://currencytocurrency.app/sitemap.xml
-Sitemap: https://currencytocurrency.app/sitemap-blog.xml
-Sitemap: https://currencytocurrency.app/sitemap-images.xml
-Sitemap: https://currencytocurrency.app/sitemap-convert.xml
-
-# Important pages for compliance
-Allow: /privacy-policy
-Allow: /terms-of-service
-Allow: /contact
-
-# Host declaration
-Host: currencytocurrency.app
-
