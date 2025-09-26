@@ -181,14 +181,15 @@ const AuthGuard = ({ children, fallback }: AuthGuardProps) => {
   const signUp = async (email: string, password: string, meta?: Record<string, any>) => {
     console.log('Starting signup process', { email });
     setIsSigningUp(true);
-    const redirectUrl = `${window.location.origin}/`;
+    // Use explicit redirect only if configured; otherwise rely on Supabase project's Site URL
+    const configuredRedirect = (import.meta as any).env?.VITE_SUPABASE_REDIRECT_URL as string | undefined;
 
     try {
       const { data, error } = await supabase.auth.signUp({
         email,
         password,
         options: {
-          emailRedirectTo: redirectUrl,
+          ...(configuredRedirect ? { emailRedirectTo: configuredRedirect } : {}),
           data: meta || {}
         }
       });
