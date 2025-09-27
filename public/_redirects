@@ -55,6 +55,9 @@ www.currencytocurrency.app/* https://currencytocurrency.app/:splat 301!
 # Admin redirects
 /admin/* /admin/index.html 200
 
+/convert/:pair/amp /convert/:pair/amp/index.html 200
+/blog/:slug/amp /blog/:slug/amp/index.html 200
+
 # SPA fallback
 /convert/* /index.html 200!
 

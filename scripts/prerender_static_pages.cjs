@@ -20,10 +20,11 @@ function writeFile(filePath, content) {
   fs.writeFileSync(filePath, content, 'utf8');
 }
 
-function htmlTemplate({ title, description, canonical, body, robots = 'index, follow' , structuredData = null }) {
+function htmlTemplate({ title, description, canonical, body, robots = 'index, follow', structuredData = null, amphtml = null }) {
   const ld = structuredData
     ? `<script type="application/ld+json">${JSON.stringify(structuredData)}</script>`
     : '';
+  const amp = amphtml ? `\n  <link rel="amphtml" href="${amphtml}" />` : '';
   return `<!DOCTYPE html>
 <html lang="en">
 <head>
@@ -32,7 +33,7 @@ function htmlTemplate({ title, description, canonical, body, robots = 'index, fo
   <title>${title}</title>
   <meta name="description" content="${description}" />
   <meta name="robots" content="${robots}" />
-  <link rel="canonical" href="${canonical}" />
+  <link rel="canonical" href="${canonical}" />${amp}
   <meta property="og:type" content="website" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${description}" />
@@ -53,6 +54,26 @@ function htmlTemplate({ title, description, canonical, body, robots = 'index, fo
 </html>`;
 }
 
+function ampHtmlTemplate({ title, description, canonical, body }) {
+  return `<!doctype html>
+<html ⚡ lang="en">
+<head>
+  <meta charset="utf-8">
+  <title>${title}</title>
+  <link rel="canonical" href="${canonical}">
+  <meta name="viewport" content="width=device-width,minimum-scale=1,initial-scale=1">
+  <style amp-boilerplate>body{-webkit-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-moz-animation:-amp-start 8s steps(1,end) 0s 1 normal both;-ms-animation:-amp-start 8s steps(1,end) 0s 1 normal both;animation:-amp-start 8s steps(1,end) 0s 1 normal both}@-webkit-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-moz-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-ms-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@-o-keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}@keyframes -amp-start{from{visibility:hidden}to{visibility:visible}}</style><noscript><style amp-boilerplate>body{-webkit-animation:none;-moz-animation:none;-ms-animation:none;animation:none}</style></noscript>
+  <script async src="https://cdn.ampproject.org/v0.js"></script>
+  <meta name="description" content="${description}" />
+</head>
+<body>
+  <main>
+    ${body}
+  </main>
+</body>
+</html>`;
+}
+
 function prerenderCurrencyPairs() {
   const TODAY = new Date().toISOString().split('T')[0];
   const pairs = [
@@ -65,6 +86,7 @@ function prerenderCurrencyPairs() {
     const FROM = from.toUpperCase();
     const TO = to.toUpperCase();
     const canonical = `https://currencytocurrency.app/convert/${pair}`;
+    const amphtml = `${canonical}/amp`;
     const title = `${FROM} to ${TO} Converter - Live Exchange Rate | Currency to Currency`;
     const description = `Convert ${FROM} to ${TO} with real-time exchange rates. Free ${FROM}-${TO} currency converter updated frequently.`;
     const structuredData = {
@@ -87,9 +109,19 @@ function prerenderCurrencyPairs() {
         <p><a href="/convert/${pair}">Open interactive converter</a></p>
       </article>
     `;
-    const html = htmlTemplate({ title, description, canonical, body, structuredData });
+    const html = htmlTemplate({ title, description, canonical, body, structuredData, amphtml });
+    const ampBody = `
+      <article>
+        <h1>${FROM} to ${TO} Converter</h1>
+        <p>Real-time conversion from ${FROM} to ${TO}. Fast, lightweight AMP version.</p>
+        <p><a href="/convert/${pair}">Open interactive converter</a></p>
+      </article>
+    `;
+    const ampHtml = ampHtmlTemplate({ title, description, canonical, body: ampBody });
     const out = path.join('public', 'convert', pair, 'index.html');
+    const outAmp = path.join('public', 'convert', pair, 'amp', 'index.html');
     writeFile(out, html);
+    writeFile(outAmp, ampHtml);
     count++;
   }
   return count;
@@ -117,6 +149,7 @@ function prerenderBlogPosts() {
   let count = 0;
   for (const { title, slug, description } of posts) {
     const canonical = `https://currencytocurrency.app/blog/${slug}`;
+    const amphtml = `${canonical}/amp`;
     const safeDesc = description || `${title} — Article on currency exchange, forex and conversion strategies.`;
     const structuredData = {
       '@context': 'https://schema.org',
@@ -132,9 +165,19 @@ function prerenderBlogPosts() {
         <p><a href="/blog/${slug}">Read the full article</a></p>
       </article>
     `;
-    const html = htmlTemplate({ title, description: safeDesc, canonical, body, structuredData });
+    const html = htmlTemplate({ title, description: safeDesc, canonical, body, structuredData, amphtml });
+    const ampBody = `
+      <article>
+        <h1>${title}</h1>
+        <p>${safeDesc}</p>
+        <p><a href="/blog/${slug}">Open interactive article</a></p>
+      </article>
+    `;
+    const ampHtml = ampHtmlTemplate({ title, description: safeDesc, canonical, body: ampBody });
     const out = path.join('public', 'blog', slug, 'index.html');
+    const outAmp = path.join('public', 'blog', slug, 'amp', 'index.html');
     writeFile(out, html);
+    writeFile(outAmp, ampHtml);
     count++;
   }
   return count;
