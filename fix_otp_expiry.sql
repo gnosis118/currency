@@ -17,3 +17,4 @@ OR key = 'otp_expiry';
 
 -- Verify the change
 SELECT * FROM auth.config WHERE key LIKE '%otp%' OR key LIKE '%expiry%';
+

@@ -21,3 +21,4 @@
 -- 2. Find Email OTP settings
 -- 3. Set expiry to 3600 seconds or less
 -- 4. Save the configuration
+
