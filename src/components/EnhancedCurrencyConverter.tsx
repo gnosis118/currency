@@ -129,53 +129,17 @@ const EnhancedCurrencyConverter = () => {
   const fetchRates = useCallback(async () => {
     setLoading(true);
     try {
-      // Simulate API call - replace with your actual API
-      const mockRates: ExchangeRates = {
-        EUR: 0.85,
-        GBP: 0.73,
-        JPY: 110.5,
-        CAD: 1.25,
-        AUD: 1.35,
-        CHF: 0.92,
-        CNY: 6.45,
-        HKD: 7.78,
-        SGD: 1.35,
-        SEK: 8.45,
-        NOK: 8.78,
-        DKK: 6.23,
-        RUB: 75.5,
-        TRY: 8.45,
-        INR: 74.5,
-        BRL: 5.45,
-        ZAR: 14.5,
-        MXN: 20.5,
-        KRW: 1100,
-        THB: 32.5,
-        PLN: 3.78,
-        HUF: 300,
-        CZK: 21.5,
-        ILS: 3.25,
-        SAR: 3.75,
-        AED: 3.67,
-        MYR: 4.15,
-        IDR: 14250,
-        PHP: 50.5,
-        CLP: 750,
-        COP: 3750,
-        ARS: 95.5,
-        VND: 23000,
-        PKR: 160,
-        EGP: 15.5,
-        NGN: 410,
-        KES: 110,
-        TWD: 28.5,
-      };
-
-      setRates(mockRates);
+      // Import the exchange rates service
+      const { getLatestRates } = await import('@/services/exchangeRatesService');
+      
+      // Fetch live rates from OpenExchangeRates API
+      const liveRates = await getLatestRates(fromCurrency);
+      
+      setRates(liveRates);
       
       // Calculate conversion
-      if (amount && mockRates[toCurrency]) {
-        const rate = mockRates[toCurrency];
+      if (amount && liveRates[toCurrency]) {
+        const rate = liveRates[toCurrency];
         const fromAmount = parseFloat(amount);
         const toAmount = fromAmount * rate;
         const fees = (fromAmount * feePercentage) / 100;
@@ -194,9 +158,10 @@ const EnhancedCurrencyConverter = () => {
     } catch (error) {
       toast({
         title: "Error",
-        description: "Failed to fetch exchange rates",
+        description: "Failed to fetch exchange rates. Please try again.",
         variant: "destructive",
       });
+      console.error('Exchange rate fetch error:', error);
     } finally {
       setLoading(false);
     }

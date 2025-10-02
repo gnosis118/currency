@@ -166,10 +166,10 @@ const CurrencyConverter = () => {
   const fetchExchangeRates = useCallback(async (baseCurrency: string) => {
     try {
       setFiatLoading(true);
-      const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
-      if (!response.ok) throw new Error('Failed to fetch exchange rates');
-      const data = await response.json();
-      setExchangeRates(data.rates);
+      // Use centralized OpenExchangeRates service
+      const { getLatestRates } = await import('@/services/exchangeRatesService');
+      const rates = await getLatestRates(baseCurrency);
+      setExchangeRates(rates);
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Exchange rate fetch error:', error);
