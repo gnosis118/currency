@@ -9,19 +9,39 @@ import { Link } from 'react-router-dom';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 
 const Contact = () => {
-  const structuredData = {
-    "@context": "https://schema.org",
-    "@type": "ContactPage",
-    "name": "Contact Us - Currency to Currency",
-    "description": "Contact information for privacy inquiries, GDPR requests, data protection questions, and general support.",
-    "url": "https://currencytocurrency.app/contact",
-    "mainEntity": {
-      "@type": "ContactPoint",
-      "contactType": "customer support",
-      "email": "support@currencytocurrency.app",
-      "availableLanguage": "English"
+  const structuredData = [
+    {
+      "@context": "https://schema.org",
+      "@type": "ContactPage",
+      "name": "Contact Us - Currency to Currency",
+      "description": "Contact information for privacy inquiries, GDPR requests, data protection questions, and general support.",
+      "url": "https://currencytocurrency.app/contact",
+      "mainEntity": {
+        "@type": "ContactPoint",
+        "contactType": "customer support",
+        "email": "support@currencytocurrency.app",
+        "availableLanguage": "English"
+      }
+    },
+    {
+      "@context": "https://schema.org",
+      "@type": "LocalBusiness",
+      "name": "Currency to Currency",
+      "description": "Free real-time currency converter and exchange rate service",
+      "@id": "https://currencytocurrency.app/#business",
+      "url": "https://currencytocurrency.app",
+      "logo": "https://currencytocurrency.app/favicon-192x192.png",
+      "serviceType": "Currency Conversion Service",
+      "areaServed": "Worldwide",
+      "contactPoint": {
+        "@type": "ContactPoint",
+        "contactType": "Customer Service",
+        "email": "support@currencytocurrency.app",
+        "url": "https://currencytocurrency.app/contact",
+        "availableLanguage": "English"
+      }
     }
-  };
+  ];
   const isDev = typeof import.meta !== 'undefined' && import.meta.env && import.meta.env.DEV;
   const [testTo, setTestTo] = useState('you@example.com');
   const [sending, setSending] = useState(false);

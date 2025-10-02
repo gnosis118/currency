@@ -1,13 +1,12 @@
 ---
 title: "International Money Transfer Guide 2025: Complete Comparison of 15+ Services"
 slug: "international-money-transfer-guide-2025-complete-comparison-of-15-services"
-date: "2025-01-30"
-excerpt: "Sending money internationally has never been more complex—or more affordable. With over 15 major services competing for your business, choosing the right platform can save you hundreds."
-image: "/src/assets/international-money-transfer-comparison-2025.png"
-tags: ["money-transfer", "international", "comparison", "remittance", "fees"]
-metaDescription: "Complete 2025 guide to international money transfers. Compare 15+ services, fees, and transfer times. Save hundreds on your next international payment."
+date: "2025-08-21"
+excerpt: "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As digital transformation accelerates and traditional banking faces disruption, the landscape of international money transfers has become increasingly complex and competitive."
+image: "https://currencytocurrency.app/src/assets/international-money-transfer-2025.jpeg"
+tags: ["money-transfer", "international", "remittance", "comparison", "fees", "cross-border-payments"]
+metaDescription: "Complete 2025 guide to international money transfers. Compare 15+ services with rates, fees, and speeds. Save hundreds on cross-border payments."
 category: "International Transfers"
----
 schema: {
   "@context": "https://schema.org",
   "@type": "Article",
@@ -15,8 +14,8 @@ schema: {
     "@type": "WebPage",
     "@id": "https://currencytocurrency.app/blog/international-money-transfer-guide-2025-complete-comparison-of-15-services"
   },
-  "headline": "International Money Transfer 2025: Complete Comparison of...",
-  "description": "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As di...",
+  "headline": "International Money Transfer Guide 2025: Complete Comparison of 15+ Services",
+  "description": "The global remittance market has reached $831 billion in 2024. Our comprehensive guide compares 15+ services to help you save hundreds on transfers.",
   "image": {
     "@type": "ImageObject",
     "url": "https://currencytocurrency.app/src/assets/international-money-transfer-2025.jpeg",
@@ -38,16 +37,6 @@ schema: {
   "datePublished": "2025-08-21",
   "dateModified": "2025-09-08"
 }
----
-title: "International Money Transfer 2025: Complete Comparison of..."
-slug: "international-money-transfer-guide-2025-complete-comparison-of-15-services"
-date: "2025-08-21"
-excerpt: "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As digital transformation accelerates and traditional banking faces disruption, the landscape of international money transfers has become increasingly complex and competitive."
-
-tags: ["money-transfer", "international", "remittance", "comparison", "fees", "cross-border-payments"]
-category: "International Transfers"
-metaDescription: "The global remittance market has reached unprecedented heights, with over $831 billion transferred internationally in 2024 according to the World Bank. As di..."
-image: "/src/assets/international-money-transfer-2025.jpeg"
 ---
 
 # International Money Transfer Guide 2025: Complete Comparison of 15+ Services

@@ -3,9 +3,9 @@ title: "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading
 slug: "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
 date: "2025-01-30"
 excerpt: "AI forex trading has revolutionized currency markets. Learn how beginners can leverage automated trading systems, algorithms, and machine learning for profitable forex trading."
-image: "/src/assets/business-coding-macbook.jpg"
+image: "https://currencytocurrency.app/src/assets/ai-forex-trading-guide-2025.jpg"
 tags: ["ai-trading", "forex", "automated-trading", "beginners", "machine-learning"]
-metaDescription: "Complete AI forex trading guide for beginners 2025. Master automated trading systems, algorithms, and machine learning for profitable currency trading."
+metaDescription: "Master AI forex trading with our complete 2025 beginner's guide. Learn automated trading systems, algorithms, and proven strategies for profitable currency trading."
 category: "Trading"
 ---
 schema: {
@@ -15,8 +15,8 @@ schema: {
     "@type": "WebPage",
     "@id": "https://currencytocurrency.app/blog/ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
   },
-  "headline": "AI Forex Trading for Beginners: Complete 2025 Guide to Au...",
-  "description": "Are you curious about making money while you sleep? AI forex trading might be the answer you're looking for. This complete guide will teach you everything yo...",
+  "headline": "AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading",
+  "description": "Master AI forex trading with our complete 2025 beginner's guide. Learn automated trading systems, algorithms, and proven strategies for profitable currency trading.",
   "image": {
     "@type": "ImageObject",
     "url": "https://currencytocurrency.app/src/assets/ai-forex-trading-guide-2025.jpg",
@@ -38,17 +38,6 @@ schema: {
   "datePublished": "2025-08-14",
   "dateModified": "2025-09-08"
 }
----
-title: "AI Forex Trading for Beginners: Complete 2025 Guide to Au..."
-slug: "ai-forex-trading-for-beginners-complete-2025-guide-to-automated-trading"
-date: "2025-08-14"
-excerpt: "Are you curious about making money while you sleep? AI forex trading might be the answer you're looking for. This complete guide will teach you everything you need to know about automated forex trading in 2025."
-
-tags: ["ai", "forex", "trading", "automation", "beginners", "forex-trading", "currency-pairs", "trading-strategy"]
-category: "Trading"
-metaDescription: "Are you curious about making money while you sleep? AI forex trading might be the answer you're looking for. This complete guide will teach you everything yo..."
-image: "/src/assets/ai-forex-trading-guide-2025.jpg"
----
 
 # AI Forex Trading for Beginners: Complete 2025 Guide to Automated Trading
 

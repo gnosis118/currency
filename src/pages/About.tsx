@@ -5,6 +5,53 @@ import BreadcrumbNav from '@/components/BreadcrumbNav';
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 
 const About = () => {
+  const localBusinessSchema = {
+    "@context": "https://schema.org",
+    "@type": "LocalBusiness",
+    "name": "Currency to Currency",
+    "description": "Free real-time currency converter and exchange rate service for 150+ currencies and cryptocurrencies",
+    "@id": "https://currencytocurrency.app/#business",
+    "url": "https://currencytocurrency.app",
+    "logo": "https://currencytocurrency.app/favicon-192x192.png",
+    "serviceType": "Currency Conversion Service",
+    "areaServed": "Worldwide",
+    "hasOfferCatalog": {
+      "@type": "OfferCatalog",
+      "name": "Currency Conversion Services",
+      "itemListElement": [
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Real-time Currency Conversion",
+            "description": "Convert between 150+ fiat currencies with live exchange rates"
+          }
+        },
+        {
+          "@type": "Offer", 
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Cryptocurrency Conversion",
+            "description": "Convert between 100+ cryptocurrencies and fiat currencies"
+          }
+        },
+        {
+          "@type": "Offer",
+          "itemOffered": {
+            "@type": "Service",
+            "name": "Historical Exchange Rate Data",
+            "description": "Access historical currency data and trends"
+          }
+        }
+      ]
+    },
+    "contactPoint": {
+      "@type": "ContactPoint",
+      "contactType": "Customer Service",
+      "url": "https://currencytocurrency.app/contact"
+    }
+  };
+
   return (
     <div className="min-h-screen bg-background py-8">
       <SEOHead
@@ -12,6 +59,7 @@ const About = () => {
         description="Learn about Currency to Currency, the leading free currency converter with real-time exchange rates for 150+ currencies and 100+ cryptocurrencies."
         keywords="about currency converter, exchange rate tool, currency conversion service, real-time rates, forex calculator"
         canonical="https://currencytocurrency.app/about"
+        structuredData={localBusinessSchema}
       />
       
       <div className="container mx-auto px-4 max-w-4xl">
