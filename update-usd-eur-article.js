@@ -17,7 +17,8 @@ const https = require('https');
 
 // Configuration
 const ARTICLE_PATH = path.join(__dirname, 'src', 'content', 'blog', 'usd-to-eur-daily-rates-analysis.md');
-const API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
+const API_KEY = '669f46bf3291450b876bd2a28d8410e6';
+const API_URL = `https://openexchangerates.org/api/latest.json?app_id=${API_KEY}`;
 const LOG_FILE = path.join(__dirname, 'update-log.txt');
 
 // Helper function to fetch exchange rate

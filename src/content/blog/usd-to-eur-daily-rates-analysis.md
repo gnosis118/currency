@@ -151,12 +151,9 @@ Bookmark this page for daily updates on the USD/EUR exchange rate, or visit [Cur
 (function() {
     'use strict';
     
-    // Configuration - replace with your actual API key
-    const API_KEY = 'YOUR_API_KEY_HERE';
-    const API_URL = `https://v6.exchangerate-api.com/v6/${API_KEY}/latest/USD`;
-    
-    // Free alternative API (no key needed, limited calls per day)
-    const FREE_API_URL = 'https://api.exchangerate-api.com/v4/latest/USD';
+    // Configuration - OpenExchangeRates.org
+    const API_KEY = '669f46bf3291450b876bd2a28d8410e6';
+    const API_URL = `https://openexchangerates.org/api/latest.json?app_id=${API_KEY}`;
     
     let currentRate = 0.92; // Fallback default rate
     let previousRate = 0.92;
@@ -164,7 +161,7 @@ Bookmark this page for daily updates on the USD/EUR exchange rate, or visit [Cur
     // Fetch live exchange rate
     async function fetchLiveRate() {
         try {
-            const response = await fetch(FREE_API_URL);
+            const response = await fetch(API_URL);
             
             if (!response.ok) {
                 throw new Error('API request failed');
