@@ -308,6 +308,7 @@ const Contact = () => {
                   placeholder="Recipient email"
                   value={testTo}
                   onChange={(e) => setTestTo(e.target.value)}
+                  aria-label="Test email recipient"
                 />
                 <Button onClick={sendTest} disabled={sending}>
                   {sending ? 'Sending...' : 'Send test'}

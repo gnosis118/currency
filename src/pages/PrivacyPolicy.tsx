@@ -252,17 +252,97 @@ const PrivacyPolicy = () => {
               <CardTitle>Your Data Protection Rights</CardTitle>
             </CardHeader>
             <CardContent>
-              <p className="text-sm text-muted-foreground mb-3">
-                Depending on your location, you may have the following rights:
-              </p>
-              <ul className="list-disc list-inside text-sm text-muted-foreground space-y-1">
-                <li><strong>Access:</strong> Request access to your personal information</li>
-                <li><strong>Rectification:</strong> Request correction of inaccurate information</li>
-                <li><strong>Erasure:</strong> Request deletion of your personal information</li>
-                <li><strong>Restriction:</strong> Request restriction of processing</li>
-                <li><strong>Portability:</strong> Request transfer of your data</li>
-                <li><strong>Objection:</strong> Object to processing of your information</li>
-              </ul>
+              <div className="bg-blue-50 border border-blue-200 p-4 rounded-lg mb-4">
+                <h4 className="font-medium text-blue-900 mb-2">Your GDPR Rights</h4>
+                <p className="text-sm text-blue-800">
+                  Under the General Data Protection Regulation (GDPR), if you are located in the European Economic Area, 
+                  you have specific rights regarding your personal data:
+                </p>
+              </div>
+              
+              <div className="space-y-4">
+                <div className="border-l-4 border-blue-500 pl-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Right of Access (Article 15)</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You can request confirmation of whether we process your personal data and obtain a copy of your data.
+                    We will respond within 30 days and provide the information free of charge.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-green-500 pl-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Right to Rectification (Article 16)</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You can request correction of inaccurate or incomplete personal data. We will correct verified 
+                    inaccuracies promptly and inform relevant third parties if applicable.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-red-500 pl-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Right to Erasure (Article 17)</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You can request deletion of your personal data when it's no longer necessary, when you withdraw 
+                    consent, or when processing is unlawful. Some data may be retained for legal compliance.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-yellow-500 pl-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Right to Restrict Processing (Article 18)</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You can request limitation of processing while disputing accuracy, lawfulness, or our need 
+                    for the data, or while exercising your right to object.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-purple-500 pl-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Right to Data Portability (Article 20)</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You can receive your personal data in a structured, commonly used format and transmit it 
+                    to another service provider where technically feasible.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-orange-500 pl-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Right to Object (Article 21)</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You can object to processing based on legitimate interests, direct marketing, or profiling. 
+                    We will stop processing unless we demonstrate compelling legitimate grounds.
+                  </p>
+                </div>
+                
+                <div className="border-l-4 border-indigo-500 pl-4">
+                  <h4 className="font-medium text-gray-900 mb-2">Right to Withdraw Consent (Article 7)</h4>
+                  <p className="text-sm text-muted-foreground">
+                    You can withdraw your consent at any time. Withdrawal doesn't affect the lawfulness of 
+                    processing before withdrawal. Use the consent management tools below or contact us directly.
+                  </p>
+                </div>
+              </div>
+              
+              <div className="mt-6 space-y-3">
+                <h4 className="font-medium text-gray-900">How to Exercise Your Rights</h4>
+                <p className="text-sm text-muted-foreground">
+                  To exercise any of these rights, please contact us using the details below. We may request 
+                  verification of your identity to protect your personal data.
+                </p>
+                <div className="flex gap-2 flex-wrap">
+                  <Button 
+                    variant="outline" 
+                    onClick={() => (window as any).openCookieSettings?.()}
+                    className="text-sm"
+                    aria-label="Manage cookie consent settings"
+                  >
+                    Manage Cookie Consent
+                  </Button>
+                  <Button 
+                    variant="outline" 
+                    onClick={() => (window as any).withdrawConsent?.()}
+                    className="text-sm"
+                    aria-label="Withdraw all consent for data processing"
+                  >
+                    Withdraw All Consent
+                  </Button>
+                </div>
+              </div>
             </CardContent>
           </Card>
 

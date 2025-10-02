@@ -16,8 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowUpDown, RefreshCw, TrendingUp, TrendingDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
-import homeHero from '@/assets/home-hero.jpg';
-import homeHeroWebP from '@/assets/home-hero.webp';
+import Logo from '@/components/Logo';
 
 interface ExchangeRates {
   [key: string]: number;
@@ -400,22 +399,12 @@ const Index = () => {
         structuredData={structuredData}
       />
       {/* Hero Section */}
-      <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
-        <WebPOptimizedImage
-          src={homeHero}
-          webpSrc={homeHeroWebP}
-          alt="Professional currency conversion interface showing real-time exchange rates for international finance and travel planning"
-          width={1200}
-          height={400}
-          className="w-full h-full"
-          loading="eager"
-          priority={true}
-          objectFit="cover"
-          fetchPriority="high"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
-        />
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+      <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-blue-800">
+        <div className="absolute inset-0 flex items-center justify-center">
           <div className="text-center text-white px-4 md:px-6 max-w-4xl">
+            <div className="flex justify-center mb-6">
+              <Logo width={120} height={120} className="drop-shadow-lg" />
+            </div>
             <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold mb-3 md:mb-4">Currency Converter</h1>
             <p className="text-base md:text-lg lg:text-xl opacity-90">
               Get real-time exchange rates and convert currencies instantly
@@ -458,7 +447,13 @@ const Index = () => {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span>Currency Converter</span>
-                <Button variant="ghost" size="sm" onClick={refresh} disabled={fiatLoading}>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={refresh} 
+                  disabled={fiatLoading}
+                  aria-label="Refresh exchange rates"
+                >
                   <RefreshCw className={`h-4 w-4 ${fiatLoading ? 'animate-spin' : ''}`} />
                 </Button>
               </CardTitle>
@@ -472,6 +467,7 @@ const Index = () => {
                   onChange={(e) => setAmount(e.target.value)}
                   placeholder="Enter amount"
                   className="text-lg"
+                  aria-label="Amount to convert"
                 />
               </div>
 
@@ -479,7 +475,7 @@ const Index = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-muted-foreground">From</label>
                   <Select value={fromCurrency} onValueChange={setFromCurrency}>
-                    <SelectTrigger>
+                    <SelectTrigger aria-label="Select source currency">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="max-h-60 overflow-y-auto">
@@ -501,6 +497,7 @@ const Index = () => {
                   size="icon"
                   onClick={swapCurrencies}
                   className="mb-1"
+                  aria-label="Swap currencies"
                 >
                   <ArrowUpDown className="h-4 w-4" />
                 </Button>
@@ -508,7 +505,7 @@ const Index = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-muted-foreground">To</label>
                   <Select value={toCurrency} onValueChange={setToCurrency}>
-                    <SelectTrigger>
+                    <SelectTrigger aria-label="Select target currency">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="max-h-60 overflow-y-auto">
@@ -566,7 +563,13 @@ const Index = () => {
             <CardHeader>
               <CardTitle className="flex items-center justify-between">
                 <span>Cryptocurrency</span>
-                <Button variant="ghost" size="sm" onClick={refresh} disabled={cryptoLoading}>
+                <Button 
+                  variant="ghost" 
+                  size="sm" 
+                  onClick={refresh} 
+                  disabled={cryptoLoading}
+                  aria-label="Refresh cryptocurrency prices"
+                >
                   <RefreshCw className={`h-4 w-4 ${cryptoLoading ? 'animate-spin' : ''}`} />
                 </Button>
               </CardTitle>
@@ -580,6 +583,7 @@ const Index = () => {
                   onChange={(e) => setCryptoAmount(e.target.value)}
                   placeholder="Enter amount"
                   className="text-lg"
+                  aria-label="Amount of cryptocurrency to convert"
                 />
               </div>
 
@@ -587,7 +591,7 @@ const Index = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-muted-foreground">Cryptocurrency</label>
                   <Select value={selectedCrypto} onValueChange={setSelectedCrypto}>
-                    <SelectTrigger>
+                    <SelectTrigger aria-label="Select cryptocurrency">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent className="max-h-60 overflow-y-auto">
@@ -607,7 +611,7 @@ const Index = () => {
                 <div className="space-y-2">
                   <label className="text-sm font-medium text-muted-foreground">To</label>
                   <Select value={cryptoTargetCurrency} onValueChange={setCryptoTargetCurrency}>
-                    <SelectTrigger>
+                    <SelectTrigger aria-label="Select target currency for cryptocurrency conversion">
                       <SelectValue />
                     </SelectTrigger>
                     <SelectContent>
