@@ -1,0 +1,77 @@
+{
+  "missingAlt": [
+    {
+      "file": "pages\\BlogPost.tsx",
+      "line": 582,
+      "src": "unknown",
+      "tag": "<img\n                      src={rp.image || '/placeholder.svg'}\n                      alt={rp.title}\n                      className=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-300\"\n                      onError={(e) =>"
+    },
+    {
+      "file": "pages\\Blog.tsx",
+      "line": 262,
+      "src": "unknown",
+      "tag": "<img\n                          src={getSafeImageSrc((post as any).image, post.slug, post.category)}\n                          alt={post.title}\n                          width={1200}\n                          height={675}\n                          className=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-300\"\n                          onError={(e) =>"
+    },
+    {
+      "file": "pages\\Blog.tsx",
+      "line": 314,
+      "src": "unknown",
+      "tag": "<img\n                            src={getSafeImageSrc((post as any).image, post.slug, post.category)}\n                            alt={post.title}\n                            width={1200}\n                            height={675}\n                            className=\"w-full h-full object-cover group-hover:scale-105 transition-transform duration-300\"\n                            onError={(e) =>"
+    },
+    {
+      "file": "components\\WebPOptimizedImage.tsx",
+      "line": 65,
+      "src": "unknown",
+      "tag": "<img\n        src={imageSrc}\n        alt={alt}\n        width={width}\n        height={height}\n        loading={priority ? 'eager' : loading}\n        decoding=\"async\"\n        fetchPriority={fetchPriority}\n        className={cn(\n          \"w-full h-full transition-opacity duration-300\",\n          isLoaded ? 'opacity-100' : 'opacity-0'\n        )}\n        style={{\n          objectFit,\n          aspectRatio: `${width}/${height}`\n        }}\n        onLoad={handleLoad}\n        onError={handleError}\n      />"
+    },
+    {
+      "file": "components\\SimpleImage.tsx",
+      "line": 51,
+      "src": "unknown",
+      "tag": "<img\n        src={src}\n        alt={alt}\n        width={width}\n        height={height}\n        className={cn(\n          \"w-full h-full object-cover rounded transition-opacity duration-300\",\n          isLoading ? 'opacity-0' : 'opacity-100'\n        )}\n        onLoad={handleLoad}\n        onError={handleError}\n      />"
+    },
+    {
+      "file": "components\\OptimizedImage.tsx",
+      "line": 86,
+      "src": "unknown",
+      "tag": "<img\n        src={src}\n        alt={alt}\n        width={width}\n        height={height}\n        loading={priority ? 'eager' : loading}\n        decoding=\"async\"\n        className={cn(\n          \"transition-opacity duration-300\",\n          isLoaded ? 'opacity-100' : 'opacity-0',\n          className\n        )}\n        onLoad={handleLoad}\n        onError={handleError}\n        style={{\n          aspectRatio: width && height ? `${width}/${height}` : undefined,\n          objectFit: 'cover'\n        }}\n      />"
+    },
+    {
+      "file": "components\\MobileImageOptimizer.tsx",
+      "line": 83,
+      "src": "unknown",
+      "tag": "<img\n          src={src}\n          alt={alt}\n          width={width}\n          height={height}\n          loading={priority ? 'eager' : 'lazy'}\n          decoding=\"async\"\n          className={`${aspectRatio !== 'auto' ? 'absolute inset-0 ' : ''}w-full h-full object-cover transition-opacity duration-300 ${\n            !isLoaded ? 'opacity-0' : 'opacity-100'\n          }`}\n          onLoad={() =>"
+    },
+    {
+      "file": "components\\ImageOptimized.tsx",
+      "line": 32,
+      "src": "unknown",
+      "tag": "<img\n        src={fallbackSrc}\n        alt={alt}\n        width={width}\n        height={height}\n        loading={priority ? 'eager' : loading}\n        decoding=\"async\"\n        className={`${className} ${!isLoaded ? 'opacity-0' : 'opacity-100'} transition-opacity duration-300`}\n        onLoad={() =>"
+    }
+  ],
+  "emptyAlt": [],
+  "poorAlt": [],
+  "largeImages": [],
+  "unoptimizedFormats": [
+    {
+      "file": "icon-512.png",
+      "suggestion": "Convert to WebP for 30% size reduction"
+    },
+    {
+      "file": "icon-192.png",
+      "suggestion": "Convert to WebP for 30% size reduction"
+    },
+    {
+      "file": "favicon-source.jpg",
+      "suggestion": "Convert to WebP for 30% size reduction"
+    },
+    {
+      "file": "favicon-32x32.png",
+      "suggestion": "Convert to WebP for 30% size reduction"
+    },
+    {
+      "file": "images\\uploads\\v2-101byn-hrhle.jpg",
+      "suggestion": "Convert to WebP for 30% size reduction"
+    }
+  ]
+}
