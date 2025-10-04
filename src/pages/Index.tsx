@@ -168,6 +168,24 @@ const Index = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const { toast } = useToast();
 
+  // Polygon.io API key and additional state for real‑time conversion and chart data.
+  // The user provided key is stored here for easy reference. If you are deploying
+  // this code yourself, consider moving the key into an environment variable.
+  const POLYGON_API_KEY = 'AAIgYzbfju84n3AQ2XD0oP8EUyCKLgwY';
+
+  // Holds the latest conversion rate for the currently selected fiat currency pair.
+  // When fromCurrency and toCurrency differ, this state is populated by the
+  // fetchConversionRate function. When both currencies are the same the rate is 1.
+  const [exchangeRate, setExchangeRate] = useState<number | null>(null);
+
+  // Stores candlestick (OHLC) data for the selected fiat currency pair. Each entry
+  // in this array is an object with properties: o (open), h (high), l (low), c
+  // (close), and t (timestamp). This data feeds the CandlestickChart component.
+  const [candlestickData, setCandlestickData] = useState<any[]>([]);
+
+  // Indicates whether candlestick data is currently being loaded from the API.
+  const [candlestickLoading, setCandlestickLoading] = useState(false);
+
   const fetchExchangeRates = useCallback(async (baseCurrency: string) => {
     try {
       setFiatLoading(true);
@@ -209,9 +227,96 @@ const Index = () => {
     }
   }, [toast]);
 
+  // Fetch a real‑time conversion rate for the current fiat currency pair from Polygon.io.
+  const fetchConversionRate = useCallback(async () => {
+    // If the base and target currencies are the same we know the rate is 1 and
+    // can avoid making an external request.
+    if (fromCurrency === toCurrency) {
+      setExchangeRate(1);
+      setLastUpdated(new Date());
+      return;
+    }
+    try {
+      setFiatLoading(true);
+      const url = `https://api.polygon.io/v1/conversion/${fromCurrency}/${toCurrency}?amount=1&precision=6&apiKey=${POLYGON_API_KEY}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to fetch conversion rate');
+      const data = await response.json();
+      // Polygon may return the converted amount under `converted` or `result` depending on plan.
+      const converted = data.converted ?? data.result ?? null;
+      if (converted !== null && !isNaN(converted)) {
+        setExchangeRate(Number(converted));
+      } else {
+        throw new Error('Invalid response format');
+      }
+      setLastUpdated(new Date());
+    } catch (error) {
+      console.error('Conversion rate fetch error:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to fetch conversion rate. Falling back to cached rates.',
+        variant: 'destructive'
+      });
+      // Attempt to fall back to the rate from the previously fetched exchangeRates map.
+      if (exchangeRates[toCurrency]) {
+        setExchangeRate(exchangeRates[toCurrency]);
+      } else {
+        setExchangeRate(null);
+      }
+    } finally {
+      setFiatLoading(false);
+    }
+  }, [fromCurrency, toCurrency, POLYGON_API_KEY, toast, exchangeRates]);
+
+  // Fetch historical candlestick bars for the selected fiat currency pair from Polygon.io.
+  const fetchCandlestickData = useCallback(async () => {
+    // If the base and target currencies are identical there is no meaningful chart
+    // to display, so we clear any existing data and return early.
+    if (fromCurrency === toCurrency) {
+      setCandlestickData([]);
+      return;
+    }
+    try {
+      setCandlestickLoading(true);
+      const now = new Date();
+      const endDate = now.toISOString().split('T')[0];
+      const startDate = new Date(now.getTime() - 30 * 24 * 60 * 60 * 1000).toISOString().split('T')[0];
+      const ticker = `C:${fromCurrency}${toCurrency}`;
+      const url = `https://api.polygon.io/v2/aggs/ticker/${ticker}/range/1/day/${startDate}/${endDate}?adjusted=true&sort=asc&apiKey=${POLYGON_API_KEY}`;
+      const response = await fetch(url);
+      if (!response.ok) throw new Error('Failed to fetch candlestick data');
+      const data = await response.json();
+      if (data && Array.isArray(data.results)) {
+        setCandlestickData(data.results);
+      } else {
+        setCandlestickData([]);
+      }
+    } catch (error) {
+      console.error('Candlestick data fetch error:', error);
+      toast({
+        title: 'Error',
+        description: 'Failed to fetch candlestick data. Please try again.',
+        variant: 'destructive'
+      });
+      setCandlestickData([]);
+    } finally {
+      setCandlestickLoading(false);
+    }
+  }, [fromCurrency, toCurrency, POLYGON_API_KEY, toast]);
+
   useEffect(() => {
     fetchExchangeRates(fromCurrency);
   }, [fromCurrency, fetchExchangeRates]);
+
+  // Fetch the latest Polygon conversion rate whenever the fiat currency pair changes.
+  useEffect(() => {
+    fetchConversionRate();
+  }, [fromCurrency, toCurrency, fetchConversionRate]);
+
+  // Fetch candlestick data whenever the fiat currency pair changes.
+  useEffect(() => {
+    fetchCandlestickData();
+  }, [fromCurrency, toCurrency, fetchCandlestickData]);
 
   useEffect(() => {
     fetchCryptoPrice(selectedCrypto, cryptoTargetCurrency);
@@ -219,17 +324,18 @@ const Index = () => {
 
   const convertedAmount = () => {
     const numAmount = parseFloat(amount);
-    if (isNaN(numAmount) || !exchangeRates[toCurrency]) return '0.00';
-    
+    if (isNaN(numAmount)) return '0.00';
     if (fromCurrency === toCurrency) return numAmount.toFixed(2);
-    
-    const rate = exchangeRates[toCurrency];
+    const rate = exchangeRate ?? exchangeRates[toCurrency];
+    if (rate == null) return '0.00';
     return (numAmount * rate).toFixed(2);
   };
 
   const getExchangeRate = () => {
-    if (!exchangeRates[toCurrency] || fromCurrency === toCurrency) return null;
-    return `1 ${fromCurrency} = ${exchangeRates[toCurrency].toFixed(4)} ${toCurrency}`;
+    if (fromCurrency === toCurrency) return null;
+    const rate = exchangeRate ?? exchangeRates[toCurrency];
+    if (rate == null) return null;
+    return `1 ${fromCurrency} = ${rate.toFixed(4)} ${toCurrency}`;
   };
 
   const swapCurrencies = () => {
@@ -246,7 +352,6 @@ const Index = () => {
   const convertedCryptoAmount = () => {
     const numAmount = parseFloat(cryptoAmount);
     if (isNaN(numAmount) || !cryptoPrice[cryptoTargetCurrency.toLowerCase()]) return '0.00';
-    
     const rate = cryptoPrice[cryptoTargetCurrency.toLowerCase()];
     return formatCryptoPrice(numAmount * rate);
   };
@@ -258,7 +363,9 @@ const Index = () => {
 
   const refresh = () => {
     fetchExchangeRates(fromCurrency);
+    fetchConversionRate();
     fetchCryptoPrice(selectedCrypto, cryptoTargetCurrency);
+    fetchCandlestickData();
   };
 
   const structuredData = {
@@ -287,7 +394,7 @@ const Index = () => {
         "featureList": [
           "Real-time exchange rates",
           "150+ fiat currencies",
-          "100+ cryptocurrencies", 
+          "100+ cryptocurrencies",
           "Historical rate charts",
           "Price alerts",
           "Travel money guides",
@@ -344,7 +451,7 @@ const Index = () => {
             }
           },
           {
-            "@type": "Question", 
+            "@type": "Question",
             "name": "Which currencies are supported?",
             "acceptedAnswer": {
               "@type": "Answer",
@@ -388,349 +495,383 @@ const Index = () => {
     ]
   };
 
+  /**
+   * Render a simple candlestick chart as an SVG.  Each candlestick consists of a
+   * vertical line for the high–low range and a rectangle for the open–close
+   * body.  The colour of the body indicates whether the price increased
+   * (green) or decreased (red) during the period.
+   */
+  const CandlestickChart: React.FC<{ data: any[] }> = ({ data }) => {
+    const width = 600;
+    const height = 300;
+    const padding = 40;
+    if (!data || data.length === 0) {
+      return <p className="text-muted-foreground">No data available for this currency pair.</p>;
+    }
+    const minPrice = Math.min(...data.map((d) => d.l));
+    const maxPrice = Math.max(...data.map((d) => d.h));
+    const priceRange = maxPrice - minPrice || 1;
+    const bodyWidth = Math.max(3, ((width - 2 * padding) / data.length) * 0.6);
+    const xScale = (index: number) => padding + index * ((width - 2 * padding) / data.length);
+    const yScale = (value: number) => height - padding - ((value - minPrice) / priceRange) * (height - 2 * padding);
+    return (
+      <svg width={width} height={height} role="img" aria-label="Currency candlestick chart">
+        {data.map((d, i) => {
+          const x = xScale(i);
+          const yOpen = yScale(d.o);
+          const yClose = yScale(d.c);
+          const yHigh = yScale(d.h);
+          const yLow = yScale(d.l);
+          const color = d.c >= d.o ? '#22c55e' : '#ef4444';
+          return (
+            <g key={i}>
+              <line x1={x} y1={yHigh} x2={x} y2={yLow} stroke={color} strokeWidth="1" />
+              <rect
+                x={x - bodyWidth / 2}
+                y={Math.min(yOpen, yClose)}
+                width={bodyWidth}
+                height={Math.max(1, Math.abs(yOpen - yClose))}
+                fill={color}
+              />
+            </g>
+          );
+        })}
+      </svg>
+    );
+  };
+
   return (
     <div className="min-h-screen bg-converter-bg">
       <main id="main-content" tabIndex={-1} role="main" aria-label="Currency converter application">
-      <SEOHead
-        title="Free Currency Converter - Live Exchange Rates | Currency to Currency"
-        description="Convert 150+ currencies instantly with live rates. Free real-time forex calculator with crypto support, charts & alerts. No registration required."
-        keywords="currency converter, exchange rates, live rates, cryptocurrency prices, currency conversion, foreign exchange, forex, bitcoin converter, real-time rates, USD to EUR, GBP to USD, currency calculator, money converter"
-        canonical="https://currencytocurrency.app/"
-        robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
-        structuredData={structuredData}
-      />
-      {/* Hero Section */}
-      <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
-        <WebPOptimizedImage
-          src={homeHero}
-          webpSrc={homeHeroWebP}
-          alt="Professional currency conversion interface showing real-time exchange rates for international finance and travel planning"
-          width={1200}
-          height={400}
-          className="w-full h-full"
-          loading="eager"
-          priority={true}
-          objectFit="cover"
-          fetchPriority="high"
-          sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+        <SEOHead
+          title="Free Currency Converter - Live Exchange Rates | Currency to Currency"
+          description="Convert 150+ currencies instantly with live rates. Free real-time forex calculator with crypto support, charts & alerts. No registration required."
+          keywords="currency converter, exchange rates, live rates, cryptocurrency prices, currency conversion, foreign exchange, forex, bitcoin converter, real-time rates, USD to EUR, GBP to USD, currency calculator, money converter"
+          canonical="https://currencytocurrency.app/"
+          robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          structuredData={structuredData}
         />
-        <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
-          <div className="text-center text-white px-4 md:px-6 max-w-4xl">
-            <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold mb-3 md:mb-4">Currency Converter</h1>
-            <p className="text-base md:text-lg lg:text-xl opacity-90">
-              Get real-time exchange rates and convert currencies instantly
-            </p>
+        {/* Hero Section */}
+        <div className="relative h-64 md:h-80 lg:h-96 overflow-hidden">
+          <WebPOptimizedImage
+            src={homeHero}
+            webpSrc={homeHeroWebP}
+            alt="Professional currency conversion interface showing real-time exchange rates for international finance and travel planning"
+            width={1200}
+            height={400}
+            className="w-full h-full"
+            loading="eager"
+            priority={true}
+            objectFit="cover"
+            fetchPriority="high"
+            sizes="(max-width: 640px) 100vw, (max-width: 1024px) 100vw, 1200px"
+          />
+          <div className="absolute inset-0 bg-black/40 flex items-center justify-center">
+            <div className="text-center text-white px-4 md:px-6 max-w-4xl">
+              <h1 className="text-2xl md:text-4xl lg:text-6xl font-bold mb-3 md:mb-4">Currency Converter</h1>
+              <p className="text-base md:text-lg lg:text-xl opacity-90">
+                Get real-time exchange rates and convert currencies instantly
+              </p>
+            </div>
           </div>
         </div>
-      </div>
-
-      {/* Content */}
-      <div className="max-w-4xl mx-auto p-3 md:p-4 -mt-12 md:-mt-16 relative z-10">
-        {/* Header */}
-        <div className="bg-converter-bg rounded-lg shadow-lg p-6 mb-8">
-          <div className="text-center">
-            <p className="text-muted-foreground text-xl mb-4">Convert 150+ currencies and cryptocurrencies with real-time rates</p>
-            <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
-              Get instant currency conversions, track historical exchange rates, set price alerts, and access travel money tips. 
-              Our free currency converter provides accurate real-time data for over 150 fiat currencies and 100+ cryptocurrencies.
-            </p>
-          <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
-            <span>✓ Real-time rates</span>
-            <span>✓ 150+ currencies</span>
-            <span>✓ Historical charts</span>
-            <span>✓ Price alerts</span>
-            <span>✓ Travel guides</span>
+        {/* Content */}
+        <div className="max-w-4xl mx-auto p-3 md:p-4 -mt-12 md:-mt-16 relative z-10">
+          {/* Header */}
+          <div className="bg-converter-bg rounded-lg shadow-lg p-6 mb-8">
+            <div className="text-center">
+              <p className="text-muted-foreground text-xl mb-4">Convert 150+ currencies and cryptocurrencies with real-time rates</p>
+              <p className="text-muted-foreground max-w-2xl mx-auto mb-4">
+                Get instant currency conversions, track historical exchange rates, set price alerts, and access travel money tips.
+                Our free currency converter provides accurate real-time data for over 150 fiat currencies and 100+ cryptocurrencies.
+              </p>
+              <div className="flex flex-wrap justify-center gap-4 text-sm text-muted-foreground">
+                <span>✓ Real-time rates</span>
+                <span>✓ 150+ currencies</span>
+                <span>✓ Historical charts</span>
+                <span>✓ Price alerts</span>
+                <span>✓ Travel guides</span>
+              </div>
+            </div>
+            {/* Privacy Policy Banner for Maximum Visibility */}
+            <PrivacyPolicyBanner />
+            {/* Popular Currency Pairs */}
+            <div className="mb-6 md:mb-8">
+              <CurrencyPairLinks />
+            </div>
           </div>
-        </div>
-
-        {/* Privacy Policy Banner for Maximum Visibility */}
-        <PrivacyPolicyBanner />
-
-        {/* Popular Currency Pairs */}
-        <div className="mb-6 md:mb-8">
-          <CurrencyPairLinks />
-        </div>
-      </div>
-
-        <div className="grid gap-6 md:grid-cols-2">
-          {/* Fiat Currency Converter */}
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <span>Currency Converter</span>
-                <Button variant="ghost" size="sm" onClick={refresh} disabled={fiatLoading}>
-                  <RefreshCw className={`h-4 w-4 ${fiatLoading ? 'animate-spin' : ''}`} />
-                </Button>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Amount</label>
-                <Input
-                  type="number"
-                  value={amount}
-                  onChange={(e) => setAmount(e.target.value)}
-                  placeholder="Enter amount"
-                  className="text-lg"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-2 items-end">
+          <div className="grid gap-6 md:grid-cols-2">
+            {/* Fiat Currency Converter */}
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <span>Currency Converter</span>
+                  <Button variant="ghost" size="sm" onClick={refresh} disabled={fiatLoading}>
+                    <RefreshCw className={`h-4 w-4 ${fiatLoading ? 'animate-spin' : ''}`} />
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">From</label>
-                  <Select value={fromCurrency} onValueChange={setFromCurrency}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="max-h-60 overflow-y-auto">
-                      {fiatCurrencies.map((currency) => (
-                        <SelectItem key={currency.code} value={currency.code}>
-                          <div className="flex items-center space-x-2">
-                            <span className="font-medium">{currency.code}</span>
-                            <span className="text-muted-foreground">-</span>
-                            <span className="text-sm">{currency.name}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <label className="text-sm font-medium text-muted-foreground">Amount</label>
+                  <Input
+                    type="number"
+                    value={amount}
+                    onChange={(e) => setAmount(e.target.value)}
+                    placeholder="Enter amount"
+                    className="text-lg"
+                  />
                 </div>
-
-                <Button
-                  variant="outline"
-                  size="icon"
-                  onClick={swapCurrencies}
-                  className="mb-1"
-                >
-                  <ArrowUpDown className="h-4 w-4" />
-                </Button>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">To</label>
-                  <Select value={toCurrency} onValueChange={setToCurrency}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="max-h-60 overflow-y-auto">
-                      {fiatCurrencies.map((currency) => (
-                        <SelectItem key={currency.code} value={currency.code}>
-                          <div className="flex items-center space-x-2">
-                            <span className="font-medium">{currency.code}</span>
-                            <span className="text-muted-foreground">-</span>
-                            <span className="text-sm">{currency.name}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                <div className="grid grid-cols-2 gap-2 items-end">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-muted-foreground">From</label>
+                    <Select value={fromCurrency} onValueChange={setFromCurrency}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-60 overflow-y-auto">
+                        {fiatCurrencies.map((currency) => (
+                          <SelectItem key={currency.code} value={currency.code}>
+                            <div className="flex items-center space-x-2">
+                              <span className="font-medium">{currency.code}</span>
+                              <span className="text-muted-foreground">-</span>
+                              <span className="text-sm">{currency.name}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <Button
+                    variant="outline"
+                    size="icon"
+                    onClick={swapCurrencies}
+                    className="mb-1"
+                  >
+                    <ArrowUpDown className="h-4 w-4" />
+                  </Button>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-muted-foreground">To</label>
+                    <Select value={toCurrency} onValueChange={setToCurrency}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-60 overflow-y-auto">
+                        {fiatCurrencies.map((currency) => (
+                          <SelectItem key={currency.code} value={currency.code}>
+                            <div className="flex items-center space-x-2">
+                              <span className="font-medium">{currency.code}</span>
+                              <span className="text-muted-foreground">-</span>
+                              <span className="text-sm">{currency.name}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-              </div>
-
-              <div className="bg-price-bg p-4 rounded-lg" role="status" aria-live="polite" aria-atomic="true">
-                <div className="flex items-center justify-between">
-                  <div className="text-3xl font-bold text-foreground">
-                    {fiatLoading ? (
-                      <div className="animate-pulse bg-muted h-8 w-32 rounded" />
-                    ) : (
-                      `${convertedAmount()} ${toCurrency}`
+                <div className="bg-price-bg p-4 rounded-lg" role="status" aria-live="polite" aria-atomic="true">
+                  <div className="flex items-center justify-between">
+                    <div className="text-3xl font-bold text-foreground">
+                      {fiatLoading ? (
+                        <div className="animate-pulse bg-muted h-8 w-32 rounded" />
+                      ) : (
+                        `${convertedAmount()} ${toCurrency}`
+                      )}
+                    </div>
+                    {!fiatLoading && amount && convertedAmount() !== '0.00' && (
+                      <ShareButton
+                        fromCurrency={fromCurrency}
+                        toCurrency={toCurrency}
+                        amount={amount}
+                        convertedAmount={convertedAmount()}
+                        rate={((exchangeRate ?? exchangeRates[toCurrency] ?? 0)).toString()}
+                      />
                     )}
                   </div>
-                  {!fiatLoading && amount && convertedAmount() !== '0.00' && (
-                    <ShareButton
-                      fromCurrency={fromCurrency}
-                      toCurrency={toCurrency}
-                      amount={amount}
-                      convertedAmount={convertedAmount()}
-                      rate={(exchangeRates[toCurrency] || 0).toString()}
-                    />
+                  {!fiatLoading && getExchangeRate() && (
+                    <div className="text-sm text-muted-foreground mt-2">
+                      {getExchangeRate()}
+                    </div>
+                  )}
+                  {lastUpdated && (
+                    <div className="text-xs text-muted-foreground mt-2">
+                      Last updated: {lastUpdated.toLocaleTimeString()}
+                    </div>
                   )}
                 </div>
-                
-                {!fiatLoading && getExchangeRate() && (
-                  <div className="text-sm text-muted-foreground mt-2">
-                    {getExchangeRate()}
-                  </div>
-                )}
-                
-                {lastUpdated && (
-                  <div className="text-xs text-muted-foreground mt-2">
-                    Last updated: {lastUpdated.toLocaleTimeString()}
-                  </div>
-                )}
-              </div>
-            </CardContent>
-          </Card>
-
-          {/* Cryptocurrency Converter */}
-          <Card className="shadow-lg">
-            <CardHeader>
-              <CardTitle className="flex items-center justify-between">
-                <span>Cryptocurrency</span>
-                <Button variant="ghost" size="sm" onClick={refresh} disabled={cryptoLoading}>
-                  <RefreshCw className={`h-4 w-4 ${cryptoLoading ? 'animate-spin' : ''}`} />
-                </Button>
-              </CardTitle>
-            </CardHeader>
-            <CardContent className="space-y-4">
-              <div className="space-y-2">
-                <label className="text-sm font-medium text-muted-foreground">Amount</label>
-                <Input
-                  type="number"
-                  value={cryptoAmount}
-                  onChange={(e) => setCryptoAmount(e.target.value)}
-                  placeholder="Enter amount"
-                  className="text-lg"
-                />
-              </div>
-
-              <div className="grid grid-cols-2 gap-4">
+              </CardContent>
+            </Card>
+            {/* Cryptocurrency Converter */}
+            <Card className="shadow-lg">
+              <CardHeader>
+                <CardTitle className="flex items-center justify-between">
+                  <span>Cryptocurrency</span>
+                  <Button variant="ghost" size="sm" onClick={refresh} disabled={cryptoLoading}>
+                    <RefreshCw className={`h-4 w-4 ${cryptoLoading ? 'animate-spin' : ''}`} />
+                  </Button>
+                </CardTitle>
+              </CardHeader>
+              <CardContent className="space-y-4">
                 <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">Cryptocurrency</label>
-                  <Select value={selectedCrypto} onValueChange={setSelectedCrypto}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent className="max-h-60 overflow-y-auto">
-                      {cryptocurrencies.map((crypto) => (
-                        <SelectItem key={crypto.id} value={crypto.id}>
-                          <div className="flex items-center space-x-2">
-                            <span className="font-medium">{crypto.symbol}</span>
-                            <span className="text-muted-foreground">-</span>
-                            <span className="text-sm">{crypto.name}</span>
-                          </div>
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                  <label className="text-sm font-medium text-muted-foreground">Amount</label>
+                  <Input
+                    type="number"
+                    value={cryptoAmount}
+                    onChange={(e) => setCryptoAmount(e.target.value)}
+                    placeholder="Enter amount"
+                    className="text-lg"
+                  />
                 </div>
-
-                <div className="space-y-2">
-                  <label className="text-sm font-medium text-muted-foreground">To</label>
-                  <Select value={cryptoTargetCurrency} onValueChange={setCryptoTargetCurrency}>
-                    <SelectTrigger>
-                      <SelectValue />
-                    </SelectTrigger>
-                    <SelectContent>
-                      {fiatCurrencies.slice(0, 10).map((currency) => (
-                        <SelectItem key={currency.code} value={currency.code}>
-                          {currency.code} - {currency.name}
-                        </SelectItem>
-                      ))}
-                    </SelectContent>
-                  </Select>
+                <div className="grid grid-cols-2 gap-4">
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-muted-foreground">Cryptocurrency</label>
+                    <Select value={selectedCrypto} onValueChange={setSelectedCrypto}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent className="max-h-60 overflow-y-auto">
+                        {cryptocurrencies.map((crypto) => (
+                          <SelectItem key={crypto.id} value={crypto.id}>
+                            <div className="flex items-center space-x-2">
+                              <span className="font-medium">{crypto.symbol}</span>
+                              <span className="text-muted-foreground">-</span>
+                              <span className="text-sm">{crypto.name}</span>
+                            </div>
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-2">
+                    <label className="text-sm font-medium text-muted-foreground">To</label>
+                    <Select value={cryptoTargetCurrency} onValueChange={setCryptoTargetCurrency}>
+                      <SelectTrigger>
+                        <SelectValue />
+                      </SelectTrigger>
+                      <SelectContent>
+                        {fiatCurrencies.slice(0, 10).map((currency) => (
+                          <SelectItem key={currency.code} value={currency.code}>
+                            {currency.code} - {currency.name}
+                          </SelectItem>
+                        ))}
+                      </SelectContent>
+                    </Select>
+                  </div>
                 </div>
-              </div>
-
-              <div className="bg-price-bg p-4 rounded-lg" role="status" aria-live="polite" aria-atomic="true">
-                <div className="text-3xl font-bold text-foreground">
-                  {cryptoLoading ? (
-                    <div className="animate-pulse bg-muted h-8 w-32 rounded" />
-                  ) : (
-                    `${convertedCryptoAmount()} ${cryptoTargetCurrency}`
+                <div className="bg-price-bg p-4 rounded-lg" role="status" aria-live="polite" aria-atomic="true">
+                  <div className="text-3xl font-bold text-foreground">
+                    {cryptoLoading ? (
+                      <div className="animate-pulse bg-muted h-8 w-32 rounded" />
+                    ) : (
+                      `${convertedCryptoAmount()} ${cryptoTargetCurrency}`
+                    )}
+                  </div>
+                  {!cryptoLoading && cryptoPrice[cryptoTargetCurrency.toLowerCase()] && (
+                    <div className="flex items-center justify-between mt-2">
+                      <div className="text-sm text-muted-foreground">
+                        1 {cryptocurrencies.find(c => c.id === selectedCrypto)?.symbol} = {formatCryptoPrice(cryptoPrice[cryptoTargetCurrency.toLowerCase()])} {cryptoTargetCurrency}
+                      </div>
+                      <div className={`flex items-center text-sm ${getCryptoChange() >= 0 ? 'text-green-600' : 'text-red-600'}`}>
+                        {getCryptoChange() >= 0 ? (
+                          <TrendingUp className="h-4 w-4 mr-1" />
+                        ) : (
+                          <TrendingDown className="h-4 w-4 mr-1" />
+                        )}
+                        {Math.abs(getCryptoChange()).toFixed(2)}%
+                      </div>
+                    </div>
                   )}
                 </div>
-                
-                {!cryptoLoading && cryptoPrice[cryptoTargetCurrency.toLowerCase()] && (
-                  <div className="flex items-center justify-between mt-2">
-                    <div className="text-sm text-muted-foreground">
-                      1 {cryptocurrencies.find(c => c.id === selectedCrypto)?.symbol} = {formatCryptoPrice(cryptoPrice[cryptoTargetCurrency.toLowerCase()])} {cryptoTargetCurrency}
-                    </div>
-                    <div className={`flex items-center text-sm ${getCryptoChange() >= 0 ? 'text-green-600' : 'text-red-600'}`}>
-                      {getCryptoChange() >= 0 ? (
-                        <TrendingUp className="h-4 w-4 mr-1" />
-                      ) : (
-                        <TrendingDown className="h-4 w-4 mr-1" />
-                      )}
-                      {Math.abs(getCryptoChange()).toFixed(2)}%
-                    </div>
-                  </div>
-                )}
+              </CardContent>
+            </Card>
+          </div>
+        {/* Candlestick Chart Section */}
+        <div className="mt-12">
+          <div className="bg-card p-6 rounded-lg border">
+            <h2 className="text-2xl font-bold mb-4 text-foreground">30-Day Candlestick Chart</h2>
+            {candlestickLoading ? (
+              <div className="animate-pulse bg-muted h-60 w-full rounded" />
+            ) : (
+              <CandlestickChart data={candlestickData} />
+            )}
+          </div>
+        </div>
+          {/* Popular Currency Pairs Section */}
+          <div className="mt-12">
+            <PopularPairs />
+          </div>
+          {/* Currency Guide Section */}
+          <div className="mt-12">
+            <CurrencyGuide />
+          </div>
+          {/* SEO Content Section */}
+          <div className="mt-12 grid gap-8 md:grid-cols-2">
+            <div className="bg-card p-6 rounded-lg border">
+              <h2 className="text-2xl font-bold mb-4 text-foreground">How to Use Our Currency Converter</h2>
+              <div className="space-y-3 text-muted-foreground">
+                <p>Our free currency converter provides real-time exchange rates for over 40 fiat currencies and 80+ cryptocurrencies.</p>
+                <ol className="list-decimal list-inside space-y-2">
+                  <li>Enter the amount you want to convert</li>
+                  <li>Select your source currency (from)</li>
+                  <li>Choose your target currency (to)</li>
+                  <li>View the converted amount instantly</li>
+                  <li>Set up rate alerts for your favorite pairs</li>
+                </ol>
+                <p>Perfect for international business, travel planning, forex trading, and cryptocurrency investments.</p>
               </div>
-            </CardContent>
-          </Card>
-        </div>
-
-        {/* Popular Currency Pairs Section */}
-        <div className="mt-12">
-          <PopularPairs />
-        </div>
-
-        {/* Currency Guide Section */}
-        <div className="mt-12">
-          <CurrencyGuide />
-        </div>
-
-        {/* SEO Content Section */}
-        <div className="mt-12 grid gap-8 md:grid-cols-2">
-          <div className="bg-card p-6 rounded-lg border">
-            <h2 className="text-2xl font-bold mb-4 text-foreground">How to Use Our Currency Converter</h2>
-            <div className="space-y-3 text-muted-foreground">
-              <p>Our free currency converter provides real-time exchange rates for over 40 fiat currencies and 80+ cryptocurrencies.</p>
-              <ol className="list-decimal list-inside space-y-2">
-                <li>Enter the amount you want to convert</li>
-                <li>Select your source currency (from)</li>
-                <li>Choose your target currency (to)</li>
-                <li>View the converted amount instantly</li>
-                <li>Set up rate alerts for your favorite pairs</li>
-              </ol>
-              <p>Perfect for international business, travel planning, forex trading, and cryptocurrency investments.</p>
+            </div>
+            <div className="bg-card p-6 rounded-lg border">
+              <h2 className="text-2xl font-bold mb-4 text-foreground">Why Choose Currency to Currency?</h2>
+              <div className="space-y-3 text-muted-foreground">
+                <ul className="space-y-2">
+                  <li className="flex items-start space-x-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><strong>Real-time rates:</strong> Live data from trusted financial APIs</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><strong>Historical charts:</strong> Track trends up to 90 days</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><strong>Price alerts:</strong> Get notified when rates hit your target</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><strong>Travel tools:</strong> Budget planning for international trips</span>
+                  </li>
+                  <li className="flex items-start space-x-2">
+                    <span className="text-primary font-bold">•</span>
+                    <span><strong>Mobile ready:</strong> Works perfectly on all devices</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
-          
-          <div className="bg-card p-6 rounded-lg border">
-            <h2 className="text-2xl font-bold mb-4 text-foreground">Why Choose Currency to Currency?</h2>
-            <div className="space-y-3 text-muted-foreground">
-              <ul className="space-y-2">
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Real-time rates:</strong> Live data from trusted financial APIs</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Historical charts:</strong> Track trends up to 90 days</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Price alerts:</strong> Get notified when rates hit your target</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Travel tools:</strong> Budget planning for international trips</span>
-                </li>
-                <li className="flex items-start space-x-2">
-                  <span className="text-primary font-bold">•</span>
-                  <span><strong>Mobile ready:</strong> Works perfectly on all devices</span>
-                </li>
-              </ul>
+          {/* Internal Linking */}
+          <div className="mt-12">
+            <InternalLinking currentPage="home" className="bg-card p-6 rounded-lg border" />
+          </div>
+          {/* Social Media Section */}
+          <div className="mt-12 bg-card p-6 rounded-lg border">
+            <h2 className="text-2xl font-bold mb-6 text-foreground">Share & Follow</h2>
+            <div className="space-y-6">
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-foreground">Share This Tool</h3>
+                <SocialShare />
+              </div>
+              <div>
+                <h3 className="text-lg font-semibold mb-3 text-foreground">Stay Updated</h3>
+                <SocialFollow />
+              </div>
             </div>
           </div>
-        </div>
-
-        {/* Internal Linking */}
-        <div className="mt-12">
-          <InternalLinking currentPage="home" className="bg-card p-6 rounded-lg border" />
-        </div>
-
-        {/* Social Media Section */}
-        <div className="mt-12 bg-card p-6 rounded-lg border">
-          <h2 className="text-2xl font-bold mb-6 text-foreground">Share & Follow</h2>
-          <div className="space-y-6">
-            <div>
-              <h3 className="text-lg font-semibold mb-3 text-foreground">Share This Tool</h3>
-              <SocialShare />
-            </div>
-            <div>
-              <h3 className="text-lg font-semibold mb-3 text-foreground">Stay Updated</h3>
-              <SocialFollow />
-            </div>
+          {/* Install Prompt */}
+          <div className="mt-8">
+            <InstallPrompt />
           </div>
         </div>
-
-        {/* Install Prompt */}
-        <div className="mt-8">
-          <InstallPrompt />
-        </div>
-      </div>
       </main>
     </div>
   );
