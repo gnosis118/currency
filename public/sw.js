@@ -1,207 +1,293 @@
-// Service Worker for Currency Converter App
-// Provides offline support and intelligent caching
+// Service Worker for Currency to Currency App
+// Optimized for mobile performance and offline support
 
-const CACHE_NAME = 'currency-app-v1';
-const API_CACHE = 'currency-api-v1';
-const IMAGE_CACHE = 'currency-images-v1';
+const CACHE_VERSION = 'v1.0.0';
+const CACHE_NAME = `currency-converter-${CACHE_VERSION}`;
 
-// Files to cache for offline use
+// Assets to cache immediately on install
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
-  '/favicon.ico',
-  // Add your built JS and CSS files
+  '/offline.html', // Fallback page
 ];
+
+// API endpoints to cache with different strategies
+const API_CACHE_NAME = `currency-api-${CACHE_VERSION}`;
+const API_CACHE_TIME = 5 * 60 * 1000; // 5 minutes
+
+// Network timeout for mobile (faster timeout for better UX)
+const NETWORK_TIMEOUT = 3000; // 3 seconds
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {
+  console.log('[SW] Installing service worker...');
+  
   event.waitUntil(
-    caches.open(CACHE_NAME).then((cache) => {
-      console.log('Caching static assets');
-      return cache.addAll(STATIC_ASSETS);
-    })
+    caches.open(CACHE_NAME)
+      .then((cache) => {
+        console.log('[SW] Caching static assets');
+        return cache.addAll(STATIC_ASSETS);
+      })
+      .then(() => {
+        console.log('[SW] Skip waiting');
+        return self.skipWaiting();
+      })
+      .catch((error) => {
+        console.error('[SW] Installation failed:', error);
+      })
   );
-  self.skipWaiting();
 });
 
 // Activate event - clean up old caches
 self.addEventListener('activate', (event) => {
+  console.log('[SW] Activating service worker...');
+  
   event.waitUntil(
-    caches.keys().then((cacheNames) => {
-      return Promise.all(
-        cacheNames.map((cacheName) => {
-          if (cacheName !== CACHE_NAME && 
-              cacheName !== API_CACHE && 
-              cacheName !== IMAGE_CACHE) {
-            console.log('Deleting old cache:', cacheName);
-            return caches.delete(cacheName);
-          }
-        })
-      );
-    })
+    caches.keys()
+      .then((cacheNames) => {
+        return Promise.all(
+          cacheNames
+            .filter((name) => {
+              // Delete old versions of caches
+              return name.startsWith('currency-') && name !== CACHE_NAME && name !== API_CACHE_NAME;
+            })
+            .map((name) => {
+              console.log('[SW] Deleting old cache:', name);
+              return caches.delete(name);
+            })
+        );
+      })
+      .then(() => {
+        console.log('[SW] Claiming clients');
+        return self.clients.claim();
+      })
   );
-  self.clients.claim();
 });
 
-// Fetch event - implement caching strategies
+// Fetch event - network strategies
 self.addEventListener('fetch', (event) => {
   const { request } = event;
   const url = new URL(request.url);
-
-  // API calls - Network first, fallback to cache
-  if (url.pathname.startsWith('/api/')) {
-    event.respondWith(networkFirstStrategy(request, API_CACHE));
+  
+  // Skip non-GET requests
+  if (request.method !== 'GET') {
     return;
   }
-
-  // Images - Cache first, fallback to network
-  if (request.destination === 'image') {
-    event.respondWith(cacheFirstStrategy(request, IMAGE_CACHE));
+  
+  // Skip chrome extensions
+  if (url.protocol === 'chrome-extension:') {
     return;
   }
-
-  // Static assets - Cache first
-  if (STATIC_ASSETS.includes(url.pathname)) {
-    event.respondWith(cacheFirstStrategy(request, CACHE_NAME));
+  
+  // API requests - Network First with timeout, then cache
+  if (isAPIRequest(url)) {
+    event.respondWith(networkFirstWithTimeout(request));
     return;
   }
-
-  // Default - Network first
-  event.respondWith(networkFirstStrategy(request, CACHE_NAME));
+  
+  // Static assets - Cache First
+  if (isStaticAsset(url)) {
+    event.respondWith(cacheFirst(request));
+    return;
+  }
+  
+  // HTML pages - Network First, then cache
+  if (request.headers.get('accept')?.includes('text/html')) {
+    event.respondWith(networkFirst(request));
+    return;
+  }
+  
+  // Default - Network First
+  event.respondWith(networkFirst(request));
 });
 
-// Cache-first strategy
-async function cacheFirstStrategy(request, cacheName) {
-  const cache = await caches.open(cacheName);
-  const cachedResponse = await cache.match(request);
-  
-  if (cachedResponse) {
-    // Update cache in background
-    fetchAndCache(request, cache);
-    return cachedResponse;
-  }
-  
+// Check if request is to an API endpoint
+function isAPIRequest(url) {
+  return url.hostname.includes('api.') || 
+         url.hostname.includes('exchangerate') ||
+         url.hostname.includes('polygon.io') ||
+         url.pathname.startsWith('/api/');
+}
+
+// Check if request is for a static asset
+function isStaticAsset(url) {
+  return url.pathname.match(/\.(js|css|png|jpg|jpeg|svg|gif|webp|woff|woff2|ttf|ico)$/);
+}
+
+// Cache First strategy - good for static assets
+async function cacheFirst(request) {
   try {
-    const networkResponse = await fetch(request);
-    // Cache successful responses
-    if (networkResponse.ok) {
-      cache.put(request, networkResponse.clone());
+    const cache = await caches.open(CACHE_NAME);
+    const cached = await cache.match(request);
+    
+    if (cached) {
+      // Return cached version immediately
+      return cached;
     }
-    return networkResponse;
+    
+    // If not in cache, fetch from network
+    const response = await fetch(request);
+    
+    // Cache successful responses
+    if (response.ok) {
+      cache.put(request, response.clone());
+    }
+    
+    return response;
   } catch (error) {
-    // Return offline page or default response
+    console.error('[SW] Cache first failed:', error);
     return new Response('Offline', { status: 503 });
   }
 }
 
-// Network-first strategy
-async function networkFirstStrategy(request, cacheName) {
-  const cache = await caches.open(cacheName);
-  
+// Network First strategy - good for HTML pages
+async function networkFirst(request) {
   try {
-    const networkResponse = await fetch(request);
+    // Try network first
+    const response = await fetch(request);
     
     // Cache successful responses
-    if (networkResponse.ok) {
-      cache.put(request, networkResponse.clone());
-    }
-    
-    return networkResponse;
-  } catch (error) {
-    // Fallback to cache
-    const cachedResponse = await cache.match(request);
-    
-    if (cachedResponse) {
-      return cachedResponse;
-    }
-    
-    // Return error response
-    return new Response(
-      JSON.stringify({ error: 'Offline - Using cached data' }),
-      {
-        status: 503,
-        headers: { 'Content-Type': 'application/json' }
-      }
-    );
-  }
-}
-
-// Background fetch and cache update
-async function fetchAndCache(request, cache) {
-  try {
-    const response = await fetch(request);
     if (response.ok) {
-      cache.put(request, response);
+      const cache = await caches.open(CACHE_NAME);
+      cache.put(request, response.clone());
     }
+    
+    return response;
   } catch (error) {
-    // Silently fail - we already returned cached version
+    console.log('[SW] Network failed, trying cache:', error);
+    
+    // Fall back to cache
+    const cached = await caches.match(request);
+    if (cached) {
+      return cached;
+    }
+    
+    // If HTML page, return offline page
+    if (request.headers.get('accept')?.includes('text/html')) {
+      const offlinePage = await caches.match('/offline.html');
+      if (offlinePage) {
+        return offlinePage;
+      }
+    }
+    
+    return new Response('Offline', { status: 503 });
   }
 }
 
-// Handle background sync for offline actions
+// Network First with timeout - optimized for mobile APIs
+async function networkFirstWithTimeout(request) {
+  try {
+    // Race between network request and timeout
+    const controller = new AbortController();
+    const timeoutId = setTimeout(() => controller.abort(), NETWORK_TIMEOUT);
+    
+    try {
+      const response = await fetch(request, { signal: controller.signal });
+      clearTimeout(timeoutId);
+      
+      // Cache successful API responses
+      if (response.ok) {
+        const cache = await caches.open(API_CACHE_NAME);
+        
+        // Add timestamp to cached response
+        const clonedResponse = response.clone();
+        const cachedResponse = new Response(clonedResponse.body, {
+          status: clonedResponse.status,
+          statusText: clonedResponse.statusText,
+          headers: new Headers({
+            ...Object.fromEntries(clonedResponse.headers.entries()),
+            'sw-cache-time': Date.now().toString()
+          })
+        });
+        
+        cache.put(request, cachedResponse);
+      }
+      
+      return response;
+    } catch (error) {
+      clearTimeout(timeoutId);
+      throw error;
+    }
+  } catch (error) {
+    console.log('[SW] Network timeout or failed, trying cache:', error.message);
+    
+    // Fall back to cache
+    const cache = await caches.open(API_CACHE_NAME);
+    const cached = await cache.match(request);
+    
+    if (cached) {
+      // Check if cache is still fresh
+      const cacheTime = cached.headers.get('sw-cache-time');
+      if (cacheTime) {
+        const age = Date.now() - parseInt(cacheTime);
+        if (age < API_CACHE_TIME) {
+          console.log('[SW] Returning fresh cached API response');
+          return cached;
+        }
+      }
+      
+      // Return stale cache with warning header
+      console.log('[SW] Returning stale cached API response');
+      return new Response(cached.body, {
+        status: cached.status,
+        statusText: cached.statusText,
+        headers: new Headers({
+          ...Object.fromEntries(cached.headers.entries()),
+          'sw-cache-stale': 'true'
+        })
+      });
+    }
+    
+    return new Response(JSON.stringify({ error: 'Network request failed and no cache available' }), {
+      status: 503,
+      headers: { 'Content-Type': 'application/json' }
+    });
+  }
+}
+
+// Background sync for offline actions
 self.addEventListener('sync', (event) => {
-  if (event.tag === 'sync-rates') {
-    event.waitUntil(syncRates());
+  console.log('[SW] Background sync:', event.tag);
+  
+  if (event.tag === 'sync-rate-alerts') {
+    event.waitUntil(syncRateAlerts());
   }
 });
 
-// Sync exchange rates when connection is restored
-async function syncRates() {
-  try {
-    const response = await fetch('/api/rates/all');
-    if (response.ok) {
-      const cache = await caches.open(API_CACHE);
-      await cache.put('/api/rates/all', response);
-      
-      // Notify clients
-      const clients = await self.clients.matchAll();
-      clients.forEach(client => {
-        client.postMessage({
-          type: 'RATES_UPDATED',
-          timestamp: Date.now()
-        });
-      });
-    }
-  } catch (error) {
-    console.error('Failed to sync rates:', error);
-  }
+async function syncRateAlerts() {
+  console.log('[SW] Syncing rate alerts...');
+  // Implement your sync logic here
 }
 
-// Handle push notifications
+// Push notifications
 self.addEventListener('push', (event) => {
+  console.log('[SW] Push notification received');
+  
   const options = {
-    body: event.data ? event.data.text() : 'Rate alert!',
-    icon: '/icon-192.png',
-    badge: '/badge-72.png',
-    vibrate: [100, 50, 100],
-    data: {
-      dateOfArrival: Date.now(),
-      primaryKey: 1
-    },
+    body: event.data ? event.data.text() : 'Rate alert triggered!',
+    icon: '/icon-192x192.png',
+    badge: '/badge-72x72.png',
+    vibrate: [200, 100, 200],
+    tag: 'rate-alert',
+    requireInteraction: true,
     actions: [
-      {
-        action: 'view',
-        title: 'View',
-        icon: '/images/checkmark.png'
-      },
-      {
-        action: 'close',
-        title: 'Close',
-        icon: '/images/xmark.png'
-      }
+      { action: 'view', title: 'View' },
+      { action: 'dismiss', title: 'Dismiss' }
     ]
   };
-
+  
   event.waitUntil(
     self.registration.showNotification('Currency Alert', options)
   );
 });
 
-// Handle notification clicks
+// Notification click handling
 self.addEventListener('notificationclick', (event) => {
+  console.log('[SW] Notification clicked:', event.action);
+  
   event.notification.close();
-
+  
   if (event.action === 'view') {
     event.waitUntil(
       clients.openWindow('/')
@@ -209,29 +295,19 @@ self.addEventListener('notificationclick', (event) => {
   }
 });
 
-// Periodic background sync for rates
-self.addEventListener('periodicsync', (event) => {
-  if (event.tag === 'update-rates') {
-    event.waitUntil(updateRatesInBackground());
+// Message handler for communication with app
+self.addEventListener('message', (event) => {
+  console.log('[SW] Message received:', event.data);
+  
+  if (event.data.action === 'skipWaiting') {
+    self.skipWaiting();
+  }
+  
+  if (event.data.action === 'clearCache') {
+    event.waitUntil(
+      caches.keys().then((names) => {
+        return Promise.all(names.map((name) => caches.delete(name)));
+      })
+    );
   }
 });
-
-async function updateRatesInBackground() {
-  const cache = await caches.open(API_CACHE);
-  const currencies = ['USD', 'EUR', 'GBP', 'JPY', 'CAD', 'AUD'];
-  
-  for (const from of currencies) {
-    for (const to of currencies) {
-      if (from !== to) {
-        try {
-          const response = await fetch(`/api/rates?from=${from}&to=${to}`);
-          if (response.ok) {
-            await cache.put(`/api/rates?from=${from}&to=${to}`, response);
-          }
-        } catch (error) {
-          // Continue with next pair
-        }
-      }
-    }
-  }
-}

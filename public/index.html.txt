@@ -1,0 +1,142 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  
+  <!-- CRITICAL: Mobile viewport configuration -->
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover" />
+  
+  <!-- PWA & Mobile optimizations -->
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+  <meta name="apple-mobile-web-app-title" content="Currency Converter" />
+  
+  <!-- Theme color for mobile browsers -->
+  <meta name="theme-color" content="#3b82f6" media="(prefers-color-scheme: light)" />
+  <meta name="theme-color" content="#1e293b" media="(prefers-color-scheme: dark)" />
+  
+  <!-- Performance optimization -->
+  <meta name="format-detection" content="telephone=no" />
+  <meta http-equiv="x-ua-compatible" content="IE=edge" />
+  
+  <!-- Preconnect to external domains for faster loading -->
+  <link rel="preconnect" href="https://api.exchangerate-api.com" />
+  <link rel="preconnect" href="https://openexchangerates.org" />
+  <link rel="preconnect" href="https://api.polygon.io" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  
+  <!-- DNS prefetch for better performance -->
+  <link rel="dns-prefetch" href="https://www.googletagmanager.com" />
+  <link rel="dns-prefetch" href="https://consent.cookiebot.com" />
+  
+  <!-- Favicon and app icons -->
+  <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+  <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png" />
+  <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
+  <link rel="icon" type="image/png" sizes="16x16" href="/favicon-16x16.png" />
+  <link rel="manifest" href="/manifest.json" />
+  
+  <!-- Open Graph / Social Media -->
+  <meta property="og:type" content="website" />
+  <meta property="og:title" content="Currency to Currency - Real-Time Exchange Rates" />
+  <meta property="og:description" content="Convert currencies in real-time with live exchange rates" />
+  <meta property="og:image" content="/og-image.png" />
+  
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="Currency to Currency" />
+  <meta name="twitter:description" content="Real-time currency conversion" />
+  
+  <title>Currency to Currency - Real-Time Exchange Rates</title>
+  <meta name="description" content="Convert currencies instantly with real-time exchange rates. Track currency pairs, set alerts, and access historical data." />
+  
+  <!-- Inline critical CSS to prevent FOUC (Flash of Unstyled Content) -->
+  <style>
+    /* Critical CSS for initial render - prevents layout shift */
+    html, body {
+      margin: 0;
+      padding: 0;
+      width: 100%;
+      height: 100%;
+      overflow-x: hidden;
+    }
+    
+    body {
+      font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', 'Roboto', 'Oxygen',
+        'Ubuntu', 'Cantarell', 'Fira Sans', 'Droid Sans', 'Helvetica Neue',
+        sans-serif;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+      background-color: hsl(220, 30%, 98%);
+      color: hsl(220, 20%, 15%);
+    }
+    
+    /* Dark mode */
+    @media (prefers-color-scheme: dark) {
+      body {
+        background-color: hsl(220, 25%, 8%);
+        color: hsl(220, 15%, 92%);
+      }
+    }
+    
+    /* Prevent layout shift during load */
+    #root {
+      min-height: 100vh;
+      min-height: 100dvh;
+    }
+    
+    /* Loading spinner - shown until React hydrates */
+    .initial-loader {
+      position: fixed;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      text-align: center;
+    }
+    
+    .initial-loader-spinner {
+      width: 40px;
+      height: 40px;
+      border: 3px solid hsl(220, 15%, 90%);
+      border-top: 3px solid hsl(215, 85%, 55%);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 1rem;
+    }
+    
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+    
+    .initial-loader-text {
+      color: hsl(220, 15%, 45%);
+      font-size: 0.875rem;
+    }
+    
+    /* Hide loader once React mounts */
+    .loaded .initial-loader {
+      display: none;
+    }
+  </style>
+</head>
+<body>
+  <div id="root">
+    <!-- Initial loading state - replaced by React -->
+    <div class="initial-loader">
+      <div class="initial-loader-spinner"></div>
+      <p class="initial-loader-text">Loading Currency Converter...</p>
+    </div>
+  </div>
+  
+  <script type="module" src="/src/main.tsx"></script>
+  
+  <!-- Mark as loaded when React takes over -->
+  <script>
+    window.addEventListener('load', () => {
+      document.body.classList.add('loaded');
+    });
+  </script>
+</body>
+</html>

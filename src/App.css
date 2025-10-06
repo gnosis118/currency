@@ -1,42 +1,135 @@
+/* Mobile-First App.css - Optimized for all devices */
+
 #root {
-  max-width: 1280px;
-  margin: 0 auto;
-  padding: 2rem;
-  text-align: center;
+  width: 100%;
+  min-height: 100vh;
+  min-height: 100dvh; /* Dynamic viewport height for mobile browsers */
 }
 
+/* Mobile-first container */
+.app-container {
+  width: 100%;
+  padding: 1rem;
+  margin: 0 auto;
+}
+
+/* Tablet and up */
+@media (min-width: 768px) {
+  .app-container {
+    padding: 1.5rem;
+    max-width: 768px;
+  }
+}
+
+/* Desktop */
+@media (min-width: 1024px) {
+  .app-container {
+    padding: 2rem;
+    max-width: 1024px;
+  }
+}
+
+/* Large desktop */
+@media (min-width: 1280px) {
+  .app-container {
+    max-width: 1280px;
+  }
+}
+
+/* Logo optimizations - mobile-first */
 .logo {
-  height: 6em;
-  padding: 1.5em;
+  height: 4em;
+  padding: 1em;
   will-change: filter;
   transition: filter 300ms;
 }
+
+@media (min-width: 768px) {
+  .logo {
+    height: 6em;
+    padding: 1.5em;
+  }
+}
+
 .logo:hover {
   filter: drop-shadow(0 0 2em #646cffaa);
 }
+
 .logo.react:hover {
   filter: drop-shadow(0 0 2em #61dafbaa);
 }
 
-@keyframes logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
-}
-
+/* Respect user's motion preferences */
 @media (prefers-reduced-motion: no-preference) {
+  @keyframes logo-spin {
+    from {
+      transform: rotate(0deg);
+    }
+    to {
+      transform: rotate(360deg);
+    }
+  }
+
   a:nth-of-type(2) .logo {
     animation: logo-spin infinite 20s linear;
   }
 }
 
+/* Card optimizations - mobile-first */
 .card {
-  padding: 2em;
+  padding: 1.25rem;
+  border-radius: 0.75rem;
 }
 
+@media (min-width: 768px) {
+  .card {
+    padding: 2em;
+  }
+}
+
+/* Text content */
 .read-the-docs {
   color: #888;
+  font-size: 0.875rem;
+  line-height: 1.5;
+}
+
+@media (min-width: 768px) {
+  .read-the-docs {
+    font-size: 1rem;
+  }
+}
+
+/* Mobile text alignment - left-aligned for better readability */
+.text-content {
+  text-align: left;
+}
+
+.text-center-mobile {
+  text-align: center;
+}
+
+/* Performance optimization - contain layout shifts */
+.contain-layout {
+  content-visibility: auto;
+  contain-intrinsic-size: auto 500px;
+}
+
+/* Mobile-specific utilities */
+@media (max-width: 767px) {
+  /* Prevent text from being too small */
+  .mobile-text {
+    font-size: 16px !important;
+  }
+  
+  /* Better spacing for mobile */
+  .mobile-spacing {
+    margin-bottom: 1rem;
+  }
+  
+  /* Full width on mobile */
+  .mobile-full-width {
+    width: 100%;
+    max-width: 100%;
+  }
 }
