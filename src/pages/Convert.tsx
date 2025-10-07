@@ -245,6 +245,8 @@ const Convert = () => {
     "name": "Currency Converter - Live Exchange Rates",
     "description": "Convert between 150+ currencies with real-time exchange rates. Free currency converter with live rates for fiat currencies and cryptocurrencies.",
     "url": "https://currencytocurrency.app/convert",
+    "inLanguage": "en-US",
+    "isFamilyFriendly": true,
     "mainEntity": {
       "@type": "FinancialProduct",
       "name": "Currency Converter",

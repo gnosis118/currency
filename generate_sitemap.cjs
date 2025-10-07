@@ -50,7 +50,7 @@ const staticPages = [
   { url: 'https://currencytocurrency.app/contact', lastmod: TODAY, changefreq: 'monthly', priority: '0.6' },
   { url: 'https://currencytocurrency.app/privacy-policy', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' },
   { url: 'https://currencytocurrency.app/terms-of-service', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' },
-  { url: 'https://currencytocurrency.app/privacy-hub', lastmod: TODAY, changefreq: 'monthly', priority: '0.5' },
+  { url: 'https://currencytocurrency.app/privacy', lastmod: TODAY, changefreq: 'monthly', priority: '0.5' },
   { url: 'https://currencytocurrency.app/topics', lastmod: TODAY, changefreq: 'weekly', priority: '0.7' },
   { url: 'https://currencytocurrency.app/glossary', lastmod: TODAY, changefreq: 'monthly', priority: '0.7' },
   { url: 'https://currencytocurrency.app/brokers', lastmod: TODAY, changefreq: 'weekly', priority: '0.8' }
@@ -150,10 +150,7 @@ const sitemapIndexContent = `<?xml version="1.0" encoding="UTF-8"?>
     <loc>https://currencytocurrency.app/sitemap-convert.xml</loc>
     <lastmod>${TODAY}</lastmod>
   </sitemap>
-  <sitemap>
-    <loc>https://currencytocurrency.app/sitemap-images.xml</loc>
-    <lastmod>${TODAY}</lastmod>
-  </sitemap>
+
 </sitemapindex>`;
 
 fs.writeFileSync('public/sitemap-index.xml', sitemapIndexContent);

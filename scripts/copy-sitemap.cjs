@@ -55,7 +55,7 @@ function copySitemap() {
     console.log(`📁 Target: ${targetSitemap}`);
 
     // Copy additional sitemaps: index, blog, images
-    const extraFiles = ['sitemap-index.xml', 'sitemap-blog.xml', 'sitemap-images.xml'];
+    const extraFiles = ['sitemap-index.xml', 'sitemap-blog.xml'];
     extraFiles.forEach((name) => {
       const src = path.join(__dirname, '../public', name);
       const dest = path.join(distDir, name);

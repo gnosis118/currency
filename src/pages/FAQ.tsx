@@ -50,11 +50,13 @@ const FAQ = () => {
   const faqStructuredData = {
     "@context": "https://schema.org",
     "@type": "FAQPage",
+    "inLanguage": "en-US",
+    "isFamilyFriendly": true,
     "mainEntity": faqs.map(faq => ({
       "@type": "Question",
       "name": faq.question,
       "acceptedAnswer": {
-        "@type": "Answer", 
+        "@type": "Answer",
         "text": faq.answer
       }
     }))

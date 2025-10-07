@@ -426,6 +426,15 @@ const Index = () => {
         ]
       },
       {
+        "@type": "WebSite",
+        "@id": "https://currencytocurrency.app/#website",
+        "url": "https://currencytocurrency.app/",
+        "name": "Currency to Currency",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": true
+      },
+
+      {
         "@type": "Service",
         "@id": "https://currencytocurrency.app/#service",
         "name": "Currency Conversion Service",

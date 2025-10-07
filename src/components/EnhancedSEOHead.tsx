@@ -39,6 +39,7 @@ const EnhancedSEOHead = ({
     
   return (
     <Helmet>
+      <html lang="en" />
       {/* Google Consent Mode (must precede gtag.js/GTM) */}
       <script data-cookieconsent="ignore">
         {`

@@ -73,6 +73,8 @@ const BlogPost = () => {
     },
     "mainEntityOfPage": { "@type": "WebPage", "@id": `https://currencytocurrency.app/blog/${slug}` },
     "url": `https://currencytocurrency.app/blog/${slug}`,
+    "inLanguage": "en-US",
+    "isFamilyFriendly": true,
     "articleSection": currentPost.category || 'Guide',
     "wordCount": currentPost.wordCount || Math.max(1, (processedContent || '').split(/\s+/).length)
   };
@@ -219,16 +221,28 @@ const BlogPost = () => {
       "@type": "Question",
       "name": q,
       "acceptedAnswer": { "@type": "Answer", "text": a }
+
+
     }))
   } : null;
+
+  const blogBreadcrumb = {
+    "@type": "BreadcrumbList",
+    "itemListElement": [
+      { "@type": "ListItem", "position": 1, "name": "Home", "item": "https://currencytocurrency.app/" },
+      { "@type": "ListItem", "position": 2, "name": "Blog", "item": "https://currencytocurrency.app/blog" },
+      { "@type": "ListItem", "position": 3, "name": effectiveTitle, "item": `https://currencytocurrency.app/blog/${slug}` }
+    ]
+  };
 
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": faqSchema
-      ? [blogPosting, faqSchema]
+      ? [blogPosting, faqSchema, blogBreadcrumb]
       : (explicitFaq
-          ? [blogPosting, explicitFaq]
-          : (fallbackFaqSchema ? [blogPosting, fallbackFaqSchema] : [blogPosting]))
+          ? [blogPosting, explicitFaq, blogBreadcrumb]
+
+          : (fallbackFaqSchema ? [blogPosting, fallbackFaqSchema, blogBreadcrumb] : [blogPosting, blogBreadcrumb]))
   };
 
   // Related posts based on tags/keywords and title similarity
