@@ -93,7 +93,11 @@ const BlogPost = () => {
   let htmlWithAnchors: string | null = null;
   if (isHtmlPost) {
     const seen = new Set<string>();
-    htmlWithAnchors = processedContent.replace(/<h(2|3)([^>]*)>([\s\S]*?)<\/h\1>/gi, (m, lvl, attrs, inner) => {
+    // Demote any H1s in HTML content to H2 to avoid multiple H1s per page (no layout change intended)
+    const contentNoH1 = processedContent
+      .replace(/<h1\b([^>]*)>/gi, '<h2$1>')
+      .replace(/<\/h1>/gi, '</h2>');
+    htmlWithAnchors = contentNoH1.replace(/<h(2|3)([^>]*)>([\s\S]*?)<\/h\1>/gi, (m, lvl, attrs, inner) => {
       const textOnly = String(inner).replace(/<[^>]+>/g, '').trim();
       const idMatch = String(attrs).match(/\bid=["']([^"']+)["']/i);
       let id = idMatch ? idMatch[1] : slugify(textOnly);

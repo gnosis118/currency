@@ -7,6 +7,16 @@ const MobileEnhancement = () => {
   useEffect(() => {
     if (!isMobile) return;
 
+    // Mobile viewport height optimization for better mobile SEO
+    const setMobileVH = () => {
+      const vh = window.innerHeight * 0.01;
+      document.documentElement.style.setProperty('--mobile-vh', `${vh}px`);
+    };
+
+    setMobileVH();
+    window.addEventListener('resize', setMobileVH);
+    window.addEventListener('orientationchange', setMobileVH);
+
     // Enhanced mobile CSS
     const mobileStyles = document.createElement('style');
     mobileStyles.id = 'mobile-enhancement-styles';
@@ -26,13 +36,32 @@ const MobileEnhancement = () => {
           -webkit-tap-highlight-color: rgba(0, 0, 0, 0.1);
         }
 
-        /* Optimize scrolling performance */
+        /* Optimize scrolling performance for mobile SEO */
         * {
           -webkit-overflow-scrolling: touch;
           overflow-scrolling: touch;
         }
 
-        /* Prevent zoom on input focus */
+        /* Mobile performance optimizations */
+        html {
+          -webkit-text-size-adjust: 100%;
+          -ms-text-size-adjust: 100%;
+        }
+
+        body {
+          -webkit-font-smoothing: antialiased;
+          -moz-osx-font-smoothing: grayscale;
+          text-rendering: optimizeSpeed;
+        }
+
+        /* GPU acceleration for smooth animations */
+        .mobile-optimized {
+          transform: translateZ(0);
+          backface-visibility: hidden;
+          perspective: 1000px;
+        }
+
+        /* Prevent zoom on input focus - critical for mobile SEO */
         input[type="text"],
         input[type="number"],
         input[type="email"],
@@ -43,6 +72,19 @@ const MobileEnhancement = () => {
           font-size: 16px !important;
           transform: scale(1);
           -webkit-text-size-adjust: 100%;
+          -webkit-appearance: none;
+          border-radius: 8px;
+          border: 2px solid transparent;
+          transition: border-color 0.2s ease;
+        }
+
+        /* Enhanced focus states for mobile accessibility */
+        input:focus,
+        select:focus,
+        textarea:focus {
+          border-color: #3b82f6;
+          outline: none;
+          box-shadow: 0 0 0 3px rgba(59, 130, 246, 0.1);
         }
 
         /* Improved mobile typography */
@@ -281,10 +323,12 @@ const MobileEnhancement = () => {
 
     // Cleanup
     return () => {
+      window.removeEventListener('resize', setMobileVH);
+      window.removeEventListener('orientationchange', setMobileVH);
       window.removeEventListener('resize', handleResize);
       window.removeEventListener('orientationchange', handleOrientationChange);
       observer.disconnect();
-      
+
       const styles = document.getElementById('mobile-enhancement-styles');
       if (styles) {
         styles.remove();

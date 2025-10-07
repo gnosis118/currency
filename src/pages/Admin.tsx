@@ -23,9 +23,10 @@ const Admin = () => {
   return (
     <div className="min-h-screen bg-background flex items-center justify-center">
       <SEOHead
-        title="Admin - Currency to Currency"
-        description="Admin interface for managing blog content"
+        title="Admin Access - Currency to Currency"
+        description="Administrative access for content management. This page is not indexed by search engines."
         robots="noindex, nofollow"
+        canonical="https://currencytocurrency.app/admin"
       />
 
       <div className="text-center">

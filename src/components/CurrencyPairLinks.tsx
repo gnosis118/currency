@@ -44,7 +44,7 @@ const CurrencyPairLinks = ({ currentPair, className = "" }: CurrencyPairLinksPro
           {displayPairs.map((pair) => (
             <Link
               key={pair.pair}
-              to={`/${pair.pair}`}
+              to={`/convert/${pair.pair.replace('-', '-to-')}`}
               className="group block p-3 bg-muted/30 hover:bg-muted/50 rounded-lg transition-colors"
             >
               <div className="font-semibold text-foreground group-hover:text-primary transition-colors">

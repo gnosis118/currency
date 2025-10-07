@@ -48,6 +48,7 @@ const Auth = () => {
         keywords="login, authentication, currency converter account, secure access"
         structuredData={structuredData}
         pageType="website"
+        noindex={true}
       />
       <Helmet>
         <meta name="robots" content="noindex, nofollow" />

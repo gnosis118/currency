@@ -1,7 +1,20 @@
 # robots.txt for https://currencytocurrency.app
-# Optimized for Google. Last updated: 2025-10-03
+# Optimized for Google Mobile-First Indexing. Last updated: 2025-10-07
 
 User-agent: *
+Allow: /
+
+# Explicit mobile crawler support
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Bingbot-Mobile
 Allow: /
 
 # Disallow authentication and admin pages
@@ -24,7 +37,6 @@ Allow: /assets/
 
 # Sitemap location
 Sitemap: https://currencytocurrency.app/sitemap-index.xml
-Sitemap: https://currencytocurrency.app/sitemap.xml
 
 # Crawl-delay for specific bots to manage load
 User-agent: AhrefsBot

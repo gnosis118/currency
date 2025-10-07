@@ -36,7 +36,7 @@ if (blogPosts.length > 0) {
 // ISO date for lastmod
 const TODAY = new Date().toISOString().split('T')[0];
 
-// Define static pages with their priorities and change frequencies (simple sitemap entries only)
+// Define static pages with their priorities and change frequencies (ONLY canonical, indexable pages)
 const staticPages = [
   { url: 'https://currencytocurrency.app/', lastmod: TODAY, changefreq: 'daily', priority: '1.0' },
   { url: 'https://currencytocurrency.app/convert', lastmod: TODAY, changefreq: 'daily', priority: '0.9' },
@@ -45,8 +45,15 @@ const staticPages = [
   { url: 'https://currencytocurrency.app/travel', lastmod: TODAY, changefreq: 'weekly', priority: '0.8' },
   { url: 'https://currencytocurrency.app/blog', lastmod: TODAY, changefreq: 'weekly', priority: '0.8' },
   { url: 'https://currencytocurrency.app/faq', lastmod: TODAY, changefreq: 'monthly', priority: '0.7' },
+  { url: 'https://currencytocurrency.app/about', lastmod: TODAY, changefreq: 'monthly', priority: '0.6' },
+  { url: 'https://currencytocurrency.app/help', lastmod: TODAY, changefreq: 'monthly', priority: '0.6' },
+  { url: 'https://currencytocurrency.app/contact', lastmod: TODAY, changefreq: 'monthly', priority: '0.6' },
   { url: 'https://currencytocurrency.app/privacy-policy', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' },
-  { url: 'https://currencytocurrency.app/terms-of-service', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' }
+  { url: 'https://currencytocurrency.app/terms-of-service', lastmod: TODAY, changefreq: 'yearly', priority: '0.3' },
+  { url: 'https://currencytocurrency.app/privacy-hub', lastmod: TODAY, changefreq: 'monthly', priority: '0.5' },
+  { url: 'https://currencytocurrency.app/topics', lastmod: TODAY, changefreq: 'weekly', priority: '0.7' },
+  { url: 'https://currencytocurrency.app/glossary', lastmod: TODAY, changefreq: 'monthly', priority: '0.7' },
+  { url: 'https://currencytocurrency.app/brokers', lastmod: TODAY, changefreq: 'weekly', priority: '0.8' }
 ];
 
 // Generate popular currency conversion pages (bi-directional) from top currency list
@@ -76,32 +83,8 @@ staticPages.forEach(page => {
 `;
 });
 
-// Add blog posts
-blogPosts.forEach(post => {
-  const priority = post.featured ? '0.9' : '0.8';
-  const changefreq = post.featured ? 'weekly' : 'monthly';
-
-  sitemapContent += `  <url>
-    <loc>https://currencytocurrency.app/blog/${post.slug}</loc>
-    <lastmod>${post.date}</lastmod>
-    <changefreq>${changefreq}</changefreq>
-    <priority>${priority}</priority>
-  </url>
-
-`;
-});
-
-// Add currency conversion pages
-currencyPairs.forEach(pair => {
-  sitemapContent += `  <url>
-    <loc>https://currencytocurrency.app/convert/${pair}</loc>
-    <lastmod>${TODAY}</lastmod>
-    <changefreq>daily</changefreq>
-    <priority>0.9</priority>
-  </url>
-
-`;
-});
+// Do not include blog posts or currency pairs here to avoid duplication.
+// Blog posts and convert pairs are included in their dedicated sitemaps.
 
 sitemapContent += `</urlset>`;
 

@@ -58,10 +58,14 @@ const SEOHead = ({
       script.type = 'text/javascript';
       document.head.appendChild(script);
     }
-    
+
+    // Normalize lengths to avoid SEO warnings
+    const normalizedTitle = title && title.length > 60 ? `${title.slice(0, 57)}...` : title;
+    const normalizedDescription = description && description.length > 160 ? `${description.slice(0, 157)}...` : description;
+
     // Update document title
-    document.title = title;
-    
+    document.title = normalizedTitle;
+
     // Update or create meta tags
     const updateMetaTag = (name: string, content: string, property = false) => {
       const selector = property ? `meta[property="${name}"]` : `meta[name="${name}"]`;
@@ -81,25 +85,41 @@ const SEOHead = ({
     };
 
     // Basic meta tags
-    updateMetaTag('description', description);
+    updateMetaTag('description', normalizedDescription);
     updateMetaTag('keywords', keywords);
     updateMetaTag('robots', robots);
-    
-    // Open Graph tags
-    updateMetaTag('og:title', title, true);
-    updateMetaTag('og:description', description, true);
+
+    // Mobile-optimized Open Graph tags
+    updateMetaTag('og:title', normalizedTitle, true);
+    updateMetaTag('og:description', normalizedDescription, true);
     updateMetaTag('og:type', ogType, true);
     updateMetaTag('og:url', canonical || window.location.href, true);
     updateMetaTag('og:site_name', 'Currency to Currency', true);
     updateMetaTag('og:locale', 'en_US', true);
     updateMetaTag('og:image', ogImage, true);
+    updateMetaTag('og:image:width', '1200', true);
+    updateMetaTag('og:image:height', '630', true);
+    updateMetaTag('og:image:alt', 'Currency Converter - Live Exchange Rates', true);
 
-    // Twitter tags
+    // Mobile-optimized Twitter tags
     updateMetaTag('twitter:card', 'summary_large_image');
-    updateMetaTag('twitter:title', title);
-    updateMetaTag('twitter:description', description);
+    updateMetaTag('twitter:title', normalizedTitle);
+    updateMetaTag('twitter:description', normalizedDescription);
     updateMetaTag('twitter:url', canonical || window.location.href);
     updateMetaTag('twitter:image', ogImage);
+    updateMetaTag('twitter:image:alt', 'Currency Converter - Live Exchange Rates');
+    updateMetaTag('twitter:site', '@currencytoapp');
+    updateMetaTag('twitter:creator', '@currencytoapp');
+
+    // Mobile app meta tags for better indexing
+    updateMetaTag('mobile-web-app-capable', 'yes');
+    updateMetaTag('apple-mobile-web-app-capable', 'yes');
+    updateMetaTag('apple-mobile-web-app-status-bar-style', 'default');
+    updateMetaTag('apple-mobile-web-app-title', 'Currency Converter');
+    updateMetaTag('application-name', 'Currency Converter');
+    updateMetaTag('msapplication-TileColor', '#3b82f6');
+    updateMetaTag('theme-color', '#3b82f6');
+    updateMetaTag('format-detection', 'telephone=no, date=no, email=no, address=no');
 
     // Canonical URL - ensure all pages have canonical URLs
     let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
@@ -128,7 +148,9 @@ const SEOHead = ({
     ensureAlt('en');
     ensureAlt('x-default');
 
-    // Structured data
+    // Structured data (page-specific only)
+    // We avoid injecting global WebApplication schema to prevent validation issues.
+    // Only add structuredData when explicitly provided by the page.
     if (structuredData) {
       const script = document.createElement('script');
       script.type = 'application/ld+json';

@@ -1,5 +1,5 @@
 import { useEffect } from "react";
-import { Helmet } from 'react-helmet-async';
+import SEOHead from '@/components/SEOHead';
 
 const NotFound = () => {
   useEffect(() => {
@@ -8,11 +8,11 @@ const NotFound = () => {
 
   return (
     <div className="min-h-screen flex items-center justify-center bg-background">
-      <Helmet>
-        <title>Page Not Found (404) - Currency to Currency</title>
-        <meta name="description" content="The page you're looking for doesn't exist. Find currency conversion tools and popular exchange rates on our homepage." />
-        <meta name="robots" content="noindex, follow" />
-      </Helmet>
+      <SEOHead
+        title="Page Not Found (404) - Currency to Currency"
+        description="The page you're looking for doesn't exist. Find currency conversion tools and popular exchange rates on our homepage."
+        robots="noindex, follow"
+      />
       
       <div className="text-center">
         <h1 className="text-6xl font-bold mb-6 text-foreground">404</h1>
