@@ -1,45 +1,23 @@
 // Service Worker for Currency to Currency App
-// Mobile-First Optimized for PWA experience and offline support
+// Optimized for mobile performance and offline support
 
-const CACHE_VERSION = 'v2.0.0';
+const CACHE_VERSION = 'v1.0.0';
 const CACHE_NAME = `currency-converter-${CACHE_VERSION}`;
 
-// Mobile-optimized assets to cache immediately on install
+// Assets to cache immediately on install
 const STATIC_ASSETS = [
   '/',
   '/index.html',
   '/manifest.json',
   '/offline.html', // Fallback page
-  '/icon-192x192.png',
-  '/icon-512x512.png',
-  '/favicon.ico'
 ];
 
 // API endpoints to cache with different strategies
 const API_CACHE_NAME = `currency-api-${CACHE_VERSION}`;
 const API_CACHE_TIME = 5 * 60 * 1000; // 5 minutes
 
-// Mobile-specific cache for images
-const IMAGE_CACHE_NAME = `currency-images-${CACHE_VERSION}`;
-const IMAGE_CACHE_TIME = 24 * 60 * 60 * 1000; // 24 hours
-
-// Network timeout for mobile (optimized for mobile networks)
-const NETWORK_TIMEOUT = 2500; // 2.5 seconds for mobile
-const SLOW_NETWORK_TIMEOUT = 5000; // 5 seconds for slow connections
-
-// Mobile device detection
-const isMobile = () => {
-  return /Android|webOS|iPhone|iPad|iPod|BlackBerry|IEMobile|Opera Mini/i.test(navigator.userAgent);
-};
-
-// Connection speed detection
-const getConnectionSpeed = () => {
-  if ('connection' in navigator) {
-    const connection = navigator.connection;
-    return connection.effectiveType || 'unknown';
-  }
-  return 'unknown';
-};
+// Network timeout for mobile (faster timeout for better UX)
+const NETWORK_TIMEOUT = 3000; // 3 seconds
 
 // Install event - cache static assets
 self.addEventListener('install', (event) => {

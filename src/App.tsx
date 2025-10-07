@@ -9,9 +9,6 @@ import RedirectRoute from "@/components/RedirectRoute";
 import MobileEnhancement from "@/components/MobileEnhancement";
 import MobilePerformance from "@/components/MobilePerformance";
 import CoreWebVitalsMonitor from "@/components/CoreWebVitalsMonitor";
-import MobileBreadcrumbs from "@/components/MobileBreadcrumbs";
-import MobileCoreWebVitals from "@/components/MobileCoreWebVitals";
-import MobileInstallPrompt from "@/components/MobileInstallPrompt";
 import AccessibilityEnhancements from "@/components/AccessibilityEnhancements";
 import CookieConsent from "@/components/CookieConsent";
 import AccessibilityNavigationLink from "@/components/AccessibilityNavigationLink";
@@ -118,14 +115,12 @@ const App = () => {
       <MobileEnhancement />
       <MobilePerformance />
       <CoreWebVitalsMonitor />
-      <MobileCoreWebVitals />
       <AccessibilityEnhancements />
       <BrowserRouter>
         {/* Skip to main content link for accessibility */}
         <AccessibilityNavigationLink />
         <div className="min-h-screen">
           <Header />
-          <MobileBreadcrumbs />
           <ErrorBoundary>
             <React.Suspense fallback={<RouteLoader />}>
               <Routes>
@@ -299,9 +294,6 @@ const App = () => {
 
               {/* Global Cookie Consent Banner */}
               <CookieConsent />
-
-              {/* Mobile PWA Install Prompt */}
-              <MobileInstallPrompt />
 
               {/* Privacy Compliance Checker (Development Only) */}
               <PrivacyComplianceChecker />
