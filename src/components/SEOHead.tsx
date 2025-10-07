@@ -130,7 +130,31 @@ const SEOHead = ({
     }
 
     // If canonical is provided, use it; otherwise, construct from current URL
-    const canonicalUrl = canonical || `https://currencytocurrency.app${window.location.pathname}`;
+    const rawCanonical = canonical || `https://currencytocurrency.app${window.location.pathname}`;
+
+    // Normalize canonical to avoid redirects: enforce https, non-www, lowercase path, no trailing slash (except root)
+    const normalizeCanonical = (u: string) => {
+      try {
+        const url = new URL(u);
+        url.protocol = 'https:';
+        url.hostname = 'currencytocurrency.app';
+        // lowercase pathname without trailing slash (except '/')
+        let p = url.pathname;
+        // normalize convert pair casing
+        p = p.replace(/^\/convert\/(.+)$/i, (m, g1) => `/convert/${String(g1).toLowerCase()}`);
+        // force lowercase for blog slugs
+        p = p.replace(/^\/blog\/(.+)$/i, (m, g1) => `/blog/${String(g1).toLowerCase()}`);
+        if (p !== '/' && p.endsWith('/')) p = p.slice(0, -1);
+        url.pathname = p;
+        url.search = '';
+        url.hash = '';
+        return url.toString();
+      } catch {
+        return u;
+      }
+    };
+
+    const canonicalUrl = normalizeCanonical(rawCanonical);
     link.href = canonicalUrl;
 
     // Hreflang alternates (en, x-default)
