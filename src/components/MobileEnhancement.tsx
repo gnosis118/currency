@@ -1,5 +1,6 @@
 import { useEffect } from 'react';
 import { useIsMobile } from '@/hooks/use-mobile';
+import { Helmet } from 'react-helmet-async';
 
 const MobileEnhancement = () => {
   const isMobile = useIsMobile();
@@ -292,7 +293,30 @@ const MobileEnhancement = () => {
     };
   }, [isMobile]);
 
-  return null;
+  return (
+    <>
+      {isMobile && (
+        <Helmet>
+          {/* Mobile-specific SEO enhancements */}
+          <meta name="format-detection" content="telephone=no" />
+          <meta name="mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-capable" content="yes" />
+          <meta name="apple-mobile-web-app-status-bar-style" content="default" />
+          <meta name="apple-mobile-web-app-title" content="Currency Converter" />
+          <meta name="application-name" content="Currency Converter" />
+
+          {/* Mobile performance hints */}
+          <link rel="preload" href="/manifest.json" as="fetch" crossOrigin="anonymous" />
+          <link rel="preload" href="/sw.js" as="script" />
+
+          {/* Mobile-specific resource hints */}
+          <link rel="dns-prefetch" href="//api.exchangerate-api.com" />
+          <link rel="dns-prefetch" href="//api.coingecko.com" />
+          <link rel="dns-prefetch" href="//api.polygon.io" />
+        </Helmet>
+      )}
+    </>
+  );
 };
 
 export default MobileEnhancement;

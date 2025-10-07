@@ -13,22 +13,46 @@ export default defineConfig({
   build: {
     rollupOptions: {
       output: {
-        manualChunks: {
+        manualChunks: (id) => {
           // Core React libraries
-          vendor: ['react', 'react-dom'],
+          if (id.includes('react') || id.includes('react-dom')) {
+            return 'vendor';
+          }
           // Router and navigation
-          router: ['react-router-dom'],
-          // UI components (split into smaller chunks)
-          'ui-core': ['@radix-ui/react-dialog', '@radix-ui/react-dropdown-menu'],
-          'ui-forms': ['@radix-ui/react-select', '@radix-ui/react-checkbox'],
-          // Charts and data visualization
-          charts: ['recharts'],
+          if (id.includes('react-router-dom')) {
+            return 'router';
+          }
+          // UI components (split into smaller chunks for mobile)
+          if (id.includes('@radix-ui/react-dialog') || id.includes('@radix-ui/react-dropdown-menu')) {
+            return 'ui-core';
+          }
+          if (id.includes('@radix-ui/react-select') || id.includes('@radix-ui/react-checkbox')) {
+            return 'ui-forms';
+          }
+          // Charts and data visualization (lazy load for mobile)
+          if (id.includes('recharts')) {
+            return 'charts';
+          }
           // Query and state management
-          query: ['@tanstack/react-query'],
+          if (id.includes('@tanstack/react-query')) {
+            return 'query';
+          }
           // Utilities and helpers
-          utils: ['date-fns', 'clsx', 'tailwind-merge'],
+          if (id.includes('date-fns') || id.includes('clsx') || id.includes('tailwind-merge')) {
+            return 'utils';
+          }
           // Helmet for SEO
-          seo: ['react-helmet-async'],
+          if (id.includes('react-helmet-async')) {
+            return 'seo';
+          }
+          // Mobile-specific optimizations
+          if (id.includes('web-vitals')) {
+            return 'mobile-core';
+          }
+          // Split blog content for better mobile loading
+          if (id.includes('src/content/blog') || id.includes('mdBlog')) {
+            return 'blog-content';
+          }
         },
         // Optimize chunk naming for better caching
         chunkFileNames: (chunkInfo) => {
@@ -39,8 +63,8 @@ export default defineConfig({
         assetFileNames: 'assets/[name]-[hash].[ext]',
       },
     },
-    // Optimize chunk size for better loading
-    chunkSizeWarningLimit: 500,
+    // Optimize chunk size for mobile performance
+    chunkSizeWarningLimit: 300,
     // Enable CSS code splitting for better performance
     cssCodeSplit: true,
     // Minify CSS and JS
@@ -50,12 +74,20 @@ export default defineConfig({
       compress: {
         drop_console: true,
         drop_debugger: true,
+        // Mobile-specific optimizations
+        passes: 2,
+        pure_funcs: ['console.log', 'console.info', 'console.debug'],
+        unsafe_arrows: true,
+        unsafe_methods: true,
+      },
+      mangle: {
+        safari10: true, // Mobile Safari compatibility
       },
     },
     // Enable source maps for production debugging
     sourcemap: false,
-    // Optimize asset inlining
-    assetsInlineLimit: 4096,
+    // Optimize asset inlining for mobile (smaller limit for better caching)
+    assetsInlineLimit: 2048,
   },
   server: {
     port: 3000,

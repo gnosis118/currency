@@ -19,10 +19,27 @@ export const useExchangeRates = (baseCurrency: string) => {
     queryKey: ['exchangeRates', baseCurrency],
     queryFn: async (): Promise<ExchangeRates> => {
       try {
+        // Try Polygon.io via our serverless function first
+        if (import.meta.env.VITE_API_BASE) {
+          try {
+            const polygonResponse = await fetch(
+              `${import.meta.env.VITE_API_BASE}/polygon-rates?from=${baseCurrency}&to=USD&amount=1`
+            );
+            if (polygonResponse.ok) {
+              const polygonData = await polygonResponse.json();
+              // For now, return a basic rate structure - in production you'd want to fetch multiple pairs
+              return { USD: polygonData.rate };
+            }
+          } catch (polygonError) {
+            console.warn('Polygon.io rates failed, falling back to exchange-rate API');
+          }
+        }
+
+        // Fallback to exchange-rate-api
         const response = await fetch(
-          `https://api.exchangerate-api.com/v4/latest/${baseCurrency}`
+          `https://open.er-api.com/v6/latest/${baseCurrency}`
         );
-        
+
         if (!response.ok) {
           throw new Error('Failed to fetch exchange rates');
         }

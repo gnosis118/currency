@@ -1,8 +1,26 @@
 # robots.txt for https://currencytocurrency.app
-# Optimized for Google. Last updated: 2025-10-03
+# Mobile-First Optimized for Google. Last updated: 2025-10-07
 
 User-agent: *
 Allow: /
+
+# Mobile-specific crawlers
+User-agent: Googlebot
+Allow: /
+
+User-agent: Googlebot-Mobile
+Allow: /
+
+User-agent: Bingbot
+Allow: /
+
+User-agent: Bingbot-Mobile
+Allow: /
+Crawl-delay: 1
+
+User-agent: YandexMobileBot
+Allow: /
+Crawl-delay: 2
 
 # Disallow authentication and admin pages
 Disallow: /auth
@@ -32,3 +50,31 @@ Crawl-delay: 10
 
 User-agent: SemrushBot
 Crawl-delay: 10
+
+# Block AI training bots
+User-agent: GPTBot
+Disallow: /
+
+User-agent: CCBot
+Disallow: /
+
+User-agent: ChatGPT-User
+Disallow: /
+
+User-agent: Claude-Web
+Disallow: /
+
+User-agent: anthropic-ai
+Disallow: /
+
+User-agent: PerplexityBot
+Disallow: /
+
+User-agent: YouBot
+Disallow: /
+
+User-agent: Applebot-Extended
+Disallow: /
+
+User-agent: FacebookBot
+Disallow: /

@@ -4,6 +4,7 @@ import { InstallPrompt } from '@/components/InstallPrompt';
 import PopularPairs from '@/components/PopularPairs';
 import CurrencyGuide from '@/components/CurrencyGuide';
 import SEOHead from '@/components/SEOHead';
+import MobileFirstSEO from '@/components/MobileFirstSEO';
 import InternalLinking from '@/components/InternalLinking';
 import WebPOptimizedImage from '@/components/WebPOptimizedImage';
 import SocialShare from '@/components/SocialShare';
@@ -549,6 +550,15 @@ const Index = () => {
           keywords="currency converter, exchange rates, live rates, cryptocurrency prices, currency conversion, foreign exchange, forex, bitcoin converter, real-time rates, USD to EUR, GBP to USD, currency calculator, money converter"
           canonical="https://currencytocurrency.app/"
           robots="index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
+          structuredData={structuredData}
+        />
+        <MobileFirstSEO
+          title="Mobile Currency Converter - Real-time Exchange Rates"
+          description="Mobile-optimized currency converter with real-time exchange rates. Convert 150+ currencies instantly on your mobile device with offline support and PWA features."
+          keywords="mobile currency converter, mobile exchange rates, mobile forex, currency app, mobile money converter, real-time rates mobile"
+          canonical="https://currencytocurrency.app/"
+          mobileOptimized={true}
+          pageType="website"
           structuredData={structuredData}
         />
         {/* Hero Section */}

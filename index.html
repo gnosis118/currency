@@ -5,7 +5,8 @@
     <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png" />
     <link rel="apple-touch-icon" sizes="180x180" href="/favicon.svg" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <!-- Enhanced Mobile-First Viewport Configuration -->
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes, viewport-fit=cover, shrink-to-fit=no" />
 
     <!-- Critical CSS inlined for fastest FCP -->
     <style>
@@ -63,6 +64,9 @@
     <link rel="dns-prefetch" href="//www.googletagmanager.com">
     <link rel="dns-prefetch" href="//api.exchangerate-api.com">
     <link rel="dns-prefetch" href="//api.coingecko.com">
+    <link rel="dns-prefetch" href="//api.polygon.io">
+    <link rel="preconnect" href="https://api.polygon.io" crossorigin>
+    <link rel="preconnect" href="https://open.er-api.com" crossorigin>
 
     <!-- Google Consent Mode (must precede gtag.js/GTM) -->
     <script data-cookieconsent="ignore">
@@ -299,10 +303,33 @@
     <link rel="dns-prefetch" href="//googletagmanager.com">
     <link rel="dns-prefetch" href="//identity.netlify.com">
     
-    <!-- Theme Color -->
+    <!-- Enhanced Mobile Theme Colors -->
     <meta name="theme-color" content="#2563eb">
+    <meta name="theme-color" media="(prefers-color-scheme: light)" content="#2563eb">
+    <meta name="theme-color" media="(prefers-color-scheme: dark)" content="#1e40af">
     <meta name="msapplication-TileColor" content="#2563eb">
-    
+    <meta name="msapplication-navbutton-color" content="#2563eb">
+
+    <!-- Mobile Web App Capabilities -->
+    <meta name="apple-mobile-web-app-capable" content="yes">
+    <meta name="apple-mobile-web-app-status-bar-style" content="default">
+    <meta name="apple-mobile-web-app-title" content="Currency Converter">
+    <meta name="mobile-web-app-capable" content="yes">
+    <meta name="application-name" content="Currency Converter">
+
+    <!-- Mobile-Optimized Open Graph -->
+    <meta property="og:image:width" content="1200">
+    <meta property="og:image:height" content="630">
+    <meta property="og:image:alt" content="Currency Converter - Real-time Exchange Rates">
+
+    <!-- Mobile-Specific Twitter Cards -->
+    <meta name="twitter:image:width" content="1200">
+    <meta name="twitter:image:height" content="600">
+    <meta name="twitter:image:alt" content="Currency Converter - Real-time Exchange Rates">
+
+    <!-- PWA Manifest -->
+    <link rel="manifest" href="/manifest.json">
+
     <!-- Favicon -->
     <link rel="apple-touch-icon" sizes="180x180" href="/apple-touch-icon.png">
     <link rel="icon" type="image/png" sizes="32x32" href="/favicon-32x32.png">
