@@ -76,10 +76,9 @@ function ampHtmlTemplate({ title, description, canonical, body }) {
 
 function prerenderCurrencyPairs() {
   const TODAY = new Date().toISOString().split('T')[0];
-  const pairs = [
-    'usd-to-eur','usd-to-gbp','usd-to-jpy','eur-to-gbp','usd-to-cad','usd-to-aud','usd-to-chf',
-    'gbp-to-usd','eur-to-usd','jpy-to-usd','aud-to-usd','cad-to-usd','chf-to-usd','nzd-to-usd','sek-to-usd'
-  ];
+  const majors = ['usd','eur','gbp','jpy','aud','cad','chf','nzd','cny','inr','hkd','sgd','sek','nok','mxn','zar'];
+  const pairs = [];
+  for (const a of majors) for (const b of majors) { if (a !== b) pairs.push(`${a}-to-${b}`); }
   let count = 0;
   for (const pair of pairs) {
     const [from, to] = pair.split('-to-');

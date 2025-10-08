@@ -13,6 +13,7 @@ import { Tabs, TabsContent, TabsList, TabsTrigger } from '@/components/ui/tabs';
 import { ArrowUpDown, RefreshCw, TrendingUp, TrendingDown, BarChart3, Bell, Plane } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
 import { convertAPI } from '@/utils/api';
+import { fetchCurrentRateCached } from '@/services/polygon-api-service';
 
 interface ExchangeRates {
   [key: string]: number;
@@ -166,10 +167,8 @@ const CurrencyConverter = () => {
   const fetchExchangeRates = useCallback(async (baseCurrency: string) => {
     try {
       setFiatLoading(true);
-      // Use centralized OpenExchangeRates service
-      const { getLatestRates } = await import('@/services/exchangeRatesService');
-      const rates = await getLatestRates(baseCurrency);
-      setExchangeRates(rates);
+      const rate = await fetchCurrentRateCached(baseCurrency, toCurrency);
+      setExchangeRates({ [toCurrency]: rate });
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Exchange rate fetch error:', error);
@@ -181,7 +180,7 @@ const CurrencyConverter = () => {
     } finally {
       setFiatLoading(false);
     }
-  }, [toast]);
+  }, [toast, toCurrency]);
 
   const fetchCryptoPrice = useCallback(async (cryptoId: string, vsCurrency: string) => {
     try {
@@ -206,7 +205,7 @@ const CurrencyConverter = () => {
 
   useEffect(() => {
     fetchExchangeRates(fromCurrency);
-  }, [fromCurrency, fetchExchangeRates]);
+  }, [fromCurrency, toCurrency, fetchExchangeRates]);
 
   useEffect(() => {
     fetchCryptoPrice(selectedCrypto, cryptoTargetCurrency);
@@ -564,7 +563,7 @@ const CurrencyConverter = () => {
             </div>
           )}
           <div className="mt-2">
-            Exchange rates powered by Exchange Rates API • Cryptocurrency data by CoinGecko
+            Exchange rates powered by Polygon.io • Cryptocurrency data by CoinGecko
           </div>
           <div className="mt-4 space-x-4">
             <a href="/privacy-policy" className="hover:text-foreground underline">

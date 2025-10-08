@@ -4,6 +4,7 @@ import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 import { loadAllBlogPosts } from '@/data/mdBlog';
 import CurrencyPairLinks from '@/components/CurrencyPairLinks';
 import BreadcrumbNav from '@/components/BreadcrumbNav';
+import { fetchCurrentRateCached } from '@/services/polygon-api-service';
 
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
@@ -48,10 +49,8 @@ const CurrencyPair = () => {
   const fetchExchangeRates = async (baseCurrency: string) => {
     try {
       setLoading(true);
-      const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
-      if (!response.ok) throw new Error('Failed to fetch exchange rates');
-      const data = await response.json();
-      setExchangeRates(data.rates);
+      const rate = await fetchCurrentRateCached(baseCurrency, toCurrency);
+      setExchangeRates({ [toCurrency]: rate });
       setLastUpdated(new Date());
     } catch (error) {
       console.error('Exchange rate fetch error:', error);
@@ -67,7 +66,7 @@ const CurrencyPair = () => {
 
   useEffect(() => {
     fetchExchangeRates(fromCurrency);
-  }, [fromCurrency]);
+  }, [fromCurrency, toCurrency]);
 
   const convertedAmount = () => {
     const numAmount = parseFloat(amount);
