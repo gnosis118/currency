@@ -11,6 +11,8 @@
 const fs = require('fs');
 const path = require('path');
 
+const OUTPUT_BASE = process.env.PRERENDER_OUT_DIR || (fs.existsSync('dist') ? 'dist' : 'public');
+
 function ensureDir(dir) {
   fs.mkdirSync(dir, { recursive: true });
 }
@@ -117,8 +119,8 @@ function prerenderCurrencyPairs() {
       </article>
     `;
     const ampHtml = ampHtmlTemplate({ title, description, canonical, body: ampBody });
-    const out = path.join('public', 'convert', pair, 'index.html');
-    const outAmp = path.join('public', 'convert', pair, 'amp', 'index.html');
+    const out = path.join(OUTPUT_BASE, 'convert', pair, 'index.html');
+    const outAmp = path.join(OUTPUT_BASE, 'convert', pair, 'amp', 'index.html');
     writeFile(out, html);
     writeFile(outAmp, ampHtml);
     count++;
