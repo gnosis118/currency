@@ -3,6 +3,8 @@ import { useParams, Link } from 'react-router-dom';
 import EnhancedSEOHead from '@/components/EnhancedSEOHead';
 import { loadAllBlogPosts } from '@/data/mdBlog';
 import CurrencyPairLinks from '@/components/CurrencyPairLinks';
+import BreadcrumbNav from '@/components/BreadcrumbNav';
+
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Button } from '@/components/ui/button';
 import { Input } from '@/components/ui/input';
@@ -123,13 +125,17 @@ const CurrencyPair = () => {
   return (
     <div className="min-h-screen bg-background p-4">
       <EnhancedSEOHead
-        title={`${fromCurrency} to ${toCurrency} Converter - Live Exchange Rate | Currency to Currency`}
-        description={`Convert ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)} with real-time exchange rates. Live currency conversion rates updated every few minutes for accurate results.`}
+        title={`${fromCurrency} to ${toCurrency} — Live Rate & Converter (Today) | Currency to Currency`}
+        description={`Today's ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)} rate. Convert with live exchange rates and a fast calculator — updated every few minutes.`}
         canonicalUrl={`https://currencytocurrency.app/convert/${fromCurrency.toLowerCase()}-to-${toCurrency.toLowerCase()}`}
         keywords={`${fromCurrency} to ${toCurrency}, ${fromCurrency}${toCurrency}, ${getCurrencyName(fromCurrency)} to ${getCurrencyName(toCurrency)}, currency converter, exchange rate, live rates`}
         structuredData={structuredData}
         pageType="product"
+
+
       />
+      <BreadcrumbNav className="mb-4" jsonLd={false} />
+
       <div className="max-w-4xl mx-auto">
         <div className="text-center mb-8">
           <h1 className="text-4xl font-bold text-foreground mb-2">

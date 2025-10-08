@@ -11,9 +11,10 @@ import { useEffect } from 'react';
 
 interface BreadcrumbNavProps {
   className?: string;
+  jsonLd?: boolean;
 }
 
-const BreadcrumbNav = ({ className }: BreadcrumbNavProps) => {
+const BreadcrumbNav = ({ className, jsonLd = true }: BreadcrumbNavProps) => {
   const location = useLocation();
   
   const pathSegments = location.pathname.split('/').filter(Boolean);
@@ -33,7 +34,7 @@ const BreadcrumbNav = ({ className }: BreadcrumbNavProps) => {
 
   useEffect(() => {
     // Enhanced breadcrumb structured data with organization context
-    if (breadcrumbItems.length > 1) {
+    if (jsonLd && breadcrumbItems.length > 1) {
       const script = document.createElement('script');
       script.type = 'application/ld+json';
       script.text = JSON.stringify({
@@ -75,7 +76,7 @@ const BreadcrumbNav = ({ className }: BreadcrumbNavProps) => {
         }
       };
     }
-  }, [location.pathname]);
+  }, [location.pathname, jsonLd]);
 
   if (breadcrumbItems.length <= 1) return null;
 
