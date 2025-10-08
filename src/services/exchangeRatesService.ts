@@ -3,7 +3,7 @@
  * Centralized service for fetching and caching exchange rates from OpenExchangeRates.org
  */
 
-const API_KEY = '669f46bf3291450b876bd2a28d8410e6';
+const API_KEY = (import.meta as any)?.env?.VITE_OPENEXCHANGERATES_KEY || '669f46bf3291450b876bd2a28d8410e6';
 const BASE_URL = 'https://openexchangerates.org/api';
 
 interface ExchangeRatesResponse {
@@ -39,30 +39,62 @@ export async function getLatestRates(baseCurrency: string = 'USD'): Promise<{ [k
   }
 
   try {
-    const url = `${BASE_URL}/latest.json?app_id=${API_KEY}&base=${baseCurrency}`;
-    const response = await fetch(url);
+    // 1) Prefer OpenExchangeRates if key is available. Request USD base (default) then normalize to desired base.
+    if (API_KEY) {
+      const oxrUrl = `${BASE_URL}/latest.json?app_id=${API_KEY}`; // default base is USD on free plan
+      const oxrResponse = await fetch(oxrUrl);
+      if (oxrResponse.ok) {
+        const data: ExchangeRatesResponse = await oxrResponse.json();
+        let normalizedRates: { [key: string]: number } = { ...data.rates };
+        let normalizedBase = (data.base || 'USD').toUpperCase();
 
-    if (!response.ok) {
-      throw new Error(`API request failed: ${response.status}`);
+        const targetBase = (baseCurrency || 'USD').toUpperCase();
+        if (targetBase !== normalizedBase) {
+          const factor = data.rates[targetBase];
+          if (factor && factor > 0) {
+            const out: { [key: string]: number } = {};
+            for (const code of Object.keys(data.rates)) {
+              out[code] = data.rates[code] / factor;
+            }
+            out[targetBase] = 1;
+            normalizedRates = out;
+            normalizedBase = targetBase;
+          } else {
+            // If target base not present in OXR response, fall back to open.er-api.com below
+            console.warn(`OXR missing rate for ${targetBase}, falling back to open.er-api.com`);
+          }
+        }
+
+        if (normalizedBase === targetBase) {
+          cachedRates = {
+            rates: normalizedRates,
+            timestamp: Date.now(),
+            base: normalizedBase,
+          };
+          try { localStorage.setItem('exchangeRatesCache', JSON.stringify(cachedRates)); } catch {}
+          return normalizedRates;
+        }
+      }
     }
 
-    const data: ExchangeRatesResponse = await response.json();
-
-    // Update cache
-    cachedRates = {
-      rates: data.rates,
-      timestamp: Date.now(),
-      base: data.base
-    };
-
-    // Also cache in localStorage for persistence
-    try {
-      localStorage.setItem('exchangeRatesCache', JSON.stringify(cachedRates));
-    } catch (e) {
-      console.warn('Failed to cache rates in localStorage:', e);
+    // 2) Fallback: open.er-api.com (no key required)
+    const erUrl = `https://open.er-api.com/v6/latest/${baseCurrency}`;
+    const erResponse = await fetch(erUrl);
+    if (erResponse.ok) {
+      const erData = await erResponse.json();
+      const rates = erData?.rates as { [key: string]: number };
+      if (rates && typeof rates === 'object') {
+        cachedRates = {
+          rates,
+          timestamp: Date.now(),
+          base: (baseCurrency || 'USD').toUpperCase(),
+        };
+        try { localStorage.setItem('exchangeRatesCache', JSON.stringify(cachedRates)); } catch {}
+        return rates;
+      }
     }
 
-    return data.rates;
+    throw new Error('All providers failed for latest rates');
   } catch (error) {
     console.error('Error fetching exchange rates:', error);
 
