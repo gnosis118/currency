@@ -21,8 +21,10 @@ const SEOHead = ({
   structuredData,
   robots = "index, follow, max-image-preview:large, max-snippet:-1, max-video-preview:-1"
 }: SEOHeadProps) => {
-  
+
   useEffect(() => {
+    // Set HTML lang attribute
+    document.documentElement.setAttribute('lang', 'en');
     // Add Google Consent Mode if not already present
     if (!document.querySelector('script[data-cookieconsent="ignore"]')) {
       const consentScript = document.createElement('script');
@@ -84,51 +86,7 @@ const SEOHead = ({
       meta.setAttribute('content', content);
     };
 
-    // Basic meta tags
-    updateMetaTag('description', normalizedDescription);
-    updateMetaTag('keywords', keywords);
-    updateMetaTag('robots', robots);
-
-    // Mobile-optimized Open Graph tags
-    updateMetaTag('og:title', normalizedTitle, true);
-    updateMetaTag('og:description', normalizedDescription, true);
-    updateMetaTag('og:type', ogType, true);
-    updateMetaTag('og:url', canonical || window.location.href, true);
-    updateMetaTag('og:site_name', 'Currency to Currency', true);
-    updateMetaTag('og:locale', 'en_US', true);
-    updateMetaTag('og:image', ogImage, true);
-    updateMetaTag('og:image:width', '1200', true);
-    updateMetaTag('og:image:height', '630', true);
-    updateMetaTag('og:image:alt', 'Currency Converter - Live Exchange Rates', true);
-
-    // Mobile-optimized Twitter tags
-    updateMetaTag('twitter:card', 'summary_large_image');
-    updateMetaTag('twitter:title', normalizedTitle);
-    updateMetaTag('twitter:description', normalizedDescription);
-    updateMetaTag('twitter:url', canonical || window.location.href);
-    updateMetaTag('twitter:image', ogImage);
-    updateMetaTag('twitter:image:alt', 'Currency Converter - Live Exchange Rates');
-    updateMetaTag('twitter:site', '@currencytoapp');
-    updateMetaTag('twitter:creator', '@currencytoapp');
-
-    // Mobile app meta tags for better indexing
-    updateMetaTag('mobile-web-app-capable', 'yes');
-    updateMetaTag('apple-mobile-web-app-capable', 'yes');
-    updateMetaTag('apple-mobile-web-app-status-bar-style', 'default');
-    updateMetaTag('apple-mobile-web-app-title', 'Currency Converter');
-    updateMetaTag('application-name', 'Currency Converter');
-    updateMetaTag('msapplication-TileColor', '#3b82f6');
-    updateMetaTag('theme-color', '#3b82f6');
-    updateMetaTag('format-detection', 'telephone=no, date=no, email=no, address=no');
-
-    // Canonical URL - ensure all pages have canonical URLs
-    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
-    if (!link) {
-      link = document.createElement('link');
-      link.rel = 'canonical';
-      document.head.appendChild(link);
-    }
-
+    // Canonical URL - normalize first before using in meta tags
     // If canonical is provided, use it; otherwise, construct from current URL
     const rawCanonical = canonical || `https://currencytocurrency.app${window.location.pathname}`;
 
@@ -155,7 +113,52 @@ const SEOHead = ({
     };
 
     const canonicalUrl = normalizeCanonical(rawCanonical);
+
+    // Set canonical link
+    let link = document.querySelector('link[rel="canonical"]') as HTMLLinkElement;
+    if (!link) {
+      link = document.createElement('link');
+      link.rel = 'canonical';
+      document.head.appendChild(link);
+    }
     link.href = canonicalUrl;
+
+    // Basic meta tags
+    updateMetaTag('description', normalizedDescription);
+    updateMetaTag('keywords', keywords);
+    updateMetaTag('robots', robots);
+
+    // Mobile-optimized Open Graph tags - MUST use canonicalUrl to match canonical link
+    updateMetaTag('og:title', normalizedTitle, true);
+    updateMetaTag('og:description', normalizedDescription, true);
+    updateMetaTag('og:type', ogType, true);
+    updateMetaTag('og:url', canonicalUrl, true);
+    updateMetaTag('og:site_name', 'Currency to Currency', true);
+    updateMetaTag('og:locale', 'en_US', true);
+    updateMetaTag('og:image', ogImage, true);
+    updateMetaTag('og:image:width', '1200', true);
+    updateMetaTag('og:image:height', '630', true);
+    updateMetaTag('og:image:alt', 'Currency Converter - Live Exchange Rates', true);
+
+    // Mobile-optimized Twitter tags - MUST use canonicalUrl to match canonical link
+    updateMetaTag('twitter:card', 'summary_large_image');
+    updateMetaTag('twitter:title', normalizedTitle);
+    updateMetaTag('twitter:description', normalizedDescription);
+    updateMetaTag('twitter:url', canonicalUrl);
+    updateMetaTag('twitter:image', ogImage);
+    updateMetaTag('twitter:image:alt', 'Currency Converter - Live Exchange Rates');
+    updateMetaTag('twitter:site', '@currencytoapp');
+    updateMetaTag('twitter:creator', '@currencytoapp');
+
+    // Mobile app meta tags for better indexing
+    updateMetaTag('mobile-web-app-capable', 'yes');
+    updateMetaTag('apple-mobile-web-app-capable', 'yes');
+    updateMetaTag('apple-mobile-web-app-status-bar-style', 'default');
+    updateMetaTag('apple-mobile-web-app-title', 'Currency Converter');
+    updateMetaTag('application-name', 'Currency Converter');
+    updateMetaTag('msapplication-TileColor', '#3b82f6');
+    updateMetaTag('theme-color', '#3b82f6');
+    updateMetaTag('format-detection', 'telephone=no, date=no, email=no, address=no');
 
     // Hreflang alternates (en, x-default)
     const ensureAlt = (hreflang: string) => {

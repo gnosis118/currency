@@ -31,16 +31,47 @@ function htmlTemplate({ title, description, canonical, body, robots = 'index, fo
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=5" />
   <title>${title}</title>
   <meta name="description" content="${description}" />
   <meta name="robots" content="${robots}" />
   <link rel="canonical" href="${canonical}" />${amp}
+
+  <!-- Performance optimizations -->
+  <link rel="preconnect" href="https://api.polygon.io" crossorigin />
+  <link rel="dns-prefetch" href="//api.polygon.io" />
+  <link rel="dns-prefetch" href="//fonts.googleapis.com" />
+  <link rel="dns-prefetch" href="//www.googletagmanager.com" />
+
+  <!-- Open Graph / Social Media -->
   <meta property="og:type" content="website" />
   <meta property="og:title" content="${title}" />
   <meta property="og:description" content="${description}" />
   <meta property="og:url" content="${canonical}" />
+  <meta property="og:site_name" content="Currency to Currency" />
+  <meta property="og:locale" content="en_US" />
+  <meta property="og:image" content="https://currencytocurrency.app/og-image.jpg" />
+  <meta property="og:image:width" content="1200" />
+  <meta property="og:image:height" content="630" />
+
+  <!-- Twitter Card -->
+  <meta name="twitter:card" content="summary_large_image" />
+  <meta name="twitter:title" content="${title}" />
+  <meta name="twitter:description" content="${description}" />
+  <meta name="twitter:url" content="${canonical}" />
+  <meta name="twitter:image" content="https://currencytocurrency.app/og-image.jpg" />
+
+  <!-- Mobile optimization -->
+  <meta name="theme-color" content="#3b82f6" />
+  <meta name="mobile-web-app-capable" content="yes" />
+  <meta name="apple-mobile-web-app-capable" content="yes" />
+  <meta name="format-detection" content="telephone=no" />
+
   ${ld}
+
+  <!-- Deferred CSS loading for better FCP -->
+  <link rel="preload" href="/assets/index.css" as="style" onload="this.onload=null;this.rel='stylesheet'" />
+  <noscript><link rel="stylesheet" href="/assets/index.css" /></noscript>
 </head>
 <body>
   <noscript>
@@ -49,9 +80,13 @@ function htmlTemplate({ title, description, canonical, body, robots = 'index, fo
       <p>${description}</p>
     </header>
   </noscript>
-  <main>
-    ${body}
-  </main>
+  <div id="root">
+    <main>
+      ${body}
+    </main>
+  </div>
+  <!-- Deferred JavaScript loading for better TTI -->
+  <script type="module" src="/src/main.tsx" defer></script>
 </body>
 </html>`;
 }
@@ -103,19 +138,47 @@ function prerenderCurrencyPairs() {
       },
       dateModified: TODAY
     };
+    // Generate related currency pairs for internal linking
+    const relatedPairs = [];
+    const otherMajors = majors.filter(c => c !== from && c !== to).slice(0, 6);
+    for (const other of otherMajors) {
+      relatedPairs.push(`${from}-to-${other}`);
+      relatedPairs.push(`${to}-to-${other}`);
+    }
+    const uniqueRelated = [...new Set(relatedPairs)].slice(0, 8);
+
+    const relatedLinks = uniqueRelated.map(p => {
+      const [f, t] = p.split('-to-');
+      return `<a href="/convert/${p}">${f.toUpperCase()} to ${t.toUpperCase()}</a>`;
+    }).join(' | ');
+
     const body = `
       <article>
-        <h1>${FROM} to ${TO} Converter</h1>
-        <p>Real-time conversion from ${FROM} to ${TO}. This page is prerendered for faster discovery by search engines.</p>
-        <p><a href="/convert/${pair}">Open interactive converter</a></p>
+        <h1>${FROM} to ${TO} Currency Converter</h1>
+        <p>Convert ${FROM} (${from.toUpperCase()}) to ${TO} (${to.toUpperCase()}) with real-time exchange rates. Our free currency converter provides accurate, up-to-date conversion rates for ${FROM} to ${TO} and supports over 150 global currencies.</p>
+
+        <h2>How to Convert ${FROM} to ${TO}</h2>
+        <p>Use our interactive ${FROM} to ${TO} converter to get instant exchange rates. Simply enter the amount you want to convert, and our calculator will show you the current ${FROM} to ${TO} exchange rate along with historical charts and trends.</p>
+
+        <h2>Current ${FROM} to ${TO} Exchange Rate</h2>
+        <p>The ${FROM} to ${TO} exchange rate updates in real-time. Our converter uses live market data to ensure you get the most accurate ${FROM} to ${TO} conversion rates available. Track ${FROM} to ${TO} trends with our historical charts and set price alerts to monitor rate changes.</p>
+
+        <h2>Related Currency Conversions</h2>
+        <p>${relatedLinks}</p>
+
+        <p><strong><a href="/convert/${pair}">Open Interactive ${FROM} to ${TO} Converter →</a></strong></p>
+
+        <p>Looking for more currency tools? Visit our <a href="/charts">currency charts</a>, set up <a href="/alerts">price alerts</a>, or explore our <a href="/blog">currency exchange guides</a>.</p>
       </article>
     `;
     const html = htmlTemplate({ title, description, canonical, body, structuredData, amphtml });
     const ampBody = `
       <article>
         <h1>${FROM} to ${TO} Converter</h1>
-        <p>Real-time conversion from ${FROM} to ${TO}. Fast, lightweight AMP version.</p>
-        <p><a href="/convert/${pair}">Open interactive converter</a></p>
+        <p>Convert ${FROM} to ${TO} with real-time exchange rates. Free ${FROM}-${TO} currency converter with live market data.</p>
+        <h2>Related Conversions</h2>
+        <p>${relatedLinks}</p>
+        <p><a href="/convert/${pair}">Open Interactive Converter</a></p>
       </article>
     `;
     const ampHtml = ampHtmlTemplate({ title, description, canonical, body: ampBody });

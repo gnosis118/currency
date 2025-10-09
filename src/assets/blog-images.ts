@@ -12,6 +12,7 @@ import currencyExchangeSitesHero from './currency-exchange-sites-hero.jpg';
 import currencyHedgingBusiness from './currency-hedging-business.jpg';
 import currencySafetyHero from './currency-safety-hero.jpg';
 import currencyVolatilityDomino from './currency-volatility-domino.jpg';
+import usdEurHero from './usd-eur-hero.jpg';
 
 // Digital Nomad & Remote Work
 import digitalNomadLaptop from './digital-nomad-laptop.jpg';
@@ -115,7 +116,7 @@ export const blogImageMap: Record<string, string> = {
   'currency-conversion-tax-traps-irs-rules-international-freelancers-miss': currencyAnalytics,
   'what-156-fiat-536-crypto-currencies-means-for-global-users-impact-and-insights': economicTrendsGlobal,
   'understanding-currency-conversion-a-comprehensive-guide': currencyCalculatorGuide,
-  'ultimate-currency-conversion-guide-2025': exchangeRatesGuide,
+  'ultimate-currency-conversion-guide-2025': usdEurHero,
   'the-15-minute-currency-window-why-exchange-rates-change-most-during-these-daily-periods-explained': currencyCodesGuide,
   'currency-to-currency-vs-leading-alternatives-feature-by-feature-comparison': currencyComparison,
 
@@ -243,7 +244,8 @@ export {
   bitcoinVsTraditionalCurrency,
   bankVsOnlineExchange,
   chartsHero,
-  trumpTariffsCurrencyImpact
+  trumpTariffsCurrencyImpact,
+  usdEurHero
 };
 
 // Default export for compatibility with dynamic imports
@@ -287,5 +289,6 @@ export default {
   bitcoinVsTraditionalCurrency,
   bankVsOnlineExchange,
   chartsHero,
-  trumpTariffsCurrencyImpact
+  trumpTariffsCurrencyImpact,
+  usdEurHero
 };

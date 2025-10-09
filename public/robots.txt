@@ -1,5 +1,5 @@
 # robots.txt for https://currencytocurrency.app
-# Optimized for Google Mobile-First Indexing. Last updated: 2025-10-07
+# Optimized for Google Mobile-First Indexing. Last updated: 2025-10-08
 
 User-agent: *
 Allow: /
@@ -29,6 +29,33 @@ Disallow: /admin/*
 
 # Disallow API endpoints (if any served from same domain)
 Disallow: /api/
+
+# Disallow old redirect patterns (301 redirects to /convert/* - prevent duplicate indexing)
+# These patterns redirect to canonical /convert/{pair} URLs
+Disallow: /usd-eur
+Disallow: /usd-gbp
+Disallow: /usd-jpy
+Disallow: /usd-cad
+Disallow: /usd-aud
+Disallow: /usd-chf
+Disallow: /usd-inr
+Disallow: /usd-cny
+Disallow: /usd-krw
+Disallow: /gbp-usd
+Disallow: /gbp-eur
+Disallow: /eur-usd
+Disallow: /eur-gbp
+Disallow: /eur-jpy
+Disallow: /jpy-usd
+Disallow: /jpy-eur
+Disallow: /aud-usd
+Disallow: /cad-usd
+Disallow: /chf-usd
+Disallow: /nzd-usd
+Disallow: /sek-usd
+Disallow: /inr-usd
+Disallow: /cny-usd
+Disallow: /krw-usd
 
 # Allow specific assets
 Allow: /_next/static/css/
