@@ -325,10 +325,13 @@ export function normalizePairUrl(from: string, to: string): string {
   return `/convert/${from.toLowerCase()}-to-${to.toLowerCase()}`;
 }
 
-// Get canonical URL
+// Get canonical URL - ALWAYS add trailing slash for consistency (except root)
 export function getCanonicalUrl(path: string): string {
+  // Remove trailing slash first to normalize
   const cleanPath = path.endsWith('/') && path !== '/' ? path.slice(0, -1) : path;
-  return `https://currencytocurrency.app${cleanPath}`;
+  // Add trailing slash back (except for root path)
+  const finalPath = cleanPath === '' || cleanPath === '/' ? '/' : `${cleanPath}/`;
+  return `https://currencytocurrency.app${finalPath}`;
 }
 
 export default {

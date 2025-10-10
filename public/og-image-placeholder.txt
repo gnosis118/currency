@@ -1,0 +1,4 @@
+# OG Image Placeholder
+# This file is a temporary placeholder
+# The actual og-image.jpg should be created from home-hero.jpg or logo.jpg
+

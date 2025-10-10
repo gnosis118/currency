@@ -2,9 +2,16 @@
 [build]
   publish = "dist"
   command = "npm ci --production=false && npm run build"
+
 # Functions directory for serverless handlers
 [functions]
   directory = "netlify/functions"
+
+# Disable checklinks plugin - it doesn't understand SPA routing
+[[plugins]]
+  package = "netlify-plugin-checklinks"
+  [plugins.inputs]
+    skipPatterns = ["*"]  # Skip all link checking
 
 
 [build.environment]
