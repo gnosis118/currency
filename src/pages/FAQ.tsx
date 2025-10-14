@@ -1,6 +1,7 @@
 import { Card, CardContent, CardHeader, CardTitle } from '@/components/ui/card';
 import { Accordion, AccordionContent, AccordionItem, AccordionTrigger } from '@/components/ui/accordion';
 import SEOHead from '@/components/SEOHead';
+import { generateQAPageSchema } from '@/utils/seo';
 
 const FAQ = () => {
   const faqs = [
@@ -47,19 +48,42 @@ const FAQ = () => {
   ];
 
 
+  // Enhanced structured data with both FAQPage and QAPage schemas
   const faqStructuredData = {
     "@context": "https://schema.org",
-    "@type": "FAQPage",
-    "inLanguage": "en-US",
-    "isFamilyFriendly": true,
-    "mainEntity": faqs.map(faq => ({
-      "@type": "Question",
-      "name": faq.question,
-      "acceptedAnswer": {
-        "@type": "Answer",
-        "text": faq.answer
+    "@graph": [
+      {
+        "@type": "FAQPage",
+        "@id": "https://currencytocurrency.app/faq#faqpage",
+        "inLanguage": "en-US",
+        "isFamilyFriendly": true,
+        "name": "Currency Converter FAQ",
+        "description": "Frequently asked questions about currency conversion, exchange rates, and our converter features",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer
+          }
+        }))
+      },
+      {
+        "@type": "QAPage",
+        "@id": "https://currencytocurrency.app/faq#qapage",
+        "mainEntity": faqs.map(faq => ({
+          "@type": "Question",
+          "name": faq.question,
+          "acceptedAnswer": {
+            "@type": "Answer",
+            "text": faq.answer,
+            "dateCreated": "2024-01-01",
+            "upvoteCount": 0
+          },
+          "answerCount": 1
+        }))
       }
-    }))
+    ]
   };
 
   return (

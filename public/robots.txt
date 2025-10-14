@@ -1,18 +1,10 @@
 # robots.txt for https://currencytocurrency.app
-<<<<<<< HEAD
-# Optimized for Google Mobile-First Indexing. Last updated: 2025-10-08
-=======
-# Mobile-First Optimized for Google. Last updated: 2025-10-07
->>>>>>> parent of a6af7e3 (c)
+# Optimized for Google Mobile-First Indexing. Last updated: 2024-10-14
 
 User-agent: *
 Allow: /
 
-<<<<<<< HEAD
 # Explicit mobile crawler support
-=======
-# Mobile-specific crawlers
->>>>>>> parent of a6af7e3 (c)
 User-agent: Googlebot
 Allow: /
 
@@ -24,14 +16,10 @@ Allow: /
 
 User-agent: Bingbot-Mobile
 Allow: /
-<<<<<<< HEAD
-=======
-Crawl-delay: 1
 
 User-agent: YandexMobileBot
 Allow: /
 Crawl-delay: 2
->>>>>>> parent of a6af7e3 (c)
 
 # Disallow authentication and admin pages
 Disallow: /auth

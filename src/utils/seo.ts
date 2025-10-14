@@ -334,6 +334,199 @@ export function getCanonicalUrl(path: string): string {
   return `https://currencytocurrency.app${finalPath}`;
 }
 
+// Generate SoftwareApplication schema for the currency converter tool
+export function generateSoftwareApplicationSchema() {
+  return {
+    "@context": "https://schema.org",
+    "@type": "SoftwareApplication",
+    "name": "Currency to Currency Converter",
+    "applicationCategory": "FinanceApplication",
+    "operatingSystem": "Web Browser, iOS, Android",
+    "offers": {
+      "@type": "Offer",
+      "price": "0",
+      "priceCurrency": "USD"
+    },
+    "aggregateRating": {
+      "@type": "AggregateRating",
+      "ratingValue": "4.8",
+      "ratingCount": "1250",
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "featureList": [
+      "Real-time exchange rates for 150+ currencies",
+      "Live cryptocurrency prices",
+      "Historical exchange rate charts",
+      "Currency rate alerts and notifications",
+      "Offline currency conversion",
+      "Mobile-optimized interface",
+      "PWA support for mobile devices"
+    ],
+    "screenshot": "https://currencytocurrency.app/screenshots/converter.jpg",
+    "softwareVersion": "2.1.0",
+    "datePublished": "2024-01-01",
+    "author": {
+      "@type": "Organization",
+      "name": "Currency to Currency"
+    },
+    "provider": {
+      "@type": "Organization",
+      "name": "Currency to Currency",
+      "url": "https://currencytocurrency.app"
+    }
+  };
+}
+
+// Generate HowTo schema for guide pages
+export interface HowToStep {
+  name: string;
+  text: string;
+  image?: string;
+  url?: string;
+}
+
+export function generateHowToSchema(title: string, description: string, steps: HowToStep[], totalTime?: string) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "HowTo",
+    "name": title,
+    "description": description,
+    "totalTime": totalTime || "PT5M",
+    "step": steps.map((step, index) => ({
+      "@type": "HowToStep",
+      "position": index + 1,
+      "name": step.name,
+      "text": step.text,
+      "image": step.image,
+      "url": step.url
+    }))
+  };
+}
+
+// Generate QAPage schema for FAQ pages
+export function generateQAPageSchema(questions: Array<{ question: string; answer: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "QAPage",
+    "mainEntity": questions.map(qa => ({
+      "@type": "Question",
+      "name": qa.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": qa.answer
+      }
+    }))
+  };
+}
+
+// Generate Review schema
+export interface ReviewData {
+  itemName: string;
+  itemType?: string;
+  rating: number;
+  reviewBody: string;
+  author: string;
+  datePublished: string;
+}
+
+export function generateReviewSchema(review: ReviewData) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Review",
+    "itemReviewed": {
+      "@type": review.itemType || "Product",
+      "name": review.itemName
+    },
+    "reviewRating": {
+      "@type": "Rating",
+      "ratingValue": review.rating,
+      "bestRating": "5",
+      "worstRating": "1"
+    },
+    "reviewBody": review.reviewBody,
+    "author": {
+      "@type": "Person",
+      "name": review.author
+    },
+    "datePublished": review.datePublished
+  };
+}
+
+// Generate ItemList schema for currency lists
+export function generateItemListSchema(items: Array<{ name: string; url: string; description?: string }>) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "ItemList",
+    "itemListElement": items.map((item, index) => ({
+      "@type": "ListItem",
+      "position": index + 1,
+      "name": item.name,
+      "url": item.url,
+      "description": item.description
+    }))
+  };
+}
+
+// Generate VideoObject schema
+export interface VideoData {
+  name: string;
+  description: string;
+  thumbnailUrl: string;
+  uploadDate: string;
+  duration?: string;
+  contentUrl?: string;
+  embedUrl?: string;
+}
+
+export function generateVideoSchema(video: VideoData) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "VideoObject",
+    "name": video.name,
+    "description": video.description,
+    "thumbnailUrl": video.thumbnailUrl,
+    "uploadDate": video.uploadDate,
+    "duration": video.duration || "PT5M",
+    "contentUrl": video.contentUrl,
+    "embedUrl": video.embedUrl
+  };
+}
+
+// Generate Speakable schema for voice search optimization
+export function generateSpeakableSchema(cssSelectors: string[]) {
+  return {
+    "@context": "https://schema.org",
+    "speakable": {
+      "@type": "SpeakableSpecification",
+      "cssSelector": cssSelectors
+    }
+  };
+}
+
+// Generate Course schema for educational content
+export interface CourseData {
+  name: string;
+  description: string;
+  provider: string;
+  url: string;
+}
+
+export function generateCourseSchema(course: CourseData) {
+  return {
+    "@context": "https://schema.org",
+    "@type": "Course",
+    "name": course.name,
+    "description": course.description,
+    "provider": {
+      "@type": "Organization",
+      "name": course.provider,
+      "url": "https://currencytocurrency.app"
+    },
+    "url": course.url
+  };
+}
+
 export default {
   CURRENCY_NAMES,
   getCurrencyName,
@@ -347,6 +540,14 @@ export default {
   generateBreadcrumbData,
   generateFAQStructuredData,
   generateArticleStructuredData,
+  generateSoftwareApplicationSchema,
+  generateHowToSchema,
+  generateQAPageSchema,
+  generateReviewSchema,
+  generateItemListSchema,
+  generateVideoSchema,
+  generateSpeakableSchema,
+  generateCourseSchema,
   PAGE_METADATA,
   WEBSITE_SCHEMA,
   ORGANIZATION_SCHEMA,

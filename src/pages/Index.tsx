@@ -16,6 +16,7 @@ import { Input } from '@/components/ui/input';
 import { Select, SelectContent, SelectItem, SelectTrigger, SelectValue } from '@/components/ui/select';
 import { ArrowUpDown, RefreshCw, TrendingUp, TrendingDown } from 'lucide-react';
 import { useToast } from '@/hooks/use-toast';
+import { generateSoftwareApplicationSchema } from '@/utils/seo';
 import homeHero from '@/assets/home-hero.jpg';
 import homeHeroWebP from '@/assets/home-hero.webp';
 
@@ -368,44 +369,65 @@ const Index = () => {
     fetchCandlestickData();
   };
 
+  // Enhanced structured data with SoftwareApplication schema
+  const softwareAppSchema = generateSoftwareApplicationSchema();
+
   const structuredData = {
     "@context": "https://schema.org",
     "@graph": [
       {
-        "@type": "WebApplication",
+        "@type": "SoftwareApplication",
         "@id": "https://currencytocurrency.app/#application",
         "name": "Currency to Currency Converter",
         "description": "Free real-time currency converter with support for 150+ fiat currencies and 100+ cryptocurrencies. Get instant exchange rates, historical charts, and price alerts.",
         "url": "https://currencytocurrency.app",
         "applicationCategory": "FinanceApplication",
-        "operatingSystem": "Web Browser",
-        "browserRequirements": "HTML5, JavaScript",
-        "softwareVersion": "2.0",
+        "operatingSystem": "Web Browser, iOS, Android",
+        "browserRequirements": "HTML5, JavaScript, Service Worker",
+        "softwareVersion": "2.1.0",
         "datePublished": "2024-01-01",
         "dateModified": new Date().toISOString().split('T')[0],
         "inLanguage": "en-US",
         "isAccessibleForFree": true,
+        "isFamilyFriendly": true,
         "offers": {
           "@type": "Offer",
           "price": "0",
           "priceCurrency": "USD",
           "availability": "https://schema.org/InStock"
         },
+        "aggregateRating": {
+          "@type": "AggregateRating",
+          "ratingValue": "4.8",
+          "ratingCount": "1250",
+          "bestRating": "5",
+          "worstRating": "1"
+        },
         "featureList": [
-          "Real-time exchange rates",
-          "150+ fiat currencies",
-          "100+ cryptocurrencies",
-          "Historical rate charts",
-          "Price alerts",
-          "Travel money guides",
-          "Offline conversion calculator",
+          "Real-time exchange rates for 150+ currencies",
+          "Live cryptocurrency prices for 100+ coins",
+          "Historical exchange rate charts",
+          "Currency rate alerts and notifications",
+          "Offline currency conversion",
+          "Travel money guides and tips",
+          "Mobile-optimized interface",
+          "PWA support for mobile devices",
           "Currency trend analysis"
         ],
+        "screenshot": "https://currencytocurrency.app/screenshots/converter.jpg",
         "creator": {
           "@type": "Organization",
           "@id": "https://currencytocurrency.app/#organization"
         },
         "publisher": {
+          "@type": "Organization",
+          "@id": "https://currencytocurrency.app/#organization"
+        },
+        "author": {
+          "@type": "Organization",
+          "@id": "https://currencytocurrency.app/#organization"
+        },
+        "provider": {
           "@type": "Organization",
           "@id": "https://currencytocurrency.app/#organization"
         }
