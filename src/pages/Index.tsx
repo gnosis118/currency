@@ -228,7 +228,7 @@ const Index = () => {
     }
   }, [toast]);
 
-  // Fetch a real‑time conversion rate for the current fiat currency pair from Polygon.io.
+  // Fetch a real‑time conversion rate with multi-tier fallback system for maximum reliability
   const fetchConversionRate = useCallback(async () => {
     // If the base and target currencies are the same we know the rate is 1 and
     // can avoid making an external request.
@@ -237,32 +237,116 @@ const Index = () => {
       setLastUpdated(new Date());
       return;
     }
+
     try {
       setFiatLoading(true);
-      const url = `https://api.polygon.io/v1/conversion/${fromCurrency}/${toCurrency}?amount=1&precision=6&apiKey=${POLYGON_API_KEY}`;
-      const response = await fetch(url);
-      if (!response.ok) throw new Error('Failed to fetch conversion rate');
-      const data = await response.json();
-      // Polygon may return the converted amount under `converted` or `result` depending on plan.
-      const converted = data.converted ?? data.result ?? null;
-      if (converted !== null && !isNaN(converted)) {
-        setExchangeRate(Number(converted));
-      } else {
-        throw new Error('Invalid response format');
+
+      // Multi-tier fallback system for maximum reliability
+      let rate: number | null = null;
+      let provider = '';
+
+      // Tier 1: Try open.er-api.com (FREE, unlimited, no key needed - MOST RELIABLE)
+      try {
+        const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
+        if (response.ok) {
+          const data = await response.json();
+          if (data.rates && data.rates[toCurrency]) {
+            rate = data.rates[toCurrency];
+            provider = 'open.er-api';
+          }
+        }
+      } catch (err) {
+        console.warn('open.er-api failed, trying next provider:', err);
       }
-      setLastUpdated(new Date());
+
+      // Tier 2: Try Polygon.io (if Tier 1 failed)
+      if (!rate) {
+        try {
+          const url = `https://api.polygon.io/v1/conversion/${fromCurrency}/${toCurrency}?amount=1&precision=6&apiKey=${POLYGON_API_KEY}`;
+          const response = await fetch(url);
+          if (response.ok) {
+            const data = await response.json();
+            const converted = data.converted ?? data.result ?? null;
+            if (converted !== null && !isNaN(converted)) {
+              rate = Number(converted);
+              provider = 'Polygon.io';
+            }
+          }
+        } catch (err) {
+          console.warn('Polygon.io failed, trying cache:', err);
+        }
+      }
+
+      // Tier 3: Try localStorage cache
+      if (!rate) {
+        try {
+          const cacheKey = `rate_${fromCurrency}_${toCurrency}`;
+          const cached = localStorage.getItem(cacheKey);
+          if (cached) {
+            const { rate: cachedRate, timestamp } = JSON.parse(cached);
+            // Use cache if less than 1 hour old
+            if (Date.now() - timestamp < 3600000) {
+              rate = cachedRate;
+              provider = 'cache';
+              console.log('✅ Using cached rate');
+            }
+          }
+        } catch (err) {
+          console.warn('Cache read failed:', err);
+        }
+      }
+
+      // If we got a rate from any source, use it
+      if (rate) {
+        setExchangeRate(rate);
+        setLastUpdated(new Date());
+
+        // Cache the successful rate for future use
+        try {
+          const cacheKey = `rate_${fromCurrency}_${toCurrency}`;
+          localStorage.setItem(cacheKey, JSON.stringify({
+            rate,
+            timestamp: Date.now(),
+            provider
+          }));
+          console.log(`✅ Rate fetched from ${provider}`);
+        } catch (err) {
+          console.warn('Cache write failed:', err);
+        }
+
+        // Only show info toast if using stale cache (not an error)
+        if (provider === 'cache') {
+          toast({
+            title: 'Using Cached Rate',
+            description: 'Showing last known exchange rate. Refresh to update.',
+            variant: 'default'
+          });
+        }
+      } else {
+        // No rate available from any source
+        throw new Error('All rate providers failed');
+      }
+
     } catch (error) {
-      console.error('Conversion rate fetch error:', error);
-      toast({
-        title: 'Error',
-        description: 'Failed to fetch conversion rate. Falling back to cached rates.',
-        variant: 'destructive'
-      });
-      // Attempt to fall back to the rate from the previously fetched exchangeRates map.
+      console.error('All conversion rate sources failed:', error);
+
+      // Last resort: try to use any previously fetched rate from exchangeRates state
       if (exchangeRates[toCurrency]) {
         setExchangeRate(exchangeRates[toCurrency]);
+        setLastUpdated(new Date());
+        toast({
+          title: 'Connection Issue',
+          description: 'Using previous exchange rate. Please refresh to update.',
+          variant: 'default'
+        });
       } else {
+        // Absolutely no rates available - set to null and show error
         setExchangeRate(null);
+        toast({
+          title: 'Unable to Fetch Rates',
+          description: 'Please check your internet connection and try again.',
+          variant: 'destructive'
+        });
       }
     } finally {
       setFiatLoading(false);
