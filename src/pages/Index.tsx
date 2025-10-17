@@ -169,38 +169,51 @@ const Index = () => {
   const [lastUpdated, setLastUpdated] = useState<Date | null>(null);
   const { toast } = useToast();
 
-  // Polygon.io API key and additional state for real‑time conversion and chart data.
-  // The user provided key is stored here for easy reference. If you are deploying
-  // this code yourself, consider moving the key into an environment variable.
-  const POLYGON_API_KEY = 'AAIgYzbfju84n3AQ2XD0oP8EUyCKLgwY';
+  // Polygon.io API key for advanced features (charts only - optional)
+  // Basic conversions use free APIs that don't require keys
+  const POLYGON_API_KEY = import.meta.env.VITE_POLYGON_API_KEY || 'AAIgYzbfju84n3AQ2XD0oP8EUyCKLgwY';
 
   // Holds the latest conversion rate for the currently selected fiat currency pair.
-  // When fromCurrency and toCurrency differ, this state is populated by the
-  // fetchConversionRate function. When both currencies are the same the rate is 1.
   const [exchangeRate, setExchangeRate] = useState<number | null>(null);
 
-  // Stores candlestick (OHLC) data for the selected fiat currency pair. Each entry
-  // in this array is an object with properties: o (open), h (high), l (low), c
-  // (close), and t (timestamp). This data feeds the CandlestickChart component.
+  // Stores candlestick (OHLC) data for the selected fiat currency pair.
   const [candlestickData, setCandlestickData] = useState<any[]>([]);
 
   // Indicates whether candlestick data is currently being loaded from the API.
   const [candlestickLoading, setCandlestickLoading] = useState(false);
 
+  // Fetch exchange rates using free, reliable APIs (no key required)
   const fetchExchangeRates = useCallback(async (baseCurrency: string) => {
     try {
       setFiatLoading(true);
-      const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
-      if (!response.ok) throw new Error('Failed to fetch exchange rates');
-      const data = await response.json();
-      setExchangeRates(data.rates);
+
+      // Try primary free API first
+      try {
+        const response = await fetch(`https://api.exchangerate-api.com/v4/latest/${baseCurrency}`);
+        if (response.ok) {
+          const data = await response.json();
+          setExchangeRates(data.rates);
+          setLastUpdated(new Date());
+          return;
+        }
+      } catch (err) {
+        console.warn('Primary API failed, trying fallback:', err);
+      }
+
+      // Fallback to open.er-api.com (always free, no key)
+      const fallbackResponse = await fetch(`https://open.er-api.com/v6/latest/${baseCurrency}`);
+      if (!fallbackResponse.ok) throw new Error('All exchange rate APIs failed');
+
+      const fallbackData = await fallbackResponse.json();
+      setExchangeRates(fallbackData.rates);
       setLastUpdated(new Date());
+
     } catch (error) {
       console.error('Exchange rate fetch error:', error);
       toast({
-        title: "Error",
-        description: "Failed to fetch exchange rates. Please try again.",
-        variant: "destructive"
+        title: "Connection Issue",
+        description: "Using cached rates. Please check your internet connection.",
+        variant: "default"
       });
     } finally {
       setFiatLoading(false);
@@ -245,18 +258,27 @@ const Index = () => {
       let rate: number | null = null;
       let provider = '';
 
+      // Tier 0: Use already-fetched exchangeRates (fastest, most reliable)
+      if (exchangeRates[toCurrency]) {
+        rate = exchangeRates[toCurrency];
+        provider = 'cached-state';
+        console.log('✅ Using already-fetched exchange rate');
+      }
+
       // Tier 1: Try open.er-api.com (FREE, unlimited, no key needed - MOST RELIABLE)
-      try {
-        const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
-        if (response.ok) {
-          const data = await response.json();
-          if (data.rates && data.rates[toCurrency]) {
-            rate = data.rates[toCurrency];
-            provider = 'open.er-api';
+      if (!rate) {
+        try {
+          const response = await fetch(`https://open.er-api.com/v6/latest/${fromCurrency}`);
+          if (response.ok) {
+            const data = await response.json();
+            if (data.rates && data.rates[toCurrency]) {
+              rate = data.rates[toCurrency];
+              provider = 'open.er-api';
+            }
           }
+        } catch (err) {
+          console.warn('open.er-api failed, trying next provider:', err);
         }
-      } catch (err) {
-        console.warn('open.er-api failed, trying next provider:', err);
       }
 
       // Tier 2: Try Polygon.io (if Tier 1 failed)
