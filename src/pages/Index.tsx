@@ -624,47 +624,182 @@ const Index = () => {
   };
 
   /**
-   * Render a simple candlestick chart as an SVG.  Each candlestick consists of a
-   * vertical line for the high–low range and a rectangle for the open–close
-   * body.  The colour of the body indicates whether the price increased
-   * (green) or decreased (red) during the period.
+   * Detect candlestick patterns in the data
+   */
+  const detectCandlePatterns = (data: any[], index: number): { pattern: string; type: 'bullish' | 'bearish' | 'neutral' }[] => {
+    const patterns: { pattern: string; type: 'bullish' | 'bearish' | 'neutral' }[] = [];
+    const current = data[index];
+    const prev = data[index - 1];
+    const prev2 = data[index - 2];
+
+    if (!current) return patterns;
+
+    const bodySize = Math.abs(current.c - current.o);
+    const range = current.h - current.l;
+    const upperWick = current.h - Math.max(current.o, current.c);
+    const lowerWick = Math.min(current.o, current.c) - current.l;
+    const isBullish = current.c > current.o;
+    const isBearish = current.c < current.o;
+
+    // Doji - very small body, equal wicks
+    if (bodySize < range * 0.1 && Math.abs(upperWick - lowerWick) < range * 0.2) {
+      patterns.push({ pattern: 'Doji', type: 'neutral' });
+    }
+
+    // Hammer - small body at top, long lower wick (bullish reversal)
+    if (isBullish && lowerWick > bodySize * 2 && upperWick < bodySize * 0.5) {
+      patterns.push({ pattern: 'Hammer', type: 'bullish' });
+    }
+
+    // Inverted Hammer - small body at bottom, long upper wick
+    if (isBullish && upperWick > bodySize * 2 && lowerWick < bodySize * 0.5) {
+      patterns.push({ pattern: 'Inverted Hammer', type: 'bullish' });
+    }
+
+    // Shooting Star - small body at bottom, long upper wick (bearish reversal)
+    if (isBearish && upperWick > bodySize * 2 && lowerWick < bodySize * 0.5) {
+      patterns.push({ pattern: 'Shooting Star', type: 'bearish' });
+    }
+
+    // Hanging Man - small body at top, long lower wick (bearish reversal)
+    if (isBearish && lowerWick > bodySize * 2 && upperWick < bodySize * 0.5) {
+      patterns.push({ pattern: 'Hanging Man', type: 'bearish' });
+    }
+
+    // Bullish Engulfing - previous bearish, current bullish and larger
+    if (prev && prev.c < prev.o && isBullish && current.o < prev.c && current.c > prev.o) {
+      patterns.push({ pattern: 'Bullish Engulfing', type: 'bullish' });
+    }
+
+    // Bearish Engulfing - previous bullish, current bearish and larger
+    if (prev && prev.c > prev.o && isBearish && current.o > prev.c && current.c < prev.o) {
+      patterns.push({ pattern: 'Bearish Engulfing', type: 'bearish' });
+    }
+
+    // Morning Star - three candles: bearish, small body, bullish
+    if (prev2 && prev && prev2.c < prev2.o && bodySize < range * 0.3 && isBullish) {
+      patterns.push({ pattern: 'Morning Star', type: 'bullish' });
+    }
+
+    // Evening Star - three candles: bullish, small body, bearish
+    if (prev2 && prev && prev2.c > prev2.o && bodySize < range * 0.3 && isBearish) {
+      patterns.push({ pattern: 'Evening Star', type: 'bearish' });
+    }
+
+    return patterns;
+  };
+
+  /**
+   * Render candlestick chart with pattern detection
    */
   const CandlestickChart: React.FC<{ data: any[] }> = ({ data }) => {
     const width = 600;
-    const height = 300;
+    const height = 350;
     const padding = 40;
+    const patternLabelHeight = 20;
+
     if (!data || data.length === 0) {
       return <p className="text-muted-foreground">No data available for this currency pair.</p>;
     }
+
     const minPrice = Math.min(...data.map((d) => d.l));
     const maxPrice = Math.max(...data.map((d) => d.h));
     const priceRange = maxPrice - minPrice || 1;
     const bodyWidth = Math.max(3, ((width - 2 * padding) / data.length) * 0.6);
     const xScale = (index: number) => padding + index * ((width - 2 * padding) / data.length);
     const yScale = (value: number) => height - padding - ((value - minPrice) / priceRange) * (height - 2 * padding);
+
     return (
-      <svg width={width} height={height} role="img" aria-label="Currency candlestick chart">
-        {data.map((d, i) => {
-          const x = xScale(i);
-          const yOpen = yScale(d.o);
-          const yClose = yScale(d.c);
-          const yHigh = yScale(d.h);
-          const yLow = yScale(d.l);
-          const color = d.c >= d.o ? '#22c55e' : '#ef4444';
-          return (
-            <g key={i}>
-              <line x1={x} y1={yHigh} x2={x} y2={yLow} stroke={color} strokeWidth="1" />
-              <rect
-                x={x - bodyWidth / 2}
-                y={Math.min(yOpen, yClose)}
-                width={bodyWidth}
-                height={Math.max(1, Math.abs(yOpen - yClose))}
-                fill={color}
-              />
-            </g>
-          );
-        })}
-      </svg>
+      <div>
+        <svg width={width} height={height} role="img" aria-label="Currency candlestick chart with patterns">
+          {/* Grid lines */}
+          {[0, 0.25, 0.5, 0.75, 1].map((ratio) => (
+            <line
+              key={`grid-${ratio}`}
+              x1={padding}
+              y1={height - padding - (height - 2 * padding) * ratio}
+              x2={width - padding}
+              y2={height - padding - (height - 2 * padding) * ratio}
+              stroke="#e5e7eb"
+              strokeWidth="0.5"
+              strokeDasharray="2,2"
+              opacity="0.3"
+            />
+          ))}
+
+          {/* Candlesticks */}
+          {data.map((d, i) => {
+            const x = xScale(i);
+            const yOpen = yScale(d.o);
+            const yClose = yScale(d.c);
+            const yHigh = yScale(d.h);
+            const yLow = yScale(d.l);
+            const color = d.c >= d.o ? '#22c55e' : '#ef4444';
+            const patterns = detectCandlePatterns(data, i);
+
+            return (
+              <g key={i}>
+                {/* Wick */}
+                <line x1={x} y1={yHigh} x2={x} y2={yLow} stroke={color} strokeWidth="1" opacity="0.8" />
+
+                {/* Body */}
+                <rect
+                  x={x - bodyWidth / 2}
+                  y={Math.min(yOpen, yClose)}
+                  width={bodyWidth}
+                  height={Math.max(1, Math.abs(yOpen - yClose))}
+                  fill={color}
+                  opacity="0.9"
+                />
+
+                {/* Pattern markers */}
+                {patterns.length > 0 && (
+                  <g>
+                    {patterns.map((p, pIdx) => {
+                      const markerY = yHigh - 15 - pIdx * 12;
+                      const markerColor = p.type === 'bullish' ? '#22c55e' : p.type === 'bearish' ? '#ef4444' : '#f59e0b';
+                      return (
+                        <g key={`pattern-${i}-${pIdx}`}>
+                          {/* Pattern indicator circle */}
+                          <circle cx={x} cy={markerY} r="3" fill={markerColor} opacity="0.8" />
+                          {/* Pattern label tooltip on hover */}
+                          <title>{p.pattern}</title>
+                        </g>
+                      );
+                    })}
+                  </g>
+                )}
+              </g>
+            );
+          })}
+
+          {/* Axes */}
+          <line x1={padding} y1={height - padding} x2={width - padding} y2={height - padding} stroke="#000" strokeWidth="1" />
+          <line x1={padding} y1={padding} x2={padding} y2={height - padding} stroke="#000" strokeWidth="1" />
+        </svg>
+
+        {/* Pattern Legend */}
+        <div className="mt-4 p-3 bg-gray-50 rounded text-sm">
+          <p className="font-semibold mb-2">Pattern Legend:</p>
+          <div className="grid grid-cols-2 gap-2 text-xs">
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-green-500"></span>
+              <span>Bullish Patterns</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-red-500"></span>
+              <span>Bearish Patterns</span>
+            </div>
+            <div className="flex items-center gap-2">
+              <span className="w-3 h-3 rounded-full bg-amber-500"></span>
+              <span>Neutral Patterns</span>
+            </div>
+            <div className="text-gray-600">
+              Hover over dots to see pattern names
+            </div>
+          </div>
+        </div>
+      </div>
     );
   };
 
