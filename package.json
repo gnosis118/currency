@@ -53,7 +53,9 @@
     "validate:robots": "node scripts/validate-robots-txt.cjs",
     "fix:frontmatter": "node scripts/fix-missing-frontmatter.cjs",
     "deploy:preview": "npm run build && npm run preview",
-    "validate:crawlability": "node scripts/validate_crawlability.cjs --base http://localhost:4173"
+    "validate:crawlability": "node scripts/validate_crawlability.cjs --base http://localhost:4173",
+    "scrape-competitors": "node scripts/competitor-article-rewriter.js",
+    "schedule-scraper": "node scripts/schedule-competitor-scraper.js"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.9.0",
