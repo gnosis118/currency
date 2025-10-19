@@ -2,23 +2,27 @@
 
 /**
  * Competitor Article Scraper & Rewriter
- * 
+ *
  * Daily automation script that:
  * 1. Scrapes competitor articles (RSS feeds)
  * 2. Rewrites with new titles
  * 3. Expands to 2500+ words
  * 4. Improves content quality
  * 5. Publishes to blog
- * 
+ *
  * Usage: node scripts/competitor-article-rewriter.js
  * Or: npm run scrape-competitors
  */
 
-const https = require('https');
-const http = require('http');
-const fs = require('fs');
-const path = require('path');
-const xml2js = require('xml2js');
+import https from 'https';
+import http from 'http';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import xml2js from 'xml2js';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuration
 const CONFIG = {
@@ -390,12 +394,10 @@ async function main() {
 }
 
 // Run if executed directly
-if (require.main === module) {
-  main().catch(error => {
-    console.error('Fatal error:', error);
-    process.exit(1);
-  });
-}
+main().catch(error => {
+  console.error('Fatal error:', error);
+  process.exit(1);
+});
 
-module.exports = { main, fetchRSSFeed, parseRSSFeed, rewriteArticle };
+export { main, fetchRSSFeed, parseRSSFeed, rewriteArticle };
 

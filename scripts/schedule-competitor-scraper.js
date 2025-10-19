@@ -2,17 +2,21 @@
 
 /**
  * Daily Scheduler for Competitor Article Scraper
- * 
+ *
  * Runs the competitor article scraper every day at a specified time
- * 
+ *
  * Usage: node scripts/schedule-competitor-scraper.js
  * Or: npm run schedule-scraper
  */
 
-const schedule = require('node-schedule');
-const { main } = require('./competitor-article-rewriter');
-const fs = require('fs');
-const path = require('path');
+import schedule from 'node-schedule';
+import { main } from './competitor-article-rewriter.js';
+import fs from 'fs';
+import path from 'path';
+import { fileURLToPath } from 'url';
+
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 // Configuration
 const SCHEDULE_TIME = process.env.SCRAPER_TIME || '09:00'; // 9 AM daily
@@ -88,10 +92,8 @@ function startScheduler() {
   log('⏳ Scheduler is running. Press Ctrl+C to stop.');
 }
 
-// Start scheduler if run directly
-if (require.main === module) {
-  startScheduler();
-}
+// Start scheduler
+startScheduler();
 
-module.exports = { startScheduler };
+export { startScheduler };
 

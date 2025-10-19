@@ -1,9 +1,9 @@
 /**
  * Netlify Function: Daily Competitor Article Scraper
- * 
+ *
  * Triggered daily via Netlify scheduled functions
  * Scrapes competitor articles and publishes to blog
- * 
+ *
  * Configuration in netlify.toml:
  * [[functions]]
  * name = "daily-scraper"
@@ -13,6 +13,8 @@
 const https = require('https');
 const http = require('http');
 const xml2js = require('xml2js');
+const fs = require('fs');
+const path = require('path');
 
 // Configuration
 const COMPETITORS = [
@@ -226,19 +228,81 @@ function callOpenAI(apiKey, prompt, maxTokens) {
 }
 
 /**
+ * Convert title to slug
+ */
+function titleToSlug(title) {
+  return title
+    .toLowerCase()
+    .trim()
+    .replace(/[^\w\s-]/g, '')
+    .replace(/\s+/g, '-')
+    .replace(/-+/g, '-')
+    .slice(0, 60);
+}
+
+/**
+ * Create markdown frontmatter
+ */
+function createFrontmatter(title, slug, excerpt, content) {
+  const wordCount = content.split(/\s+/).length;
+  const readTime = Math.max(1, Math.ceil(wordCount / 200));
+  const today = new Date().toISOString().split('T')[0];
+
+  return `---
+title: "${title.replace(/"/g, '\\"')}"
+slug: "${slug}"
+date: "${today}"
+category: "Currency Exchange"
+featured: false
+tags: ["currency", "exchange rates", "forex", "money transfer"]
+metaDescription: "${excerpt.replace(/"/g, '\\"').slice(0, 160)}"
+---
+
+`;
+}
+
+/**
+ * Save article to blog directory
+ */
+async function publishArticleToBlog(title, slug, excerpt, content) {
+  try {
+    // Ensure src/content/blog directory exists
+    const blogDir = path.join(process.cwd(), 'src', 'content', 'blog');
+    if (!fs.existsSync(blogDir)) {
+      fs.mkdirSync(blogDir, { recursive: true });
+      console.log(`📁 Created blog directory: ${blogDir}`);
+    }
+
+    // Create markdown file with frontmatter
+    const frontmatter = createFrontmatter(title, slug, excerpt, content);
+    const fullContent = frontmatter + content;
+
+    const filePath = path.join(blogDir, `${slug}.md`);
+    fs.writeFileSync(filePath, fullContent, 'utf8');
+
+    console.log(`✅ Published article: ${filePath}`);
+    return { success: true, filePath, slug };
+  } catch (error) {
+    console.error(`❌ Failed to publish article: ${error.message}`);
+    return { success: false, error: error.message };
+  }
+}
+
+/**
  * Main handler
  */
 exports.handler = async (event, context) => {
   console.log('🚀 Daily Competitor Article Scraper Started');
-  
+
   try {
     let articlesProcessed = 0;
+    let articlesPublished = 0;
     const results = [];
 
     for (const competitor of COMPETITORS) {
       try {
         console.log(`📰 Fetching from ${competitor.name}...`);
-        
+
         // Fetch RSS feed
         const rssData = await fetchUrl(competitor.rssUrl);
         const articles = await parseRSSFeed(rssData);
@@ -266,12 +330,37 @@ exports.handler = async (event, context) => {
         const wordCount = rewrittenContent.split(/\s+/).length;
         console.log(`📊 Article: ${wordCount} words`);
 
+        // Generate slug from new title
+        const slug = titleToSlug(newTitle);
+
+        // Extract excerpt (first 160 chars)
+        const excerpt = rewrittenContent
+          .replace(/<[^>]+>/g, '')
+          .replace(/[#*_`]/g, '')
+          .slice(0, 160)
+          .trim();
+
+        // Publish to blog
+        const publishResult = await publishArticleToBlog(
+          newTitle,
+          slug,
+          excerpt,
+          rewrittenContent
+        );
+
+        if (publishResult.success) {
+          articlesPublished++;
+        }
+
         results.push({
           competitor: competitor.name,
           originalTitle: latestArticle.title,
           newTitle: newTitle,
+          slug: slug,
           wordCount: wordCount,
-          status: 'success'
+          published: publishResult.success,
+          status: publishResult.success ? 'published' : 'error',
+          error: publishResult.error
         });
 
         articlesProcessed++;
@@ -289,7 +378,7 @@ exports.handler = async (event, context) => {
     return {
       statusCode: 200,
       body: JSON.stringify({
-        message: `✅ Scraper completed. Processed ${articlesProcessed} articles`,
+        message: `✅ Scraper completed. Processed ${articlesProcessed} articles, Published ${articlesPublished}`,
         results: results
       })
     };
